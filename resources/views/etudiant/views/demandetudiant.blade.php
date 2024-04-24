@@ -16,24 +16,37 @@
     .white-color{
         color:white;
     }
+    .col-md-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 88%;
+        max-width: 441%;
+    }
+    .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -38px;
+    margin-left: -118px;
+}
 </style>
-<div class="col-md-9 mt-5 "></div>
+<div class="col-md-9 mt-5 " ></div>
 <div class="container">
     <form action="">
 <div class="  row">
-    <div class="col-md-3  "></div>
+   
 <div class="col-md-9 mt-5  style-demande mt-5 d-flex justify-content-center">
    <button class="btn white-color ">Attestation Inscription</button>
 
 </div></div>
-<div class="  row">
-    <div class="col-md-3  "></div>
+<div class="  row" style="max-width:124%">
+    
 <div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
-   <button class="btn white-color ">Attestation réussite</button>
+   <button class="btn white-color  ">Attestation réussite</button>
 
 </div></div>
 <div class="  row">
-    <div class="col-md-3  "></div>
+   
 <div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
    <button class="btn white-color ">Certificat Scolarité</button>
 

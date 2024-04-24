@@ -27,6 +27,7 @@
     font-family: Arial, sans-serif; 
     font-weight: bold; 
 }
+
 </style>
 <div class="background-section">
     <div><strong>Emploi du Temps</strong></div>

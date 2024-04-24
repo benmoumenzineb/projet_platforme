@@ -13,22 +13,27 @@
             text-align: center;
             padding: 30px;
         }
+        .row{
+            
+    
+    margin-right: -40px;
+    margin-left: -319px}
     </style>
     <div class="col-md-9 mt-3"></div>
     <div class="background-section">
         <div> <strong>Réclamation</strong> </div>
     </div>
     <div class="container mt-5">
-        {{-- <div class="row">
+       <div class="row">
             <div class="col-md-9">
 
             </div>
-        </div> --}}
+        </div>
         <form action="">
             <div class="row">
 
                 <div class="col-md-3"></div>
-                <div class="col-md-3 mt-3 mr-sm-0 mr-md-8 p-5">
+                <div class="col-md-3 mt-3 ">
                     <h6>Type de réclamation :</h6>
                 </div>
                 <div class="col-md-3 mt-3">
