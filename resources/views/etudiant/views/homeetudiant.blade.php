@@ -3,6 +3,8 @@
    
  
 @section('contenu')
+
+
     <style>
         .custom-background:hover{
 background-color:#1858b1;
@@ -11,6 +13,30 @@ background-color:#1858b1;
         .custom-background{
             background-color:#173165;
         } 
+        
+
+        @media screen and (max-width: 1024px) {
+            #page-content {
+                margin-left: 10px; 
+                margin-top: 10px; /* Ajuster la marge supérieure */
+                padding: 20px; /* Ajuster le rembourrage */
+            }
+
+            .d-flex.justify-content-left {
+                flex-direction: row; 
+                flex-wrap: wrap; /* Autoriser le retour à la ligne lorsque l'espace est insuffisant */
+            }
+
+            .card {
+                width: calc(50% - 20px); /* Occuper 50% de la largeur disponible avec un espacement */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .card {
+                width: calc(100% - 20px); /* Occuper 100% de la largeur disponible avec un espacement */
+            }
+        }
     </style>
 
 <div id="page-content" class="d-flex flex-column" style="margin-left: 250px; padding: 20px;
@@ -90,7 +116,7 @@ margin-right:10px;margin-top:30px; padding: 40px;
             </div></a>
         </div>
         <a href="{{ route('paiement') }}"><div class="d-flex justify-content-left mt-2">
-            <div class="card mb-3 mr-3 custom-background" style="width: 278px;
+            <div class="card mb-3 mr-3 custom-background" style="width: 300px;
             color:#ffffff;margin-right: 20px;">
                 <!-- Contenu de la carte "suivie de paiement" -->
                 <div class="card-body text-center">

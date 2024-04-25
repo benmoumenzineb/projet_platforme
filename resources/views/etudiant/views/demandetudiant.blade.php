@@ -11,7 +11,7 @@
     }
     .h-w{
         height:auto;
-        width:auto;
+        width:100%;
     }
     .style-demande:hover{
         background-color: #1858b1;
@@ -20,18 +20,14 @@
     .white-color{
         color:white;
     }
-    .col-md-9 {
-        -ms-flex: 0 0 75%;
-        flex: 0 0 88%;
-        max-width: 441%;
-    }
+    
     .row {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-right: -38px;
-    margin-left: -118px;
+    margin-left: 150px;
+    
 }
 </style>
 <div class="col-md-9 mt-5 " ></div>
