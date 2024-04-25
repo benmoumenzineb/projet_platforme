@@ -3,19 +3,7 @@
 @section('contenu')
 
     <style>
-        .background-section {
-            position: relative;
-            top: 60px;
-            left: 250px;
-            width: calc(100% - 250px);
-            height: calc(27vh - 50px);
-            background-color: #3966c2;
-            color: white;
-            font-size: 24px;
-            text-align: center;
-            padding: 39px;
-            z-index: 997;
-        }
+       
 
         /* Ajout de style pour les boutons */
         #btn-info-etudiant,
@@ -39,19 +27,35 @@
         #renseignement-academique-baccalaureat-content,
         #renseignement-academique-cursus-externe-content,
         #renseignement-academique-cursus-interne-content,
-        #renseignement-academique-bourse-content {
+        #renseignement-academique-bourse-content,
+        #renseignement-academique-cursus-interne-content{
+
             display: none;
         }
 
-        #renseignement-academique-cursus-interne-content {
-            display: none;
-        }
         
+        
+        .content {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .suptech_sante_radio {
+            margin-left: 0px;
+        }
+        @media (min-width: 768px) {
+            /* Adjust margin-left for larger screens */
+            .content {
+                margin-left: 300px;
+            }
+            .suptech_sante_radio {
+                margin-left: 270px;
+            }
+        }
     </style>
 
-    <div class="background-section">
-        <div><strong>DOSSIER DE ETUDIANT</strong></div>
-    </div>
+    
 
     <!-- Boutons pour accéder aux informations -->
     <div style="margin-left: 300px; margin-top: 100px;">
@@ -60,16 +64,14 @@
     </div>
 
     <!-- Formulaire pour Etablissement -->
-    <div id="etablissment-content" class="content" style="margin-left: 300px; margin-top: 20px;">
-
-        <div class="content" style="margin-left: -20px; margin-top: 20px;">
+    <div class="content">
+        <div class="content" style="margin-left: -20px;">
             <fieldset class="border p-3">
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Etablissment</strong></legend>
                 <form id="etablissment">
-
                     <div class="form-group">
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
-                        <div class="suptech_sante_radio" style="margin-top:-20px; margin-left:270px">
+                        <div class="suptech_sante_radio">
                             <label style="margin-right: 100px;">
                                 <input type="radio" name="suptech_sante" value="Mohammedia">
                                 Mohammedia
@@ -659,10 +661,8 @@
         const renseignementsEtudiantContent = document.getElementById('renseignements-etudiant-content');
         const informationsParentsContent = document.getElementById('informations-parents-content');
         const renseignementAcademiquebacContent = document.getElementById('renseignement-academique-baccalaureat-content');
-        const renseignementAcademiquecursusexterneContent = document.getElementById(
-            'renseignement-academique-cursus-externe-content');
-        const renseignementAcademiquecursusinterneContent = document.getElementById(
-            'renseignement-academique-cursus-interne-content');
+        const renseignementAcademiquecursusexterneContent = document.getElementById('renseignement-academique-cursus-externe-content');
+        const renseignementAcademiquecursusinterneContent = document.getElementById('renseignement-academique-cursus-interne-content');
         const ModifierContent = document.getElementById('modifier');
         const renseignementAcademiquebourseContent = document.getElementById('renseignement-academique-bourse-content');
 

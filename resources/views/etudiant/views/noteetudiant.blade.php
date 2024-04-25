@@ -1,37 +1,31 @@
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>
-    body{
-        margin:0;
-        padding:0;
-        overflow-x: hidden;
+     @media  (width: 1024px) {
+        #Divglobale {
+      margin-right:50px; /* Hide the sidebar by default on smaller screens */
     }
-.col-md-9 {
-        -ms-flex: 0 0 75%;
-        flex: 0 0 88%;
-        max-width: 441%;
+}
+@media  (min-width: 1025px) and  (max-width:1444 px) {
+    #Divglobale {
+      margin-left:0px; /* Hide the sidebar by default on smaller screens */
     }
-    .row {
+}
+@media (min-width: 768px) {
+    #Divglobale {
+          margin-left: 214px; /* Set max-width to match iPad Air width */
+        }
+    }
 
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -38px;
-    margin-left: -118px;}
-    .col-md-9 {
-        -ms-flex: 0 0 75%;
-        flex: 0 0 88%;
-        max-width: 441%;
-    }
-   
+
 </style>
-<div style="margin-left: 25px; margin-top: 100px;">
-<div class="col-md-9 mt-5 "></div>
-<div class="container">
+<div  class="mt-5" >
+
+<div class="container" id="Divglobale">
 <div class="  row">
 
     
-    <div class="col-md-10 mt-5  ">
+    <div class="col-md-10 mt-5 ">
     <form action="">
         <fieldset class="border p-2">
             <legend class="w-auto" >filtrer par :</legend>
@@ -60,7 +54,7 @@
    
     <div  class="col-md-9 mt-5  ">
         <table class="table table-striped table-bordered data-table table-th-valign-middle table-td-valign-middle m-0 p-0" style="width:100%;  color:white ; background-color: #3966c2">
-        <thead class="m-0 p-0">
+       
         <tr>
         <th colspan="3">
      <span>Version étape</span>

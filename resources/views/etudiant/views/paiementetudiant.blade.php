@@ -36,6 +36,7 @@
     border: none;
    
 }
+
 </style>
 
 
@@ -82,134 +83,143 @@
     </div>
 </div>
 
+<div id="informations-personnelles-content" class="content"
+        style="margin-left: -20px; margin-top:20px; overflow: hidden;">
+        <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
+            <fieldset class="border p-3">
+                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Personnelles</strong>
+                </legend>
+                <form id="informations-personnelles">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nom" class="form-label"><strong>Nom :</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="nom" name="nom" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="filiere" class="form-label"><strong>Filiére
+                                            :</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="filiere" name="filiere"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="cin" class="form-label"><strong>CIN :</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-select" id="cin" name="cin" required>
+                                       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="N-telephone" class="form-label"><strong>N° Téléphone:</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="N-telephone" name="N-telephone"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="somme" class="form-label"><strong>La somme totale en chiffre:</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="somme" name="somme" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="N_passeport" class="form-label"><strong>Choix:
+                                            </strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select" id="choix" name="choix" required>
+                                        <option value="Internat" >Internat</option>
+                                        <option value="Ecole">Ecole</option>
+                                        <option value="Salle de sport">Salle de sport</option>
+                                        <option value="Transport">Transport</option>
+                                        
+        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-<div id="renseignements-etudiant-content" class="content" style="margin-left: -20px; margin-top:20px; overflow: hidden;">
-    <div class="content" style="margin-left: 20px; margin-top:5px; overflow: hidden;">
-        <fieldset class="border p-3">
-            <legend  class="w-auto" style="font-size: 16px; color:#173165"><strong>Informations Personnelles</strong></legend>
-        <form id="renseignements_etudiant">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="nom" class="form-label"><strong>Nom :</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="nom" name="nom" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="prenom" name="prenom" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="filiere" class="form-label"><strong>Filiére:</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="filiere" name="filiere" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="cin" class="form-label"><strong>CIN:</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="cin" name="cin" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="N-tele" class="form-label"><strong>N° Téléphone:</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="N-tele" name="N-tele" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="somme" class="form-label"><strong>La somme totale en chiffre:</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="somme" name="somme" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!---->
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="choix" class="form-label"><strong>choix:</strong></label>
-                        </div>
-                        <div class="col-md-6">
-                            <select class="form-select" id="choix" name="choix" required>
-                                <option value="Internat" >Internat</option>
-                                <option value="Ecole">Ecole</option>
-                                <option value="Salle de sport">Salle de sport</option>
-                                <option value="Transport">Transport</option>
-                                
 
-                            </select>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </form></fieldset>
+                         </div>
+                   
+
+                </form>
+            </fieldset>
+        </div>
     </div>
-    </div>
+
+
 <!--Informations Payment-->
-<div id="renseignements-etudiant-content" class="content" style="margin-left: -300px; margin-top:20px; overflow: hidden;">
-    <div class="content" style="margin-left: 300px; margin-top:5px; overflow: hidden;">
+
+<div class="content">
+    <div class="content" style="margin-left: 280px;">
         <fieldset class="border p-3">
-            <legend  class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong></legend>
-            <form id="informations-payment">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="mode_reglement" class="form-label"><strong>Mode de règlement Scolaire:</strong></label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="mode_reglement" id="mode_reglement-especes" value="Especes">
-                                    <label class="form-check-label" for="mode_reglement-especes">Espèces</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="mode_reglement" id="mode_reglement-cheque" value="Cheque">
-                                    <label class="form-check-label" for="mode_reglement-cheque">Chèque</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="mode_reglement" id="mode_reglement-verment" value="Virement">
-                                    <label class="form-check-label" for="mode_reglement-verment">Virement</label>
-                                </div>
-                            </div>
-                        </div>
+            <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong></legend>
+            <form id="informations-paiement">
+                <div class="form-group">
+                    <label for="mode"><strong>Mode de règlement Scolaire:</strong></label>
+                    <div class="mode-reglement_radio">
+                        <label style="margin-right: 100px;">
+                            <input type="radio" name="mode" value="Especes">
+                            Espèces
+                        </label>
+                        <label style="margin-right: 100px;">
+                            <input type="radio" name="mode" value="Chéque">
+                            Chéque
+                        </label>
+                        <label>
+                            <input type="radio" name="mode" value="Virment">
+                           Virment
+                        </label>
                     </div>
                 </div>
             </form>
-            
         </fieldset>
-    </div></div>
+    </div>
+</div>
+
+
     <div class="content" style="margin-top: 20px; overflow: hidden;">
         <div class="row justify-content-end">
             <div class="col-md-6">
@@ -237,10 +247,3 @@
 </script>
 
 @endsection
-
-
-
-
-
-
-

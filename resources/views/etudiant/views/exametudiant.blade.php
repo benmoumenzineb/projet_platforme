@@ -3,10 +3,25 @@
   @section('contenu')
 
   <style>
+ 
+@media  (width: 1024px) {
     .card {
+      margin-right:50px; /* Hide the sidebar by default on smaller screens */
+    }
+}
+@media  (min-width: 1025px) and  (max-width:1444 px) {
+    .card {
+      margin-left:0px; /* Hide the sidebar by default on smaller screens */
+    }
+}
+@media (min-width: 768px) {
+        .container {
+          margin-left: 214px; /* Set max-width to match iPad Air width */
+        }
+    }
+ .card {
       margin-top:80px;
-      width: 55rem;
-   margin-left: -30px;
+   width:auto;
       background-color: #f8f9fa;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

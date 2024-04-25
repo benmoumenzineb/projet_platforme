@@ -1,5 +1,4 @@
-
-    <title>Etudiant</title>
+<title>Etudiant</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .navbar {
@@ -41,7 +40,7 @@ height:auto;
         }
 
         #vertical-sidebar ul li.active {
-            width: 100%;
+            width:100%;
             background-color: #3966c2;
 
         }
@@ -292,6 +291,3 @@ height:auto;
             });
         });
     </script>
-    
-   
-
