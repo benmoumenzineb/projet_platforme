@@ -1,10 +1,13 @@
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>
-    
+    .h-w{
+        height:auto;
+        width:auto;
+    }
 </style>
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 h-w">
     <form action="">
         <div class="row">
             <div class="col-md-6 mt-5">
