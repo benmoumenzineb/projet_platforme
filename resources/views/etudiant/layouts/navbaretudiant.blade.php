@@ -172,19 +172,15 @@ height:auto;
             </div>
         </div>
     </nav>
-<<<<<<< HEAD
+< HEAD>
     
-    <!--sidebar Vertical-->
+    
 =======
     sidebar Vertical-->
-    <nav class="navbar navbar-expand-lg navbar-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <img  src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
-
- 
-  <div class="ml-auto">
+    <nav class="navbar">
+        <div class="container">
+            <img class="m-0 p-0" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <div class="navbar-left">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                     class="bi bi-flag-fill" viewBox="0 0 16 16" style="color: #173165;">
                     <path
@@ -197,10 +193,8 @@ height:auto;
                 </svg>
             </div>
         </div>
-   
-  
-</nav>
->>>>>>> f83660ecc40e0586656c9bed0b583ddeef10ef79
+    </nav>
+    
     <div class="container-fluid">
         <div id="vertical-sidebar">
 
