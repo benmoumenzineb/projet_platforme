@@ -147,7 +147,7 @@ height:auto;
 
     </style>
 
-<body>
+<body >
     <!--sidebar horizontal
    
     

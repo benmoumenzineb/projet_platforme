@@ -16,15 +16,23 @@
           margin-left: 214px; /* Set max-width to match iPad Air width */
         }
     }
-    #Divglobale{
-        overflow-x:hidden
+    .fixed{
+        position:inherit;
+        top:50px;
+        left:250px;
+        width: 50%;
+        z-index: 1000;
     }
-
+    .fixed2{
+   margin-top: 20PX;
+        
+    }
 </style>
-<div  class="mt-5" >
 
-<div class="container" id="Divglobale">
-<div class="  row">
+
+
+<div class="container mt-5 "  id="Divglobale">
+<div class="  row fixed">
 
     
     <div class="col-md-10 mt-5 ">
@@ -51,7 +59,8 @@
         
     </form>
 </div></div>
-    <div class=" container-fluid mr-2 pl-2">
+
+    <div class=" container-fluid mr-2 pl-2 fixed2">
     <div class="  row">
    
     <div  class="col-md-9 mt-5  ">
@@ -133,7 +142,7 @@
     <tr></tr><tr></tr><tr><td></td><td></td><td></td></tr>
 <tr></tr>
 
-<tr><td  rowspan="4"> module3</td>
+<tr><td  rowspan="4"> module3 kkh nggu jgfyi gjcgj </td>
     <td  rowspan="4"></td>
     <td  rowspan="4"></td>
     <td  rowspan="4"></td>
@@ -168,6 +177,6 @@
 
 
         </table>
-    </div></div></div>
+    </div></div>
 
 @endsection
