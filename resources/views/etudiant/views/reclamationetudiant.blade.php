@@ -1,7 +1,9 @@
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>
-    
+    .btn-primary{
+        background-color:rgb(55, 88, 188) ; 
+    }
 </style>
 
 <div class="container-fluid mt-5">

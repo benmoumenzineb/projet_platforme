@@ -22,32 +22,18 @@
             transition: left 0.3s ease;
             background-color: #173165;
             font-family: Arial, sans-serif;
-            width: 250px;
-            height: calc(100% - 60px);
+           
+            height: 100%;
             position: fixed;
-            top: 65px;
+            top: 45px;
             left: 0;
-            overflow-y: auto;
-            padding-top: 50px;
+            overflow-y: hidden;
+           
         }
 
-        .sidebar.closed {
-            width: 50px;
-            overflow: hidden;
-        }
+       
 
-        .sidebar.closed .lien {
-            display: none;
-        }
-
-        .icon-color {
-            color: white;
-        }
-
-        .lien a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+       
 
         #vertical-sidebar ul li {
             padding: 10px;
@@ -79,8 +65,93 @@
             text-decoration: none;
             color: #173165;
         }
+        /* Default styles for the sidebar */
+.sidebar {
+    background-color:#173165; /* Change the background color if needed */
+    border-right: 1px solid #dee2e6; /* Add border for separation */
+    padding: 20px; /* Add padding to the sidebar */
+}
+
+/* Styles for the list items */
+.sidebar ul li {
+    margin-bottom: 10px; /* Add some space between list items */
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .sidebar {
+       width: 200px; /* Hide the sidebar by default on smaller screens */
+    }
+}
+
+/* Media query for screens larger than 768px */
+
+/* Responsive styles */
+@media (max-width: 991.98px) { /* Tablets */
+    .sidebar {
+        width: 200px; /* Adjust the width for tablet screens */
+    }
+}
+/* Responsive styles */
+@media (max-width: 575.98px) { /* Phones */
+    .sidebar {
+        width: 150px; /* Adjust the width for phones */
+    }
+}
+
+/* Media queries for responsive design */
+
+/* Phones */
+@media (max-width: 575.98px) {
+    .navbar {
+        flex-direction: column; /* Align items vertically on small screens */
+        align-items: center;
+        text-align: center;
+    }
+    .navbar-left {
+        margin-top: 10px; /* Add some margin for spacing */
+    }
+    .navbar-item {
+        margin-top: 10px; /* Add margin between items */
+    }
+}
+
+/* Tablets */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .navbar-left {
+        margin-right: auto; /* Move navbar-left to the left on tablets */
+    }
+}
+
+/* Extra small devices (e.g., small tablets) */
+@media (max-width: 767.98px) {
+    .navbar {
+        padding: 10px; /* Add padding to navbar on extra small devices */
+    }
+}
+
+/* Larger screens (Desktops, Laptops) */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: space-between; /* Distribute items evenly on larger screens */
+        align-items: center;
+    }
+}
+/* Larger screens (2560px and above) */
+@media (min-width: 2560px) {
+    .navbar {
+        padding: 20px; /* Increase padding for better spacing */
+    }
+    .navbar-left {
+        margin-right: 40px; /* Increase margin between navbar items */
+    }
+    .navbar-item {
+        margin-right: 20px; /* Increase margin between items */
+    }
+}
+
+
     </style>
-</head>
 
 <body>
     <!--sidebar horizontal-->
@@ -93,14 +164,15 @@
                     <path
                         d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001" />
                 </svg>
-                <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
+                <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                     class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                </svg>
+                </svg></a>
             </div>
         </div>
     </nav>
+    
     <!--sidebar Vertical-->
     <div class="container-fluid">
         <div id="vertical-sidebar">
@@ -187,9 +259,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-9 offset-md-3">
+               
                     @yield('contenu')
-                </div>
+               
             </div>
         </div>
     </div>
@@ -221,11 +293,8 @@
             });
         });
     </script>
-    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.js">
-        document.getElementById('closeSidebarBtn').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('closed');
-        });
-    </script>
+    
+   
 </body>
 
 </html>

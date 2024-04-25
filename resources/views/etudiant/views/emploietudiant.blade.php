@@ -1,6 +1,4 @@
 
-
-
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>

@@ -46,6 +46,7 @@
         #renseignement-academique-cursus-interne-content {
             display: none;
         }
+        
     </style>
 
     <div class="background-section">
