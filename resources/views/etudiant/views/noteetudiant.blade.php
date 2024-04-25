@@ -16,25 +16,15 @@
           margin-left: 214px; /* Set max-width to match iPad Air width */
         }
     }
-    .fixed-position {
-        position: fixed;
-        top: 20px; /* Adjust top position as needed */
-        left: 300px;
-        width:80%; /* Adjust left position as needed */
-        z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
+    #Divglobale{
+        overflow-x:hidden
     }
-    .fixed-position2 {
-        position: inherit;
-        top: 200px; /* Adjust top position as needed */
-        left: 300px;
-        width:80%; /* Adjust left position as needed */
-        z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
-    }
+
 </style>
 <div  class="mt-5" >
 
 <div class="container" id="Divglobale">
-<div class="  row fixed-position mt-5">
+<div class="  row">
 
     
     <div class="col-md-10 mt-5 ">
@@ -60,9 +50,9 @@
         </fieldset>
         
     </form>
-</div></div><br><br><br><br><br><br>
-    <div class=" container mt-5">
-    <div class="row mt-5 fixed-position2">
+</div></div>
+    <div class=" container-fluid mr-2 pl-2">
+    <div class="  row">
    
     <div  class="col-md-9 mt-5  ">
         <table class="table table-striped table-bordered data-table table-th-valign-middle table-td-valign-middle m-0 p-0" style="width:100%;  color:white ; background-color: #3966c2">
@@ -157,7 +147,7 @@
     <tr><td></td><td></td><td></td></tr>
 <tr></tr>
 
-<tr><td  rowspan="4"> outils aide a la decision et besunis integge</td>
+<tr><td  rowspan="4"> module4</td>
     <td  rowspan="4"></td>
     <td  rowspan="4"></td>
     <td  rowspan="4"></td>
