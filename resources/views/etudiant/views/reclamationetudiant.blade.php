@@ -1,23 +1,15 @@
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>
-<<<<<<< HEAD
-    .btn-primary{
-        background-color:rgb(55, 88, 188) ; 
-=======
-    .h-w{
-        height:auto;
-        width:auto;
->>>>>>> f83660ecc40e0586656c9bed0b583ddeef10ef79
-    }
+
 </style>
 
-<div class="container-fluid mt-5 h-w">
+<div class="container mt-5 mr-5">
     <form action="">
         <div class="row">
             <div class="col-md-6 mt-5">
                 <h6>Type de réclamation :</h6>
-                <select class="form-control mb-3">
+                <select class="form-control ">
                     <option value="internat">Réclamation d'internat</option>
                     <option value="suptech">Réclamation de Suptech</option>
                     <option value="transport">Réclamation de Transport</option>
@@ -27,7 +19,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h6>Description :</h6>
-                <input type="text" class="form-control mb-3">
+                <input type="text" class="form-control ">
             </div>
         </div>
         <div class="row">

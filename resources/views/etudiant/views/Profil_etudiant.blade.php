@@ -470,7 +470,7 @@
         </div>
     </div>
 
-    <div class="modifier-content" style="margin-top: 20px; overflow: hidden;">
+    <div class="modifier-content" style="margin-top: 20px; margin-right:10px; overflow: hidden;">
         <div class="row justify-content-end">
             <div class="col-md-6">
                 <div class="d-flex justify-content-end">
