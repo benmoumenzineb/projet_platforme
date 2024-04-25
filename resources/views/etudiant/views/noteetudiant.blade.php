@@ -24,7 +24,7 @@
         z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
     }
     .fixed-position2 {
-        position: fixed;
+        position: inherit;
         top: 200px; /* Adjust top position as needed */
         left: 300px;
         width:80%; /* Adjust left position as needed */
