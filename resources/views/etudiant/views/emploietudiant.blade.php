@@ -1,56 +1,47 @@
-@extends('etudiant.layouts.navbaretudiant')
 
+
+
+@extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>
-    .style-demande{ background-color: #173165;
-    font-family: Arial, sans-serif; /* Police de caractère */
-    width: 100%;
-    height:65px;
-    margin-top:20px;
-   cursor: pointer;
-    }
-    .style-demande:hover{
-        background-color: #1858b1;
-        transform: translateY(-6px);
-    }
-    .white-color{
-        color:white;
-    }
-    .col-md-9 {
-        -ms-flex: 0 0 75%;
-        flex: 0 0 88%;
-        max-width: 441%;
-    }
-    .row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -38px;
-    margin-left: -118px;
+.style-btn{
+    border:2px solid;
 }
-</style>
-<div class="col-md-9 mt-5 " ></div>
-<div class="container">
-    <form action="">
-<div class="  row">
-   
-<div class="col-md-9 mt-5  style-demande mt-5 d-flex justify-content-center">
-   <button class="btn white-color ">Attestation Inscription</button>
 
-</div></div>
-<div class="  row" style="max-width:124%">
+       
+.h2{
     
-<div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
-   <button class="btn white-color  ">Attestation réussite</button>
+    font-size: 32px; 
+    font-family: Arial, sans-serif; 
+    font-weight: bold; 
+}
 
-</div></div>
+</style>
+
+<div class="col-md-9 mr-5 mt-5 margin:100px">
+    </div>
+    
+<div class="container">
 <div class="  row">
+    <div class="col-md-3"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+<div class="col-md-9 mt-5">
    
-<div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
-   <button class="btn white-color ">Certificat Scolarité</button>
+    <img src="{{ asset('asset/images/emploi.jpg') }}" width="500px"alt="emploi">
+
 
 </div></div>
-</form>
+
+<div class="row">
+<div class="col-md-9 mt-3 ">
 </div>
+<div class="col-md-3 mt-3 ">
+    <button class="btn style-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+</svg> Télécharger Emploi</button>
+</div> </div></div>
 @endsection
