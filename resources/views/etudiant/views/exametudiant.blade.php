@@ -5,8 +5,8 @@
   <style>
     .card {
       margin-top:80px;
-      width: 60rem;
-   
+      width: 55rem;
+   margin-left: -30px;
       background-color: #f8f9fa;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

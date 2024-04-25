@@ -2,19 +2,7 @@
 @section('contenu')
 
 <style>
-    .background-section {
-        position: relative;
-        top: 50px; 
-        left: 250px; 
-        width: calc(100% - 250px); 
-        height: calc(15vh - 50px); 
-        background-color: #3966c2; 
-        color: white; 
-        font-size: 24px; 
-        text-align: center; 
-        padding: 39px; 
-        z-index: 997; 
-    }
+    
     .btn-primary {
         background-color: #3966c2;
         width: 100px;
@@ -50,9 +38,7 @@
 }
 </style>
 
-<div class="background-section">
-    <div><strong>Reçu de Paiement</strong></div>
-</div>
+
 
 <div style="margin-left: 300px; margin-top: 80px;">
     <!-- Button trigger modal -->
@@ -98,7 +84,7 @@
 
 
 <div id="renseignements-etudiant-content" class="content" style="margin-left: -20px; margin-top:20px; overflow: hidden;">
-    <div class="content" style="margin-left: 300px; margin-top:5px; overflow: hidden;">
+    <div class="content" style="margin-left: 20px; margin-top:5px; overflow: hidden;">
         <fieldset class="border p-3">
             <legend  class="w-auto" style="font-size: 16px; color:#173165"><strong>Informations Personnelles</strong></legend>
         <form id="renseignements_etudiant">
@@ -192,7 +178,7 @@
     </div>
     </div>
 <!--Informations Payment-->
-<div id="informations- payment-content" class="content" style="margin-left: -20px; margin-top:20px; overflow: hidden;">
+<div id="renseignements-etudiant-content" class="content" style="margin-left: -300px; margin-top:20px; overflow: hidden;">
     <div class="content" style="margin-left: 300px; margin-top:5px; overflow: hidden;">
         <fieldset class="border p-3">
             <legend  class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong></legend>
@@ -223,8 +209,7 @@
             </form>
             
         </fieldset>
-    </div>
-    </div>
+    </div></div>
     <div class="content" style="margin-top: 20px; overflow: hidden;">
         <div class="row justify-content-end">
             <div class="col-md-6">
