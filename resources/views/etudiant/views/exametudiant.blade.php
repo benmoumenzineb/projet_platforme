@@ -4,9 +4,9 @@
 
   <style>
     .card {
-        margin-left: 200px; margin-top:100px;
+      margin-top:80px;
       width: 60rem;
-      
+   
       background-color: #f8f9fa;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -26,8 +26,10 @@
     }
     
     .card-text {
-      color: #6c757d;
-    }</style>
+      color: #6c757d;}
+      
+    
+    </style>
 
   <div class="container">
   <div class="card" id="myCard">

@@ -17,8 +17,14 @@
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -38px;
-    margin-left: -118px;
-}</style>
+    margin-left: -118px;}
+    .col-md-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 88%;
+        max-width: 441%;
+    }
+   
+</style>
 <div style="margin-left: 25px; margin-top: 100px;">
 <div class="col-md-9 mt-5 "></div>
 <div class="container">

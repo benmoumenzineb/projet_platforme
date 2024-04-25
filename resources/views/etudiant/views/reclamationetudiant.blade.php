@@ -18,6 +18,7 @@
     
     margin-right: -40px;
     margin-left: -319px}
+    
     </style>
     <div class="col-md-9 mt-3"></div>
     <div class="background-section">
