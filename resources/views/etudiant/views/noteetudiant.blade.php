@@ -23,7 +23,13 @@
         width:80%; /* Adjust left position as needed */
         z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
     }
-
+    .fixed-position2 {
+        position: fixed;
+        top: 200px; /* Adjust top position as needed */
+        left: 300px;
+        width:80%; /* Adjust left position as needed */
+        z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
+    }
 </style>
 <div  class="mt-5" >
 
@@ -56,7 +62,7 @@
     </form>
 </div></div><br><br><br><br><br><br>
     <div class=" container mt-5">
-    <div class="row mt-5">
+    <div class="row mt-5 fixed-position2">
    
     <div  class="col-md-9 mt-5  ">
         <table class="table table-striped table-bordered data-table table-th-valign-middle table-td-valign-middle m-0 p-0" style="width:100%;  color:white ; background-color: #3966c2">
@@ -151,7 +157,7 @@
     <tr><td></td><td></td><td></td></tr>
 <tr></tr>
 
-<tr><td  rowspan="4"> module5</td>
+<tr><td  rowspan="4"> outils aide a la decision et besunis integge</td>
     <td  rowspan="4"></td>
     <td  rowspan="4"></td>
     <td  rowspan="4"></td>
