@@ -1,12 +1,18 @@
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 <style>
+<<<<<<< HEAD
     .btn-primary{
         background-color:rgb(55, 88, 188) ; 
+=======
+    .h-w{
+        height:auto;
+        width:auto;
+>>>>>>> f83660ecc40e0586656c9bed0b583ddeef10ef79
     }
 </style>
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 h-w">
     <form action="">
         <div class="row">
             <div class="col-md-6 mt-5">

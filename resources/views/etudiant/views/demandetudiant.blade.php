@@ -9,6 +9,10 @@
     margin-top:20px;
    cursor: pointer;
     }
+    .h-w{
+        height:auto;
+        width:auto;
+    }
     .style-demande:hover{
         background-color: #1858b1;
         transform: translateY(-6px);
@@ -31,7 +35,7 @@
 }
 </style>
 <div class="col-md-9 mt-5 " ></div>
-<div class="container">
+<div class="container h-w">
     <form action="">
 <div class="  row">
    
@@ -39,7 +43,7 @@
    <button class="btn white-color ">Attestation Inscription</button>
 
 </div></div>
-<div class="  row" style="max-width:124%">
+<div class="  row" >
     
 <div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
    <button class="btn white-color  ">Attestation réussite</button>
