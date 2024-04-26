@@ -654,30 +654,29 @@
     </div>
 
     
-<script>
-    function showInfoEtudiant() {
-        //  contenu pour les informations de l'établissement 
-        document.getElementById('etablissment-content').style.display = 'block';
-        document.getElementById('identifiants-etudiant-content').style.display = 'block';
-        document.getElementById('renseignements-etudiant-content').style.display = 'block';
-        document.getElementById('informations-parents-content').style.display = 'block';
-        document.getElementById('modifier').style.display = 'block';
-        document.getElementById('renseignement-academique-bourse-content').style.display = 'none';
-        document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
-        document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
-        document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
-    }
-
-    function showCursus() {
-        //  contenu pour les renseignements académiques
-        document.getElementById('etablissment-content').style.display = 'none';
-        document.getElementById('identifiants-etudiant-content').style.display = 'none';
-        document.getElementById('renseignements-etudiant-content').style.display = 'none';
-        document.getElementById('informations-parents-content').style.display = 'none';
-        document.getElementById('modifier').style.display = 'none';
-        document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
-        document.getElementById('renseignement-academique-bac-content').style.display = 'block';
-        document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
-        document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
-    }
-</script>
+    <script>
+        function showInfoEtudiant() {
+            document.getElementById('etablissment-content').style.display = 'block';
+            document.getElementById('identifiants-etudiant-content').style.display = 'block';
+            document.getElementById('renseignements-etudiant-content').style.display = 'block';
+            document.getElementById('informations-parents-content').style.display = 'block';
+            document.getElementById('modifier').style.display = 'block';
+            document.getElementById('renseignement-academique-bourse-content').style.display = 'none';
+            document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
+            document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
+            document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
+        }
+    
+        function showCursus() {
+            document.getElementById('etablissment-content').style.display = 'none';
+            document.getElementById('identifiants-etudiant-content').style.display = 'none';
+            document.getElementById('renseignements-etudiant-content').style.display = 'none';
+            document.getElementById('informations-parents-content').style.display = 'none';
+            document.getElementById('modifier').style.display = 'none';
+            document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
+            document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
+            document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
+            document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
+        }
+    </script>
+    

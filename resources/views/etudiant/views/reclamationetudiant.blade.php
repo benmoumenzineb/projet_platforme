@@ -16,6 +16,10 @@
           margin-left: 214px; /* Set max-width to match iPad Air width */
         }
     }
+    .button-enregistrer{
+        background-color:#1858b1;
+        color: rgb(255, 255, 255);
+    }
 </style>
 
 <div  id="reclamation" class="container mt-5 mr-5">
@@ -56,7 +60,7 @@
         </div><br>
         <div class="row  ml-5">
             <div class="col-md-6">
-                <button class="btn btn-primary">Enregistrer</button>
+                <button class="btn button-enregistrer">Enregistrer</button>
             </div>
         </div>
     </form>
