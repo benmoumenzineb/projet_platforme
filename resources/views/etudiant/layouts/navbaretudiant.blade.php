@@ -16,10 +16,10 @@ height:auto;
             transition: left 0.3s ease;
             background-color: #173165;
             font-family: Arial, sans-serif;
-           
+           width: 250px;
             height: 100%;
             position: fixed;
-            top: 45px;
+            top: 40px;
             left: 0;
             overflow-y: hidden;
            
@@ -30,52 +30,52 @@ height:auto;
        
 
         #vertical-sidebar ul li {
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
+    padding: 15px;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%; /* Set width to 100% for all sidebar items */
+}
 
-        #vertical-sidebar ul li a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+#vertical-sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
 
-        #vertical-sidebar ul li.active {
-            width:100%;
-            background-color: #3966c2;
+#vertical-sidebar ul li.active {
+    background-color: #3966c2;
+}
 
-        }
+#vertical-sidebar ul li.active a {
+    color: #ffffff;
+}
 
-        #vertical-sidebar ul li.active a {
-            color: #ffffff;
-        }
+#vertical-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    color: #e9ecef;
+}
 
-        #vertical-sidebar ul {
-            list-style-type: none;
-            padding: 0;
-            color: #e9ecef
-        }
 
-        .navbar-item {
+       
+        /* Default styles for the sidebar */
+.sidebar {
+    background-color:#173165; 
+    border-right: 7px solid #173165; 
+    padding: 20px; 
+}
+
+
+
+.navbar-item {
             text-decoration: none;
             color: #173165;
         }
-        /* Default styles for the sidebar */
-.sidebar {
-    background-color:#173165; /* Change the background color if needed */
-    border-right: 1px solid #dee2e6; /* Add border for separation */
-    padding: 20px; /* Add padding to the sidebar */
-}
-
-/* Styles for the list items */
-.sidebar ul li {
-    margin-bottom: 10px; /* Add some space between list items */
-}
-
 /* Media query for screens smaller than 768px */
 @media (max-width: 768px) {
     .sidebar {
-       width: 200px; /* Hide the sidebar by default on smaller screens */
+       width: 250px; /* Hide the sidebar by default on smaller screens */
     }
+   
 }
 
 /* Media query for screens larger than 768px */
@@ -96,54 +96,49 @@ height:auto;
 /* Media queries for responsive design */
 
 /* Phones */
-@media (max-width: 575.98px) {
-    .navbar {
-        flex-direction: column; /* Align items vertically on small screens */
-        align-items: center;
-        text-align: center;
+@media (max-width: 320px) {
+        .container {
+            padding: 0 10px; /* Adjust padding for smaller screens */
+        }
+        
     }
-    .navbar-left {
-        margin-top: 10px; /* Add some margin for spacing */
-    }
-    .navbar-item {
-        margin-top: 10px; /* Add margin between items */
-    }
-}
 
-/* Tablets */
-@media (min-width: 576px) and (max-width: 991.98px) {
-    .navbar-left {
-        margin-right: auto; /* Move navbar-left to the left on tablets */
+    @media (min-width: 321px) and (max-width: 375px) {
+        .container {
+            padding: 0 20px; /* Adjust padding for slightly larger screens */
+        }
     }
-}
 
-/* Extra small devices (e.g., small tablets) */
-@media (max-width: 767.98px) {
-    .navbar {
-        padding: 10px; /* Add padding to navbar on extra small devices */
+    @media (min-width: 376px) and (max-width: 425px) {
+        .container {
+            padding: 0 30px; /* Adjust padding for larger screens */
+        }
     }
-}
 
-/* Larger screens (Desktops, Laptops) */
-@media (min-width: 992px) {
-    .navbar {
-        justify-content: space-between; /* Distribute items evenly on larger screens */
-        align-items: center;
+    @media (min-width: 426px) and (max-width: 768px) {
+        .container {
+            padding: 0 40px; /* Adjust padding for tablets */
+        }
     }
-}
-/* Larger screens (2560px and above) */
-@media (min-width: 2560px) {
-    .navbar {
-        padding: 20px; /* Increase padding for better spacing */
-    }
-    .navbar-left {
-        margin-right: 40px; /* Increase margin between navbar items */
-    }
-    .navbar-item {
-        margin-right: 20px; /* Increase margin between items */
-    }
-}
 
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .container {
+            padding: 0 50px; 
+        }
+    }
+
+    @media (min-width: 1025px) and (max-width: 1440px) {
+        .container {
+            padding: 0 60px; /* Adjust padding for laptops */
+        }
+    }
+
+    @media (min-width: 1441px) and (max-width: 2560px) {
+        .container {
+            padding: 0 70px; /* Adjust padding for larger screens */
+        }
+        
+    }
 
     </style>
 
@@ -156,7 +151,7 @@ height:auto;
     sidebar Vertical-->
     <nav class="navbar">
         <div class="container">
-            <img class="m-0 p-0" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
             <div class="navbar-left">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                     class="bi bi-flag-fill" viewBox="0 0 16 16" style="color: #173165;">
@@ -179,7 +174,7 @@ height:auto;
                 <div class="col-md-3">
                     <div class="sidebar">
                         <ul class="list-unstyled">
-                            <li class="p-2 mb-2">
+                            <li class="p-2 mb-2 mt-5">
                                 <svg class="icon-size icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
                                     height="26" fill="currentColor" class="bi bi-mortarboard-fill"
                                     viewBox="0 0 16 16">
@@ -191,7 +186,7 @@ height:auto;
                                 <a class="lien" href="{{ route('Profil_etudiant') }}"
                                     class="{{ Request::is('Profil_etudiant') ? 'active' : '' }}">Mon Profil</a>
                             </li>
-                            <li class="p-2 mb-2">
+                            <li class="p-2 mb-2 ">
                                 <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
                                     height="26" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
                                     <path
@@ -268,11 +263,7 @@ height:auto;
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $(".navbar-left").on('click', function() {
-                $(".sidebar").toggleClass("closed");
-            });
-        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarItems = document.querySelectorAll('#vertical-sidebar ul li');
 

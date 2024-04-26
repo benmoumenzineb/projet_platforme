@@ -14,29 +14,91 @@ background-color:#1858b1;
             background-color:#173165;
         } 
         
+/* For screens smaller than 320px */
+@media screen and (max-width: 320px) {
+    /* Adjust the margin and padding for smaller screens */
+    #page-content {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 20px;
+    }
+}
 
-        @media screen and (max-width: 1024px) {
-            #page-content {
-                margin-left: 10px; 
-                margin-top: 10px; /* Ajuster la marge supérieure */
-                padding: 20px; /* Ajuster le rembourrage */
-            }
+/* For screens between 321px and 375px */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    /* Adjust the margin and padding for smaller screens */
+    #page-content {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 30px;
+    }
+}
 
-            .d-flex.justify-content-left {
-                flex-direction: row; 
-                flex-wrap: wrap; /* Autoriser le retour à la ligne lorsque l'espace est insuffisant */
-            }
+/* For screens between 376px and 425px */
+@media screen and (min-width: 376px) and (max-width: 425px) {
+    /* Adjust the margin and padding for smaller screens */
+    #page-content {
+        margin-left: 30px;
+        margin-right: 30px;
+        padding: 40px;
+    }
+}
 
-            .card {
-                width: calc(50% - 20px); /* Occuper 50% de la largeur disponible avec un espacement */
-            }
-        }
+/* For screens between 426px and 768px */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    /* Adjust the margin and padding for medium screens */
+    #page-content {
+        margin-left: 50px;
+        margin-right: 50px;
+        padding: 50px;
+    }
+}
 
-        @media screen and (max-width: 768px) {
-            .card {
-                width: calc(100% - 20px); /* Occuper 100% de la largeur disponible avec un espacement */
-            }
-        }
+/* For screens between 769px and 1024px */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Adjust the margin and padding for medium screens */
+    #page-content {
+        margin-left: 100px;
+        margin-right: 100px;
+        padding: 60px;
+        
+    }
+}
+
+/* For screens between 1025px and 1440px */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    /* Adjust the margin and padding for large screens */
+    #page-content {
+        margin-left: 150px;
+        margin-right: 150px;
+        padding: 70px;
+        overflow-x: hidden;
+    }
+}
+
+/* For screens between 1441px and 2560px */
+@media screen and (min-width: 1441px) and (max-width: 2560px) {
+    /* Adjust the margin and padding for extra large screens */
+    #page-content {
+        margin-left: 200px;
+        margin-right: 200px;
+        padding: 80px;
+        
+    }
+}
+
+/* For screens larger than 2560px */
+@media screen and (min-width: 2561px) {
+    /* Adjust the margin and padding for extra large screens */
+    #page-content {
+        margin-left: 250px;
+        margin-right: 250px;
+        padding: 90px;
+    }
+   
+}
+
+
     </style>
 
 <div id="page-content" class="d-flex flex-column" style="margin-left: 250px; padding: 20px;

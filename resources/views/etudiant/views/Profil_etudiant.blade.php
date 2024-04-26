@@ -30,7 +30,7 @@
         #renseignement-academique-bourse-content,
         #renseignement-academique-cursus-interne-content{
 
-            display: none;
+            display:none;
         }
 
         
@@ -59,8 +59,8 @@
 
     <!-- Boutons pour accéder aux informations -->
     <div style="margin-left: 300px; margin-top: 100px;">
-        <button id="btn-info-etudiant" class="btn btn-primary">Informations Étudiant</button>
-        <button id="btn-cursus" class="btn btn-primary">Cursus</button>
+        <button id="btn-info-etudiant" class="btn btn-primary" onclick="showInfoEtudiant()">Informations Étudiant</button>
+        <button id="btn-cursus" class="btn btn-primary" onclick="showCursus()">Cursus</button>
     </div>
 
     <!-- Formulaire pour Etablissement -->
@@ -653,42 +653,31 @@
         </div>
     </div>
 
-    <script>
-        const btnInfoEtudiant = document.getElementById('btn-info-etudiant');
-        const btnCursus = document.getElementById('btn-cursus');
-        const etablissmentContent = document.getElementById('etablissment-content');
-        const identifiantsEtudiantContent = document.getElementById('identifiants-etudiant-content');
-        const renseignementsEtudiantContent = document.getElementById('renseignements-etudiant-content');
-        const informationsParentsContent = document.getElementById('informations-parents-content');
-        const renseignementAcademiquebacContent = document.getElementById('renseignement-academique-baccalaureat-content');
-        const renseignementAcademiquecursusexterneContent = document.getElementById('renseignement-academique-cursus-externe-content');
-        const renseignementAcademiquecursusinterneContent = document.getElementById('renseignement-academique-cursus-interne-content');
-        const ModifierContent = document.getElementById('modifier');
-        const renseignementAcademiquebourseContent = document.getElementById('renseignement-academique-bourse-content');
+    
+<script>
+    function showInfoEtudiant() {
+        //  contenu pour les informations de l'établissement 
+        document.getElementById('etablissment-content').style.display = 'block';
+        document.getElementById('identifiants-etudiant-content').style.display = 'block';
+        document.getElementById('renseignements-etudiant-content').style.display = 'block';
+        document.getElementById('informations-parents-content').style.display = 'block';
+        document.getElementById('modifier').style.display = 'block';
+        document.getElementById('renseignement-academique-bourse-content').style.display = 'none';
+        document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
+        document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
+        document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
+    }
 
-        btnInfoEtudiant.addEventListener('click', function() {
-            //  contenu pour les informations de l'établissement 
-            etablissmentContent.style.display = 'block';
-            identifiantsEtudiantContent.style.display = 'block';
-            renseignementsEtudiantContent.style.display = 'block';
-            informationsParentsContent.style.display = 'block';
-            ModifierContent.style.display = 'block';
-            renseignementAcademiquebourseContent.style.display = 'none';
-            renseignementAcademiquebacContent.style.display = 'none';
-            renseignementAcademiquecursusexterneContent.style.display = 'none';
-            renseignementAcademiquecursusinterneContent.style.display = 'none';
-        });
-
-        btnCursus.addEventListener('click', function() {
-            //  contenu pour les renseignements académiques
-            etablissmentContent.style.display = 'none';
-            identifiantsEtudiantContent.style.display = 'none';
-            renseignementsEtudiantContent.style.display = 'none';
-            informationsParentsContent.style.display = 'none';
-            ModifierContent.style.display = 'none';
-            renseignementAcademiquebourseContent.style.display = 'block';
-            renseignementAcademiquebacContent.style.display = 'block';
-            renseignementAcademiquecursusexterneContent.style.display = 'block';
-            renseignementAcademiquecursusinterneContent.style.display = 'block';
-        });
-    </script>
+    function showCursus() {
+        //  contenu pour les renseignements académiques
+        document.getElementById('etablissment-content').style.display = 'none';
+        document.getElementById('identifiants-etudiant-content').style.display = 'none';
+        document.getElementById('renseignements-etudiant-content').style.display = 'none';
+        document.getElementById('informations-parents-content').style.display = 'none';
+        document.getElementById('modifier').style.display = 'none';
+        document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
+        document.getElementById('renseignement-academique-bac-content').style.display = 'block';
+        document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
+        document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
+    }
+</script>

@@ -26,7 +26,7 @@
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-left: 150px;
+    margin-left: 170px;
     
 }
 </style>
