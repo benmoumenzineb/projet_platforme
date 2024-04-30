@@ -9,6 +9,7 @@ use App\Http\Controllers\ReclamationetudiantController;
 use App\Http\Controllers\PaiementetudiantController;
 use App\Http\Controllers\NoteEtudiantController;
 use App\Http\Controllers\ExamEtudiantController;
+use App\Http\Controllers\homeProfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,6 @@ route::get('/note','App\Http\Controllers\NoteEtudiantController@index')->name('n
 route::get('/exam','App\Http\Controllers\ExamEtudiantController@index')->name('exam');
 Route::get('/nav', function () {
     return view('prof.layouts.navbarprof');
+   
 });
+Route::get('/homeprof', [homeProfController::class, 'index'])->name('homeprof');
