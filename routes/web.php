@@ -34,3 +34,6 @@ route::get('/reclamation','App\Http\Controllers\ReclamationetudiantController@in
 route::get('/paiement','App\Http\Controllers\PaiementetudiantController@index')->name('paiement');
 route::get('/note','App\Http\Controllers\NoteEtudiantController@index')->name('note');
 route::get('/exam','App\Http\Controllers\ExamEtudiantController@index')->name('exam');
+Route::get('/nav', function () {
+    return view('prof.layouts.navbarprof');
+});

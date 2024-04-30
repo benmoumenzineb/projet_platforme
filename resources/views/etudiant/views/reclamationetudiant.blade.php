@@ -4,15 +4,26 @@
 <style>
     /* Style pour le conteneur du formulaire */
     #reclamation {
-        margin: 80px auto 50px; /* Ajout de la marge supérieure pour déplacer le formulaire vers le bas */
+        margin: 80px auto 50px; 
         background-color: #f9f9f9;
         padding: 30px;
         border-radius: 20px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         max-width: 600px;
-        height: auto; /* Changement de la hauteur automatique */
+        height: auto; 
+    }
+    @media (width: 1440px) {
+   
+    #reclamation {
+        max-width: 70%;
+        margin-left: 1px; 
     }
 
+    /* Adjust input width */
+    .form-control {
+        width: 100%;
+    }
+}
     /* Style pour les titres */
     h6 {
         color: #173165;
@@ -62,6 +73,7 @@
     .camera-icon {
         margin-right: 5px;
     }
+
 </style>
 
 <div id="reclamation" class="container">
@@ -109,7 +121,3 @@
     </form>
 </div>
 @endsection
-</style>
-
-
-
