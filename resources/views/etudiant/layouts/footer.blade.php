@@ -21,7 +21,7 @@
     <footer>
     <div class="footer">
         <p adctranslate="footer">
-        <span title="[footer.tooltip]" style="margin-left:250px;"> 2024 © Suptech Santé, Tous les droits réservés.</span></p>
+        <span title="[footer.tooltip]" style="margin-left:250px;"> 2024 © Suptech Santé, Tous les droits Sont réservés.</span></p>
     </div></footer>
 </body>
 </html>

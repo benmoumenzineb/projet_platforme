@@ -6,18 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
     .custom-background {
         background-color: #173165;
          /* Couleur de fond personnalisée */
+         
     }
+    .card {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Adjust values as needed */
+}
+
    .text-color{
     color: aliceblue
    }
     .background-color{
-        background-color: #3966c2
+        background-color: #3966c2;
     }
    
 .custom-rounded {
@@ -56,7 +62,8 @@
                 </div>
             </div>
         </div>
-        
+        <div> <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="25%" style="margin-top:20px;"></div> 
+       
     </div>
 
    

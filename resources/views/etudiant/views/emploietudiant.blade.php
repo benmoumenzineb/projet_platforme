@@ -1,4 +1,4 @@
-
+<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 
@@ -27,6 +27,7 @@ th{
                                     <th>Prénom</th>
                                     <th>Semestre</th>
                                     <th>Emploi du temps</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>

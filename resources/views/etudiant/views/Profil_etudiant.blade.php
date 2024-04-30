@@ -1,71 +1,93 @@
+<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 @extends('etudiant.layouts.navbaretudiant')
 
 @section('contenu')
 
     <style>
-       
-
         /* Ajout de style pour les boutons */
-        #btn-info-etudiant,
-        #btn-cursus {
-            margin-bottom: 20px;
-            margin-right: 10px;
-            background: #173165;
-            border: none;
-        }
+       #boutonInformations, #boutonCursus{
+    background-color: #173165; /* couleur de fond */
+    color: white; /* couleur du texte */
+   
+    text-align: center; /* alignement du texte */
+    text-decoration: none; /* pas de soulignement */
+ padding: 5px;
+    font-size: 17px; /* taille de police */
+    margin: 4px 2px; /* marge externe */
+    cursor: pointer; /* curseur de type pointeur */
+    border-radius: 5px; /* bord arrondi */
+    border: 5px #173165; /* pas de bordure */
+    transition-duration: 0.4s; /* durée de transition */
+}
+tr{
+    color: rgb(105, 101, 101)
+}
 
-        #btn-info-etudiant:hover,
-        #btn-cursus:hover {
-            background: #3966c2;
-        }
-
+    #boutonInformations:hover{
+        background-color: #3966c2;
+    border: 5px #3966c2;
+    }
+    #boutonCursus:hover{
+        background-color: #3966c2;
+    border: 5px #3966c2;
+    }
         .th-color {
             background-color: #3966c2;
             color: rgb(255, 255, 255);
         }
-
-        #renseignement-academique-baccalaureat-content,
-        #renseignement-academique-cursus-externe-content,
-        #renseignement-academique-cursus-interne-content,
         #renseignement-academique-bourse-content,
-        #renseignement-academique-cursus-interne-content{
+#renseignement-academique-baccalaureat-content,
+#renseignement-academique-cursus-interne-content,
+#renseignement-academique-cursus-externe-content,
+#documents-content{
+    display: none;
+}
 
-            display:none;
-        }
+       
 
-        
-        
+
+
         .content {
             margin-top: 20px;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .suptech_sante_radio {
             margin-left: 0px;
         }
+
         @media (min-width: 768px) {
+
             /* Adjust margin-left for larger screens */
             .content {
                 margin-left: 300px;
             }
+
             .suptech_sante_radio {
                 margin-left: 270px;
             }
         }
     </style>
 
-    
+
 
     <!-- Boutons pour accéder aux informations -->
-    <div style="margin-left: 300px; margin-top: 100px;">
-        <button id="btn-info-etudiant" class="btn btn-primary" onclick="showInfoEtudiant()">Informations Étudiant</button>
-        <button id="btn-cursus" class="btn btn-primary" onclick="showCursus()">Cursus</button>
-    </div>
+    <div   style=" margin-top:20px; overflow: hidden;">
+    <div style="margin-left: 0px; margin-top: 100px;">
+        <div class="content">
+            <button id="boutonInformations">Informations étudiant</button>
+            <button id="boutonCursus">Cursus</button>
+            
+        </div>
+        
+    </div></div>
 
     <!-- Formulaire pour Etablissement -->
     <div class="content">
-        <div class="content" style="margin-left: -20px;">
+        <div class="etablissment-content" style="margin-left: -20px;">
             <fieldset class="border p-3">
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Etablissment</strong></legend>
                 <form id="etablissment">
@@ -101,7 +123,7 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="id_etudiant" class="form-label"><strong>ID étudiant :</strong></label>
+                                    <label for="id_etudiant" class="form-label"><strong>Code Apogee :</strong></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="id_etudiant" name="id_etudiant" required>
@@ -232,27 +254,18 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="cin" class="form-label"><strong>CIN :</strong></label>
+                                    <label for="cin" class="form-label"><strong>CIN /N° Passeport (Pour les étrangers)
+                                        :</strong></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="cin" name="cin" required>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="N_passeport" class="form-label"><strong>N° Passeport (Pour les étrangers)
-                                            :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_passeport" name="N_passeport"
-                                        required>
-                                </div>
-                            </div>
-                        </div>
+                       
 
 
                         <div class="col-md-6">
@@ -313,15 +326,7 @@
 
 
 
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="handicap_oui" class="form-label"><strong>Si,Oui lequel :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="handicap_oui" name="handicap_oui"
-                                        required>
-                                </div>
+                       
                             </div>
                         </div>
                     </div>
@@ -507,7 +512,7 @@
                                     </tr>
                                 </thead>
                                 <!-- Corps du tableau -->
-                                <tbody style="background-color:#ccc">
+                                <tbody style="background-color:#f4f0f0">
                                     <!-- Ligne de données de démonstration -->
                                     <tr>
                                         <td class="border"></td>
@@ -551,7 +556,7 @@
                                     </tr>
                                 </thead>
                                 <!-- Corps du tableau -->
-                                <tbody style="background-color:#ccc">
+                                <tbody style="background-color:#f4f0f0">
                                     <!-- Ligne de données de démonstration -->
                                     <tr>
                                         <td class="border"></td>
@@ -594,7 +599,7 @@
                                     </tr>
                                 </thead>
                                 <!-- Corps du tableau -->
-                                <tbody style="background-color:#ccc">
+                                <tbody style="background-color:#f4f0f0">
                                     <!-- Ligne de données de démonstration -->
                                     <tr>
                                         <td class="border"></td>
@@ -628,14 +633,14 @@
                                 <thead>
                                     <!-- Entête du tableau -->
                                     <tr>
-                                        <th class="th-color th-color border" scope="col">Etat de Bourse </th>
-                                        <th class="th-color th-color border" scope="col">Pourcenyage de Bourse</th>
+                                        <th class="th-color th-color border" scope="col"> Etat de Bourse</th>
+                                        <th class="th-color th-color border" scope="col">Pourcentage de Bourse</th>
 
 
                                     </tr>
                                 </thead>
                                 <!-- Corps du tableau -->
-                                <tbody style="background-color:#ccc">
+                                <tbody style="background-color:#f4f0f0">
                                     <!-- Ligne de données de démonstration -->
                                     <tr>
                                         <td class="border"></td>
@@ -652,31 +657,48 @@
             </div>
         </div>
     </div>
-
     
+
+
     <script>
-        function showInfoEtudiant() {
-            document.getElementById('etablissment-content').style.display = 'block';
+        const boutonInformations = document.getElementById('boutonInformations');
+        const boutonCursus = document.getElementById('boutonCursus');
+        
+        // Écouteur d'événement pour le bouton "Informations étudiant"
+        boutonInformations.addEventListener('click', function() {
+            // Masquer tous les contenus sauf celui de l'Établissement
+            document.querySelector('.etablissment-content').style.display = 'block';
             document.getElementById('identifiants-etudiant-content').style.display = 'block';
             document.getElementById('renseignements-etudiant-content').style.display = 'block';
             document.getElementById('informations-parents-content').style.display = 'block';
-            document.getElementById('modifier').style.display = 'block';
-            document.getElementById('renseignement-academique-bourse-content').style.display = 'none';
+            document.querySelector('.modifier-content').style.display = 'block';
+        
+            // Masquer les contenus du cursus
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
-        }
+            document.getElementById('renseignement-academique-bourse-content').style.display = 'none';
+            document.getElementById('documents-content').style.display = 'none';
+
+        });
+        
+        // Écouteur d'événement pour le bouton "Cursus"
+        boutonCursus.addEventListener('click', function() {
+    // Masquer tous les contenus sauf ceux du cursus
+    document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
+    document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
+    document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
+    document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
     
-        function showCursus() {
-            document.getElementById('etablissment-content').style.display = 'none';
-            document.getElementById('identifiants-etudiant-content').style.display = 'none';
-            document.getElementById('renseignements-etudiant-content').style.display = 'none';
-            document.getElementById('informations-parents-content').style.display = 'none';
-            document.getElementById('modifier').style.display = 'none';
-            document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
-            document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
-            document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
-            document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
-        }
+    // Masquer les contenus liés aux informations étudiant
+    document.querySelector('.etablissment-content').style.display = 'none';
+    document.getElementById('identifiants-etudiant-content').style.display = 'none';
+    document.getElementById('renseignements-etudiant-content').style.display = 'none';
+    document.getElementById('informations-parents-content').style.display = 'none';
+    document.querySelector('.modifier-content').style.display = 'none';
+    document.getElementById('documents-content').style.display = 'none';
+});
+
     </script>
+    
     

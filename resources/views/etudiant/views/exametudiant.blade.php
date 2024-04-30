@@ -1,3 +1,4 @@
+<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 @extends('etudiant.layouts.navbaretudiant')
   
   @section('contenu')
@@ -52,11 +53,16 @@
       <h5 class="card-title">Thermodynamique | Base de données</h5>
       <h6 class="card-subtitle mb-2 text-muted">24/05/2024 - 30/05/2024</h6>
       <h6 class="card-subtitle mb-2 text-muted">8:30 - 10:30 | 14:30 - 16:30</h6>
-      <p class="card-text">Bonjour chers étudiants,vous avez un examen</p>
+      <p class="card-text">Chers étudiants, un rappel : un examen est prévu à la date et à l'heure indiquées. Assurez-vous d'être présents et prêts à temps. Bonne chance à tous !</p>
      
     </div>
   </div>
 </div>
+
+  
+  
+
+
 
 <script>
 const card = document.getElementById('myCard');

@@ -1,8 +1,18 @@
+<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
 
 <style>
-    
+    .month-btn {
+    background-color:rgb(210, 9, 9); /* Changez la couleur selon vos préférences */
+    color: white; /* Changez la couleur du texte si nécessaire */
+    width: 100px;
+}
+.month-btn:not(:disabled):not(.disabled).active{
+    background-color: #4CAF50;
+}
+
+
     .btn-primary {
         background-color: #3966c2;
         width: 100px;
@@ -10,12 +20,7 @@
     .month-btn {
         margin: 5px;
     }
-.btn-secondary {
-    width: 97px;
-    background-color: red;
-    border: none;
-   
-}
+
 .btn-close{
     background-color: #3966c2;
 }
@@ -36,15 +41,17 @@
     border: none;
    
 }
+/* Style pour les boutons cochés avec la couleur de fond verte */
+
 
 </style>
 
 
 
-<div style="margin-left: 300px; margin-top: 80px;">
+<div style="margin-left: 40px; margin-top: 70px;">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        mois
+        Mois
     </button>
   
     <!-- Modal -->
@@ -60,17 +67,45 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-secondary month-btn" id="janvier" name="janvier">Janvier</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="Fevrier" name="fevrier">Février</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="mars" name="mars">Mars</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="avril" name="avril">Avril</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="mai" name="mai">Mai</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="juin" name="juin">Juin</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="septembre" name="septembre">Septembre</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="octobre" name="octobre">Octobre</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="novembre" name="novembre">Novembre</button>
-                            <button type="button" class="btn btn-secondary month-btn" id="decembre" name="decembre">Décembre</button>
-                           
+                            <!-- Première ligne de mois -->
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="janvier" name="janvier" style="background-color: red;"> Janvier
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="fevrier" name="fevrier"> Février
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="mars" name="mars"> Mars
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="avril" name="avril"> Avril
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="mai" name="mai"> Mai
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="juin" name="juin"> Juin
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="juillet" name="juillet"> Juillet
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="aout" name="aout"> Août
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="septembre" name="septembre"> Septembre
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="octobre" name="octobre"> Octobre
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="novembre" name="novembre"> Novembre
+                                </label>
+                                <label class="btn btn-outline-secondary month-btn">
+                                    <input type="checkbox" class="month-checkbox" id="decembre" name="decembre"> Décembre
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,8 +118,11 @@
     </div>
 </div>
 
+
+
+
 <div id="informations-personnelles-content" class="content"
-        style="margin-left: -20px; margin-top:20px; overflow: hidden;">
+        style="margin-left: -20px; margin-top:10px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
             <fieldset class="border p-3">
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Personnelles</strong>
@@ -128,11 +166,11 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="cin" class="form-label"><strong>CIN :</strong></label>
+                                    <label for="CIN" class="form-label"><strong>CIN :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-select" id="cin" name="cin" required>
-                                       
+                                    <input type="text" class="form-control" id="CIN" name="CIN"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -244,6 +282,25 @@
             // Vous pouvez ajouter votre propre logique pour gérer le clic sur le mois sélectionné
         });
     });
+    // Sélectionnez tous les éléments avec la classe "month-btn"
+const monthButtons = document.querySelectorAll('.month-btn');
+
+// Parcourez chaque bouton
+monthButtons.forEach(button => {
+    // Ajoutez un écouteur d'événements pour le clic
+    button.addEventListener('click', () => {
+        // Vérifiez si le bouton a déjà la classe "active"
+        const isActive = button.classList.contains('active');
+        
+        // Si le bouton est actif, supprimez la classe "active", sinon ajoutez-la
+        if (isActive) {
+            button.classList.remove('active');
+        } else {
+            button.classList.add('active');
+        }
+    });
+});
+
 </script>
 
 @endsection
