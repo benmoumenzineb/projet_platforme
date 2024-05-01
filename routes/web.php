@@ -31,6 +31,7 @@ Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('hom
 Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');
 route::get('/emploi','App\Http\Controllers\EmploietudiantController@index')->name('emploi');
 route::get('/demande','App\Http\Controllers\DemandeetudiantController@index')->name('demande');
+route::post('/enregistrer-demande','App\Http\Controllers\DemandeetudiantController@enregistrerDemande')->name('endemande');
 route::get('/reclamation','App\Http\Controllers\ReclamationetudiantController@index')->name('reclamation');
 Route::post('/enregistrer-reclamation', 'App\Http\Controllers\ReclamationetudiantController@enregistrerReclamation')->name('enreclamation');
 Route::post('/enregistrer-paiement', 'App\Http\Controllers\PaiementetudiantController@enregistrerPaiement')->name('enpaiement');

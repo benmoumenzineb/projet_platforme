@@ -1,63 +1,130 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
-<style>
-   
+    <style>
+        /* Style pour le conteneur du formulaire */
+        #demande {
+            margin: 80px auto 50px;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            height: auto;
+        }
 
-.container {
-    max-width: 1280px; 
-    margin: 0 auto; 
-    padding: 0 15px; 
-}
+        @media (width: 1440px) {
 
-.style-demande {
-    background-color: #173165;
-    font-family: Arial, sans-serif;
-    width: 100%;
-    height: 60px;
-    margin-top: 20px;
-    margin-left: 280px;
-    cursor: pointer;
-    color: #f0f0f0;
-}
-.style-demande:hover {
-    background-color: #1858b1;
-    transform: translateY(-15px);
-    color: #f0f0f0;
-}
-.white-color {
-    color: white;
-}
+            #demande {
+                max-width: 70%;
+                margin-left: 1px;
+            }
 
-/* Ajout de styles pour la version mobile */
+            /* Adjust input width */
+            .form-control {
+                width: 100%;
+            }
+        }
 
-</style>
-<div class="col-md-9 mt-5 " ></div>
-<div class="container h-w">
-    <form action="">
-<div class="  row">
-   
-<div class="col-md-9 mt-5  style-demande mt-5 d-flex justify-content-center">
-   <button class="btn white-color ">Attestation Inscription</button>
+        /* Style pour les titres */
+        h6 {
+            color: #173165;
+            margin-bottom: 10px;
+        }
 
-</div></div>
-<div class="  row" >
-    
-<div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
-   <button class="btn white-color  ">Attestation réussite</button>
+        /* Style pour les inputs */
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
 
-</div></div>
-<div class="  row">
-   
-<div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
-   <button class="btn white-color ">Certificat Scolarité</button>
+        /* Style pour le bouton "Enregistrer" */
+        .button-enregistrer {
+            width: 100%;
+            padding: 10px;
+            background-color: #1858b1;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-</div>
-<div class="col-md-9 mt-4  style-demande mt-3 d-flex justify-content-center">
-    <button class="btn white-color">Relvé Note</button>
- 
- </div></div>
-</form>
-</div>
+        /* Style pour le bouton "Enregistrer" au survol */
+        .button-enregistrer:hover {
+            background-color: #0d3d82;
+        }
+
+        
+
+      
+       
+       
+
+    </style>
+
+    <div id="demande" class="container">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+       <ul>
+         @foreach ($errors->all() as $error)
+            <li class="alert alert-danger">{{ $error }}</li>
+        @endforeach
+    </ul>
+        <form action="{{route('endemande') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Nom</h6>
+                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" required>
+                </div>
+              
+                <div class="col-md-6">
+                    <h6>Prénom</h6>
+                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" required>
+                </div>  </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Votre numéro de téléphone</h6>
+                        <input class="form-control" type="text" name="Numero" id="" placeholder="Téléphone" required>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Votre Email</h6>
+                        <input class="form-control" type="email" name="Email" id="" placeholder="Email" required>
+                    </div> </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h6>Type de demande :</h6>
+                    <select class="form-control" name="Type" required>
+                        
+                        <option value="Attestation de réussite">Attestation de Réussite</option>
+                        <option value="Attestation inscription">Attestation d'Inscription</option>
+                        <option value="Relevé de notes">Relevé de Note</option>
+                        <option value="Certificat Scolarité ">Certificat Scolarité</option>
+                        
+
+                    </select>
+                </div>
+            </div>
+
+            
+           
+
+            
+                 
+           
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn button-enregistrer">Enregistrer</button>
+                </div>
+            </div>
+        </form>
+    </div>
 @endsection
-
