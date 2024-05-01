@@ -19,7 +19,7 @@ class Paiement extends Model
         'choix',
         'mode_paiement',
         'mois_concerne',
-       
+       'image',
         
     ];
 }

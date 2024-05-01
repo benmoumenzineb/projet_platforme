@@ -23,6 +23,7 @@ class PaiementetudiantController extends Controller
                 'choix' => 'required',
                 'mode_paiement' => 'required',
                 'mois_concerne'=>'required',
+                'image' => 'nullable|max:2048', // Validation de l'image
             ]);
     
             // Création d'une nouvelle réclamation
@@ -36,8 +37,15 @@ class PaiementetudiantController extends Controller
             $paiement->choix = $request->choix;
             $paiement->mode_paiement = $request->mode_paiement;
             $paiement->mois_concerne= $request->mois_concerne;
+            $paiement->image= $request->image;
             
-    
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('images', $imageName); // Stockez l'image dans le dossier 'storage/app/images'
+                $paiement->image = $imageName; // Stockez le chemin de l'image dans la base de données
+            }
+            
             // Enregistrement de la réclamation dans la base de données
             $paiement->save();
             return redirect()->route('paiement')->with('success', '"Votre paiement a été enregistré avec succès.');
