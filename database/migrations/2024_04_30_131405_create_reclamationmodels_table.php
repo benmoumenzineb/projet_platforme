@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamation', function (Blueprint $table) {
-          
-            $table->increments('Num_reclamation');
-            $table->Text('Type');
-            $table->longtext('Description');
+        Schema::create('reclamationmodels', function (Blueprint $table) {
+            $table->id();
             
+            $table->Text('type');
+            $table->longtext('description');
             $table->timestamps();
         });
     }
