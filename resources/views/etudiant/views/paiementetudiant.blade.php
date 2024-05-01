@@ -48,86 +48,28 @@
 
 
 
-<div style="margin-left: 40px; margin-top: 70px;">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Mois
-    </button>
-  
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Mois</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Première ligne de mois -->
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="janvier" name="janvier" style="background-color: red;"> Janvier
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="fevrier" name="fevrier"> Février
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="mars" name="mars"> Mars
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="avril" name="avril"> Avril
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="mai" name="mai"> Mai
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="juin" name="juin"> Juin
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="juillet" name="juillet"> Juillet
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="aout" name="aout"> Août
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="septembre" name="septembre"> Septembre
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="octobre" name="octobre"> Octobre
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="novembre" name="novembre"> Novembre
-                                </label>
-                                <label class="btn btn-outline-secondary month-btn">
-                                    <input type="checkbox" class="month-checkbox" id="decembre" name="decembre"> Décembre
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary">Enregistrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
+
+   
 
 <div id="informations-personnelles-content" class="content"
-        style="margin-left: -20px; margin-top:10px; overflow: hidden;">
+        style="margin-left: -20px; margin-top:90px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+           <ul> @foreach ($errors->all() as $error)
+                <li class="alert alert-danger">{{ $error }}</li>
+            @endforeach</ul>
             <fieldset class="border p-3">
-                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Personnelles</strong>
+                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong>
                 </legend>
-                <form id="informations-personnelles">
+                <form id="informations-personnelles" action="{{route('enpaiement') }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
@@ -138,6 +80,7 @@
                                     <input type="text" class="form-control" id="nom" name="nom" required>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="col-md-6">
                             <div class="row">
@@ -166,10 +109,10 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="CIN" class="form-label"><strong>CIN :</strong></label>
+                                    <label for="CIN" class="form-label"><strong>CNI :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="CIN" name="CIN"
+                                    <input type="text" class="form-control" id="CIN" name="cni"
                                         required>
                                 </div>
                             </div>
@@ -182,7 +125,7 @@
                                     <label for="N-telephone" class="form-label"><strong>N° Téléphone:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N-telephone" name="N-telephone"
+                                    <input type="text" class="form-control" id="N-telephone" name="n_telephone"
                                         required>
                                 </div>
                             </div>
@@ -193,82 +136,87 @@
                                     <label for="somme" class="form-label"><strong>La somme totale en chiffre:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="somme" name="somme" required>
+                                    <input type="text" class="form-control" id="somme" name="montant" required>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="N_passeport" class="form-label"><strong>Choix:
-                                            </strong></label>
+                   
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="N_passeport" class="form-label"><strong>Choix:</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" id="choix" name="choix" required>
+                                            <option value="Internat">Internat</option>
+                                            <option value="Ecole">Ecole</option>
+                                            <option value="Salle de sport">Salle de sport</option>
+                                            <option value="Transport">Transport</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <select class="form-select" id="choix" name="choix" required>
-                                        <option value="Internat" >Internat</option>
-                                        <option value="Ecole">Ecole</option>
-                                        <option value="Salle de sport">Salle de sport</option>
-                                        <option value="Transport">Transport</option>
-                                        
-        
-                                    </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="nom" class="form-label"><strong>mois :</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="nom" name="mois_concerne" style="width: 100%;" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-
-                         </div>
-                   
-
+                    
+                    
+                         <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="mode"><strong>Mode de règlement Scolaire:</strong></label>
+                                <div class="mode-reglement_radio d-flex justify-content-start">
+                                    <label class="mr-3">
+                                        <input type="radio" name="mode_paiement" value="Especes">
+                                        Espèces
+                                    </label>
+                                    <label class="mr-3">
+                                        <input type="radio" name="mode_paiement" value="Chéque">
+                                        Chéque
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="mode_paiement" value="Virment">
+                                        Virement
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                  
+                                        
+                                        <button type="submit" id="modifier" name="modifier" class="btn btn-primary">Valider</button>
+                                        <div class="col-md-6">
+                                            
+                                               
+                                                <button type="submit" class="camera-button"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-camera-fill ml-2" viewBox="0 0 16 16" style="color: #173165">
+                                                    <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                                    <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0"/>
+                                                </svg>
+                                            </div></button>
+                                        
                 </form>
             </fieldset>
         </div>
-    </div>
+    </div></div>
 
 
 <!--Informations Payment-->
 
-<div class="content">
-    <div class="content" style="margin-left: 280px;">
-        <fieldset class="border p-3">
-            <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong></legend>
-            <form id="informations-paiement">
-                <div class="form-group">
-                    <label for="mode"><strong>Mode de règlement Scolaire:</strong></label>
-                    <div class="mode-reglement_radio">
-                        <label style="margin-right: 100px;">
-                            <input type="radio" name="mode" value="Especes">
-                            Espèces
-                        </label>
-                        <label style="margin-right: 100px;">
-                            <input type="radio" name="mode" value="Chéque">
-                            Chéque
-                        </label>
-                        <label>
-                            <input type="radio" name="mode" value="Virment">
-                           Virement
-                        </label>
-                    </div>
-                </div>
-            </form>
-        </fieldset>
-    </div>
-</div>
+
+                
 
 
     <div class="content" style="margin-top: 20px; overflow: hidden;">
         <div class="row justify-content-end">
-            <div class="col-md-6">
-                <div class="d-flex justify-content-end">
-                    <button type="submit" id="modifier" name="modifier" class="btn btn-primary">Valider</button>
-                    <button type="submit" class="camera-button"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-camera-fill ml-2" viewBox="0 0 16 16" style="color: #173165">
-                        <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                        <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0"/>
-                    </svg>
-                </div></button>
-            </div>
+           
         </div>
     </div>
     

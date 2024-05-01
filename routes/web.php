@@ -32,6 +32,9 @@ Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->nam
 route::get('/emploi','App\Http\Controllers\EmploietudiantController@index')->name('emploi');
 route::get('/demande','App\Http\Controllers\DemandeetudiantController@index')->name('demande');
 route::get('/reclamation','App\Http\Controllers\ReclamationetudiantController@index')->name('reclamation');
+Route::post('/enregistrer-reclamation', 'App\Http\Controllers\ReclamationetudiantController@enregistrerReclamation')->name('enreclamation');
+Route::post('/enregistrer-paiement', 'App\Http\Controllers\PaiementetudiantController@enregistrerPaiement')->name('enpaiement');
+
 route::get('/paiement','App\Http\Controllers\PaiementetudiantController@index')->name('paiement');
 route::get('/note','App\Http\Controllers\NoteEtudiantController@index')->name('note');
 route::get('/exam','App\Http\Controllers\ExamEtudiantController@index')->name('exam');

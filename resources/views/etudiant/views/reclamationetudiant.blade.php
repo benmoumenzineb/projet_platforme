@@ -78,12 +78,21 @@
     </style>
 
     <div id="reclamation" class="container">
-        <form action="{{route('reclamation') }}" method="get">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+       <ul> @foreach ($errors->all() as $error)
+            <li class="alert alert-danger">{{ $error }}</li>
+        @endforeach</ul>
+        <form action="{{route('enreclamation') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-12">
                     <h6>Type de réclamation :</h6>
-                    <select class="form-control">
+                    <select class="form-control" name="type">
+                       
                         <option value="internat">Réclamation d'internat</option>
                         <option value="suptech">Réclamation de Suptech</option>
                         <option value="transport">Réclamation de Transport</option>
@@ -96,7 +105,7 @@
 
                     <h6>Description :</h6>
                     <!-- Remplacer l'input par un textarea -->
-                    <textarea class="form-control" rows="5"></textarea>
+                    <textarea class="form-control" rows="5" name="description"></textarea>
 
                 </div>
             </div>
@@ -104,7 +113,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h6>Télécharger un fichier :</h6>
-                    <input type="file" class="file-input">
+                    <input type="file" name="file_reclamation" class="file-input">
                     <label for="file-upload" class="file-upload-btn btn btn-outline-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor"
                             class="bi bi-camera-fill camera-icon" viewBox="0 0 16 16">
