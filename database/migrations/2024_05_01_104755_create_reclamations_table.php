@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamationmodel', function (Blueprint $table) {
+        Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
-            
-            $table->Text('type');
-            $table->longtext('description');
+            $table->Text('Nom');
+            $table->Text('Prenom');
+
+            $table->string('Numero');
+            $table->string('Email');
+            $table->Text('Type');
+            $table->longtext('Description');
+            $table->binary('file_reclamation');
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reclamationmodel');
+        Schema::dropIfExists('reclamations');
     }
 };
