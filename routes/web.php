@@ -10,6 +10,7 @@ use App\Http\Controllers\PaiementetudiantController;
 use App\Http\Controllers\NoteEtudiantController;
 use App\Http\Controllers\ExamEtudiantController;
 use App\Http\Controllers\homeProfController;
+use App\Http\Controllers\homeScolariteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,3 +50,4 @@ Route::get('/navbarsscolarite', function () {
     return view('scolarite.layouts.navbarscolarite');
    
 });
+Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
