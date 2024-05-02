@@ -44,3 +44,8 @@ Route::get('/nav', function () {
    
 });
 Route::get('/homeprof', [homeProfController::class, 'index'])->name('homeprof');
+
+Route::get('/navbarsscolarite', function () {
+    return view('scolarite.layouts.navbarscolarite');
+   
+});

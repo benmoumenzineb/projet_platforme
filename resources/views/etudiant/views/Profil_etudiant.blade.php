@@ -95,11 +95,11 @@ tr{
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
                         <div class="suptech_sante_radio">
                             <label style="margin-right: 100px;">
-                                <input type="radio" name="suptech_sante" value="Mohammedia">
+                                <input type="radio" name="Etablissement" value="Mohammedia">
                                 Mohammedia
                             </label>
                             <label>
-                                <input type="radio" name="suptech_sante" value="Essouira">
+                                <input type="radio" name="Etablissement" value="Essouira">
                                 Essouira
                             </label>
                         </div>
@@ -126,7 +126,7 @@ tr{
                                     <label for="id_etudiant" class="form-label"><strong>Code Apogee :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="id_etudiant" name="id_etudiant" required>
+                                    <input type="text" class="form-control" id="id_etudiant" name="Code_Apogee" required>
 
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Code_National" name="Code_National"
+                                    <input type="text" class="form-control" id="Code_National" name="Cne"
                                         required>
                                     <div class="invalid-feedback">
 
@@ -154,7 +154,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Cycle :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cycle" name="cycle" required>
+                                    <input type="text" class="form-control" id="cycle" name="Cycle" required>
 
                                 </div>
                             </div>
@@ -166,7 +166,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control" id="date_inscription" name="date_inscription"
+                                    <input type="date" class="form-control" id="date_inscription" name="Date_inscription"
                                         required>
 
                                 </div>
@@ -195,7 +195,7 @@ tr{
                                     <label for="nom" class="form-label"><strong>Nom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom" name="nom" required>
+                                    <input type="text" class="form-control" id="nom" name="Nom" required>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +205,7 @@ tr{
                                     <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                    <input type="text" class="form-control" id="prenom" name="Prenom" required>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +218,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control" id="date_naissance" name="date_naissance"
+                                    <input type="date" class="form-control" id="date_naissance" name="Date_naissance"
                                         required>
                                 </div>
                             </div>
@@ -229,7 +229,7 @@ tr{
                                     <label for="sexe" class="form-label"><strong>Sexe :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-select" id="sexe" name="sexe" required>
+                                    <select class="form-select" id="sexe" name="Sexe" required>
                                         <option value="" disabled selected></option>
                                         <option value="homme">Homme</option>
                                         <option value="femme">Femme</option>
@@ -246,7 +246,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance"
+                                    <input type="text" class="form-control" id="lieu_naissance" name="Lieu_naissance"
                                         required>
                                 </div>
                             </div>
@@ -254,11 +254,11 @@ tr{
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="cin" class="form-label"><strong>CIN /N° Passeport (Pour les étrangers)
+                                    <label for="cin" class="form-label"><strong>CNI /N° Passeport (Pour les étrangers)
                                         :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cin" name="cin" required>
+                                    <input type="text" class="form-control" id="cin" name="Cni" required>
                                 </div>
                             </div>
                         </div>
@@ -274,7 +274,7 @@ tr{
                                     <label for="adresse" class="form-label"><strong>Adresse :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="adresse" name="adresse" required>
+                                    <input type="text" class="form-control" id="adresse" name="Adresse" required>
                                 </div>
                             </div>
                         </div>
@@ -286,7 +286,7 @@ tr{
                                     <label for="telephone" class="form-label"><strong>Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="tele" name="tele" required>
+                                    <input type="text" class="form-control" id="tele" name="Telephone" required>
                                 </div>
                             </div>
                         </div>
@@ -298,7 +298,7 @@ tr{
                                     <label for="email" class="form-label"><strong>E-mail :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="email" name="email" required>
+                                    <input type="text" class="form-control" id="email" name="Email" required>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +332,7 @@ tr{
                                     <label for="nom_pere" class="form-label"><strong>Nom pére :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_pere" name="nom-pere" required>
+                                    <input type="text" class="form-control" id="nom_pere" name="Nom_pere" required>
                                 </div>
                             </div>
                         </div>
@@ -342,7 +342,7 @@ tr{
                                     <label for="prenom_pere" class="form-label"><strong>Prenom pére :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom_pere" name="prenom_pere"
+                                    <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"
                                         required>
                                 </div>
                             </div>
@@ -355,7 +355,7 @@ tr{
                                     <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="N_tele" required>
+                                    <input type="text" class="form-control" id="N_tele" name="Telephone_pere" required>
                                 </div>
                             </div>
                         </div>
@@ -379,7 +379,7 @@ tr{
                                     <label for="nom_mére" class="form-label"><strong>Nom mére:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_mére" name="nom_mére" required>
+                                    <input type="text" class="form-control" id="nom_mére" name="Nom_mere" required>
                                 </div>
                             </div>
                         </div>
@@ -389,7 +389,7 @@ tr{
                                     <label for="prenom_mere" class="form-label"><strong>Prenom mére:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom_mere" name="prenom_mere"
+                                    <input type="text" class="form-control" id="prenom_mere" name="Prenom_mere"
                                         required>
                                 </div>
                             </div>
@@ -402,7 +402,7 @@ tr{
                                     <label for="N_tele" class="form-label"><strong>N° Téléphone:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="N_tele" required>
+                                    <input type="text" class="form-control" id="N_tele" name="Telephone_mere" required>
                                 </div>
                             </div>
                         </div>
@@ -414,7 +414,7 @@ tr{
                                     <label for="prof_mere" class="form-label"><strong>Profession mére :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prof_mere" name="prof_mere" required>
+                                    <input type="text" class="form-control" id="prof_mere" name="Profesion_mere" required>
                                 </div>
                             </div>
                         </div>
@@ -427,7 +427,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="persone_urgence"
-                                        name="persone_urgence" required>
+                                        name="Nom_tuteur" required>
                                 </div>
                             </div>
                         </div>
@@ -439,7 +439,7 @@ tr{
                                     <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="N_tele" required>
+                                    <input type="text" class="form-control" id="N_tele" name="Telephone_tuteur" required>
                                 </div>
                             </div>
                         </div>
