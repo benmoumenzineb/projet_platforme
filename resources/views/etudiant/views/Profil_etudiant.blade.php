@@ -303,31 +303,8 @@ tr{
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="handicap" class="form-label"><strong>Handicap:</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="handicap" id="handicap_oui"
-                                            value="oui">
-                                        <label class="form-check-label" for="handicap_oui">Oui</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="handicap" id="handicap_non"
-                                            value="non">
-                                        <label class="form-check-label" for="handicap_non">Non</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                       
-                            </div>
+                   
+                              
                         </div>
                     </div>
 
