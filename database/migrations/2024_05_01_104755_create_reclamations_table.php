@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('Email');
             $table->Text('Type');
             $table->longtext('Description');
-            $table->binary('file_reclamation');
+            $table->string('file_reclamation');
             $table->timestamps();
         });
     }
