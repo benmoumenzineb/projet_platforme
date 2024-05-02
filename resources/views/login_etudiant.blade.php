@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div> <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="25%" style="margin-top:20px;"></div> 
+        <div> </div> 
        
     </div>
 

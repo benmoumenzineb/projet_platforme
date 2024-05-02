@@ -32,12 +32,21 @@ class PaiementetudiantController extends Controller
             $paiement->prenom = $request->prenom;
             $paiement->filiere = $request->filiere;
             $paiement->cni = $request->cni;
-            $paiement->n_telephone= $request->n_telephone;
+            $paiement->n_telephone = $request->n_telephone;
             $paiement->montant = $request->montant;
             $paiement->choix = $request->choix;
             $paiement->mode_paiement = $request->mode_paiement;
-            $paiement->mois_concerne= $request->mois_concerne;
-            $paiement->image= $request->image;
+            $paiement->mois_concerne=$request->input('mois_concerne[]');
+            // Enregistrement de la réclamation dans la base de données
+            
+            
+            // Récupérez les mois sélectionnés
+            
+           
+            // Parcourez les mois sélectionnés et associez-les au paiement dans la base de données
+            // Parcourez les mois sélectionnés et associez-les au paiement dans la base de données
+           
+
             
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
@@ -46,7 +55,13 @@ class PaiementetudiantController extends Controller
                 $paiement->image = $imageName; // Stockez le chemin de l'image dans la base de données
             }
             
+            // Enregistrement final de l'image (s'il y en a une) dans la base de données
+           
+            
+            
             // Enregistrement de la réclamation dans la base de données
+            dd($paiement);
+            die;
             $paiement->save();
             return redirect()->route('paiement')->with('success', '"Votre paiement a été enregistré avec succès.');
 }
