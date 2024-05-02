@@ -16,7 +16,7 @@ class Etudiant extends Model
         'Date_inscription',
         'Nom',
         'Prenom',
-        'Nom',
+       
         'Date_naissance',
         'Sexe',
         'Lieu_naissance', 
