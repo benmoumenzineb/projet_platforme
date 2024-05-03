@@ -37,19 +37,17 @@ class PaiementetudiantController extends Controller
             $paiement->choix = $request->choix;
             $paiement->mode_paiement = $request->mode_paiement;
            
-           
-           // Filtrer les valeurs réelles des cases cochées
-    $moisSelectionnes = array_filter($request->mois_concerne);
-
-    // Convertir les mois sélectionnés en une chaîne séparée par des virgules
-    $moisConcerne = implode(',', $moisSelectionnes);
-dd($moisSelectionnes);
-         
-            // Récupérez les mois sélectionnés
             
-           
-            // Parcourez les mois sélectionnés et associez-les au paiement dans la base de données
-            // Parcourez les mois sélectionnés et associez-les au paiement dans la base de données
+$moisSelectionnes = array_filter($request->mois_concerne);
+
+// Convertir les mois sélectionnés en une chaîne séparée par des virgules
+$moisConcerne = implode(',', $moisSelectionnes);
+
+// Affectez la valeur filtrée à la propriété "mois_concerne" du modèle Paiement
+$paiement->mois_concerne = $moisConcerne;
+
+         
+            
            
 
             

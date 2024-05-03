@@ -231,8 +231,8 @@ tr{
                                 <div class="col-md-6">
                                     <select class="form-select" id="sexe" name="Sexe" required>
                                         <option value="" disabled selected></option>
-                                        <option value="homme">Homme</option>
-                                        <option value="femme">Femme</option>
+                                        <option value="homme">M</option>
+                                        <option value="femme">F</option>
                                     </select>
                                 </div>
                             </div>
@@ -275,6 +275,16 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="adresse" name="Adresse" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="Pays" class="form-label"><strong>Pays:</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="Pays" name="Pays" required>
                                 </div>
                             </div>
                         </div>
