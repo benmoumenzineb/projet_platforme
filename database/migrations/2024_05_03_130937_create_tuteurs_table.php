@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('tuteurs', function (Blueprint $table) {
             $table->id();
+            $table->text('CIN');
+            $table->text('Nom');
+            $table->text('Prenom');
+            $table->text('Tele');
+            $table->text('Email');
+            $table->text('Lien_etud');
+
             $table->timestamps();
         });
     }
