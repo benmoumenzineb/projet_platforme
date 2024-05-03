@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('personnel__etablissements', function (Blueprint $table) {
             $table->id();
+            
             $table->timestamps();
         });
     }

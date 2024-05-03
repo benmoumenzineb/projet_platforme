@@ -14,9 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('personnels', function (Blueprint $table) {
-            $table->id();
+            $table->text('CIN_salarie');
+            $table->text('Matricule_Cnss');
+            $table->text('Nom');
+            $table->text('Prenom');
+            $table->text('Email');
+            $table->text('Rib');
             $table->timestamps();
         });
+
+         
     }
 
     /**
