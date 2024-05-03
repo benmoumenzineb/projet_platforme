@@ -36,10 +36,15 @@ class PaiementetudiantController extends Controller
             $paiement->montant = $request->montant;
             $paiement->choix = $request->choix;
             $paiement->mode_paiement = $request->mode_paiement;
-            $paiement->mois_concerne=$request->input('mois_concerne[]');
-            // Enregistrement de la réclamation dans la base de données
-            
-            
+           
+           
+           // Filtrer les valeurs réelles des cases cochées
+    $moisSelectionnes = array_filter($request->mois_concerne);
+
+    // Convertir les mois sélectionnés en une chaîne séparée par des virgules
+    $moisConcerne = implode(',', $moisSelectionnes);
+dd($moisSelectionnes);
+         
             // Récupérez les mois sélectionnés
             
            
@@ -55,13 +60,12 @@ class PaiementetudiantController extends Controller
                 $paiement->image = $imageName; // Stockez le chemin de l'image dans la base de données
             }
             
-            // Enregistrement final de l'image (s'il y en a une) dans la base de données
+           
            
             
             
             // Enregistrement de la réclamation dans la base de données
-            dd($paiement);
-            die;
+           
             $paiement->save();
             return redirect()->route('paiement')->with('success', '"Votre paiement a été enregistré avec succès.');
 }

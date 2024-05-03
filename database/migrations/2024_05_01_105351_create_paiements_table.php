@@ -24,6 +24,7 @@ return new class extends Migration
             $table->Text('montant');
             $table->Text('choix');
             $table->Text('mode_paiement');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

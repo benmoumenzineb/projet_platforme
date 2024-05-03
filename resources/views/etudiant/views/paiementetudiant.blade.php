@@ -98,51 +98,51 @@
                                     <div class="btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne" style="background-color: red;"> Janvier
+                                                name="mois_concerne[]" style="background-color: red;"> Janvier
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Février
+                                                name="mois_concerne[]"> Février
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Mars
+                                                name="mois_concerne[]"> Mars
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Avril
+                                                name="mois_concerne[]"> Avril
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Mai
+                                                name="mois_concerne[]"> Mai
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Juin
+                                                name="mois_concerne[]"> Juin
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Juillet
+                                                name="mois_concerne[]"> Juillet
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Août
+                                                name="mois_concerne[]"> Août
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Septembre
+                                                name="mois_concerne[]"> Septembre
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Octobre
+                                                name="mois_concerne[]"> Octobre
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Novembre
+                                                name="mois_concerne[]"> Novembre
                                         </label>
                                         <label class="btn btn-outline-secondary month-btn">
                                             <input type="checkbox" class="month-checkbox" id="paiement_id"
-                                                name="mois_concerne"> Décembre
+                                                name="mois_concerne[]"> Décembre
                                         </label>
                                     </div>
 
@@ -329,35 +329,33 @@
             });
         });
 
+        function enregistrerMois() {
+    var moisSelectionnes = [];
+    // Parcours des cases cochées
+    $('.month-checkbox:checked').each(function() {
+        moisSelectionnes.push($(this).val());
+    });
+    $.ajax({
+        type: 'POST',
+        url: '{{ route('enpaiement') }}',
+        data: {
+            mois_concerne: moisSelectionnes
+        },
+        success: function(response) {
+            // Afficher un message de succès ou effectuer d'autres actions si nécessaire
+            alert('Mois enregistrés avec succès!');
+        },
+        error: function(xhr, status, error) {
+            // Gérer les erreurs si nécessaire
+            console.error(error);
+        }
+    });
+}
+$('#savebtn').on('click', function() {
+    enregistrerPaiement();
+});
 
 
-
-
-        $(document).ready(function() {
-            // Gérez le clic sur le bouton Enregistrer
-            $('#savebtn').click(function() {
-                // Récupérez les mois sélectionnés
-                var selectedMonths = $('.month-checkbox:checked').map(function() {
-                    return $(this).attr('id');
-                }).get();
-
-                // Envoyez les mois sélectionnés au serveur via une requête AJAX
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('enpaiement') }}',
-                    data: {
-                        months: selectedMonths
-                    },
-                    success: function(response) {
-                        // Affichez un message de succès ou effectuez d'autres actions
-                        alert(response.message);
-                    },
-                    error: function(xhr, status, error) {
-                        // Gérez les erreurs en conséquence
-                        console.error(error);
-                    }
-                });
-            });
-        });
+        
     </script>
 @endsection
