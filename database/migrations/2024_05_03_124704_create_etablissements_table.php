@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('etablissements', function (Blueprint $table) {
-              $table->id();
-            $table->text('Code_Etabli');
-            $table->id('');
+    
+          $table->text('Code_Etabli')->primary();
+            $table->text('Num_Autorisation');
             $table->text('Intitule');
             $table->text('Specialite');
             $table->text('Ville');
             $table->timestamps();
+      
         });
     }
 

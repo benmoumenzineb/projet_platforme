@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('programme__filieres', function (Blueprint $table) {
-            $table->id();
+            $table->text('Num_Element');
+            $table->text('Code_Filiere');
             $table->timestamps();
+            $table->foreign('Num_Element')->references('Num_Element')->on('elements');
+            $table->foreign('Code_Filiere')->references('Code_Filiere')->on('filiers');
         });
     }
 

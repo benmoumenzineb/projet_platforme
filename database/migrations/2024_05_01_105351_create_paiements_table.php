@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('paiements', function (Blueprint $table) {
-            $table->id();
+            $table->id();   // $table->text('Code_Apogee');
             $table->Text('mois_concerne');
             $table->Text('nom');
             $table->Text('prenom');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->Text('mode_paiement');
             $table->string('image')->nullable();
             $table->timestamps();
+              // $table->foreign('Code_Apogee')->references('Code_Apogee')->on('etudiants');
         });
     }
 

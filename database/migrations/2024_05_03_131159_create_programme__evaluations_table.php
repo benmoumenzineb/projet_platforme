@@ -14,8 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('programme__evaluations', function (Blueprint $table) {
-            $table->id();
+            $table->text('Num_Element');
+            $table->text('Code_Filiere');
+            $table->date('Date_Exam');
+           $table->time('Hr_Exam');
+           $table->date('Date_Ratt');
+           $table->time('Hr_Ratt');
             $table->timestamps();
+            $table->foreign('Num_Element')->references('Num_Element')->on('elements');
+            $table->foreign('Code_Filiere')->references('Code_Filiere')->on('filiers');
         });
     }
 

@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->Text('Nom');
             $table->Text('Prenom');
-
+            //$table->text ('Code_Apogee');
             $table->string('Numero');
             $table->string('Email');
             $table->Text('Type');
             $table->longtext('Description');
             $table->string('file_reclamation');
             $table->timestamps();
+            // $table->foreign('Code_Apogee')->references('Code_Apogee')->on('etudiants');
         });
     }
 

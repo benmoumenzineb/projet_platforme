@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('programme__enseignants', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->text('Num_Element');
+            $table->text('CIN_Enseignant');
+             $table->timestamps();
+             $table->foreign('Num_Element')->references('Num_Element')->on('elements');
+             $table->foreign('CIN_Enseignant')->references('CIN_Enseignant')->on('enseignants');
         });
     }
 

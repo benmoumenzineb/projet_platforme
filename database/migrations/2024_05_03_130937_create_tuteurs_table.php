@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tuteurs', function (Blueprint $table) {
-            $table->id();
-            $table->text('CIN');
+         
+            $table->text('CIN')->primary();
             $table->text('Nom');
             $table->text('Prenom');
             $table->text('Tele');

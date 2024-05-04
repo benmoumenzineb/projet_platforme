@@ -14,8 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->id();
+            $table->text('Num_Element');
+           // $table->text('Code_Apogee');
+           $table->text('Note_Exam');
+           $table->text('Note_Ratt');
+           $table->text('Note_Ctrl1');
+           $table->text('Note_Ctrl2');
+           $table->text('Note_Ctrl_Tp');
+           $table->text('Note_PFE');
             $table->timestamps();
+            $table->foreign('Num_Element')->references('Num_Element')->on('elements');
+             // $table->foreign('Code_Apogee')->references('Code_Apogee')->on('etudiants');
         });
     }
 

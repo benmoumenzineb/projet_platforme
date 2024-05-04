@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('enseignants', function (Blueprint $table) {
-            $table->id();
+            $table->text('CIN_Enseignant')->primary();
+            $table->foreign('CIN_Enseignant')->references('CIN_salarie')->on('personnels');
+            $table->Text('Type');
             $table->timestamps();
         });
     }

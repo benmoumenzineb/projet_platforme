@@ -14,7 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('filieres', function (Blueprint $table) {
-            $table->id();
+            $table->text('Code_Filiere')->primary();
+            $table->text('Intitule');
+            $table->text('Description');
+            $table->text('Nombre_Annee');
+            $table->text('Cycle');
+            $table->text('CIN_Coordonnateur');
+            $table->foreign('CIN_Coordonnateur')->references('CIN_Enseignant')->on('enseignants');
             $table->timestamps();
         });
     }

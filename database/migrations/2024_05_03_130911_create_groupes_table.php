@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('groupes', function (Blueprint $table) {
-            $table->id();
+            $table->text('Id_Groupe')->primary();
+            $table->text('Intitule');
+            $table->text('Code_Filiere');
+            $table->foreign('Code_Filiere')->references('Code_Filiere')->on('filieres');
             $table->timestamps();
         });
     }

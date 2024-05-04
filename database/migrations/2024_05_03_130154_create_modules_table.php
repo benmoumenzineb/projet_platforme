@@ -14,7 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {
-            $table->id();
+            $table->text('Num_Module')->primary();
+            $table->text('Intitule');
+            $table->integer('Nbr_Hr_Total');
+            $table->boolen('Avoir-Elements');
+            $table->text('CIN_Responsable');
+            $table->foreign('CIN_Responsable')->references('CIN_Enseignant')->on('personnels');
             $table->timestamps();
         });
     }

@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('details__etab__filieres', function (Blueprint $table) {
-            $table->id();
+            $table->text('Code_Filiere');
+            $table->text('Code_Etabli');
             $table->timestamps();
+            $table->foreign('Code_Filiere')->references('Code_Filiere')->on('filieres');
+            $table->foreign('Code_Etabli')->references('Code_Etabli')->on('etablissements'); 
         });
     }
 

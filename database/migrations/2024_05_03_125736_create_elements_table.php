@@ -14,7 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('elements', function (Blueprint $table) {
-            $table->id();
+            $table->text('Num_Element')->primary();
+            $table->text('Intitule');
+            $table->text('Description');
+            $table->integer('Nbr_Hr_cours');
+            $table->integer('Nbr_Hr_Td');
+            $table->integer('Nbr_Hr_Tp');
+            $table->integer('Nbr_Hr_Ap');
+            $table->text('Num_Module');
+            $table->foreign('Num_Module')->references('Num_Module')->on('modules');
             $table->timestamps();
         });
     }
