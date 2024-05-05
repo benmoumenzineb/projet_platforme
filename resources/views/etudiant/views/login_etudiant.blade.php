@@ -47,13 +47,13 @@
                         <form id="loginForm" action="{{ route('homeetudiant') }}" method="GET">
                             <div class="form-group">
                                 <label for="nom-d'utilisateur" class="text-color">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " required>
+                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" required>
                                  
                                   
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-color">Mot de Passe</label>
-                                <input type="password" class="form-control" id="password" placeholder=" Entrer votre Mot de passe " required>
+                                <input type="password"  name="password" class="form-control" id="password" placeholder=" Entrer votre Mot de passe " required>
                                 <div class="mot-de-passe-oublie"><input type="checkbox" class=" custom-checkbox"> Mot de Passe oublié ?</div>
                             </div>
                             <button type="submit"   class="btn btn-primary w-100 background-color text-color">Connexion</button>

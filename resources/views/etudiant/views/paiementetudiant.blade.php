@@ -78,7 +78,7 @@
                     enctype="multipart/form-data">
                     @csrf
                     <!-- Button pour afficher le modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#monthModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#monthModal" style="background-color: #173165;">
                         Mois
                     </button>
 

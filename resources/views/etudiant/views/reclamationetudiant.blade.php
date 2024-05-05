@@ -3,15 +3,49 @@
 @section('contenu')
     <style>
         /* Style pour le conteneur du formulaire */
-        #reclamation {
-            margin: 80px auto 50px;
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            height: auto;
-        }
+       /* Style pour le conteneur du formulaire */
+#reclamation {
+    margin: 80px auto 50px;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Augmentez la largeur maximale du formulaire */
+    width: 90%; /* Ajoutez cette règle pour étendre la largeur du formulaire sur toute la largeur disponible */
+    margin-left: auto; /* Centrez horizontalement le formulaire */
+    margin-right: auto; /* Centrez horizontalement le formulaire */
+}
+
+@media (max-width: 320px) {
+    #reclamation {
+        padding: 20px; /* Réduire le padding pour les petits écrans */
+    }
+}
+
+@media (min-width: 375px) {
+    #reclamation {
+        max-width: 90%; /* Réduire la largeur maximale pour les petits écrans */
+    }
+}
+
+@media (min-width: 425px) {
+    #reclamation {
+        max-width: 95%; /* Réduire la largeur maximale pour les petits écrans */
+    }
+}
+
+@media (min-width: 768px) {
+    #reclamation {
+        max-width: 600px; /* Ajuster la largeur maximale pour les écrans de taille moyenne */
+    }
+}
+
+@media (min-width: 1024px) {
+    #reclamation {
+        max-width: 800px; /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+}
+
 
         @media (width: 1440px) {
 

@@ -9,6 +9,7 @@ class Demande extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'Nom',
         'Prenom',
         'Numero',

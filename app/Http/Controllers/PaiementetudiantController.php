@@ -51,12 +51,13 @@ $paiement->mois_concerne = $moisConcerne;
            
 
             
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('images', $imageName); // Stockez l'image dans le dossier 'storage/app/images'
-                $paiement->image = $imageName; // Stockez le chemin de l'image dans la base de données
-            }
+if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imageName = $image->getClientOriginalName();
+    $image->move(public_path('asset/images'), $imageName); // Corrected path
+    $paiement->image = $imageName; // Store the image path in the database
+}
+
             
            
            

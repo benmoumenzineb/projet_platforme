@@ -12,6 +12,11 @@ color:  #173165;
 th{
     color: #173165;
 }
+@media (min-width: 2065px) {
+    .container {
+        max-width: 1000px; /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+}
 </style>
 <div class="container" style="margin-left: 240px; margin-top:90px;" >
     <div class="row justify-content-center">

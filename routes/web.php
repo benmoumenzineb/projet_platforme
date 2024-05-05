@@ -11,6 +11,11 @@ use App\Http\Controllers\NoteEtudiantController;
 use App\Http\Controllers\ExamEtudiantController;
 use App\Http\Controllers\homeProfController;
 use App\Http\Controllers\homeScolariteController;
+use App\Http\Controllers\LoginetudiantController;
+use App\Http\Controllers\ListetudiantController;
+use App\Http\Controllers\DemandeScolariteController;
+use App\Http\Controllers\ReclamationScolariteController;
+use App\Http\Controllers\PaiementScolariteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +49,8 @@ Route::get('/nav', function () {
     return view('prof.layouts.navbarprof');
    
 });
+Route::get('/etudiants', [LoginetudiantController::class, 'index']);
+Route::get('/etudiants/search', [LoginetudiantController::class, 'search'])->name('etudiant.search');
 Route::get('/homeprof', [homeProfController::class, 'index'])->name('homeprof');
 
 Route::get('/navbarsscolarite', function () {
@@ -51,3 +58,11 @@ Route::get('/navbarsscolarite', function () {
    
 });
 Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
+Route::get('/scolarite', [ListetudiantController::class, 'index'])->name('listetudiant');
+Route::get('/etudiants/search/scolarite', [ListetudiantController::class, 'search'])->name('etudiant.search.scolarite');
+Route::get('/demandescolarite', [DemandeScolariteController::class, 'index'])->name('demandescolarite');
+Route::get('/demandescolarite/search', [DemandeScolariteController::class, 'search'])->name('demandescolarite.search');
+Route::get('/reclamationscolarite/search', [ReclamationScolariteController::class, 'search'])->name('reclamationscolarite.search');
+Route::get('/reclamationscolarite', [ReclamationScolariteController::class, 'index'])->name('reclamationscolarite');
+Route::get('/paiementscolarite/search', [PaiementScolariteController::class, 'search'])->name('paiementscolarite.search');
+Route::get('/paiementscolarite', [PaiementScolariteController::class, 'index'])->name('paiementscolarite');

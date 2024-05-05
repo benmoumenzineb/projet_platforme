@@ -3,68 +3,90 @@
 @section('contenu')
     <style>
         /* Style pour le conteneur du formulaire */
-        #demande {
-            margin: 80px auto 50px;
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            height: auto;
-        }
+        /* Style pour le conteneur du formulaire */
+/* Style pour le conteneur du formulaire */
+#demande {
+    margin: 80px auto 50px;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Augmentez la largeur maximale du formulaire */
+    width: 90%; /* Ajoutez cette règle pour étendre la largeur du formulaire sur toute la largeur disponible */
+    margin-left: auto; /* Centrez horizontalement le formulaire */
+    margin-right: auto; /* Centrez horizontalement le formulaire */
+}
 
-        @media (width: 1440px) {
+/* Style pour les titres */
+h6 {
+    color: #173165;
+    margin-bottom: 10px;
+}
 
-            #demande {
-                max-width: 70%;
-                margin-left: 1px;
-            }
+/* Style pour les inputs */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 8px; /* Augmentez la taille de la zone de saisie */
+    margin-bottom: 20px;
+}
 
-            /* Adjust input width */
-            .form-control {
-                width: 100%;
-            }
-        }
+/* Style pour le bouton "Enregistrer" */
+.button-enregistrer {
+    width: 100%;
+    padding: 10px;
+    background-color: #1858b1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        /* Style pour les titres */
-        h6 {
-            color: #173165;
-            margin-bottom: 10px;
-        }
+/* Style pour le bouton "Enregistrer" au survol */
+.button-enregistrer:hover {
+    background-color: #0d3d82;
+}
 
-        /* Style pour les inputs */
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            padding: 5px;
-            margin-bottom: 20px;
-        }
+/* Media Queries pour la mise en page responsive */
+@media (max-width: 320px) {
+    #demande {
+        padding: 20px; /* Réduire le padding pour les petits écrans */
+    }
+    .form-control {
+        padding: 6px; /* Réduire la taille de la zone de saisie pour les petits écrans */
+    }
+}
 
-        /* Style pour le bouton "Enregistrer" */
-        .button-enregistrer {
-            width: 100%;
-            padding: 10px;
-            background-color: #1858b1;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+@media (min-width: 375px) {
+    #demande {
+        max-width: 80%; /* Réduire la largeur du formulaire pour les petits écrans */
+    }
+}
 
-        /* Style pour le bouton "Enregistrer" au survol */
-        .button-enregistrer:hover {
-            background-color: #0d3d82;
-        }
+@media (min-width: 425px) {
+    #demande {
+        max-width: 90%; /* Réduire la largeur du formulaire pour les écrans moyens */
+    }
+}
 
-        
-
-      
-       
-       
-
-    </style>
+@media (min-width: 768px) {
+    #demande {
+        max-width: 600px; /* Réduire la largeur du formulaire pour les écrans plus grands */
+    }
+}
+@media (min-width: 1440px) {
+    #demande {
+        max-width: 900px; /* Réduire la largeur du formulaire pour les écrans plus grands */
+    }
+}
+@media (min-width: 1024px) {
+    #demande {
+        max-width: 800px; /* Réduire la largeur du formulaire pour les écrans plus grands */
+    }
+}
+       </style>
 
     <div id="demande" class="container">
         @if(session('success'))

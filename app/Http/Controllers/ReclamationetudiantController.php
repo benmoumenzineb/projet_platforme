@@ -25,6 +25,7 @@ class ReclamationetudiantController extends Controller
        'Email' => 'required|email',
        'Type' => 'required',
        'Description' => 'required',
+       'file_reclamation' => 'required',
         ]);
 
         // Création d'une nouvelle réclamation
@@ -35,16 +36,18 @@ class ReclamationetudiantController extends Controller
           $reclamation->Email = $request->Email;
         $reclamation->Type = $request->Type;
         $reclamation->Description = $request->Description;
-        $reclamation->file_reclamation = $request->file_reclamation;
+        $reclamation->file_reclamation=$request->file_reclamation;
         // Enregistrement de la réclamation dans la base de données
 
 
         if ($request->hasFile('file_reclamation')) {
             $file = $request->file('file_reclamation');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('app', $fileName, 'public'); // Stockez le fichier dans 'public/app'
-            // Enregistrez le nom du fichier dans la base de données ou utilisez-le comme vous le souhaitez
+            $fileName = $file->getClientOriginalName(); // Corrected variable name
+            $file->move(public_path('asset/images'), $fileName);
+            $reclamation->file_reclamation = $fileName; // Store the filename in the database
         }
+        
+        
         $reclamation->save();
 
         return redirect()->route('reclamation')->with('success', 'Réclamation enregistrée avec succès.');

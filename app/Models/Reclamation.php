@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reclamation extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'Nom',
         'Prenom',
@@ -15,6 +16,6 @@ class Reclamation extends Model
         'Email',
         'Type',
         'Description',
-       ' file_reclamation',
+        'file_reclamation', // Supprimez l'espace ici
     ];
 }
