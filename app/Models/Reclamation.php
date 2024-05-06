@@ -16,6 +16,6 @@ class Reclamation extends Model
         'Email',
         'Type',
         'Description',
-        'file_reclamation', // Supprimez l'espace ici
+        'file_reclamation', 
     ];
 }

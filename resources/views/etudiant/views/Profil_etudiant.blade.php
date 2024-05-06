@@ -85,7 +85,7 @@ tr{
         
     </div></div>
     <div class="content">
-    <div id="image-content" style="margin-left: -20px;">
+    <div class="image-content" style="margin-left: -20px;">
     <form action="" method="" enctype="multipart/form-data">
         <fieldset class="border p-3">
         @csrf
@@ -666,14 +666,13 @@ tr{
         
         // Écouteur d'événement pour le bouton "Informations étudiant"
         boutonInformations.addEventListener('click', function() {
-            document.getElementById('image-content').style.display = 'block';
             // Masquer tous les contenus sauf celui de l'Établissement
             document.querySelector('.etablissment-content').style.display = 'block';
             document.getElementById('identifiants-etudiant-content').style.display = 'block';
             document.getElementById('renseignements-etudiant-content').style.display = 'block';
             document.getElementById('informations-parents-content').style.display = 'block';
             document.querySelector('.modifier-content').style.display = 'block';
-            
+            document.getElementById('image-content').style.display = 'block';
         
             // Masquer les contenus du cursus
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
@@ -693,14 +692,13 @@ tr{
     document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
     
     // Masquer les contenus liés aux informations étudiant
-    document.getElementById('image-content').style.display ='none';
     document.querySelector('.etablissment-content').style.display = 'none';
     document.getElementById('identifiants-etudiant-content').style.display = 'none';
     document.getElementById('renseignements-etudiant-content').style.display = 'none';
     document.getElementById('informations-parents-content').style.display = 'none';
     document.querySelector('.modifier-content').style.display = 'none';
     document.getElementById('documents-content').style.display = 'none';
-    
+    document.getElementById('image-content').style.display = 'none';
 });
 
     </script>

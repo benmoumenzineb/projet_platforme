@@ -244,7 +244,16 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="somme" class="form-label"><strong>E-mail:</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="Email" name="Email" required>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 

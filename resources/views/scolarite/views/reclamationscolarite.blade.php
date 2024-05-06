@@ -24,7 +24,7 @@
     <div class="container-fluid mt-5 barrecherche fixed-top-barre">
         <div class="row">
             <div class="col-md-9">
-                <h1 style="color: #173165;">Liste des demandes</h1>
+                
                 <form action="{{ route('reclamationscolarite.search') }}" method="GET" class="mb-3">
                     <div class="input-group">
                         <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
@@ -62,7 +62,7 @@
                 <td class="border">{{ $reclamation->Email }}</td>
                 <td class="border">{{ $reclamation->Type }}</td>
                 <td class="border">{{ $reclamation->Description }}</td>
-                <td class="border">{{ $reclamation->file_reclamation }}</td>
+                <td class="border"><a href="{{ asset('asset/images/' . $reclamation->file_reclamation) }}">{{ $reclamation->file_reclamation }}</a></td>
                 <!--<td class="border">
                      Button group for Valider and Non valider 
                     <div class="btn-group" role="group" aria-label="Actions">

@@ -17,9 +17,11 @@ class Paiement extends Model
         'n_telephone',
         'montant',
         'choix',
+        
         'mode_paiement',
         'mois_concerne',
        'image',
+       'Email',
         
     ];
 }

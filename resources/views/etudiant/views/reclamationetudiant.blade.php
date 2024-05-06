@@ -124,7 +124,7 @@
             <li class="alert alert-danger">{{ $error }}</li>
         @endforeach
     </ul>
-        <form action="{{route('enreclamation') }}" method="POST">
+        <form action="{{route('enreclamation') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">

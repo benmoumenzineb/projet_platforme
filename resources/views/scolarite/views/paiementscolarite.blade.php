@@ -52,6 +52,7 @@
                 <th class="th-color border" scope="col">Choix</th>
                 <th class="th-color border" scope="col">Mode de Paiement</th>
                 <th class="th-color border" scope="col">Image</th>
+                <th class="th-color border" scope="col">E-mail</th>
                <!-- <th class="th-color border" scope="col">Actions</th>--> <!-- Nouvelle colonne pour les cases à cocher -->
             </tr>
         </thead>
@@ -68,7 +69,9 @@
                 <td class="border">{{ $paiement->montant}}</td>
                 <td class="border">{{ $paiement->choix }}</td>
                 <td class="border">{{ $paiement->mode_paiement }}</td>
-                <td class="border">{{ $paiement->image }}</td>
+                <td class="border"><a href="{{ asset('asset/images/' . $paiement->image) }}">{{ $paiement->image }}</a></td>
+
+                <td class="border">{{ $paiement->Email }}</td>
                 
             </tr>
             @endforeach

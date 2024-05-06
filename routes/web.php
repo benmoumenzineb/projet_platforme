@@ -28,13 +28,13 @@ use App\Http\Controllers\PaiementScolariteController;
 */
 
 Route::get('/', function () {
-    return view('login_etudiant');
+    return view('etudiant.views.login_etudiant');
 });
 Route::get('/footer', function () {
     return view('etudiant.layouts.footer');
 });
 Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
-Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');
+
 route::get('/emploi','App\Http\Controllers\EmploietudiantController@index')->name('emploi');
 route::get('/demande','App\Http\Controllers\DemandeetudiantController@index')->name('demande');
 route::post('/enregistrer-demande','App\Http\Controllers\DemandeetudiantController@enregistrerDemande')->name('endemande');
@@ -66,3 +66,6 @@ Route::get('/reclamationscolarite/search', [ReclamationScolariteController::clas
 Route::get('/reclamationscolarite', [ReclamationScolariteController::class, 'index'])->name('reclamationscolarite');
 Route::get('/paiementscolarite/search', [PaiementScolariteController::class, 'search'])->name('paiementscolarite.search');
 Route::get('/paiementscolarite', [PaiementScolariteController::class, 'index'])->name('paiementscolarite');
+
+
+Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');

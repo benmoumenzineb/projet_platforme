@@ -36,7 +36,7 @@
 
 
     <div class="container mt-5 " id="Divglobale">
-        <div class="  row ">
+        <div class="row">
 
 
             <div class="col-md-10 mt-5 ">

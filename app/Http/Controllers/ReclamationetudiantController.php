@@ -36,17 +36,16 @@ class ReclamationetudiantController extends Controller
           $reclamation->Email = $request->Email;
         $reclamation->Type = $request->Type;
         $reclamation->Description = $request->Description;
-        $reclamation->file_reclamation=$request->file_reclamation;
+       
         // Enregistrement de la réclamation dans la base de données
 
 
         if ($request->hasFile('file_reclamation')) {
             $file = $request->file('file_reclamation');
-            $fileName = $file->getClientOriginalName(); // Corrected variable name
-            $file->move(public_path('asset/images'), $fileName);
-            $reclamation->file_reclamation = $fileName; // Store the filename in the database
+            $fileName = $file->getClientOriginalName(); // Obtenez le nom du fichier
+            $file->move(public_path('asset/images'), $fileName); // Déplacez le fichier vers le dossier de destination
+            $reclamation->file_reclamation = $fileName; // Stockez le nom du fichier dans la base de données
         }
-        
         
         $reclamation->save();
 

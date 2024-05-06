@@ -1,5 +1,6 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 @extends('scolarite.layouts.navbarscolarite')
+    
 @section('contenu')
 
 
@@ -9,6 +10,7 @@
 .pagination-container {
     margin-top: 20px; /* Ajoutez un espace au-dessus de la pagination */
     border:none;
+    
 }
 
 .pagination .page-link {
@@ -16,31 +18,35 @@
     color: #fff; /* Couleur du texte */
     background-color: #3966c2; /* Couleur de fond */
     border-color: #3966c2; /* Couleur de la bordure */
+    position: fixed;
 }
 
 .pagination .page-link:hover {
     background-color: #173165; /* Couleur de fond au survol */
     
 }
-.fixed {
-            margin-top: 20PX;
-        }
+
 
 
     .th-color {
             background-color: #3966c2;
             color: rgb(255, 255, 255);
         }
+      
+       
+
        
 </style>
 
-    <div class="container-fluid mt-5 fixed" style="margin-left: 240px;">
-        <div class="container" style="margin-top: 90px;">
+    
+<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;" >
+    
+        
+    <div class="container fixed-top-barre" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-12">
-                   
-                    <form action="{{ route('etudiant.search.scolarite') }}" method="GET" class="mb-3">
+                    <form action="{{ route('etudiant.search.scolarite') }}" method="GET" class="mb-3 fixed-top-barre"> <!-- Ajoutez la classe ici -->
                         <div class="input-group">
                             <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
                             <div class="input-group-append">
@@ -51,11 +57,11 @@
                 </div>
             </div>
         </div>
-   
-</div>
+    </div>
+    
 
     
-    
+    <div class="container">
 <table class="table table-striped">
     <thead>
         <tr>
@@ -96,11 +102,19 @@
         </tr>
         @endforeach
     </tbody>
-</table>
+</table></div>
 <!-- Pagination -->
 <div class="d-flex justify-content-center pagination-container">
     {{ $etudians->links() }}
 </div>
 </div>
-@endsection
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@endsection
+
+
+
+
+
+
+
