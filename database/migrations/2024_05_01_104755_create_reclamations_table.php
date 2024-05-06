@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('Email');
             $table->Text('Type');
             $table->longtext('Description');
-            $table->string('file_reclamation');
+            $table->string('file_reclamation')->nullable();
             $table->timestamps();
             // $table->foreign('Code_Apogee')->references('Code_Apogee')->on('etudiants');
         });
