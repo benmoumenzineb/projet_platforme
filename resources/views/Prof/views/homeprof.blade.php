@@ -117,7 +117,7 @@ margin-right:10px;margin-top:30px; padding: 40px;
             </div>
          </div></a>
 
-       <a href="{{route('emploi')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+       <a href="{{route('cahiertextprof')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
             <!-- Contenu de la carte "Emploi du temps" -->
             <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-book-fill" viewBox="0 0 16 16" style="color: #ffffff;">

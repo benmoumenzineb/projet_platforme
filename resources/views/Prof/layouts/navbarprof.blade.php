@@ -168,7 +168,7 @@
     }
 </style>
 
-<body>
+
     <!--sidebar horizontal
    
     
@@ -177,7 +177,7 @@
     sidebar Vertical-->
     <nav class="navbar">
         <div class="container">
-            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <img class="m-0 p-0 img-logos" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
             <div class="navbar-left">
                 <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
