@@ -14,6 +14,39 @@
             background-color: #3966c2;
             color: rgb(255, 255, 255);
         }
+        .pagination-container {
+    margin-top: 20px; /* Ajoutez un espace au-dessus de la pagination */
+    border:none;
+    
+}
+
+.pagination .page-link {
+    font-size: 8px; /* Taille de police */
+    color: #fff; /* Couleur du texte */
+    background-color: #3966c2; /* Couleur de fond */
+    border-color: #3966c2; /* Couleur de la bordure */
+   
+}
+
+.pagination .page-link:hover {
+    background-color: #173165; /* Couleur de fond au survol */
+    
+}
+
+
+
+   
+      
+        .fixed-bottom-barre {
+    position: absolute;
+    bottom: -800px; 
+  
+    right: 10px;
+    z-index: -999;
+    background-color: #fff; /* Couleur de fond */
+    padding: 1px 0; /* Espacement intérieur pour un meilleur aspect */
+    /* Ajoutez une ombre pour plus de distinction */
+}
        
     /* Styles pour les cases à cocher "Valider" et "Non valider" */
     

@@ -87,6 +87,15 @@
             height: auto;
             
         }
+       
+
+    }
+    @media (width: 320px) {
+        .sidebar {
+            width: 350px;
+           
+            
+        }
 
     }
 
@@ -204,19 +213,7 @@
                                 <a class="lien" href="{{ route('listetudiant') }}"
                                     class="{{ Request::is('listetudiant') ? 'active' : '' }}">Liste des Etudiants</a>
                             </li>
-                            <li class="p-2 mb-2 "><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-                                <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
-                                <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
-                                <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
-                              </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demandescolarite') }}"
-                                    class="{{ Request::is('demandescolarite') ? 'active' : '' }}">Demandes Etudiants</a>
-                            </li>
-                            <li class="p-2 mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
-                                  </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamationscolarite') }}"
-                                    class="{{ Request::is('reclamationscolarite') ? 'active' : '' }}"> Réclamations Etudiants</a>
-                            </li>
+                           
 
                             <li class="p-2 mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
@@ -237,7 +234,19 @@
                             </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('paiementscolarite') }}"
                                     class="{{ Request::is('paiementscolarite') ? 'active' : '' }}">Suivie de Paiement</a>
                             </li>
-                            
+                            <li class="p-2 mb-2 "><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                                <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                                <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+                                <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+                              </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demandescolarite') }}"
+                                    class="{{ Request::is('demandescolarite') ? 'active' : '' }}">Demandes Etudiants</a>
+                            </li>
+                            <li class="p-2 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                                  </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamationscolarite') }}"
+                                    class="{{ Request::is('reclamationscolarite') ? 'active' : '' }}"> Réclamations Etudiants</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

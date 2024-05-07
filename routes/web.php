@@ -16,6 +16,7 @@ use App\Http\Controllers\ListetudiantController;
 use App\Http\Controllers\DemandeScolariteController;
 use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\PaiementScolariteController;
+use App\Http\Controllers\CahierTextProfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,9 @@ use App\Http\Controllers\PaiementScolariteController;
 */
 
 Route::get('/', function () {
+    return view('etudiant.views.login_etudiant');
+});
+Route::get('/loginscolarite', function () {
     return view('etudiant.views.login_etudiant');
 });
 Route::get('/footer', function () {
@@ -69,3 +73,7 @@ Route::get('/paiementscolarite', [PaiementScolariteController::class, 'index'])-
 
 
 Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');
+
+
+//PROF
+Route::get('/cahiertextprof', [CahierTextProfController::class, 'index'])->name('cahiertextprof');

@@ -28,15 +28,12 @@
 
 
 
-    .th-color {
-            background-color: #3966c2;
-            color: rgb(255, 255, 255);
-        }
+   
       
         .fixed-bottom-barre {
     position: absolute;
     bottom: -800px; 
-   
+  
     right: 10px;
     z-index: -999;
     background-color: #fff; /* Couleur de fond */
@@ -45,7 +42,10 @@
 }
 
 
-       
+.th-color {
+            background-color: #3966c2;
+            color: rgb(255, 255, 255);
+        }  
 </style>
 
     
