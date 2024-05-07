@@ -7,30 +7,22 @@
     <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
         
            <h2>CAHIER DE TEXTES</h2>
-           
+
             <form id="renseignements_etudiant">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="nom" class="form-label"><strong>Nom :</strong></label>
+                                <label for="nom" class="form-label"><strong>Cycle:</strong></label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="nom" name="Nom" required>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="prenom" name="Prenom" required>
-                            </div>
-                        </div>
+                  
                     </div>
-                </div>
+               
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <div class="row">
@@ -138,7 +130,7 @@
                           
                     </div>
                 </div>
-
+            </div>
 
             </form>
         
