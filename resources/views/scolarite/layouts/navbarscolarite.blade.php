@@ -84,6 +84,8 @@
         .sidebar {
             width: 250px;
             /* Hide the sidebar by default on smaller screens */
+            height: auto;
+            
         }
 
     }
@@ -96,16 +98,17 @@
         /* Tablets */
         .sidebar {
             width: 200px;
-            /* Adjust the width for tablet screens */
+            
         }
     }
 
     /* Responsive styles */
-    @media (max-width: 575.98px) {
+    @media (max-width: 425px) {
 
         /* Phones */
         .sidebar {
             width: 150px;
+            height: auto;
             /* Adjust the width for phones */
         }
     }

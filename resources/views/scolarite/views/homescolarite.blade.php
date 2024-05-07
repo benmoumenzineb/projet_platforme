@@ -77,7 +77,7 @@ background-color:#1858b1;
 }
 
 /* For screens between 1441px and 2560px */
-@media screen and (min-width: 1441px) and (max-width: 2560px) {
+@media screen and (min-width: 1440px) and (max-width: 2560px) {
     /* Adjust the margin and padding for extra large screens */
     #page-content {
         margin-left: 200px;

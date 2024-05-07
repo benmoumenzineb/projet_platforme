@@ -14,11 +14,11 @@
 }
 
 .pagination .page-link {
-    font-size: 11px; /* Taille de police */
+    font-size: 8px; /* Taille de police */
     color: #fff; /* Couleur du texte */
     background-color: #3966c2; /* Couleur de fond */
     border-color: #3966c2; /* Couleur de la bordure */
-    position: fixed;
+   
 }
 
 .pagination .page-link:hover {
@@ -33,7 +33,17 @@
             color: rgb(255, 255, 255);
         }
       
-       
+        .fixed-bottom-barre {
+    position: absolute;
+    bottom: -800px; 
+   
+    right: 10px;
+    z-index: -999;
+    background-color: #fff; /* Couleur de fond */
+    padding: 1px 0; /* Espacement intérieur pour un meilleur aspect */
+    /* Ajoutez une ombre pour plus de distinction */
+}
+
 
        
 </style>
@@ -104,7 +114,7 @@
     </tbody>
 </table></div>
 <!-- Pagination -->
-<div class="d-flex justify-content-center pagination-container">
+<div class="d-flex justify-content-center pagination-container fixed-bottom-barre">
     {{ $etudians->links() }}
 </div>
 </div>
