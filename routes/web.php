@@ -17,6 +17,7 @@ use App\Http\Controllers\DemandeScolariteController;
 use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\PaiementScolariteController;
 use App\Http\Controllers\CahierTextProfController;
+use App\Http\Controllers\PresenceProfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,3 +78,4 @@ Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->nam
 
 //PROF
 Route::get('/cahiertextprof', [CahierTextProfController::class, 'index'])->name('cahiertextprof');
+Route::get('/Presence', [ PresenceProfController::class, 'index'])->name('PresenceEtudiant');
