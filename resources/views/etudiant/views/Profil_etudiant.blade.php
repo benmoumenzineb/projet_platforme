@@ -139,7 +139,7 @@ tr{
                                     <label for="id_etudiant" class="form-label"><strong>Code Apogee :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="id_etudiant" name="Code_Apogee" required>
+                                    <input type="text" class="form-control" id="id_etudiant" name="apogee" required>
 
                                 </div>
                             </div>

@@ -16,6 +16,7 @@ class ListetudiantController extends Controller
         $query = $request->input('query');
         $etudians = Etudians::where('Nom', 'like', "%$query%")
                               ->orWhere('CNE', 'like', "%$query%")
+                              ->orWhere('apogee', 'like', "%$query%")
                               ->orWhere('CNI', 'like', "%$query%")
                               ->orWhere('Prenom', 'like', "%$query%")
                               ->orWhere('Date_naissance', 'like', "%$query%")

@@ -75,6 +75,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th class="th-color border" scope="col">Code Apogee</th>
             <th class="th-color border" scope="col">CNE</th>
             <th class="th-color border" scope="col">CNI</th>
             <th class="th-color border" scope="col">Nom</th>
@@ -94,7 +95,7 @@
     <tbody>
         @foreach ($etudians as $etudiant)
         <tr>
-            
+            <td class="border">{{ $etudiant->apogee }}</td>
             <td class="border">{{ $etudiant->CNE }}</td>
             <td class="border">{{ $etudiant->CNI }}</td>
             <td class="border">{{ $etudiant->Nom }}</td>
