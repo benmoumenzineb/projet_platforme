@@ -18,6 +18,8 @@ use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\PaiementScolariteController;
 use App\Http\Controllers\CahierTextProfController;
 use App\Http\Controllers\PresenceProfController;
+use App\Http\Controllers\FormtelechargerController;
+use App\Http\Controllers\HistoriqueprofController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,3 +81,9 @@ Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->nam
 //PROF
 Route::get('/cahiertextprof', [CahierTextProfController::class, 'index'])->name('cahiertextprof');
 Route::get('/Presence', [ PresenceProfController::class, 'index'])->name('PresenceEtudiant');
+Route::post('/telecharger-fichier', [FormtelechargerController::class, 'telechargerFichier'])->name('telecharger.fichier');
+
+
+Route::post('/enregistrercahiertext', 'App\Http\Controllers\FormtelechargerController@enregistrercahiertext')->name('enregistrercahiertext');
+Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
+Route::get('/historiqueprof/search', [HistoriqueprofController::class, 'search'])->name('hisroriqueprof.search');

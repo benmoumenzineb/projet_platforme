@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Seance extends Model
+class seance extends Model
 {
-    use HasFactory;
+    protected $table = 'seance';
+    public $timestamps = false;
 }
