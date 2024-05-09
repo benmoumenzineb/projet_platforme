@@ -7,7 +7,7 @@
     
 </style>
 
-<form action="{{route('listetudiants')}}" method="GET">
+<form action=" ">
   
     <div  
     style=" margin-top:180px; ">
@@ -16,12 +16,12 @@
             <h6>Cycle :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="cycle" name="Cycle" required>
+            <select class="form-control" id="cycle" name="cycle" required>
                 <option value="0: undefined" selected></option>
-                <option value="CPI">Classes Préparatoires Intégrées</option>
-                <option value="Licence">Licence</option>
-                <option value="Ingénieur">Ingénieur</option>
-                <option value="Master">Master</option>
+                <option value="CPI">Cycle Classes Préparatoires Intégrées</option>
+                <option value="Licence">Cycle Licence</option>
+                <option value="Ingénieur">Cycle Ingénieur</option>
+                <option value="Master">Cycle Master</option>
             </select>
         </div>
     </div>
@@ -30,7 +30,7 @@
             <h6>Filière :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Filiere" name="Filiere" >
+            <select class="form-control" id="filiere" name="filiere" >
                 <option value="0: undefined" selected></option>
             
             </select>
@@ -41,7 +41,7 @@
             <h6>Niveau :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Niveau" name="Niveau" >
+            <select class="form-control" id="niveau" name="niveau" >
                 <option value="0: undefined" selected></option>
             
             </select>
@@ -52,7 +52,7 @@
             <h6>Groupe :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Groupe" name="Groupe" required>
+            <select class="form-control" id="groupe" name="groupe" required>
                 <option value="0: undefined" selected></option>
                
             </select>
@@ -63,7 +63,7 @@
             <h6>Matière :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Matiere" name="Matiere" required>
+            <select class="form-control" id="matiere" name="matiere" required>
                 <option value="0: undefined" selected></option>
                
             </select>
@@ -76,14 +76,14 @@
 
 <script>
   
-    var cycleDropdown = document.getElementById("Cycle");
+    var cycleDropdown = document.getElementById("cycle");
    
-    var filiereDropdown = document.getElementById("Filiere");
+    var filiereDropdown = document.getElementById("filiere");
    
-    var groupeDropdown = document.getElementById("Groupe");
+    var groupeDropdown = document.getElementById("groupe");
   
-    var matiereDropdown = document.getElementById("Matiere");
-    var niveauDropdown = document.getElementById("Niveau");
+    var matiereDropdown = document.getElementById("matiere");
+    var niveauDropdown = document.getElementById("niveau");
    
     var options = {
         "CPI": {
@@ -93,7 +93,7 @@
             "matieres": ["","Matière 1", "Matière 2", "Matière 3"]
         },
         "Licence": {
-            "filieres": ["Maintenance Médicale", "Génie Industriel et Logistique Hospitalière", "Informatique Décisionnelle et e-Santé", "Sciences de Gestion", "Techniques de Laboratoires de Biologie Médicale", "Infirmier Polyvalent", "Infirmier en Anesthésie et Réanimation", "Infirmier en Instrumentalisation de Bloc Opératoire"],
+            "filieres": ["Licence en Maintenance Médicale", "Licence en Génie Industriel et Logistique Hospitalière", "Licence en Informatique Décisionnelle et e-Santé", "Licence en Sciences de Gestion", "Licence en Techniques de Laboratoires de Biologie Médicale", "Licence Infirmier Polyvalent", "Licence Infirmier en Anesthésie et Réanimation", "Licence Infirmier en Instrumentalisation de Bloc Opératoire"],
             "niveaux":[""],
             "groupes": ["","Groupe A", "Groupe B", "Groupe C"],
             "matieres": ["","Mathématiques", "Physique", "Chimie"]

@@ -20,6 +20,7 @@ use App\Http\Controllers\CahierTextProfController;
 use App\Http\Controllers\PresenceProfController;
 use App\Http\Controllers\FormtelechargerController;
 use App\Http\Controllers\HistoriqueprofController;
+use App\Http\Controllers\ListePresenceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,3 +93,9 @@ Route::put('/etudiant/{apogee}', 'ListetudiantController@mettreAJour')->name('et
 
 // Route pour supprimer un étudiant
 Route::delete('/etudiant/{apogee}', 'ListetudiantController@supprimer')->name('etudiant.supprimer');
+/*Route::get('/choix_de_liste', [ListePresenceController::class, 'index'])->name('listetudiantt');
+Route::get('/liste_des_etudiants', [ListePresenceController::class, 'search'])->name('liste');
+//Route::get('/liste_des_etudiants', [ListePresenceController::class, 'search'])->name('liste');*/
+
+
+Route::get('/etudiants', [ListePresenceController::class, 'indexx'])->name('listetudiants');
