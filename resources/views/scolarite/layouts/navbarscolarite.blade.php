@@ -31,10 +31,11 @@
 
 
     #vertical-sidebar ul li {
-        padding: 15px;
+        padding: 20px;
         transition: all 0.3s ease;
        width: 100%; 
-       display: block;      
+      margin-top: 20px;
+        
        
         /* Set width to 100% for all sidebar items */
     }
@@ -59,6 +60,7 @@
         list-style-type: none;
         padding: 0;
         color: #e9ecef;
+        margin-top: 20px;
        
     }
 
@@ -68,7 +70,7 @@
     .sidebar {
         background-color: #173165;
         border-right: 0px solid #ffffff;
-        z-index: 1;
+        z-index: 999;
         width: 250px;
     }
 
@@ -205,7 +207,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="sidebar">
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled mt-5">
                             <li class="p-2 mb-2 mt-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>

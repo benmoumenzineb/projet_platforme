@@ -13,8 +13,10 @@ th{
     color: #173165;
 }
 @media (min-width: 2065px) {
-    .container {
-        max-width: 1000px; /* Rétablir la largeur maximale pour les écrans plus grands */
+    .card{
+        width: 1800px;
+        margin-left: -500px;
+        margin-top: 80px; /* Rétablir la largeur maximale pour les écrans plus grands */
     }
 }
 </style>

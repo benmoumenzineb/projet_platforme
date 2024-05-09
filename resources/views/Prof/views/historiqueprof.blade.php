@@ -4,6 +4,24 @@
 
 
 <style>
+   
+    
+
+.pagination .page-link {
+    font-size: 8px; /* Taille de police */
+    color: #fff; /* Couleur du texte */
+    background-color: #3966c2; /* Couleur de fond */
+    border-color: #3966c2; /* Couleur de la bordure */
+
+}
+
+
+
+
+   
+      
+        
+
     .th-color {
             background-color: #3966c2;
             color: rgb(255, 255, 255);
@@ -65,9 +83,12 @@
         </tr>
         @endforeach
     </tbody>
-</table></div>
+</table>
+<div class="d-flex justify-content-center pagination-container fixed-bottom-barre">
+    {{ $seances->links() }}
+</div></div>
 <!-- Pagination -->
-<
+
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

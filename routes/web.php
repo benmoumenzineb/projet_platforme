@@ -87,3 +87,8 @@ Route::post('/telecharger-fichier', [FormtelechargerController::class, 'telechar
 Route::post('/enregistrercahiertext', 'App\Http\Controllers\FormtelechargerController@enregistrercahiertext')->name('enregistrercahiertext');
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
 Route::get('/historiqueprof/search', [HistoriqueprofController::class, 'search'])->name('hisroriqueprof.search');
+
+Route::put('/etudiant/{apogee}', 'ListetudiantController@mettreAJour')->name('etudiant.mettreAJour');
+
+// Route pour supprimer un étudiant
+Route::delete('/etudiant/{apogee}', 'ListetudiantController@supprimer')->name('etudiant.supprimer');

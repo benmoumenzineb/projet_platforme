@@ -86,6 +86,24 @@ h6 {
         max-width: 800px; /* Réduire la largeur du formulaire pour les écrans plus grands */
     }
 }
+@media (width: 2560px) {
+    #demande {
+     max-width: 1700px; 
+     height: 500px;
+     margin-left:-80px;
+     margin-top: 120px;
+      /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    .button-enregistrer{
+        margin-top: 40px;
+    }
+    form{
+        margin-top: 10px;
+        margin: 20px;
+        padding: 30px;
+    }
+    
+}
        </style>
 
     <div id="demande" class="container">

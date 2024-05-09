@@ -24,4 +24,5 @@ class ListetudiantController extends Controller
                               ->paginate(10);
         return view('scolarite.views.listeetudiant', compact('etudians'));
     }
+    
 }

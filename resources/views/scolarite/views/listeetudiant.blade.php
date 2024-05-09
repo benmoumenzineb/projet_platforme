@@ -7,11 +7,7 @@
 <style>
     /* Styles personnalisés pour réduire la taille des icônes de pagination */
    /* Styles personnalisés pour la pagination */
-.pagination-container {
-    margin-top: 20px; /* Ajoutez un espace au-dessus de la pagination */
-    border:none;
-    
-}
+
 
 .pagination .page-link {
     font-size: 8px; /* Taille de police */
@@ -21,27 +17,21 @@
    
 }
 
-.pagination .page-link:hover {
-    background-color: #173165; /* Couleur de fond au survol */
-    
-}
+
 
 
 
    
       
-        .fixed-bottom-barre {
-    position: absolute;
-    bottom: -800px; 
-  
-    right: 10px;
-    z-index: -999;
-    background-color: #fff; /* Couleur de fond */
-    padding: 1px 0; /* Espacement intérieur pour un meilleur aspect */
-    /* Ajoutez une ombre pour plus de distinction */
+        
+@media (width: 2560px) {
+    table {
+      margin-left: -250px; 
+      /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    
+    
 }
-
-
 .th-color {
             background-color: #3966c2;
             color: rgb(255, 255, 255);
@@ -52,7 +42,7 @@
 <div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;" >
     
         
-    <div class="container fixed-top-barre" style="margin-top: 50px;">
+    <div class="container  barrecherche fixed-top-barre" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-12">
@@ -90,6 +80,7 @@
             <th class="th-color border" scope="col">Mention BAC</th>
             <th class="th-color border" scope="col">Etablissement de diplome</th>
             <th class="th-color border" scope="col">Pourcentage de bourse</th>
+            <th class="th-color border" scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -110,22 +101,26 @@
             <td class="border">{{ $etudiant->Mention_bac }}</td>
             <td class="border">{{ $etudiant->Etablissement_bac }}</td>
             <td class="border">{{ $etudiant->Pourcentage_bourse }}</td>
+            <td class="border"><div class="btn-group" role="group" aria-label="Actions">
+                <input type="button" class="btn btn-success btn-modifier" value="Modifier" data-apogee="{{ $etudiant->apogee }}" style="width: 90px; margin-right: 5px;">
+<input type="button" class="btn btn-danger btn-supprimer" value="Supprimer" data-apogee="{{ $etudiant->apogee }}" style="width: 90px;">
+
+            </div></td>
+            
         </tr>
         @endforeach
     </tbody>
-</table></div>
-<!-- Pagination -->
+</table>
 <div class="d-flex justify-content-center pagination-container fixed-bottom-barre">
     {{ $etudians->links() }}
+</div></div>
+<!-- Pagination -->
+
 </div>
-</div>
+
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 @endsection
 
-
-
-
-
-
-
+<!-- Inclure jQuery -->

@@ -33,7 +33,7 @@
             color: rgb(255, 255, 255);
             border: none;
             border-radius: 5px;
-            width: 110px;
+            width: 100%;
             height: 40px;
         }
 
@@ -47,6 +47,14 @@
             border: none;
 
         }
+        @media (min-width: 2065px) {
+    form{
+        width: 1900px;
+        margin-left: 130px;
+        margin-top: 80px; /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    
+}
 
         /* Style pour les boutons cochés avec la couleur de fond verte */
     </style>
@@ -71,7 +79,7 @@
                     <li class="alert alert-danger">{{ $error }}</li>
                 @endforeach
             </ul>
-            <fieldset class="border p-3">
+            <fieldset class="border p-4">
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong>
                 </legend>
                 <form id="informations-personnelles" action="{{ route('enpaiement') }}" method="POST"
@@ -277,9 +285,6 @@
                         </div>
                     </div>
 
-
-                    <button type="submit" id="modifier" name="modifier" class="btn btn-primary">Valider</button>
-
                     <label for="inputFile" class="camera-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
                             class="bi bi-camera-fill ml-2" viewBox="0 0 16 16" style="color: #173165">
@@ -290,6 +295,9 @@
                         Choisir un image
                     </label>
                     <input type="file" id="inputFile" name="image" style="display: none;">
+                    <button type="submit" id="modifier" name="modifier" class="btn btn-primary">Valider</button>
+
+                  
                 </form>
             </fieldset>
         </div>

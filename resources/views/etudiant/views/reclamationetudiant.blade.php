@@ -109,7 +109,24 @@
         .camera-icon {
             margin-right: 5px;
         }
-       
+        @media (width: 2560px) {
+            #reclamation{
+     max-width: 1700px; 
+     height: 800px;
+     margin-left:-80px;
+     margin-top: 120px;
+      /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    .button-enregistrer{
+        margin-top: 40px;
+    }
+    form{
+        margin-top: 10px;
+        margin: 20px;
+        padding: 30px;
+    }
+    
+}
 
     </style>
 

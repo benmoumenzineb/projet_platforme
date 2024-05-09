@@ -43,7 +43,23 @@
     
     .card-text {
       color: #6c757d;}
-      
+      @media (width: 2560px) {
+        .card{
+     width: 1900px; 
+     height: 200px;
+     margin-left:-450px;
+     margin-top: 120px;
+      /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    p{
+      font-size:28px;
+    }
+    .card-subtitle{
+      font-size:20px;
+    }
+    
+}
+
     
     </style>
 

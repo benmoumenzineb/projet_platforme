@@ -5,21 +5,12 @@
 
 <style>
     /* Styles personnalisés pour réduire la taille des icônes de pagination */
-    .pagination .page-link {
-        font-size:10px; /* Réduire la taille de la police */
-        padding: 1px;
-        /* Réduire le rembourrage autour de l'icône */
-    }
+    
     .th-color {
             background-color: #3966c2;
             color: rgb(255, 255, 255);
         }
-        .pagination-container {
-    margin-top: 20px; /* Ajoutez un espace au-dessus de la pagination */
-    border:none;
-    
-}
-
+      
 .pagination .page-link {
     font-size: 8px; /* Taille de police */
     color: #fff; /* Couleur du texte */
@@ -28,25 +19,21 @@
    
 }
 
-.pagination .page-link:hover {
-    background-color: #173165; /* Couleur de fond au survol */
-    
-}
 
+@media (width: 2560px) {
+    table {
+      margin-left: -400px; 
+      width: 100%;/* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    .barrecherche{
+        margin-left: -400px;
+    }
+}
 
 
    
       
-        .fixed-bottom-barre {
-    position: absolute;
-    bottom: -800px; 
-  
-    right: 10px;
-    z-index: -999;
-    background-color: #fff; /* Couleur de fond */
-    padding: 1px 0; /* Espacement intérieur pour un meilleur aspect */
-    /* Ajoutez une ombre pour plus de distinction */
-}
+       
        
     /* Styles pour les cases à cocher "Valider" et "Non valider" */
     
@@ -86,6 +73,7 @@
                 <th class="th-color border" scope="col">Mode de Paiement</th>
                 <th class="th-color border" scope="col">Image</th>
                 <th class="th-color border" scope="col">E-mail</th>
+                <th class="th-color border" scope="col">Actions</th>
                <!-- <th class="th-color border" scope="col">Actions</th>--> <!-- Nouvelle colonne pour les cases à cocher -->
             </tr>
         </thead>
@@ -105,17 +93,22 @@
                 <td class="border"><a href="{{ asset('asset/images/' . $paiement->image) }}">{{ $paiement->image }}</a></td>
 
                 <td class="border">{{ $paiement->Email }}</td>
-                
+                <td class="border">
+                <div class="btn-group" role="group" aria-label="Actions">
+                    <input type="button" class="btn btn-success" value="OUI" onclick="validerDemande({{ $paiement->id }})" style="width: 70px; margin-right: 5px;">
+                    <input type="button" class="btn btn-danger" value="NON" onclick="nonValiderDemande({{ $paiement->id }})" style="width: 70px;">
+                </div>
+            </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-     
+    <div class="d-flex justify-content-center">
+        {{ $paiements->links() }}
+    </div>
     </div>
 
-<div class="d-flex justify-content-center">
-    {{ $paiements->links() }}
-</div>
+
 
 @endsection
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

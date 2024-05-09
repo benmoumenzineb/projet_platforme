@@ -75,13 +75,13 @@
             @endforeach
         </tbody>
     </table>
-     
+    <div class="d-flex justify-content-center">
+        {{ $reclamations->links() }}
+    </div>
     </div>
 <!-- Paginatio
 </div>n -->
-<div class="d-flex justify-content-center">
-    {{ $reclamations->links() }}
-</div>
+
 
 @endsection
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
