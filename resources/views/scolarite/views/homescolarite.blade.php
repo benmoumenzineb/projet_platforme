@@ -143,7 +143,18 @@ margin-right:10px;margin-top:50px; padding: 40px ;
     </div>
 
     <div class="d-flex justify-content-left">
-     
+        <a href="{{ route('notificationsexam') }}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;
+            color:#ffffff;margin-right: 20px;">
+                <!-- Contenu de la carte "Mes Exams" -->
+                <div class="card-body text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16" style="color: #ede8e8">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                      </svg>
+                    
+                    <h5 class="card-title" style="color: #ede8e8" ><a href="{{ route('notificationsexam') }}" style="color: #ede8e8;text-decoration:none;">Notifications Exames</a></h5>
+                    
+                </div>
+            </div></a>
      
         <a href="{{ route('demandescolarite') }}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
             <!-- Contenu de la carte "Emploi du temps" -->
@@ -168,6 +179,7 @@ margin-right:10px;margin-top:50px; padding: 40px ;
                 
             </div>
         </div></a>
+       
         
                 
                        

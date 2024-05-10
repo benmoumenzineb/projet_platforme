@@ -78,7 +78,7 @@
   
     var cycleDropdown = document.getElementById("Cycle");
    
-    var filiereDropdown = document.getElementById("Filiere");
+    var FiliereDropdown = document.getElementById("Filiere");
    
     var groupeDropdown = document.getElementById("Groupe");
   
@@ -87,7 +87,7 @@
    
     var options = {
         "CPI": {
-            "filieres": [""],
+            "Filieres": [""],
             "niveaux":["","1ère Année","2ème Année"],
             "groupes": ["","Groupe 1", "Groupe 2", "Groupe 3"],
             "matieres": ["","Matière 1", "Matière 2", "Matière 3"]
@@ -115,7 +115,7 @@
     
     cycleDropdown.addEventListener("change", function() {
         
-        filiereDropdown.innerHTML = "";
+        FiliereDropdown.innerHTML = "";
         groupeDropdown.innerHTML = "";
         matiereDropdown.innerHTML = "";
        niveauDropdown.innerHTML = "";
@@ -123,10 +123,10 @@
         var selectedCycle = this.value;
         var selectedOptions = options[selectedCycle];
         
-        selectedOptions.filieres.forEach(function(filiere) {
+        selectedOptions.Filieres.forEach(function(Filiere) {
             var option = document.createElement("option");
-            option.text = filiere;
-            filiereDropdown.add(option);
+            option.text = Filiere;
+            FiliereDropdown.add(option);
         });
         selectedOptions.groupes.forEach(function(groupe) {
             var option = document.createElement("option");

@@ -90,9 +90,9 @@ tr{
         <fieldset class="border p-3">
         @csrf
         <input type="file" name="image">
-        <button type="submit">Télécharger</button>
+       
         
-    <img src="{{ asset('asset/images/logo.webp') }}" alt="Image de profil" style="width: 100px; height: 100px; object-fit: cover;">
+    <img src="" alt="Image de profil" style="width: 100px; height: 100px; margin-left:10px; object-fit: cover;">
 
 
     </form>
