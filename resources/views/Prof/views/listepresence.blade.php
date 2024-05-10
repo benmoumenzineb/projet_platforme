@@ -4,6 +4,7 @@
 @section('contenu')
 
 
+
 <style>
     /* Styles personnalisés pour réduire la taille des icônes de pagination */
    /* Styles personnalisés pour la pagination */
@@ -80,9 +81,9 @@
           
             <td class="border">{{ $etudiant->Nom }}</td>
             <td class="border">{{ $etudiant->Prenom }}</td>
+            <td class="border"></td>
             
     
-            <!--<td class="border"><div class="btn-group" role="group" aria-label="Actions">-->
                 
 
             </td>
@@ -92,7 +93,7 @@
     </tbody>
 </table>
 </div>
-<!-- Pagination -->
+
 
 </div>
 

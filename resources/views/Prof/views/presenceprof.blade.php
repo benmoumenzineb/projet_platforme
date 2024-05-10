@@ -1,4 +1,3 @@
-
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 @extends('prof.layouts.navbarprof')
 @section('contenu')
@@ -16,7 +15,7 @@
             <h6>Cycle :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="cycle" name="Cycle" required>
+            <select class="form-control" id="cycle" name="cycle">
                 <option value="0: undefined" selected></option>
                 <option value="CPI">Classes Préparatoires Intégrées</option>
                 <option value="Licence">Licence</option>
@@ -30,7 +29,7 @@
             <h6>Filière :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Filiere" name="Filiere" >
+            <select class="form-control" id="filiere" name="filiere" >
                 <option value="0: undefined" selected></option>
             
             </select>
@@ -41,7 +40,7 @@
             <h6>Niveau :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Niveau" name="Niveau" >
+            <select class="form-control" id="niveau" name="niveau" >
                 <option value="0: undefined" selected></option>
             
             </select>
@@ -52,7 +51,7 @@
             <h6>Groupe :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Groupe" name="Groupe" required>
+            <select class="form-control" id="groupe" name="groupe" >
                 <option value="0: undefined" selected></option>
                
             </select>
@@ -63,7 +62,7 @@
             <h6>Matière :</h6>
         </div>
         <div class="col-md-6">
-            <select class="form-control" id="Matiere" name="Matiere" required>
+            <select class="form-control" id="matiere" name="matiere" >
                 <option value="0: undefined" selected></option>
                
             </select>
@@ -76,24 +75,24 @@
 
 <script>
   
-    var cycleDropdown = document.getElementById("Cycle");
+    var cycleDropdown = document.getElementById("cycle");
    
-    var FiliereDropdown = document.getElementById("Filiere");
+    var filiereDropdown = document.getElementById("filiere");
    
-    var groupeDropdown = document.getElementById("Groupe");
+    var groupeDropdown = document.getElementById("groupe");
   
-    var matiereDropdown = document.getElementById("Matiere");
-    var niveauDropdown = document.getElementById("Niveau");
+    var matiereDropdown = document.getElementById("matiere");
+    var niveauDropdown = document.getElementById("niveau");
    
     var options = {
         "CPI": {
-            "Filieres": [""],
+            "filieres": [""],
             "niveaux":["","1ère Année","2ème Année"],
             "groupes": ["","Groupe 1", "Groupe 2", "Groupe 3"],
             "matieres": ["","Matière 1", "Matière 2", "Matière 3"]
         },
         "Licence": {
-            "filieres": ["Maintenance Médicale", "Génie Industriel et Logistique Hospitalière", "Informatique Décisionnelle et e-Santé", "Sciences de Gestion", "Techniques de Laboratoires de Biologie Médicale", "Infirmier Polyvalent", "Infirmier en Anesthésie et Réanimation", "Infirmier en Instrumentalisation de Bloc Opératoire"],
+            "filieres": ["","Maintenance Médicale", "Génie Industriel et Logistique Hospitalière", "Informatique Décisionnelle et e-Santé", "Sciences de Gestion", "Techniques de Laboratoires de Biologie Médicale", "Infirmier Polyvalent", "Infirmier en Anesthésie et Réanimation", "Infirmier en Instrumentalisation de Bloc Opératoire"],
             "niveaux":[""],
             "groupes": ["","Groupe A", "Groupe B", "Groupe C"],
             "matieres": ["","Mathématiques", "Physique", "Chimie"]
@@ -115,7 +114,7 @@
     
     cycleDropdown.addEventListener("change", function() {
         
-        FiliereDropdown.innerHTML = "";
+        filiereDropdown.innerHTML = "";
         groupeDropdown.innerHTML = "";
         matiereDropdown.innerHTML = "";
        niveauDropdown.innerHTML = "";
@@ -123,10 +122,10 @@
         var selectedCycle = this.value;
         var selectedOptions = options[selectedCycle];
         
-        selectedOptions.Filieres.forEach(function(Filiere) {
+        selectedOptions.filieres.forEach(function(filiere) {
             var option = document.createElement("option");
-            option.text = Filiere;
-            FiliereDropdown.add(option);
+            option.text = filiere;
+            filiereDropdown.add(option);
         });
         selectedOptions.groupes.forEach(function(groupe) {
             var option = document.createElement("option");
@@ -144,5 +143,6 @@
            niveauDropdown.add(option);
         });
     });
+    
 </script>
 @endsection
