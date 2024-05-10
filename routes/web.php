@@ -23,6 +23,7 @@ use App\Http\Controllers\HistoriqueprofController;
 use App\Http\Controllers\ListePresenceController;
 use App\Http\Controllers\NotifactionsexamController;
 use App\Http\Controllers\NoteProfController;
+use App\Http\Controllers\AjouteNoteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,16 +102,20 @@ Route::get('/liste_des_etudiants', [ListePresenceController::class, 'search'])->
 
 
 Route::get('/etudiants', [ListePresenceController::class, 'indexx'])->name('listetudiants');
-
+Route::get('/ajoute-etudiant', [ListePresenceController::class, 'indexx'])->name('listetudiants');
 route::get('/notificationsexame','App\Http\Controllers\NotifactionsexamController@index')->name('notificationsexam');
 
 
 Route::post('/notificationsexame', 'App\Http\Controllers\NotifactionsexamController@enregistrercahiertext')->name('enregnotificationsexam');
-Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
+
 
 Route::post('/enregistrer-exam', 'App\Http\Controllers\NotifactionsexamController@enregistrerPaiement')->name('enregnotificationsexam');
 Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
-Route::get('/Note_etudiants_Ajoute', [NoteProfController::class, 'indexx'])->name('Ajouternoteetudiants');
+
 Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
-Route::get('/Note_etudiants_Ajoute', [NoteProfController::class, 'indexx'])->name('Ajouternoteetudiants');
+Route::get('/Note_etudiants_Ajoute', [AjouteNoteController::class, 'indexx'])->name('Ajouternoteetudiants');
+
+
+
+
 Route::get('/Note-etudiants', [ListePresenceController::class, 'search'])->name('searchetudiants');

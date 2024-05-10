@@ -32,7 +32,7 @@
                             <h6>Cycle :</h6>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="cycle" name="cycle">
+                            <select class="form-control" id="cycle" name="cycle" required>
                                 <option value="0: undefined" selected></option>
                                 <option value="CPI">Classes Préparatoires Intégrées</option>
                                 <option value="Licence">Licence</option>
@@ -66,7 +66,7 @@
                             <h6>Groupe :</h6>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="groupe" name="groupe">
+                            <select class="form-control" id="groupe" name="groupe" required>
                                 <option value="0: undefined" selected></option>
                             </select>
                         </div>
@@ -76,7 +76,7 @@
                             <h6>Matière :</h6>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="matiere" name="matiere">
+                            <select class="form-control" id="matiere" name="matiere" required>
                                 <option value="0: undefined" selected></option>
                             </select>
                         </div>
