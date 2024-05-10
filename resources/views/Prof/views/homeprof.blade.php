@@ -139,7 +139,20 @@ margin-right:10px;margin-top:30px; padding: 40px;
             </div>
         </div></a>
     </div>
+    <div class="d-flex justify-content-left mt-2">
+     
 
+        
+        <a href="{{ route('exam') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+             <!-- Contenu de la carte "Mes Demandes" -->
+             <div class="card-body text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16"  style="color: #ede8e8"><!-- ce lien pour icon mes notes-->
+                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                  </svg>
+                 <h5 class="card-title" style="color: #ede8e8"><a href="{{ route('exam') }}" class="{{ Request::is('exam') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">  Notes</a></h5>
+                 
+             </div>
+         </div></a></div>
 
           
     </div>
