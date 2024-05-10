@@ -111,4 +111,6 @@ Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('notee
 Route::post('/enregistrer-exam', 'App\Http\Controllers\NotifactionsexamController@enregistrerPaiement')->name('enregnotificationsexam');
 Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
 Route::get('/Note_etudiants_Ajoute', [NoteProfController::class, 'indexx'])->name('Ajouternoteetudiants');
-
+Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
+Route::get('/Note_etudiants_Ajoute', [NoteProfController::class, 'indexx'])->name('Ajouternoteetudiants');
+Route::get('/Note-etudiants', [ListePresenceController::class, 'search'])->name('searchetudiants');
