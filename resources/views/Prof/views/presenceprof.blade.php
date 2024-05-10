@@ -3,75 +3,94 @@
 @section('contenu')
 
 <style>
+    /* Styles personnalisés */
+   form {
+        margin-top: 200px; /* Espacement par rapport au haut */
+       
+    }
+
+    h6 {
+        margin-bottom: 0.6rem; /* Espacement entre les éléments */
+    }
+
+    /* Cadre autour du formulaire */
     
+.buttton-suivant{
+    background-color:#173165;
+    width: 100%;
+}
+
 </style>
 
-<form action="{{route('listetudiants')}}" method="GET">
-  
-    <div  
-    style=" margin-top:180px; ">
-    <div class="row">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-md-6">
-            <h6>Cycle :</h6>
-        </div>
-        <div class="col-md-6">
-            <select class="form-control" id="cycle" name="cycle">
-                <option value="0: undefined" selected></option>
-                <option value="CPI">Classes Préparatoires Intégrées</option>
-                <option value="Licence">Licence</option>
-                <option value="Ingénieur">Ingénieur</option>
-                <option value="Master">Master</option>
-            </select>
+            <div class="form-container">
+                <form action="{{ route('listetudiants') }}" method="GET">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Cycle :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" id="cycle" name="cycle">
+                                <option value="0: undefined" selected></option>
+                                <option value="CPI">Classes Préparatoires Intégrées</option>
+                                <option value="Licence">Licence</option>
+                                <option value="Ingénieur">Ingénieur</option>
+                                <option value="Master">Master</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Filière :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" id="filiere" name="filiere">
+                                <option value="0: undefined" selected></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Niveau :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" id="niveau" name="niveau">
+                                <option value="0: undefined" selected></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Groupe :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" id="groupe" name="groupe">
+                                <option value="0: undefined" selected></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Matière :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" id="matiere" name="matiere">
+                                <option value="0: undefined" selected></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary buttton-suivant" type="submit">Suivant</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-md-6" >
-            <h6>Filière :</h6>
-        </div>
-        <div class="col-md-6">
-            <select class="form-control" id="filiere" name="filiere" >
-                <option value="0: undefined" selected></option>
-            
-            </select>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-6" >
-            <h6>Niveau :</h6>
-        </div>
-        <div class="col-md-6">
-            <select class="form-control" id="niveau" name="niveau" >
-                <option value="0: undefined" selected></option>
-            
-            </select>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <h6>Groupe :</h6>
-        </div>
-        <div class="col-md-6">
-            <select class="form-control" id="groupe" name="groupe" >
-                <option value="0: undefined" selected></option>
-               
-            </select>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <h6>Matière :</h6>
-        </div>
-        <div class="col-md-6">
-            <select class="form-control" id="matiere" name="matiere" >
-                <option value="0: undefined" selected></option>
-               
-            </select>
-        </div>
-    </div>
-    <button class="btn btn-Primary mt-4 " style="margin-left: 100%" >Suivant</button>
-   
 </div>
-</form>
 
 <script>
   

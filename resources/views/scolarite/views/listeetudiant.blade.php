@@ -30,7 +30,7 @@
       /* Rétablir la largeur maximale pour les écrans plus grands */
     }
     
-    
+   
 }
 .th-color {
             background-color: #3966c2;
@@ -56,10 +56,13 @@
                     </form>
                 </div>
             </div>
+            <div class="col-md-3">
+                <a href="" class="btn btn-success" style="background-color: #173165">Ajouter</a>
+            </div>
         </div>
+       
     </div>
-    
-
+  
     
     <div class="container">
 <table class="table table-striped">

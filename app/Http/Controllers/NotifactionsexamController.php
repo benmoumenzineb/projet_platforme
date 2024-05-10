@@ -38,7 +38,8 @@ class NotifactionsexamController extends Controller
         $evaluation->heure_exam= $request->heure_exam;
         $evaluation->Date_ratt = $request->Date_ratt;
         $evaluation->heure_ratt= $request->heure_ratt;
-        $evaluation->Description= $request->Desciption;
+        $evaluation->Description= $request->Description;
+
     
         // Enregistrement de la séance dans la base de données
         $evaluation->save();
@@ -47,6 +48,6 @@ class NotifactionsexamController extends Controller
         
     
         // Redirection avec message de succès
-        return redirect()->route('enregnotificationsexam')->with('success', 'Cahier de texte enregistré avec succès.');
+        return redirect()->route('enregnotificationsexam')->with('success', 'Notifications enregistré avec succès.');
     }
 }

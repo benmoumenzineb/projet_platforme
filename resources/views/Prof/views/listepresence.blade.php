@@ -81,7 +81,13 @@
           
             <td class="border">{{ $etudiant->Nom }}</td>
             <td class="border">{{ $etudiant->Prenom }}</td>
-            <td class="border"></td>
+            <td class="border">
+              
+                    <!-- Button group for Valider and Non valider -->
+                   
+                    
+               
+            </td>
             
     
                 

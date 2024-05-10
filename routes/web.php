@@ -103,5 +103,6 @@ Route::get('/liste_des_etudiants', [ListePresenceController::class, 'search'])->
 Route::get('/etudiants', [ListePresenceController::class, 'indexx'])->name('listetudiants');
 
 route::get('/notificationsexame','App\Http\Controllers\NotifactionsexamController@index')->name('notificationsexam');
-Route::post('/enregistrer-exam', 'App\Http\Controllers\NotifactionsexamController@enregistrerPaiement')->name('enregnotificationsexam');
+
+Route::post('/notificationsexame', 'App\Http\Controllers\NotifactionsexamController@enregistrercahiertext')->name('enregnotificationsexam');
 Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');

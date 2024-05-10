@@ -151,7 +151,10 @@ h3{
                 <label for="mode"><strong>Activités objectifs de la séance :</strong></label>
               
                 </div>
-                <div class="col-md-12"> <textarea name="Activites" id="activite" cols="90" rows="9"></textarea></div>
+                <div class="col-md-12">
+                    <textarea name="Activites" id="activite" class="form-control" rows="9"></textarea>
+                </div>
+                
             </div>
         
 
