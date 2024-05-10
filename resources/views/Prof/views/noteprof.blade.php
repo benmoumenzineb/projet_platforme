@@ -7,7 +7,7 @@
     
 </style>
 
-<form action=" ">
+<form action="Ajouternoteetudiants">
   
     <div  
     style=" margin-top:180px; ">
