@@ -22,6 +22,7 @@ use App\Http\Controllers\FormtelechargerController;
 use App\Http\Controllers\HistoriqueprofController;
 use App\Http\Controllers\ListePresenceController;
 use App\Http\Controllers\NotifactionsexamController;
+use App\Http\Controllers\NoteProfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,3 +104,4 @@ Route::get('/etudiants', [ListePresenceController::class, 'indexx'])->name('list
 
 route::get('/notificationsexame','App\Http\Controllers\NotifactionsexamController@index')->name('notificationsexam');
 Route::post('/enregistrer-exam', 'App\Http\Controllers\NotifactionsexamController@enregistrerPaiement')->name('enregnotificationsexam');
+Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
