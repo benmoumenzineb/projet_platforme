@@ -48,59 +48,41 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-12">
-                    <form action="" method="GET" class="mb-3 fixed-top-barre"> <!-- Ajoutez la classe ici -->
+                    <form action="{{ route('ajouternote.search') }}" method="GET" class="mb-3">
                         <div class="input-group">
                             <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" style="background-color:#173165;">Rechercher</button>
+                                <button class="btn btn-primary" type="submit">Rechercher</button>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <div class="container">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            
-          <th class="th-color border" scope="col">Apogee</th>
-            <th class="th-color border" scope="col">Nom</th>
-            <th class="th-color border" scope="col">Prénom</th>
-            <th class="th-color border" scope="col">CNE</th>
-            <th class="th-color border" scope="col">Notes</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($etudians as $etudiant)
-        <tr>
-            
-            <td class="border">{{ $etudiant->apogee }}</td>
-            <td class="border">{{ $etudiant->Nom }}</td>
-            <td class="border">{{ $etudiant->Prenom }}</td>
-            <td class="border">{{ $etudiant->CNE }}</td>
-            <td class="border">
-              
-                   
-                   
                     
-               
-            </td>
-            
-    
-                
-
-            </td>
-            
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
+                    <!-- Affichage des résultats de recherche -->
+                   
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Apogee</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>CNE</th>
+                                    <!-- Autres colonnes si nécessaire -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($etudians as $etudiant)
+                                    <tr>
+                                        <td>{{ $etudiant->apogee }}</td>
+                                        <td>{{ $etudiant->Nom }}</td>
+                                        <td>{{ $etudiant->Prenom }}</td>
+                                        <td>{{ $etudiant->CNE }}</td>
+                                        <!-- Autres colonnes si nécessaire -->
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                 
+                    
 
 
 </div>

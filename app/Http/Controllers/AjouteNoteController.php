@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AjouteNoteController extends Controller
 {
     
-
+    
 public function indexx(Request $request)
 {
     try {
@@ -47,4 +47,29 @@ public function indexx(Request $request)
         $th->getMessage();
     }
 }
+public function search(Request $request)
+{
+    try {
+        $query = $request->input('query');
+
+        // Séparer le nom et le prénom à partir de la requête de recherche
+        $keywords = explode(' ', $query);
+
+        // Filtrer les étudiants en fonction du nom et du prénom de la recherche
+        $etudians = Etudians::where(function($q) use ($keywords) {
+                                foreach ($keywords as $keyword) {
+                                    $q->orWhere('Nom', 'like', "%$keyword%")
+                                      ->orWhere('Prenom', 'like', "%$keyword%")
+                                      ->orWhere('CNE', 'like', "%$keyword%")
+                                      ->orWhere('apogee', 'like', "%$keyword%");
+                                }
+                            })
+                            ->get();
+
+        return view('Prof.views.ajoutenote', compact('etudians'));
+    } catch (\Throwable $th) {
+        // Gérer les erreurs ici
+    }
+}
+
 }

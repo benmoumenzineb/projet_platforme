@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-12">
-                    <form action="" method="GET" class="mb-3 fixed-top-barre"> <!-- Ajoutez la classe ici -->
+                    <form action="{{ route('listepresence.search') }}" method="GET" class="mb-3 fixed-top-barre"> <!-- Ajoutez la classe ici -->
                         <div class="input-group">
                             <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
                             <div class="input-group-append">
