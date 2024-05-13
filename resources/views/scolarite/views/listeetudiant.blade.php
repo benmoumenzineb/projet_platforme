@@ -200,8 +200,7 @@ th{
             
        
     </div></div>
-  <!-- Modal -->
-  <!-- Ajoutez ce code HTML à votre vue Blade -->
+
  
 <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -303,10 +302,7 @@ th{
                         
                         
                     </div>
-                   
-                        
-                      
-                    <!-- Ajoutez les autres champs de formulaire ici -->
+         
                     <button type="submit" class="btn btn-primary" style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
                 </form>
             </div>
