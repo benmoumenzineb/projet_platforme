@@ -22,10 +22,9 @@
       
         
 
-    .th-color {
-            background-color: #3966c2;
-            color: rgb(255, 255, 255);
-        }  
+th{
+    color: #173165
+}
 </style>
 <div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;" >
     

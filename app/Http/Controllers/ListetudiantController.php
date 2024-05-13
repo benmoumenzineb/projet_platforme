@@ -25,34 +25,32 @@ class ListetudiantController extends Controller
         return view('scolarite.views.listeetudiant', compact('etudians'));
     }
    
-    public function store(Request $request)
+    public function ajouterEtudiant(Request $request)
     {
         // Valider les données du formulaire
         $request->validate([
             'Nom' => 'required|string',
             'Prenom' => 'required|string',
             'CNE' => 'required|string',
-            'CNI' => 'required',
-            'apogee' => 'required',
-            'Sexe' => 'required',
-            'Date_naissance' => 'required',
-            'Pays' => 'required',
-            'Diplome_acces' => 'required',
-            'Serie_bac' => 'required',
+            'CNI' => 'required|string',
+            'Sexe' => 'required|string',
+            'Date_naissance' => 'required|date',
+            'Pays' => 'required|string',
+            'Diplome_acces' => 'required|string',
+            'Serie_bac' => 'required|string',
             'Date_inscription' => 'required',
-            'Specialite_diplome' => 'required',
-            'Mention_bac' => 'required',
-            'Etablissement_bac' => 'required',
-            'Pourcentage_bourse' => 'required',
-            // Ajoutez ici les règles de validation pour les autres champs
+            'Specialite_diplome' => 'nullable|string',
+            'Mention_bac' => 'required|string',
+            'Etablissement_bac' => 'required|string',
+            'Pourcentage_bourse' => 'required|string',
         ]);
 
-        // Créer un nouvel étudiant avec les données du formulaire
+        // Créer un nouvel objet Etudians avec les données du formulaire
         $etudiant = new Etudians([
             'Nom' => $request->input('Nom'),
             'Prenom' => $request->input('Prenom'),
+            'CNE' => $request->input('CNE'),
             'CNI' => $request->input('CNI'),
-            'apogee' => $request->input('apogee'),
             'Sexe' => $request->input('Sexe'),
             'Date_naissance' => $request->input('Date_naissance'),
             'Pays' => $request->input('Pays'),
@@ -63,8 +61,6 @@ class ListetudiantController extends Controller
             'Mention_bac' => $request->input('Mention_bac'),
             'Etablissement_bac' => $request->input('Etablissement_bac'),
             'Pourcentage_bourse' => $request->input('Pourcentage_bourse'),
-            
-
             // Ajoutez ici les autres champs du formulaire
         ]);
 
@@ -72,7 +68,8 @@ class ListetudiantController extends Controller
         $etudiant->save();
 
         // Rediriger l'utilisateur vers une autre page avec un message de succès
-        return redirect()->route('listeetudiant')->with('success', 'Étudiant ajouté avec succès.');
+        return redirect()->route('listetudiant')->with('success', 'Étudiant ajouté avec succès.');
     }
+    
 }
 

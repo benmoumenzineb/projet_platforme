@@ -25,6 +25,8 @@ use App\Http\Controllers\NotifactionsexamController;
 use App\Http\Controllers\NoteProfController;
 use App\Http\Controllers\AjouteNoteController;
 use App\Http\Controllers\ListePresenceController;
+use App\Http\Controllers\AjouterEtudiantController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,10 +95,7 @@ Route::post('/enregistrercahiertext', 'App\Http\Controllers\FormtelechargerContr
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
 Route::get('/historiqueprof/search', [HistoriqueprofController::class, 'search'])->name('hisroriqueprof.search');
 
-Route::put('/etudiant/{apogee}', 'ListetudiantController@mettreAJour')->name('etudiant.mettreAJour');
 
-// Route pour supprimer un étudiant
-Route::delete('/etudiant/{apogee}', 'ListetudiantController@supprimer')->name('etudiant.supprimer');
 
 Route::get('/search', [ListePresenceController::class, 'search'])->name('listepresence.search');
 
@@ -118,7 +117,11 @@ Route::get('/Note_etudiants_Ajoute', [AjouteNoteController::class, 'indexx'])->n
 Route::get('/search', [AjouteNoteController::class, 'search'])->name('ajouternote.search');
 
 
-Route::post('/enregistrer-etudiant', [ListetudiantController::class, 'store'])->name('ajoute.etudiant');
 
 
 
+Route::post('/ajouter-etudiant', [ListetudiantController::class, 'ajouterEtudiant'])->name('ajouter.etudiant');
+
+
+Route::delete('/etudiant/{CNE}', [ListetudiantController::class, 'supprimerEtudiant'])->name('supprimer.etudiant');
+Route::post('/modifier-etudiant', [ListetudiantController::class, 'modifierEtudiant'])->name('modifier.etudiant');

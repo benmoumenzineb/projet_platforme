@@ -6,10 +6,9 @@
 <style>
     /* Styles personnalisés pour réduire la taille des icônes de pagination */
     
-    .th-color {
-            background-color: #3966c2;
-            color: rgb(255, 255, 255);
-        }
+    th{
+    color: #173165
+}
       
 .pagination .page-link {
     font-size: 8px; /* Taille de police */

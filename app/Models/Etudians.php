@@ -15,6 +15,22 @@ class Etudians extends Model
 
     // Indiquer que la clé primaire n'a pas de timestamps
     public $timestamps = false;
-    
+    protected $fillable = [
+        'Nom',
+        'Prenom',
+        'CNE',
+        'CNI',
+        'Sexe',
+        'Date_naissance',
+        'Pays',
+        'Diplome_acces',
+        'Serie_bac',
+        'Date_inscription',
+        'Specialite_diplome',
+        'Mention_bac',
+        'Etablissement_bac',
+        'Pourcentage_bourse',
+        // Ajoutez ici les autres champs du formulaire
+    ];
     
 }

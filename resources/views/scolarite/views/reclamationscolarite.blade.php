@@ -10,11 +10,9 @@
         padding: 1px;
         /* Réduire le rembourrage autour de l'icône */
     }
-    .th-color {
-            background-color: #3966c2;
-            color: rgb(255, 255, 255);
-        }
-       
+    th{
+    color: #173165
+}
     /* Styles pour les cases à cocher "Valider" et "Non valider" */
     
 
