@@ -47,7 +47,7 @@ th{
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-12">
-                    <form action="{{ route('ajouternote.search') }}" method="GET" class="mb-3">
+                    <form action="" method="GET" class="mb-3">
                         <div class="input-group">
                             <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
                             <div class="input-group-append">
@@ -61,10 +61,21 @@ th{
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Apogee</th>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>CNE</th>
+                                    <th class="th-color border" scope="col" rowspan="2">Apogee</th>
+                                    <th class="th-color border" scope="col" rowspan="2">Nom</th>
+                                    <th class="th-color border" scope="col" rowspan="2">Prénom</th>
+                                    <th class="th-color border" scope="col" rowspan="2">CNE</th>
+                                    <th class="th-color border" scope="col" rowspan="1" colspan="4">Notes</th>
+                                 
+                                    <!-- Autres colonnes si nécessaire -->
+                                </tr>
+                                <tr>
+                                    <th class="th-color border" scope="col" >CTR1</th>
+                                    <th class="th-color border" scope="col" >CTR2</th>
+                                    <th class="th-color border" scope="col" >EF</th>
+                                    <th class="th-color border" scope="col" >TP</th>
+                                
+                                 
                                     <!-- Autres colonnes si nécessaire -->
                                 </tr>
                             </thead>
@@ -75,6 +86,10 @@ th{
                                         <td>{{ $etudiant->Nom }}</td>
                                         <td>{{ $etudiant->Prenom }}</td>
                                         <td>{{ $etudiant->CNE }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <!-- Autres colonnes si nécessaire -->
                                     </tr>
                                 @endforeach

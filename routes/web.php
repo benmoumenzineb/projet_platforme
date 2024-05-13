@@ -114,7 +114,7 @@ Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('notee
 
 Route::get('/Note_etudiants', [NoteProfController::class, 'index'])->name('noteetudiants');
 Route::get('/Note_etudiants_Ajoute', [AjouteNoteController::class, 'indexx'])->name('Ajouternoteetudiants');
-Route::get('/search', [AjouteNoteController::class, 'search'])->name('ajouternote.search');
+//Route::get('/search', [AjouteNoteController::class, 'search'])->name('ajouternote.search');
 
 
 
