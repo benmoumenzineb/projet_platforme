@@ -82,7 +82,7 @@ th{
             <td class="border">{{ $etudiant->Prenom }}</td>
             <td class="border">
               
-                    <!-- Button group for Valider and Non valider -->
+                    
                    
                     
                
@@ -103,8 +103,7 @@ th{
 </div>
 
 
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
 
 @endsection
 
-<!-- Inclure jQuery -->
