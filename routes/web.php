@@ -128,3 +128,4 @@ Route::post('/modifier-etudiant', [ListetudiantController::class, 'modifierEtudi
 Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])->name('getDataEtudients');
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
 Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
+Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
