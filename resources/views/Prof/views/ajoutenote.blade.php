@@ -1,10 +1,10 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
-
+@extends('prof.layouts.navbarprof')
+@section('contenu')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
-    @extends('scolarite.layouts.navbarscolarite')
-@section('contenu')
-    <div class="container" style="margin-left: 210px; margin-top:90px; ">
+<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;">
+    <div class="container  barrecherche fixed-top-barre" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-9">
                 
@@ -20,17 +20,10 @@
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
-                                <th class="th-color border">Sexe</th>
-                                <th class="th-color border">Date Naissance</th>
-                                <th class="th-color border">Pays</th>
-                                <th class="th-color border">Diplome d'acces</th>
-                                <th class="th-color border">Serie de bac</th>
-                                <th class="th-color border">Date inscription</th>
-                                <th class="th-color border">Specialite de diplome</th>
-                                <th class="th-color border">Mention BAC</th>
-                                <th class="th-color border">Etablissement de diplome</th>
-                                <th class="th-color border">Pourcentage de bourse</th>
-                    
+                                <th class="th-color border">CTR1</th>
+                                <th class="th-color border">CTR2</th>
+                                <th class="th-color border">EF</th>
+                                <th class="th-color border">TP</th>
                                 <th class="th-color border">Actions</th>
                             </tr>
                         </thead>
@@ -39,6 +32,7 @@
             </div>
         </div>
     </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -57,17 +51,10 @@
                 { data: 'CNI', name: 'CNI' },
                 { data: 'Nom', name: 'Nom' },
                 { data: 'Prenom', name: 'Prenom' },
-                { data: 'Sexe', name: 'Sexe' },
-                { data: 'Date_naissance', name: 'Date_naissance' },
-                { data: 'Pays', name: 'Pays' },
-                { data: 'Diplome_acces', name: 'Diplome_acces' },
-                { data: 'Serie_bac', name: 'Serie_bac' },
-                { data: 'Date_inscription', name: 'Date_inscription' },
-                { data: 'Specialite_diplome', name: 'Specialite_diplome' },
-                { data: 'Mention_bac', name: 'Mention_bac' },
-                { data: 'Etablissement_bac', name: 'Etablissement_bac' },
-                { data: 'Pourcentage_bourse', name: 'Pourcentage_bourse' },
-                
+                { data: 'CTR1', name: 'CTR1' },
+                { data: 'CTR2', name: 'CTR2' },
+                { data: 'EF', name: 'EF' },
+                { data: 'TP', name: 'TP' },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ]
         });

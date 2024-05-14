@@ -92,8 +92,7 @@ Route::post('/telecharger-fichier', [FormtelechargerController::class, 'telechar
 
 
 Route::post('/enregistrercahiertext', 'App\Http\Controllers\FormtelechargerController@enregistrercahiertext')->name('enregistrercahiertext');
-Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
-Route::get('/historiqueprof/search', [HistoriqueprofController::class, 'search'])->name('hisroriqueprof.search');
+
 
 
 
@@ -129,3 +128,5 @@ Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])-
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
 Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
 Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
+Route::get('/historiqueprofesseur/search', [HistoriqueprofController::class, 'fetchHistorique'])->name('hisroriqueprofesseur');
+Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');

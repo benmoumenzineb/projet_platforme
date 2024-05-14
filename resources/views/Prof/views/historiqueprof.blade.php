@@ -1,94 +1,66 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
-@extends('Prof.layouts.navbarprof')
+@extends('prof.layouts.navbarprof')
 @section('contenu')
-
-
-<style>
-   
-    
-
-.pagination .page-link {
-    font-size: 8px; /* Taille de police */
-    color: #fff; /* Couleur du texte */
-    background-color: #3966c2; /* Couleur de fond */
-    border-color: #3966c2; /* Couleur de la bordure */
-
-}
-
-
-
-
-   
-      
-        
-
-th{
-    color: #173165
-}
-</style>
-<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;" >
-    
-        
-    <div class="container fixed-top-barre" style="margin-top: 50px;">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;">
+    <div class="container  barrecherche fixed-top-barre" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-9">
-                <div class="col-md-12">
-                    <form action="{{ route('hisroriqueprof.search') }}" method="GET" class="mb-3 fixed-top-barre"> <!-- Ajoutez la classe ici -->
-                        <div class="input-group">
-                            <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" style="background-color:#173165;">Rechercher</button>
-                            </div>
-                        </div>
-                    </form>
+                
+                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    
+                </div>
+                <div class="container">
+                    <table class="table table-striped" id="etudiants-table">
+                        <thead>
+                            <tr>
+                                <th class="th-color border">Numero de seance</th>
+                                <th class="th-color border">Enseignant</th>
+                                <th class="th-color border">Cycle</th>
+                                <th class="th-color border">Filiere</th>
+                                <th class="th-color border">Matière</th>
+                                <th class="th-color border">Niveau </th>
+                                <th class="th-color border">Groupe</th>
+                                <th class="th-color border">Horaire</th>
+                                <th class="th-color border">Date</th>
+                                <th class="th-color border">Activites</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    
-
-    
-    <div class="container">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th class="th-color border" scope="col">Enseignant</th>
-            <th class="th-color border" scope="col">Cycle</th>
-            <th class="th-color border" scope="col">Filiére</th>
-            <th class="th-color border" scope="col">Groupe</th>
-            <th class="th-color border" scope="col">Niveau</th>
-            <th class="th-color border" scope="col">Matiére</th>
-            
-            <th class="th-color border" scope="col">Horaire</th>
-            <th class="th-color border" scope="col">Date</th>
-            <th class="th-color border" scope="col">Activités</th>
-           
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($seances as $seance)
-        <tr>
-            <td class="border">{{ $seance->nom_enseignant }}</td>
-            <td class="border">{{ $seance->Cycle }}</td>
-            <td class="border">{{ $seance->Filiere }}</td>
-            <td class="border">{{ $seance->Groupe}}</td>
-            <td class="border">{{ $seance->Niveau }}</td>
-            <td class="border">{{ $seance->Matiere }}</td>
-            <td class="border">{{ $seance->horaire }}</td>
-            <td class="border">{{ $seance->Date }}</td>
-           <td class="border">{{ $seance->Activites }}</td>
-           
-            
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-<div class="d-flex justify-content-center pagination-container fixed-bottom-barre">
-    {{ $seances->links() }}
-</div></div>
-<!-- Pagination -->
-
 </div>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+
+<script>
+  
+        $('#etudiants-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('hisroriqueprofesseur') }}",
+            columns: [
+                { data: 'Num_seance', name: 'Num_seance' },  
+                { data: 'nom_enseignant', name: 'nom_enseignant' },
+                { data: 'Cycle', name: 'Cycle' },
+                { data: 'Filiere', name: 'Filiere' },
+                { data: 'Matiere', name: 'Matiere' },
+                { data: 'Niveau', name: 'Niveau' },
+                { data: 'Groupe', name: 'Groupe' },
+                { data: 'horaire', name: 'horaire' },
+                { data: 'Date', name: 'Date' },
+                { data: 'Activites', name: 'Activites' },
+               
+            ]
+        });
+    
+</script>
+
+
 @endsection
