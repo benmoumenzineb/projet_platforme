@@ -130,3 +130,5 @@ Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->
 Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
 Route::get('/historiqueprofesseur/search', [HistoriqueprofController::class, 'fetchHistorique'])->name('hisroriqueprofesseur');
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
+Route::get('reclamationscolariteetudiants', [ReclamationScolariteController::class, 'reclamationEtudiants'])->name('getDataReclamation');
+Route::get('paiementscolariteetudiants', [PaiementScolariteController::class, 'paiementEtudiants'])->name('getDataPaiement');
