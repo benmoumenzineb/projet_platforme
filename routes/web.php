@@ -125,7 +125,6 @@ Route::post('/ajouter-etudiant', [ListetudiantController::class, 'ajouterEtudian
 
 Route::delete('/etudiant/{CNE}', [ListetudiantController::class, 'supprimerEtudiant'])->name('supprimer.etudiant');
 Route::post('/modifier-etudiant', [ListetudiantController::class, 'modifierEtudiant'])->name('modifier.etudiant');
-
-
+Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])->name('getDataEtudients');
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
 Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
