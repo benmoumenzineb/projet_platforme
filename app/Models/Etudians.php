@@ -16,6 +16,7 @@ class Etudians extends Model
     // Indiquer que la clé primaire n'a pas de timestamps
     public $timestamps = false;
     protected $fillable = [
+        'id',
         'Nom',
         'Prenom',
         'CNE',

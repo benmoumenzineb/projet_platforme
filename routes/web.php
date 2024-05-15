@@ -163,3 +163,6 @@ Route::get('paiementscolariteetudiants', [PaiementScolariteController::class, 'p
 
 Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('fetch.etudiants');
 Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
+Route::post('/update-etudiant', [ListetudiantController::class, 'updateEtudiant'])->name('update-etudiant');
+Route::post('/delete-etudiant', 'ListetudiantController@deleteEtudiant')->name('delete-etudiant');
+Route::post('/ajouter-etudiant', 'ListetudiantController@ajouterEtudiant')->name('ajouter-etudiant');
