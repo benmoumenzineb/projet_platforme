@@ -131,6 +131,7 @@ Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->
 Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
 Route::get('/historiqueprofesseur/search', [HistoriqueprofController::class, 'fetchHistorique'])->name('hisroriqueprofesseur');
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
+
 //Route::put('/etudiant/{id}', 'AjouteNoteController@update')->name('etudiant.update');
 
 //Route::put('/etudiants/{id}/edit', [AjouteNoteController::class, 'update'])->name('etudiant.update');
@@ -146,3 +147,19 @@ Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name(
 Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('fetch.etudiants');
 Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 
+
+Route::get('reclamationscolariteetudiants', [ReclamationScolariteController::class, 'reclamationEtudiants'])->name('getDataReclamation');
+Route::get('paiementscolariteetudiants', [PaiementScolariteController::class, 'paiementEtudiants'])->name('getDataPaiement');
+
+//Route::put('/etudiants/{id}/edit', [AjouteNoteController::class, 'update'])->name('etudiant.update');
+
+// Route pour récupérer les étudiants (utilisée par DataTables)
+//Route::get('/fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
+
+
+//Route::get('/ajoutenote', [AjouteNoteController::class, 'indexx'])->name('ajoutenote.index');
+//Route::get('/fetch/etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
+//Route::put('/etudiant/update/{id}', [AjouteNoteController::class, 'update'])->name('etudiant.update');
+
+Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('fetch.etudiants');
+Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
