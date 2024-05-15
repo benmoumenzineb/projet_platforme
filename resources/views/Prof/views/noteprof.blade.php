@@ -37,7 +37,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="form-container">
-                <form action="{{ route('Ajouternoteetudiants') }}" method="GET">
+                <form action="{{ route('fetch.etudiants') }}" method="GET">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <h6>Cycle :</h6>
@@ -173,6 +174,9 @@
            niveauDropdown.add(option);
         });
     });
-    
+   
+   
+
 </script>
+
 @endsection

@@ -52,19 +52,7 @@ public function indexx(Request $request)
         $th->getMessage();
     }
 }
-public function search(Request $request)
-{
-    try {
-        $query = $request->input('query');
 
-        // Filtrer les étudiants en fonction de la requête de recherche
-        $etudians = Etudians::where('Nom', 'like', "%$query%")
-                              ->get();
 
-        return view('Prof.views.listepresence', compact('etudians'));
-    } catch (\Throwable $th) {
-        // Gérer les erreurs ici
-    }
-}
 
 }
