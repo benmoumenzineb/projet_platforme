@@ -105,7 +105,7 @@ background-color:#1858b1;
 margin-right:10px;margin-top:30px; padding: 40px;
 ">
     <div class="d-flex justify-content-left">
-       <a href="{{ route('Profil_etudiant') }}"> <div class="card mb-3 mr-3 mt-4  custom-background" style="width: 300px;color:#ffffff; margin-right: 20px;"style="color: #ffffff;">
+       <a href="{{ route('PresenceEtudiant') }}"> <div class="card mb-3 mr-3 mt-4  custom-background" style="width: 300px;color:#ffffff; margin-right: 20px;"style="color: #ffffff;">
             <!-- Contenu de la carte "Mon Profil" -->
             <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-clipboard2-check-fill" viewBox="0 0 16 16"style="color: #ffffff;">
@@ -128,13 +128,13 @@ margin-right:10px;margin-top:30px; padding: 40px;
             </div>
         </div></a>
         
-       <a href="{{route('reclamation')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+       <a href="{{route('historiqueprof')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
             <!-- Contenu de la carte "Mes Réclamations" -->
             <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-hourglass-split" viewBox="0 0 16 16" style="color: #ffffff;">
                     <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"/>
                   </svg>
-                <h5 class="card-title" style="color: #ede8e8">  <a href="{{route('reclamation')}}" class="{{ Request::is('reclamation') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Historique</a></h5>
+                <h5 class="card-title" style="color: #ede8e8">  <a href="{{route('historiqueprof')}}" class="{{ Request::is('reclamation') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Historique</a></h5>
                 
             </div>
         </div></a>
@@ -143,13 +143,13 @@ margin-right:10px;margin-top:30px; padding: 40px;
      
 
         
-        <a href="{{ route('exam') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+        <a href="{{ route('noteetudiants') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
              <!-- Contenu de la carte "Mes Demandes" -->
              <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16"  style="color: #ede8e8"><!-- ce lien pour icon mes notes-->
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
                   </svg>
-                 <h5 class="card-title" style="color: #ede8e8"><a href="{{ route('exam') }}" class="{{ Request::is('exam') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">  Notes</a></h5>
+                 <h5 class="card-title" style="color: #ede8e8"><a href="{{ route('noteetudiants') }}" class="{{ Request::is('exam') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">  Notes</a></h5>
                 
              </div>
          </div></a></div>

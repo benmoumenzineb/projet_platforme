@@ -4,7 +4,7 @@
 @extends('prof.layouts.navbarprof')
 @section('contenu')
 
-<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;">
+<div class="container-fluid mt-5" style="margin-left:150px;margin-top: 120px;">
     <div class="container  barrecherche fixed-top-barre" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-9">
