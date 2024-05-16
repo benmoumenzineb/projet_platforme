@@ -9,6 +9,27 @@
     th{
         color: #173165;
     }
+    /* Style général pour la select box */
+.form-select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Style pour l'état hover */
+.form-select:hover {
+    border-color: #356895;
+}
+
+/* Style pour l'état focus */
+.form-select:focus {
+    border-color: #4e73df;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
 </style>
     <div class="container" style="margin-left: 150px; margin-top:90px; ">
 
@@ -150,8 +171,9 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant
                                 </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
                             </div>
                             <div class="modal-body">
                                 <form id="formModifierEtudiant" action="{{ route('update-etudiant') }}" method="POST">
