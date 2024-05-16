@@ -26,7 +26,7 @@ use App\Http\Controllers\NoteProfController;
 use App\Http\Controllers\AjouteNoteController;
 use App\Http\Controllers\ListePresenceController;
 use App\Http\Controllers\AjouterEtudiantController;
-
+use App\Http\Controllers\RhPersonnelControlleur;
 
 /*
 |--------------------------------------------------------------------------
