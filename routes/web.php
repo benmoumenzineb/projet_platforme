@@ -150,9 +150,9 @@ Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('f
 Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 Route::post('/update-etudiant', [ListetudiantController::class, 'updateEtudiant'])->name('update-etudiant');
 Route::post('/delete-etudiant', 'ListetudiantController@deleteEtudiant')->name('delete-etudiant');
-<<<<<<< HEAD
+
 Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant'])->name('ajouter.etudiant');
-=======
+
 Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant'])->name('ajouter.etudiant');
 Route::post('/ajouter-Personnel', [RhPersonnelControlleur::class,'ajouterPersonnel'])->name('ajouter-Personnel');
 
@@ -161,4 +161,3 @@ Route::post('/delete-Personnel', [RhPersonnelControlleur::class, 'deletePersonne
 Route::post('/update-Personnel', [RhPersonnelControlleur::class, 'updatePersonne'])->name('update-Personnel');
 Route::get('fetch-Personnel', [RhPersonnelControlleur::class, 'fetchPersonnel'])->name('getDataPersonnel');
 Route::get('/Personnel', [RhPersonnelControlleur::class, 'index'])->name('listPersonnel');
->>>>>>> 31e870a020f8cfb7f1056d15e2a9b369f1a87e30
