@@ -46,11 +46,11 @@ class ListetudiantController extends Controller
     }
    
     public function updateEtudiant(Request $request)
-    {
-        dd($request->id);
-        // Récupérer l'étudiant à partir de l'ID
-        $etudiants = Etudians::findOrFail($request->id);
-        if ($etudiants) {
+{
+    dd($request->all());
+    // Récupérer l'étudiant à partir de l'ID
+    $etudiants = Etudians::findOrFail($request->id);
+    if ($etudiants) {
         // Mettre à jour les informations de l'étudiant avec les données du formulaire
         
         $etudiants->Nom = $request->Nom;
@@ -60,73 +60,70 @@ class ListetudiantController extends Controller
         $etudiants->Date_naissance = $request->Date_naissance;
         $etudiants->Sexe = $request->Sexe;
 
-        
         $etudiants->save();
       
-        return redirect()->back()->with('success', 'Les informations de l\'étudiant ont été mises à jour avec succès.');}
-        else {
-            
-            return response()->json(['error' => 'etudiant non trouvé.'], 404);}
-        
-        
-       
+        return redirect()->back()->with('success', 'Les informations de l\'étudiant ont été mises à jour avec succès.');
+    } else {
+        return response()->json(['error' => 'etudiant non trouvé.'], 404);
     }
-    
-    public function deleteEtudiant(Request $request)
-    {
-        // Récupérer l'étudiant à partir de l'ID et le supprimer
-        $etudiant = Etudians::find($request->etudiant_id);
-        $etudiant->delete();
+}
 
-        // Retourner une réponse JSON ou une réponse de redirection si nécessaire
-        return response()->json(['success' => 'Etudiant supprimé avec succès']);
-    }
+    
+  
+
+ 
+
+
 
 
     public function ajouterEtudiant(Request $request)
-{
-    // Valider les données du formulaire
-    $request->validate([
-        'Nom' => 'required|string',
-        'Prenom' => 'required|string',
-        'CNE' => 'required|string',
-        'CNI' => 'required|string',
-        'Sexe' => 'required|string',
-        'Date_naissance' => 'required|date',
-        'Pays' => 'required|string',
-        'Diplome_acces' => 'required|string',
-        'Serie_bac' => 'required|string',
-        'Date_inscription' => 'required',
-        'Specialite_diplome' => 'nullable|string',
-        'Mention_bac' => 'required|string',
-        'Etablissement_bac' => 'required|string',
-        'Pourcentage_bourse' => 'required|string',
-    ]);
+    {
+        // Valider les données du formulaire
+        $request->validate([
+            'Nom' => 'required|string',
+            'Prenom' => 'required|string',
+            'CNE' => 'required|string',
+            'CNI' => 'required|string',
+            'Sexe' => 'required|string',
+            'Date_naissance' => 'required|date',
+            'Pays' => 'required|string',
+            'Diplome_acces' => 'required|string',
+            'Serie_bac' => 'required|string',
+            'Date_inscription' => 'required',
+            'Specialite_diplome' => 'nullable|string',
+            'Mention_bac' => 'required|string',
+            'Etablissement_bac' => 'required|string',
+            'Pourcentage_bourse' => 'required|string',
+        ]);
 
-    // Créer un nouvel objet Etudians avec les données du formulaire
-    $etudiant = new Etudians([
-        'Nom' => $request->input('Nom'),
-        'Prenom' => $request->input('Prenom'),
-        'CNE' => $request->input('CNE'),
-        'CNI' => $request->input('CNI'),
-        'Sexe' => $request->input('Sexe'),
-        'Date_naissance' => $request->input('Date_naissance'),
-        'Pays' => $request->input('Pays'),
-        'Diplome_acces' => $request->input('Diplome_acces'),
-        'Serie_bac' => $request->input('Serie_bac'),
-        'Date_inscription' => $request->input('Date_inscription'),
-        'Specialite_diplome' => $request->input('Specialite_diplome'),
-        'Mention_bac' => $request->input('Mention_bac'),
-        'Etablissement_bac' => $request->input('Etablissement_bac'),
-        'Pourcentage_bourse' => $request->input('Pourcentage_bourse'),
-        // Ajoutez ici les autres champs du formulaire
-    ]);
+       
+        $etudiant = new Etudians([
+            'Nom' => $request->input('Nom'),
+            'Prenom' => $request->input('Prenom'),
+            'CNE' => $request->input('CNE'),
+            'CNI' => $request->input('CNI'),
+            'Sexe' => $request->input('Sexe'),
+            'Date_naissance' => $request->input('Date_naissance'),
+            'Pays' => $request->input('Pays'),
+            'Diplome_acces' => $request->input('Diplome_acces'),
+            'Serie_bac' => $request->input('Serie_bac'),
+            'Date_inscription' => $request->input('Date_inscription'),
+            'Specialite_diplome' => $request->input('Specialite_diplome'),
+            'Mention_bac' => $request->input('Mention_bac'),
+            'Etablissement_bac' => $request->input('Etablissement_bac'),
+            'Pourcentage_bourse' => $request->input('Pourcentage_bourse'),
+            
+        ]);
 
-    // Sauvegarder l'étudiant dans la base de données
-    $etudiant->save();
+      
+        $etudiant->save();
 
-    // Rediriger l'utilisateur vers une autre page avec un message de succès
-    return redirect()->route('listeetudiant')->with('success', 'Étudiant ajouté avec succès.');
-}
+       
+        return redirect()->route('listetudiant')->with('success', 'Étudiant ajouté avec succès.');
+    }
+    
 
-}
+    
+    
+    }
+

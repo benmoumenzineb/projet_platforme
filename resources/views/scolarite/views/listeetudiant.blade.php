@@ -5,143 +5,143 @@
 
 @extends('scolarite.layouts.navbarscolarite')
 @section('contenu')
-    <div class="container" style="margin-left: 210px; margin-top:90px; ">
+<style>
+    th{
+        color: #173165;
+    }
+</style>
+    <div class="container" style="margin-left: 150px; margin-top:90px; ">
 
         <div class="row">
             <div class="col-md-9">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAdd">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #173165;margin-left: 70px;">
                     Ajouter un étudiant
                 </button>
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="alert alert-danger">{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Ajouter un étudiant</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="alert alert-danger">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                    <div class="modal-body">
+                        <form id="formAjouterEtudiant" action="{{route('ajouter.etudiant')}}" method="POST">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputNom">Nom</label>
+                                    <input type="text" class="form-control" id="Nom" name="Nom" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputPrenom">Prénom</label>
+                                    <input type="text" class="form-control" id="Prenom" name="Prenom" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputCNE">CNE</label>
+                                    <input type="text" class="form-control" id="CNE" name="CNE" required>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <form id="formAjouterEtudiant" action="{{ route('ajouter-etudiant') }}" method="POST">
-                                    @csrf
-                                    <!-- Champs de formulaire pour la modification -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputNom" class="form-label">Nom</label>
-                                            <input type="text" class="form-control" id="Nom" name="Nom">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputPrenom" class="form-label">Prénom</label>
-                                            <input type="text" class="form-control" id="Prenom" name="Prenom">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNE">CNE</label>
-                                            <input type="text" class="form-control" id="CNE" name="CNE">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">CNI</label>
-                                            <input type="text" class="form-control" id="CNI" name="CNI">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date Naissance</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Date_naissance">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Sexe</label>
-                                            <input type="text" class="form-control" id="CNI" name="Sexe">
-                                        </div>
-                                    </div>
-                                    <!-- Ajoutez d'autres paires de champs ici -->
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Pays</label>
-                                            <input type="text" class="form-control" id="DateNaissance" name="Pays">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Série de bac</label>
-                                            <input type="text" class="form-control" id="CNI" name="Serie_bac">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Diplôme d'acces</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Diplome_acces">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Date inscription</label>
-                                            <input type="text" class="form-control" id="CNI"
-                                                name="Date_inscription">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Mention Bac</label>
-                                            <input type="text" class="form-control" id="CNI"
-                                                name="Mention_bac">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Specialite diplôme</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Specialite_diplome">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-6">
-                                            <label for="inputDateNaissance">Etablissement du diplôme</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Etablissement_bac">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputCNI">Pourcentage Bourse</label>
-                                            <div class="col-md-6">
-                                                <select class="form-select" id="Pourcentage_bourse"
-                                                    name="Pourcentage_bourse">
-                                                    <option value="" disabled selected></option>
-                                                    <option value="0%">0%</option>
-                                                    <option value="10%">10%</option>
-                                                    <option value="20%">20%</option>
-                                                    <option value="30%">30%</option>
-                                                    <option value="40%">40%</option>
-                                                    <option value="50%">50%</option>
-                                                    <option value="60%">60%</option>
-                                                    <option value="70%">70%</option>
-                                                    <option value="80%">80%</option>
-                                                    <option value="90%">90%</option>
-                                                    <option value="100%">100%</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <!-- Ajoutez les autres champs de formulaire ici -->
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 100%;background-color:#173165">Ajouter</button>
-                                </form>
+                          
+                            <!-- Ajoutez d'autres paires de champs ici -->
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                <label for="inputCNI">CNI</label>
+                                <input type="text" class="form-control" id="CNI" name="CNI" required>
+                            </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputDateNaissance">Date Naissance</label>
+                                    <input type="text" class="form-control" id="DateNaissance" name="Date_naissance" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputCNI">Sexe</label>
+                                    <input type="text" class="form-control" id="Sexe" name="Sexe" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                <label for="inputDateNaissance">Pays</label>
+                                <input type="text" class="form-control" id="Pays" name="Pays" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputCNI">Série de bac</label>
+                                <input type="text" class="form-control" id="Serie_bac" name="Serie_bac" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputDateNaissance">Diplôme d'acces</label>
+                                <input type="text" class="form-control" id="Diplome_acces" name="Diplome_acces" required>
                             </div>
                         </div>
-                        
-                    </div>
+                       
+                            
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputCNI">Date inscription</label>
+                                <input type="text" class="form-control" id="Date_inscription" name="Date_inscription" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputCNI">Mention Bac</label>
+                                <input type="text" class="form-control" id="Mention_bac" name="Mention_bac" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputDateNaissance">Specialite diplôme</label>
+                                <input type="text" class="form-control" id="Specialite_diplome" name="Specialite_diplome">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            
+                            <div class="form-group col-md-4">
+                                <label for="inputDateNaissance">Etablissement du diplôme</label>
+                                <input type="text" class="form-control" id="Etablissement_bac" name="Etablissement_bac" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCNI">Pourcentage Bourse</label>
+                                <div class="col-md-6">
+                                    <select class="form-select" id="Pourcentage_bourse" name="Pourcentage_bourse" required>
+                                        <option value="" disabled selected></option>
+                                        <option value="0%">0%</option>
+                                        <option value="10%">10%</option>
+                                        <option value="20%">20%</option>
+                                        <option value="30%">30%</option>
+                                        <option value="40%">40%</option>
+                                        <option value="50%">50%</option>
+                                        <option value="60%">60%</option>
+                                        <option value="70%">70%</option>
+                                        <option value="80%">80%</option>
+                                        <option value="90%">90%</option>
+                                        <option value="100%">100%</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                       
+                            
+                          
+                       
+                        <!-- Ajoutez d'autres paires de champs ici -->
+                        <button type="submit" class="btn btn-primary" style="width: 100%; background-color:#173165;">Ajouter</button>
+                    </form>
                 </div>
-
-
-
+            </div>
+          </div>
+        </div>
+      
                 <!-- modfier modal-->
                 <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -314,9 +314,9 @@
                 }
             ]
         });
-    
+    </script>
 
-        
+        <script>
         $('#etudiants-table').on('click', '.edit-btn', function(e) {
             e.preventDefault();
             
@@ -325,17 +325,17 @@
             var nom = $(this).closest('tr').find('td:eq(4)')
         .text(); 
             var prenom = $(this).closest('tr').find('td:eq(5)')
-        .text(); // Supposant que le sixième td contient le prénom de l'étudiant
+        .text(); 
             var cne = $(this).closest('tr').find('td:eq(2)')
-        .text(); // Supposant que le troisième td contient le CNE de l'étudiant
+        .text(); 
             var cni = $(this).closest('tr').find('td:eq(3)')
-        .text(); // Supposant que le quatrième td contient le CNI de l'étudiant
+        .text(); 
             var dateNaissance = $(this).closest('tr').find('td:eq(7)')
         .text(); // Supposant que le huitième td contient la date de naissance de l'étudiant
             var sexe = $(this).closest('tr').find('td:eq(6)')
         .text(); // Supposant que le septième td contient le sexe de l'étudiant
 
-            // Pré-remplir les champs du formulaire de modification avec les informations récupérées
+            
             $('#id').val(etudiantId);
             $('#inputNom').val(nom);
             $('#inputPrenom').val(prenom);
@@ -352,35 +352,37 @@
         });
     
 
+        </script>
+        <script>
+        document.getElementById('formAjouterEtudiant').addEventListener('submit', function(event){
+      event.preventDefault(); 
+  
+      // Récupérer les données du formulaire
+      var etudiant = new etudiant(this);
+  
     
-        document.getElementById('formAjouterEtudiant').addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche la soumission du formulaire par défaut
+      $.ajax({
+        url: '{{ route('ajouter.etudiant') }}', e
+        method: 'POST', 
+        data: etudiant, // Données du formulaire
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          // Si la requête est réussie, vous pouvez traiter la réponse ici
+          console.log(response);
+          
+          // Fermer le modal
+          $('#exampleModal').modal('hide');
+          
+         
+          window.location.reload();
+        },
+        error: function(xhr, status, error) {
+ 
+ console.error(error);
+        }
+      });
+    });
 
-            // Récupérer les données du formulaire
-            var formData = new FormData(this);
-
-            // Envoyer les données via AJAX
-            $.ajax({
-                url: '{{ route('ajouter-etudiant') }}',
-                method: 'POST', // Méthode de l'action du formulaire (POST)
-                data: formData, // Données du formulaire
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    // Si la requête est réussie, vous pouvez traiter la réponse ici
-                    console.log(response);
-
-                    // Fermer le modal
-                    $('#exampleModalAdd').modal('hide');
-
-                    // Recharger la page pour afficher les changements (ou rediriger l'utilisateur vers une autre page)
-                    window.location.reload();
-                },
-                error: function(xhr, status, error) {
-                    // Si la requête échoue, vous pouvez gérer les erreurs ici
-                    console.error(error);
-                }
-            });
-        });
     </script>
 @endsection

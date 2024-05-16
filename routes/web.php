@@ -165,4 +165,4 @@ Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('f
 Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 Route::post('/update-etudiant', [ListetudiantController::class, 'updateEtudiant'])->name('update-etudiant');
 Route::post('/delete-etudiant', 'ListetudiantController@deleteEtudiant')->name('delete-etudiant');
-Route::post('/ajouter-etudiant', 'ListetudiantController@ajouterEtudiant')->name('ajouter-etudiant');
+Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant'])->name('ajouter.etudiant');

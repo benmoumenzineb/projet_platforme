@@ -3,7 +3,12 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
     @extends('scolarite.layouts.navbarscolarite')
 @section('contenu')
-    <div class="container" style="margin-left: 210px; margin-top:90px; ">
+c<style>
+    th{
+        color: #173165;
+    }
+</style>
+    <div class="container" style="margin-left: 150px; margin-top:90px; ">
         <div class="row">
             <div class="col-md-9">
                 
