@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <table class="table table-striped" id="etudiants-table">
+                    <table class="table table-striped" id="etudiants-table" >
                         <thead>
                             <tr>
                                 <th class="th-color border">ID</th>
