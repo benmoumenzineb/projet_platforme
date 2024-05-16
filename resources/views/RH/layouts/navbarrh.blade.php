@@ -1,394 +1,235 @@
+<title>Ressources Humaines</title>
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
-
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+<style>
+    .navbar {
+        box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+        height: auto;
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #fff;
+    }
 
-@extends('RH.layouts.navbarrh')
-@section('contenu')
-    <div class="container" style="margin-left: 210px; margin-top:90px; ">
+    .sidebar {
+        transition: left 0.3s ease;
+        background-color: #173165;
+        font-family: Arial, sans-serif;
+      width: auto;
+        height: 100%;
+        position: fixed;
+        top: 40px;
+        left: 0;
+        overflow-y: hidden;
 
-        <div class="row">
-            <div class="col-md-9">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAdd">
-                    Ajouter un étudiant
-                </button>
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="alert alert-danger">{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formAjouterEtudiant" action="{{ route('ajouter-Personnel') }}" method="POST">
-                                    @csrf
-                                    <!-- Champs de formulaire pour la modification -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputNom" class="form-label">Nom</label>
-                                            <input type="text" class="form-control" id="Nom" name="Nom">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputPrenom" class="form-label">Prénom</label>
-                                            <input type="text" class="form-control" id="Prenom" name="Prenom">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNE">CNE</label>
-                                            <input type="text" class="form-control" id="CNE" name="CNE">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">CNI</label>
-                                            <input type="text" class="form-control" id="CNI" name="CNI">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date Naissance</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Date_naissance">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Sexe</label>
-                                            <input type="text" class="form-control" id="CNI" name="Sexe">
-                                        </div>
-                                    </div>
-                                    <!-- Ajoutez d'autres paires de champs ici -->
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Pays</label>
-                                            <input type="text" class="form-control" id="DateNaissance" name="Pays">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Série de bac</label>
-                                            <input type="text" class="form-control" id="CNI" name="Serie_bac">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Diplôme d'acces</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Diplome_acces">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Date inscription</label>
-                                            <input type="text" class="form-control" id="CNI"
-                                                name="Date_inscription">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Mention Bac</label>
-                                            <input type="text" class="form-control" id="CNI"
-                                                name="Mention_bac">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Specialite diplôme</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Specialite_diplome">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-6">
-                                            <label for="inputDateNaissance">Etablissement du diplôme</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Etablissement_bac">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputCNI">Pourcentage Bourse</label>
-                                            <div class="col-md-6">
-                                                <select class="form-select" id="Pourcentage_bourse"
-                                                    name="Pourcentage_bourse">
-                                                    <option value="" disabled selected></option>
-                                                    <option value="0%">0%</option>
-                                                    <option value="10%">10%</option>
-                                                    <option value="20%">20%</option>
-                                                    <option value="30%">30%</option>
-                                                    <option value="40%">40%</option>
-                                                    <option value="50%">50%</option>
-                                                    <option value="60%">60%</option>
-                                                    <option value="70%">70%</option>
-                                                    <option value="80%">80%</option>
-                                                    <option value="90%">90%</option>
-                                                    <option value="100%">100%</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <!-- Ajoutez les autres champs de formulaire ici -->
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 100%;background-color:#173165">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
+    }
 
 
 
-                <!-- modfier modal-->
-                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formModifierEtudiant" action="{{ route('update-Personnel') }}" method="POST">
-                                    @csrf
-                                    @foreach($etudiants as $etudiant)
-                                    <!-- Champs de formulaire pour la modification -->
-                                    <input type="hidden" id="id" name="id"  value="{{ $etudiant->id }}">
-                                    @endforeach
-                                    <div class="form-row">
 
-                                        <div class="form-group col-md-4">
-                                            <label for="inputNom" class="form-label">Nom</label>
-                                            <input type="text" class="form-control" id="inputNom" name="Nom">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputPrenom" class="form-label">Prénom</label>
-                                            <input type="text" class="form-control" id="inputPrenom" name="Prenom">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNE">CNE</label>
-                                            <input type="text" class="form-control" id="inputCNE" name="CNE">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">CNI</label>
-                                            <input type="text" class="form-control" id="inputCNI" name="CNI">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date Naissance</label>
-                                            <input type="text" class="form-control" id="inputDateNaissance"
-                                                name="Date_naissance">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Sexe</label>
-                                            <input type="text" class="form-control" id="inputCNI" name="Sexe">
-                                        </div>
-                                    </div>
-                                    <!-- Ajoutez d'autres paires de champs ici -->
+    #vertical-sidebar ul li {
+        padding: 15px;
+        transition: all 0.3s ease;
+       width: 100%; 
+       display: block;      
+       
+        /* Set width to 100% for all sidebar items */
+    }
+
+    #vertical-sidebar ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        
+    }
+
+    #vertical-sidebar ul li.active {
+        background-color: #3966c2;
+        width:250%;
+    }
+
+    #vertical-sidebar ul li.active a {
+        color: #ffffff;
+        width: 250px;
+    }
+
+    #vertical-sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        color: #e9ecef;
+       
+    }
 
 
 
-                                    <!-- Ajoutez les autres champs de formulaire ici -->
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
-                                </form>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <table class="table table-striped" id="etudiants-table">
-                        <thead>
-                            <tr>
-                                <th class="th-color border">ID</th>
-                                <th class="th-color border">Code Apogee</th>
-                                <th class="th-color border">CNE</th>
-                                <th class="th-color border">CNI</th>
-                                <th class="th-color border">Nom</th>
-                                <th class="th-color border">Prénom</th>
-                                <th class="th-color border">Sexe</th>
-                                <th class="th-color border">Date Naissance</th>
-                                <th class="th-color border">Pays</th>
-                                <th class="th-color border">Diplome d'acces</th>
-                                <th class="th-color border">Serie de bac</th>
-                                <th class="th-color border">Date inscription</th>
-                                <th class="th-color border">Specialite de diplome</th>
-                                <th class="th-color border">Mention BAC</th>
-                                <th class="th-color border">Etablissement de diplome</th>
-                                <th class="th-color border">Pourcentage de bourse</th>
+    /* Default styles for the sidebar */
+    .sidebar {
+        background-color: #173165;
+        border-right: 0px solid #ffffff;
+        
+        width: 250px;
+    }
 
-                                <th class="th-color border">Actions</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+    
+
+    .navbar-item {
+        text-decoration: none;
+        color: #173165;
+    }
+
+    /* Media query for screens smaller than 768px */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 250px;
+            /* Hide the sidebar by default on smaller screens */
+        }
+
+    }
+
+    /* Media query for screens larger than 768px */
+
+    /* Responsive styles */
+    @media (max-width: 991.98px) {
+
+        /* Tablets */
+        .sidebar {
+            width: 200px;
+            /* Adjust the width for tablet screens */
+        }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 575.98px) {
+
+        /* Phones */
+        .sidebar {
+            width: 150px;
+            /* Adjust the width for phones */
+        }
+    }
+
+    /* Media queries for responsive design */
+
+    /* Phones */
+    @media (max-width: 320px) {
+        .container {
+            padding: 0 10px;
+            /* Adjust padding for smaller screens */
+        }
+
+    }
+
+    @media (min-width: 321px) and (max-width: 375px) {
+        .container {
+            padding: 0 20px;
+            /* Adjust padding for slightly larger screens */
+        }
+    }
+
+    @media (min-width: 376px) and (max-width: 425px) {
+        .container {
+            padding: 0 30px;
+            /* Adjust padding for larger screens */
+        }
+    }
+
+    @media (min-width: 426px) and (max-width: 768px) {
+        .container {
+            padding: 0 40px;
+            /* Adjust padding for tablets */
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .container {
+            padding: 0 50px;
+        }
+    }
+
+    @media (min-width: 1025px) and (max-width: 1440px) {
+        .container {
+            padding: 0 60px;
+           
+            /* Adjust padding for laptops */
+        }
+        
+    }
+
+    @media (min-width: 1441px) and (max-width: 2560px) {
+        .container {
+            padding: 0 70px;
+            /* Adjust padding for larger screens */
+        }
+
+    }
+</style>
+
+<body>
+    <!--sidebar horizontal
+   
+    
+    
+=======
+    sidebar Vertical-->
+    <nav class="navbar">
+        <div class="container">
+            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <div class="navbar-left">
+
+                <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                    class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                </svg>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
-    <script>
-        $('#etudiants-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('getDataPersonnel') }}",
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'apogee',
-                    name: 'apogee'
-                },
-                {
-                    data: 'CNE',
-                    name: 'CNE'
-                },
-                {
-                    data: 'CNI',
-                    name: 'CNI'
-                },
-                {
-                    data: 'Nom',
-                    name: 'Nom'
-                },
-                {
-                    data: 'Prenom',
-                    name: 'Prenom'
-                },
-                {
-                    data: 'Sexe',
-                    name: 'Sexe'
-                },
-                {
-                    data: 'Date_naissance',
-                    name: 'Date_naissance'
-                },
-                {
-                    data: 'Pays',
-                    name: 'Pays'
-                },
-                {
-                    data: 'Diplome_acces',
-                    name: 'Diplome_acces'
-                },
-                {
-                    data: 'Serie_bac',
-                    name: 'Serie_bac'
-                },
-                {
-                    data: 'Date_inscription',
-                    name: 'Date_inscription'
-                },
-                {
-                    data: 'Specialite_diplome',
-                    name: 'Specialite_diplome'
-                },
-                {
-                    data: 'Mention_bac',
-                    name: 'Mention_bac'
-                },
-                {
-                    data: 'Etablissement_bac',
-                    name: 'Etablissement_bac'
-                },
-                {
-                    data: 'Pourcentage_bourse',
-                    name: 'Pourcentage_bourse'
-                },
+    <div class="container-fluid">
+        <div id="vertical-sidebar">
 
-                {
-                    data: 'actions',
-                    name: 'actions',
-                    orderable: false,
-                    searchable: false
-                }
-            ]
-        });
-    
-
-        
-        $('#etudiants-table').on('click', '.edit-btn', function(e) {
-            e.preventDefault();
-            
-            var etudiantId = $(this).closest('tr').find('td:first')
-        .text(); 
-            var nom = $(this).closest('tr').find('td:eq(4)')
-        .text(); 
-            var prenom = $(this).closest('tr').find('td:eq(5)')
-        .text(); // Supposant que le sixième td contient le prénom de l'étudiant
-            var cne = $(this).closest('tr').find('td:eq(2)')
-        .text(); // Supposant que le troisième td contient le CNE de l'étudiant
-            var cni = $(this).closest('tr').find('td:eq(3)')
-        .text(); // Supposant que le quatrième td contient le CNI de l'étudiant
-            var dateNaissance = $(this).closest('tr').find('td:eq(7)')
-        .text(); // Supposant que le huitième td contient la date de naissance de l'étudiant
-            var sexe = $(this).closest('tr').find('td:eq(6)')
-        .text(); // Supposant que le septième td contient le sexe de l'étudiant
-
-            // Pré-remplir les champs du formulaire de modification avec les informations récupérées
-            $('#id').val(etudiantId);
-            $('#inputNom').val(nom);
-            $('#inputPrenom').val(prenom);
-            $('#inputCNE').val(cne);
-            $('#inputCNI').val(cni);
-            $('#inputDateNaissance').val(dateNaissance);
-            $('#inputSexe').val(sexe);
-
-            
-            $('#exampleModalEdit').modal('show');
-            console.log(etudiantId);
-
-
-        });
-    
-
-    
-        document.getElementById('formAjouterEtudiant').addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche la soumission du formulaire par défaut
-
-            // Récupérer les données du formulaire
-            var formData = new FormData(this);
-
-            // Envoyer les données via AJAX
-            $.ajax({
-                url: '{{ route('ajouter-Personnel') }}',
-                method: 'POST', // Méthode de l'action du formulaire (POST)
-                data: formData, // Données du formulaire
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    // Si la requête est réussie, vous pouvez traiter la réponse ici
-                    console.log(response);
-
-                    // Fermer le modal
-                    $('#exampleModalAdd').modal('hide');
-
-                    // Recharger la page pour afficher les changements (ou rediriger l'utilisateur vers une autre page)
-                    window.location.reload();
-                },
-                error: function(xhr, status, error) {
-                    // Si la requête échoue, vous pouvez gérer les erreurs ici
-                    console.error(error);
-                }
-            });
-        });
-    </script>
-                               d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <ul class="list-unstyled">
+                          
+                            
+                            <li class="p-2 mb-2 mt-5 ">
+                                <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
+                                    height="26" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
                                     <path
-                                        d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5m0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
-                                </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamation') }}"
-                                    class="{{ Request::is('reclamation') ? 'active' : '' }}">Mes Réclamations</a>
+                                        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                    <path
+                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('emploi') }}"
+                                    class="{{ Request::is('emploi') ? 'active' : '' }}">Emploi du Temps</a>
                             </li>
+                            <li class="p-2 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                    fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0" />
+                                    <path
+                                        d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z" />
+                                    <path
+                                        d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z" />
+                                    <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567" />
+                                </svg></svg>&nbsp;&nbsp;&nbsp;<a class="" href="{{ route('paiement') }}"
+                                    class="{{ Request::is('paiement') ? 'active' : '' }}">Suivi de Paiement</a>
+                            </li>
+
+                            <li class="p-2 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                    fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                                </svg></svg>&nbsp;&nbsp;&nbsp;<a class="" href="{{ route('exam') }}"
+                                    class="{{ Request::is('exam') ? 'active' : '' }}">Mes Exames</a>
+                            </li>
+                          
+                           
                             
                         </ul>
                     </div>
@@ -423,4 +264,3 @@
         });
     </script>
 </body>
-@endsection  
