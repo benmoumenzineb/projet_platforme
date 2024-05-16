@@ -171,5 +171,5 @@ Route::post('/ajouter-Personnel', [RhPersonnelControlleur::class,'ajouterPersonn
 Route::post('/delete-Personnel', [RhPersonnelControlleur::class, 'deletePersonne'])->name('delete-Personnel');
 
 Route::post('/update-Personnel', [RhPersonnelControlleur::class, 'updatePersonne'])->name('update-Personnel');
-Route::post('fetch-Personnel', [RhPersonnelControlleur::class, 'fetchPersonnel'])->name('getDataPersonnel');
+Route::get('fetch-Personnel', [RhPersonnelControlleur::class, 'fetchPersonnel'])->name('getDataPersonnel');
 Route::get('/Personnel', [RhPersonnelControlleur::class, 'index'])->name('listPersonnel');
