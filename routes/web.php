@@ -100,8 +100,7 @@ Route::get('/search', [ListePresenceController::class, 'search'])->name('listepr
 
 
 
-Route::get('/etudiants', [ListePresenceController::class, 'indexx'])->name('listetudiants');
-Route::get('/ajoute-etudiant', [ListePresenceController::class, 'indexx'])->name('listetudiants');
+
 route::get('/notificationsexame','App\Http\Controllers\NotifactionsexamController@index')->name('notificationsexam');
 
 
@@ -136,15 +135,7 @@ Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 Route::get('reclamationscolariteetudiants', [ReclamationScolariteController::class, 'reclamationEtudiants'])->name('getDataReclamation');
 Route::get('paiementscolariteetudiants', [PaiementScolariteController::class, 'paiementEtudiants'])->name('getDataPaiement');
 
-//Route::put('/etudiants/{id}/edit', [AjouteNoteController::class, 'update'])->name('etudiant.update');
 
-// Route pour récupérer les étudiants (utilisée par DataTables)
-//Route::get('/fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
-
-
-//Route::get('/ajoutenote', [AjouteNoteController::class, 'indexx'])->name('ajoutenote.index');
-//Route::get('/fetch/etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
-//Route::put('/etudiant/update/{id}', [AjouteNoteController::class, 'update'])->name('etudiant.update');
 
 Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('fetch.etudiants');
 Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
@@ -161,3 +152,11 @@ Route::post('/delete-Personnel', [RhPersonnelControlleur::class, 'deletePersonne
 Route::post('/update-Personnel', [RhPersonnelControlleur::class, 'updatePersonne'])->name('update-Personnel');
 Route::get('fetch-Personnel', [RhPersonnelControlleur::class, 'fetchPersonnel'])->name('getDataPersonnel');
 Route::get('/Personnel', [RhPersonnelControlleur::class, 'index'])->name('listPersonnel');
+
+Route::get('/f', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiant');
+Route::get('et', [AjouteNoteController::class, 'index'])->name('get');
+Route::get('//etudiants', [AjouteNoteController::class, 'getEtudiantsByCycle'])->name('etudiants');
+Route::get('/etudiants-liste', [AjouteNoteController::class, 'getEtudiantsData'])->name('data');
+
+Route::get('/liste-etudiants-presence', [ListePresenceController::class, 'getEtudiants'])->name('Listes');
+Route::get('/Presence-etudiant', [ListePresenceController::class, 'getEtudiantsData'])->name('dataetudiant');

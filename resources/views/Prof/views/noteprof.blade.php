@@ -1,5 +1,8 @@
 
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 @extends('prof.layouts.navbarprof')
 @section('contenu')
 
@@ -14,6 +17,7 @@
    
            
 <style>
+    
     /* Styles personnalisés */
    form {
         margin-top: 200px; /* Espacement par rapport au haut */
@@ -37,7 +41,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="form-container">
-                <form action="{{ route('fetch.etudiants') }}" method="GET">
+                <form action="{{ route('etudiants') }}" method="GET">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -178,5 +182,13 @@
    
 
 </script>
+
+
+     
+
+
+   
+</script>
+
 
 @endsection
