@@ -22,51 +22,49 @@ class ListetudiantController extends Controller
     
     public function fetchEtudiants()
     {
-        $etudiant = Etudians::select(['id', 'apogee', 'CNE', 'CNI', 'Nom', 'Prenom','Sexe','Date_naissance','Pays','Diplome_acces','Serie_bac','Date_inscription','Specialite_diplome','Mention_bac','Etablissement_bac','Pourcentage_bourse']);
+        $etudiant = Etudians::select(['id', 'apogee', 'CNE', 'CNI', 'Nom', 'Prenom', 'Sexe', 'Date_naissance', 'Pays', 'Diplome_acces', 'Serie_bac', 'Date_inscription', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
     
         return DataTables::of($etudiant)
-        ->addColumn('actions', function ($etudiant) {
-            return '<div class="btn-group" role="group" aria-label="Actions">' .
-                    '<a href="#" class="edit-btn">' .
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" style="color: #173165;">' .
-                        '<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>' .
-                        '<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>' .
-                    '</svg>' .
-                '</a>'.
-                '<a href="#" class="delet-btn">' .
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#173165;">' .
-                        '<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>' .
-                    '</svg>' .
-                '</a>' .
-            '</div>';
+            ->addIndexColumn()
+            ->addColumn('actions', function($etudiant) {
+                return '<div style="display: flex; gap: 5px;">
+                        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
+                        <form id="delete-form-' . $etudiant->id . '" action="' . route('etudiants.destroy', $etudiant->id) . '" method="POST" style="margin: 0;">
+                            ' . csrf_field() . method_field('DELETE') . '
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete(' . $etudiant->id . ')" style="width:70px;">Delete</button>
+                        </form>
+                    </div>';
         })
-        
+               
+     
             ->rawColumns(['actions'])
             ->make(true);
     }
-   
-    public function updateEtudiant(Request $request)
-{
-    dd($request->all());
-    // Récupérer l'étudiant à partir de l'ID
-    $etudiants = Etudians::findOrFail($request->id);
-    if ($etudiants) {
-        // Mettre à jour les informations de l'étudiant avec les données du formulaire
-        
-        $etudiants->Nom = $request->Nom;
-        $etudiants->Prenom = $request->Prenom;
-        $etudiants->CNE = $request->CNE;
-        $etudiants->CNI = $request->CNI;
-        $etudiants->Date_naissance = $request->Date_naissance;
-        $etudiants->Sexe = $request->Sexe;
-
-        $etudiants->save();
-      
-        return redirect()->back()->with('success', 'Les informations de l\'étudiant ont été mises à jour avec succès.');
-    } else {
-        return response()->json(['error' => 'etudiant non trouvé.'], 404);
+    
+    
+    
+    
+    public function update(Request $request)
+    {
+        $etudiant = Etudians::find($request->id);
+        $etudiant->Nom = $request->Nom;
+        $etudiant->Prenom = $request->Prenom;
+        $etudiant->CNE = $request->CNE;
+        $etudiant->CNI = $request->CNI;
+        $etudiant->Date_naissance = $request->Date_naissance;
+        $etudiant->Pays = $request->Pays;
+        $etudiant->Diplome_acces = $request->Diplome_acces;
+        $etudiant->Serie_bac = $request->Serie_bac;
+        $etudiant->Mention_bac = $request->Mention_bac;
+        $etudiant->Date_inscription = $request->Date_inscription;
+        $etudiant->Etablissement_bac = $request->Etablissement_bac;
+        $etudiant->Pourcentage_bourse = $request->Pourcentage_bourse;
+        // Mettez à jour d'autres champs si nécessaire
+        $etudiant->save();
+    
+        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
     }
-}
+    
 
     
   
@@ -122,8 +120,22 @@ class ListetudiantController extends Controller
         return redirect()->route('listetudiant')->with('success', 'Étudiant ajouté avec succès.');
     }
     
-
+   
+    public function destroy($id)
+    {
+        $etudiant = Etudians::find($id);
     
-    
+        if ($etudiant) {
+            $etudiant->delete();
+            return redirect('/scolarite')->with('success', 'Student deleted successfully.');
+        } else {
+            return redirect('/scolarite')->with('error', 'Student not found.');
+        }
     }
+    
+    
+    
+}
+       
+    
 

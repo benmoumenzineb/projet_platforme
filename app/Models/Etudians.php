@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Etudians extends Model
 {
     protected $table = 'etudians';
-    protected $primaryKey = 'apogee';
+    //protected $primaryKey = 'apogee';
 
     // Indiquer que la clé primaire n'est pas un entier auto-incrémenté
     public $incrementing = false;

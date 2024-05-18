@@ -20,4 +20,5 @@ class HistoriqueprofController extends Controller
            
             ->make(true);
     }
+    
 }
