@@ -76,9 +76,10 @@
 <script>
 
 $('#etudiants-table').DataTable({
+  
     processing: true,
     serverSide: true,
-    ajax: '{{ route("fetch.etudiants") }}',
+    ajax: "{{ route('data') }}",
     columns: [
         { data: 'apogee', name: 'apogee' },
         { data: 'CNE', name: 'CNE' },

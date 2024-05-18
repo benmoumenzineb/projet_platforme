@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Etudians;
 use Illuminate\Http\Request;
-
+use Yajra\DataTables\DataTables;
 class ListePresenceController extends Controller
 {
     
@@ -13,46 +13,93 @@ class ListePresenceController extends Controller
 
     
 
-public function indexx(Request $request)
-{
-    try {
-        // Récupérer les valeurs des critères choisis depuis la requête
+
+    public function getEtudiants(Request $request)
+    {
         $cycle = $request->input('cycle');
         $filiere = $request->input('filiere');
-        $niveau = $request->input('niveau');
-        $groupe = $request->input('groupe');
         $matiere = $request->input('matiere');
+        $groupe = $request->input('groupe');
+       
+        // Stockez les choix dans des variables de session
+        $request->session()->put('cycle', $cycle);
+        $request->session()->put('filiere', $filiere);
+        $request->session()->put('matiere', $matiere);
+        $request->session()->put('groupe', $groupe);
         
-        // Commencer avec une requête pour les étudiants
-        $query = Etudians::query();
-        
-        // Ajouter les clauses de recherche basées sur les critères choisis
-        $query->where('Cycle', $cycle)
-              ->where('Groupe', $groupe)
-              ->where('Matiere', $matiere);
-        
-        // Ajouter le critère du niveau uniquement si le champ de la filière est rempli
-        if ($filiere) {
-            $query->where('Filiere', $filiere);
-            
-            // Inclure le critère de niveau si le champ de niveau est également rempli
-            if ($niveau) {
-                $query->where('Niveau', $niveau);
-            }
+        // Initialisez un tableau pour stocker les conditions de recherche
+        $conditions = [];
+    
+        // Si le cycle est sélectionné, ajoutez-le aux conditions de recherche
+        if ($cycle) {
+            $conditions[] = ['Cycle', $cycle];
         }
-        // Exécuter la requête et récupérer les résultats
-        $etudians = $query->get(['Nom', 'Prenom']);
+    
+        // Si la filière est sélectionnée, ajoutez-la aux conditions de recherche
+        if ($filiere) {
+            $conditions[] = ['Filiere', $filiere];
+        }
+    
+        // Si la matière est sélectionnée, ajoutez-la aux conditions de recherche
+        if ($matiere) {
+            $conditions[] = ['Matiere', $matiere];
+        }
+    
+        // Si le groupe est sélectionné, ajoutez-le aux conditions de recherche
+        if ($groupe) {
+            $conditions[] = ['Groupe', $groupe];
+        }
+    
+        // Effectuez la recherche en fonction des conditions sélectionnées
+        $etudiants = Etudians::where($conditions)->get(['apogee','CNE','CNI','Nom','Prenom']);
         
-        // Utiliser dd pour afficher les résultats de la requête
-        //dd($etudians);
+        // Redirigez vers la deuxième vue avec les choix comme paramètres d'URL
+        return view('Prof.views.listepresence', compact('etudiants'));
         
-        // Retourner la vue avec les étudiants filtrés
-        return view('Prof.views.listepresence', compact('etudians'));
-    } catch (\Throwable $th) {
-        $th->getMessage();
+      
+    
     }
-}
+    
+    public function getEtudiantsData(Request $request)
+    { 
+         // Récupérez les valeurs choisies
+    $cycle = $request->session()->get('cycle');
+    $filiere = $request->session()->get('filiere');
+    $matiere = $request->session()->get('matiere');
+    $groupe = $request->session()->get('groupe');
 
+    // Initialisez un tableau pour stocker les conditions de recherche
+    $conditions = [];
 
+    // Si le cycle est sélectionné, ajoutez-le aux conditions de recherche
+    if ($cycle) {
+        $conditions[] = ['Cycle', $cycle];
+    }
 
+    // Si la filière est sélectionnée, ajoutez-la aux conditions de recherche
+    if ($filiere) {
+        $conditions[] = ['Filiere', $filiere];
+    }
+
+    // Si la matière est sélectionnée, ajoutez-la aux conditions de recherche
+    if ($matiere) {
+        $conditions[] = ['Matiere', $matiere];
+    }
+
+    // Si le groupe est sélectionné, ajoutez-le aux conditions de recherche
+    if ($groupe) {
+        $conditions[] = ['Groupe', $groupe];
+    }
+
+    // Effectuez la recherche en fonction des conditions sélectionnées
+    $etudiants = Etudians::where($conditions)->get(['apogee','CNE','CNI','Nom','Prenom']);
+    
+    // Formatez les données pour DataTables
+    $formattedData = DataTables::of($etudiants)
+        ->addIndexColumn()
+        ->make(true);
+
+    // Retournez les données formatées sous forme de réponse JSON pour DataTables
+    return $formattedData;
+    }
 }

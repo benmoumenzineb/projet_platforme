@@ -1,109 +1,99 @@
+<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-@extends('Prof.layouts.navbarprof')
-    
+@extends('prof.layouts.navbarprof')
 @section('contenu')
 
+<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;">
+    <div class="container barrecherche fixed-top-barre" style="margin-top: 50px;">
 
-
-<style>
-    /* Styles personnalisés pour réduire la taille des icônes de pagination */
-   /* Styles personnalisés pour la pagination */
-
-
-.pagination .page-link {
-    font-size: 8px; /* Taille de police */
-    color: #fff; /* Couleur du texte */
-    background-color: #3966c2; /* Couleur de fond */
-    border-color: #3966c2; /* Couleur de la bordure */
-   
-}
-
-
-
-
-
-   
-      
-        
-@media (width: 2560px) {
-    table {
-      margin-left: -250px; 
-      /* Rétablir la largeur maximale pour les écrans plus grands */
-    }
-    
-    
-}
-th{
-    color: #173165
-}
-</style>
-
-    
-<div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;" >
-    
-        
-    <div class="container  barrecherche fixed-top-barre" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-9">
-                <div class="col-md-12">
-                    <form action="" method="GET" class="mb-3 fixed-top-barre"> <!-- Ajoutez la classe ici -->
-                        <div class="input-group">
-                            <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" style="background-color:#173165;">Rechercher</button>
+
+               <!-- <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Éditer les notes</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="update-form" action="" method="POST">
+                                   
+                                    <div class="form-group">
+                                        <label for="CTR1">CTR1</label>
+                                        <input type="text" class="form-control" id="CTR1" name="CTR1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CTR2">CTR2</label>
+                                        <input 
+                                        ùùtype="text" class="form-control" id="CTR2" name="CTR2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="EF">EF</label>
+                                        <input type="text" class="form-control" id="EF" name="EF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="TP">TP</label>
+                                        <input type="text" class="form-control" id="TP" name="TP">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </form>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </div>-->
+
+                <div class="container">
+                    <table class="table table-striped" id="etudiants-table">
+                        <thead>
+                            <tr>
+                                <th class="th-color border">Code Apogee</th>
+                                <th class="th-color border">CNE</th>
+                                <th class="th-color border">CNI</th>
+                                <th class="th-color border">Nom</th>
+                                <th class="th-color border">Prénom</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    
-
-    
-    <div class="container">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            
-          
-            <th class="th-color border" scope="col">Nom</th>
-            <th class="th-color border" scope="col">Prénom</th>
-            
-            <th class="th-color border" scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($etudians as $etudiant)
-        <tr>
-            
-          
-            <td class="border">{{ $etudiant->Nom }}</td>
-            <td class="border">{{ $etudiant->Prenom }}</td>
-            <td class="border">
-              
-                    
-                   
-                    
-               
-            </td>
-            
-    
-                
-
-            </td>
-            
-        </tr>
-        @endforeach
-    </tbody>
-</table>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
 
-</div>
+<script>
+
+$('#etudiants-table').DataTable({
+  
+    processing: true,
+    serverSide: true,
+    ajax: "{{ route('dataetudiant') }}",
+    columns: [
+        { data: 'apogee', name: 'apogee' },
+        { data: 'CNE', name: 'CNE' },
+        { data: 'CNI', name: 'CNI' },
+        { data: 'Nom', name: 'Nom' },
+        { data: 'Prenom', name: 'Prenom' }
+       
+    ]
+});
 
 
 
+  
+
+
+
+
+</script>
 
 @endsection
-

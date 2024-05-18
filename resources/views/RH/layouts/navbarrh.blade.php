@@ -68,7 +68,7 @@
     .sidebar {
         background-color: #173165;
         border-right: 0px solid #ffffff;
-        
+       z-index:  999;
         width: 250px;
     }
 

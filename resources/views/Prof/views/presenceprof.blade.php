@@ -1,8 +1,23 @@
+
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 @extends('prof.layouts.navbarprof')
 @section('contenu')
 
+
+               
+     
+    
+        
+               
+
+
+   
+           
 <style>
+    
     /* Styles personnalisés */
    form {
         margin-top: 200px; /* Espacement par rapport au haut */
@@ -26,7 +41,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="form-container">
-                <form action="{{ route('listetudiants') }}" method="GET">
+                <form action="{{ route('Listes') }}" method="GET">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <h6>Cycle :</h6>
@@ -46,7 +62,7 @@
                             <h6>Filière :</h6>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="filiere" name="filiere">
+                            <select class="form-control" id="filiere" name="filiere" >
                                 <option value="0: undefined" selected></option>
                             </select>
                         </div>
@@ -56,7 +72,7 @@
                             <h6>Niveau :</h6>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="niveau" name="niveau">
+                            <select class="form-control" id="niveau" name="niveau" >
                                 <option value="0: undefined" selected></option>
                             </select>
                         </div>
@@ -162,6 +178,17 @@
            niveauDropdown.add(option);
         });
     });
-    
+   
+   
+
 </script>
+
+
+     
+
+
+   
+</script>
+
+
 @endsection
