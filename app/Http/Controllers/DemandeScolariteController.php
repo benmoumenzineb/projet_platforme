@@ -17,15 +17,6 @@ class DemandeScolariteController extends Controller
         $demande = Demande::select(['Nom', 'Prenom','Numero','Email','Type']);
     
         return DataTables::of($demande)
-            ->addColumn('actions', function ($demande) {
-                // Ajoutez ici le code pour les actions (par exemple, les boutons d'édition)
-                return '<div class="btn-group" role="group" aria-label="Actions">' .
-                       '<input type="button" class="btn btn-success" value="OUI" onclick="validerDemande(' . $demande->id . ')" style="width: 70px; margin-right: 5px;">' .
-                       '<input type="button" class="btn btn-danger" value="NON" onclick="nonValiderDemande(' . $demande->id . ')" style="width: 70px;">' .
-                       '</div>';
-              
-            })
-            ->rawColumns(['actions'])
             ->make(true);
     }
     

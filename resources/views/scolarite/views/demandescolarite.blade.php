@@ -7,8 +7,13 @@
     th{
         color: #173165;
     }
+    @media (width: 2560px) {
+        .container {
+            max-width: 2600px;
+            
+        }}
 </style>
-    <div class="container" style="margin-left: 150px; margin-top:90px; ">
+    <div class="container" style="margin-left: 250px; margin-top:140px; ">
         <div class="row">
             <div class="col-md-9">
                 
@@ -25,7 +30,7 @@
                 <th class="th-color border" scope="col">Numero de Téléphone</th>
                 <th class="th-color border" scope="col">Email</th>
                 <th class="th-color border" scope="col">Type</th>
-                <th class="th-color border" scope="col">Actions</th>
+               
                             </tr>
                         </thead>
                     </table>
@@ -53,7 +58,7 @@
                 { data: 'Email', name: 'Email' },
                 { data: 'Type', name: 'Type' },
                
-                { data: 'actions', name: 'actions', orderable: false, searchable: false }
+                
             ]
         });
     

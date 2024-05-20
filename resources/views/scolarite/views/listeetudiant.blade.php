@@ -31,9 +31,30 @@
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
         }
+        @media (width: 2560px) {
+        .container {
+            max-width: 2600px;
+            
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+    }
+    @media (max-width: 320px) {
+            .container {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .btn {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
     </style>
     <body>
-    <div class="container" style="margin-left: 150px; margin-top:90px; ">
+    <div class="container" style="margin-left: 150px; margin-top:140px; ">
 
         <div class="row">
             <div class="col-md-9">

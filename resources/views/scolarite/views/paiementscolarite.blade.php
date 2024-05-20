@@ -1,130 +1,83 @@
+<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-@extends('scolarite.layouts.navbarscolarite')
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+    @extends('scolarite.layouts.navbarscolarite')
 @section('contenu')
-
-
 <style>
-    /* Styles personnalisés pour réduire la taille des icônes de pagination */
-    .pagination .page-link {
-        font-size:10px; /* Réduire la taille de la police */
-        padding: 1px;
-        /* Réduire le rembourrage autour de l'icône */
+    th{
+        color: #173165;
     }
-    .th-color {
-            background-color: #3966c2;
-            color: rgb(255, 255, 255);
-        }
-      
-.pagination .page-link {
-    font-size: 8px; /* Taille de police */
-    color: #fff; /* Couleur du texte */
-    background-color: #3966c2; /* Couleur de fond */
-    border-color: #3966c2; /* Couleur de la bordure */
-   
-}
-
-.pagination .page-link:hover {
-    background-color: #173165; /* Couleur de fond au survol */
-    
-}
-@media (width: 2560px) {
-    table {
-      margin-left: -400px; 
-      width: 100%;/* Rétablir la largeur maximale pour les écrans plus grands */
-    }
-    .barrecherche{
-        margin-left: -400px;
-    }
-}
-
-
-   
-      
-        .fixed-bottom-barre {
-    position: absolute;
-    bottom: -800px; 
-  
-    right: 10px;
-    z-index: -999;
-    background-color: #fff; /* Couleur de fond */
-    padding: 1px 0; /* Espacement intérieur pour un meilleur aspect */
-    /* Ajoutez une ombre pour plus de distinction */
-}
-       
-    /* Styles pour les cases à cocher "Valider" et "Non valider" */
-    
-
-
+    @media (width: 2560px) {
+        .container {
+            max-width: 2600px;
+            
+        }}
 </style>
-<div class="container" style="margin-left: 210px; margin-top:90px; ">
-    <div class="container-fluid mt-5 barrecherche fixed-top-barre">
+    <div class="container" style="margin-left: 150px; margin-top:140px; ">
         <div class="row">
             <div class="col-md-9">
                 
-                <form action="{{ route('paiementscolarite.search') }}" method="GET" class="mb-3">
-                    <div class="input-group">
-                        <input type="text" name="query" class="form-control" placeholder="Rechercher un étudiant...">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" style="background-color:#173165;">Rechercher</button>
-                        </div>
-                    </div>
-                </form>
+                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    
+                </div>
+                <div class="container">
+                    <table class="table table-striped" id="paiementscolarite">
+                        <thead>
+                            <tr>
+                               
+                         <th class="th-color border" scope="col">Numero de demande</th>
+                                     <th class="th-color border" scope="col">Mois</th>
+                                                <th class="th-color border" scope="col">Nom</th>
+                                                <th class="th-color border" scope="col">Prenom</th>
+                                                <th class="th-color border" scope="col">Filiére</th>
+                                                <th class="th-color border" scope="col">CNI</th>
+                                                <th class="th-color border" scope="col">Numero de Téléphone</th>
+                                                <th class="th-color border" scope="col">Montant</th>
+                                                <th class="th-color border" scope="col">Choix</th>
+                                                <th class="th-color border" scope="col">Mode de Paiement</th>
+                                                <th class="th-color border" scope="col">Image</th>
+                                                <th class="th-color border" scope="col">E-mail</th>
+                                               
+                
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    
-    
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="th-color border" scope="col">Numero de demande</th>
-                <th class="th-color border" scope="col">Mois</th>
-                <th class="th-color border" scope="col">Nom</th>
-                <th class="th-color border" scope="col">Prenom</th>
-                <th class="th-color border" scope="col">Filiére</th>
-                <th class="th-color border" scope="col">CNI</th>
-                <th class="th-color border" scope="col">Numero de Téléphone</th>
-                <th class="th-color border" scope="col">Montant</th>
-                <th class="th-color border" scope="col">Choix</th>
-                <th class="th-color border" scope="col">Mode de Paiement</th>
-                <th class="th-color border" scope="col">Image</th>
-                <th class="th-color border" scope="col">E-mail</th>
-                <th class="th-color border" scope="col">Actions</th>
-               <!-- <th class="th-color border" scope="col">Actions</th>--> <!-- Nouvelle colonne pour les cases à cocher -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($paiements as $paiement)
-            <tr>
-                <td class="border">{{ $paiement->id }}</td>
-                <td class="border">{{ $paiement->mois_concerne }}</td>
-                <td class="border">{{ $paiement->nom }}</td>
-                <td class="border">{{ $paiement->prenom }}</td>
-                <td class="border">{{ $paiement->filiere}}</td>
-                <td class="border">{{ $paiement->cni }}</td>
-                <td class="border">{{ $paiement->n_telephone }}</td>
-                <td class="border">{{ $paiement->montant}}</td>
-                <td class="border">{{ $paiement->choix }}</td>
-                <td class="border">{{ $paiement->mode_paiement }}</td>
-                <td class="border"><a href="{{ asset('asset/images/' . $paiement->image) }}">{{ $paiement->image }}</a></td>
 
-                <td class="border">{{ $paiement->Email }}</td>
-                <td class="border">
-                <div class="btn-group" role="group" aria-label="Actions">
-                    <input type="button" class="btn btn-success" value="OUI" onclick="validerDemande({{ $paiement->id }})" style="width: 70px; margin-right: 5px;">
-                    <input type="button" class="btn btn-danger" value="NON" onclick="nonValiderDemande({{ $paiement->id }})" style="width: 70px;">
-                </div>
-            </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-     
-    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<div class="d-flex justify-content-center">
-    {{ $paiements->links() }}
-</div>
+
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+
+<script>
+  
+        $('#paiementscolarite').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('getDataPaiement')}}",
+            columns: [
+                { data: 'id', name: 'id' },
+                  { data: 'mois_concerne', name: 'mois_concerne' },
+                { data: 'nom', name: 'nom' },
+                { data: 'prenom', name: 'prenom' },
+                { data: 'filiere', name: 'filiere' },
+                { data: 'cni', name: 'cni' },
+                { data: 'n_telephone', name: 'n_telephone' },
+                { data: 'montant', name: 'montant' },
+                { data: 'choix', name: 'choix' },
+               { data: 'mode_paiement', name: 'mode_paiement' },  
+               { data: 'image', name: 'image' },
+                { data: 'Email', name: 'Email' },
+              
+                
+              
+            ]
+        });
+    
+</script>
+
 
 @endsection
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

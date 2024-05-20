@@ -15,7 +15,11 @@
     #modifier:hover {
         background-color: #3966c2
     }
-    
+    @media (width: 2560px) {
+        .container {
+            max-width: 2600px;
+            
+        }}
     
 
 h3{

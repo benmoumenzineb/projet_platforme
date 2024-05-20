@@ -127,12 +127,17 @@
     /* Media queries for responsive design */
 
     /* Phones */
-    @media (max-width: 320px) {
+    @media (width: 320px) {
         .container {
             padding: 0 10px;
             /* Adjust padding for smaller screens */
         }
-
+        .sidebar {
+            width: 250px;
+            height: auto;
+            /* Adjust the width for phones */
+        }
+      
     }
 
     @media (min-width: 321px) and (max-width: 375px) {
@@ -178,6 +183,9 @@
         }
 
     }
+    img{
+        margin-left: 2px;
+    }
 </style>
 
 <body>
@@ -189,7 +197,7 @@
     sidebar Vertical-->
     <nav class="navbar">
         <div class="container">
-            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="12%" style="margin-left: 10px;">
             <div class="navbar-left">
 
                 <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
