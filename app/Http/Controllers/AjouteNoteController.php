@@ -67,17 +67,7 @@ class AjouteNoteController extends Controller
 }
 
 
-public function update(Request $request, $id)
-{
-    $etudiant = Etudians::findOrFail($id);
-    $etudiant->CTR1 = $request->input('CTR1');
-    $etudiant->CTR2 = $request->input('CTR2');
-    $etudiant->EF = $request->input('EF');
-    $etudiant->TP = $request->input('TP');
-    $etudiant->save();
 
-    return redirect()->back()->with('success', 'Les notes ont été mises à jour avec succès');
-}*/
  
 public function fetchEtudiants(Request $request)
 {
@@ -90,7 +80,7 @@ public function fetchEtudiants(Request $request)
     return DataTables::of($etudiants)
          ->addIndexColumn()
          ->make(true);
-}
+}*/
 
 public function index(Request $request)
 {
@@ -136,7 +126,7 @@ public function getEtudiantsByCycle(Request $request)
     }
 
     // Effectuez la recherche en fonction des conditions sélectionnées
-    $etudiants = Etudians::where($conditions)->get(['apogee','CNE','CNI','Nom','Prenom','CTR1','CTR2','EF','TP']);
+    $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom','CTR1','CTR2','EF','TP']);
     
     // Redirigez vers la deuxième vue avec les choix comme paramètres d'URL
     return view('Prof.views.ajoutenote', compact('etudiants'));
@@ -174,16 +164,31 @@ public function getEtudiantsData(Request $request)
     }
 
     // Effectuez la recherche en fonction des conditions sélectionnées
-    $etudiants = Etudians::where($conditions)->get(['apogee','CNE','CNI','Nom','Prenom','CTR1','CTR2','EF','TP']);
+    $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom','CTR1','CTR2','EF','TP']);
     
     // Formatez les données pour DataTables
     $formattedData = DataTables::of($etudiants)
-        ->addIndexColumn()
+    ->addIndexColumn()
+    ->addColumn('actions', function($etudiants) {
+        return '<div style="display: flex; gap: 5px;">
+        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiants->id . '" style="width:50px;">Edit</button> </div>';
+            })
+            ->rawColumns(['actions'])
         ->make(true);
 
     // Retournez les données formatées sous forme de réponse JSON pour DataTables
     return $formattedData;
 }
 
-
+public function update(Request $request)
+    {
+        $etudiant = Etudians::find($request->id);
+        
+        $etudiant->CTR1= $request->CTR1;
+        $etudiant->CTR2= $request->CTR2;
+        $etudiant->EF = $request->EF;
+        $etudiant->TP = $request->TP;
+        $etudiant->save();
+        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
+    }
 }

@@ -167,3 +167,4 @@ Route::get('/etudiants-liste', [AjouteNoteController::class, 'getEtudiantsData']
 Route::get('/liste-etudiants-presence', [ListePresenceController::class, 'getEtudiants'])->name('Listes');
 Route::get('/Presence-etudiant', [ListePresenceController::class, 'getEtudiantsData'])->name('dataetudiant');
 
+Route::post('/miseajour', [AjouteNoteController::class, 'update'])->name('profupdate');
