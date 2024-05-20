@@ -53,7 +53,7 @@
                     <table class="table table-striped" id="etudiants-table">
                         <thead>
                             <tr>
-                                <th class="th-color border">ID</th>
+                                <th class="th-color border">Numéro</th>
                                 <th class="th-color border">Code Apogee</th>
                                 <th class="th-color border">CNE</th>
                                 <th class="th-color border">CNI</th>
@@ -144,7 +144,7 @@ $('#etudiants-table').DataTable({
         if (isNaN(ctr1) || isNaN(ctr2) || isNaN(ef) || isNaN(tp) ||
             ctr1 < 0 || ctr1 > 20 || ctr2 < 0 || ctr2 > 20 ||
             ef < 0 || ef > 20 || tp < 0 || tp > 20) {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault(); 
             alert("Les notes doivent être comprises entre 0 et 20.");
             return false;
         }

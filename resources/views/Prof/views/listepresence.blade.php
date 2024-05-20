@@ -51,17 +51,24 @@
                     <table class="table table-striped" id="etudiants-table">
                         <thead>
                             <tr>
+                                <th class="th-color border">Numéro</th>
                                 <th class="th-color border">Code Apogee</th>
                                 <th class="th-color border">CNE</th>
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
+                                <th class="th-color border">Actions</th>
+                               
                                 
                                
                             </tr>
                         </thead>
                     </table>
                 </div>
+                <button type="button" id="btnEnregistrer" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+style="background-color: #173165;margin-left: 70px;">
+Enregistrer
+</button>
             </div>
         </div>
     </div>
@@ -78,22 +85,57 @@ $('#etudiants-table').DataTable({
     serverSide: true,
     ajax: "{{ route('dataetudiant') }}",
     columns: [
+        { data: 'id', name: 'id' },
         { data: 'apogee', name: 'apogee' },
         { data: 'CNE', name: 'CNE' },
         { data: 'CNI', name: 'CNI' },
         { data: 'Nom', name: 'Nom' },
-        { data: 'Prenom', name: 'Prenom' }
+        { data: 'Prenom', name: 'Prenom' },
+      
+        {  data: 'actions',
+                name: 'actions',
+                orderable: false,
+    searchable: false
+            }
        
     ]
 });
 
 
-
-  
-
-
-
-
 </script>
+<script>
+   
+   $('#btnEnregistrer').click(function() {
+        var absences = [];
+        $('input[name="absence"]:checked').each(function() {
+            absences.push($(this).val());
+        });
+        console.log($('input[name="absence"]:checked').length);
+        var form = $('<form>', {
+            'action': '{{ route('updateAbsence') }}',
+            'method': 'POST'
+        });
 
+        // Ajouter le jeton CSRF au formulaire
+        form.append($('<input>', {
+            'type': 'hidden',
+            'name': '_token',
+            'value': '{{ csrf_token() }}'
+        }));
+
+        absences.forEach(function(absence) {
+            form.append($('<input>', {
+                'type': 'hidden',
+                'name': 'absences[]',
+                'value': absence
+            }));
+        });
+
+        $('body').append(form);
+
+        form.submit();
+    });
+   
+    </script>
+    
 @endsection

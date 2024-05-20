@@ -168,3 +168,6 @@ Route::get('/liste-etudiants-presence', [ListePresenceController::class, 'getEtu
 Route::get('/Presence-etudiant', [ListePresenceController::class, 'getEtudiantsData'])->name('dataetudiant');
 
 Route::post('/miseajour', [AjouteNoteController::class, 'update'])->name('profupdate');
+
+
+Route::post('/update-absence', [ListePresenceController::class, 'updateAbsence'])->name('updateAbsence');
