@@ -1,4 +1,3 @@
-
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
@@ -39,12 +38,32 @@
 
 <div class="container">
     <div class="row justify-content-center">
+        
         <div class="col-md-6">
             <div class="form-container">
                 <form action="{{ route('Listes') }}" method="GET">
                     @csrf
-                    <div class="row">
+        
+                    <div class="row mt-3">
                         <div class="col-md-6">
+                            <h6>Date :</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Heure :</h6>
+                        </div>
+                        <div class="col-md-6 ">
+                            <input class="form-control" type="time" id="heure" name="heure" required>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 ">
                             <h6>Cycle :</h6>
                         </div>
                         <div class="col-md-6">
