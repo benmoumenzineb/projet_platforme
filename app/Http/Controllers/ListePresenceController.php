@@ -7,11 +7,7 @@ use Yajra\DataTables\DataTables;
 class ListePresenceController extends Controller
 {
     
- 
 
-    
-
-    
 
 
     public function getEtudiants(Request $request)
@@ -51,7 +47,7 @@ class ListePresenceController extends Controller
         }
     
         // Effectuez la recherche en fonction des conditions sélectionnées
-        $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom']);
+        $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom','absence']);
         
         // Redirigez vers la deuxième vue avec les choix comme paramètres d'URL
         return view('Prof.views.listepresence', compact('etudiants'));
@@ -92,22 +88,16 @@ class ListePresenceController extends Controller
     }
 
     // Effectuez la recherche en fonction des conditions sélectionnées
-    $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom']);
+    $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom','absence']);
     
     // Formatez les données pour DataTables
     $formattedData = DataTables::of($etudiants)
-        ->addIndexColumn()
-        ->addColumn('actions', function($etudiants) {
-            return '<div style="display: flex; gap: 5px;">
-           
- <label for="absence"> p</label>
-<input type="radio" value="Present" id="" name="absence">
-<label for="absence"> r</label>
-<input type="radio" value="Retard" id="" name="absence">
-<label for="absence"> a</label>
-<input type="radio" value="Absent" id="" name="absence"></div>';
-                })
-                ->rawColumns(['actions'])
+    ->addIndexColumn()
+    ->addColumn('actions', function($etudiants) {
+        return '<div style="display: flex; gap: 5px;">
+        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiants->id . '" style="width:50px;">Edit</button> </div>';
+            })
+            ->rawColumns(['actions'])
         ->make(true);
 
     // Retournez les données formatées sous forme de réponse JSON pour DataTables
@@ -115,20 +105,12 @@ class ListePresenceController extends Controller
     }
     public function updateAbsence(Request $request)
     {
-        // Récupérer les absences depuis la requête
-        $absences = $request->input('absence');
-    
-        // Vérifier si l'étudiant existe déjà dans la base de données
-        $etudiant = Etudians::firstOrCreate(['id' => $request->input('id')]);
-    
-        // Attribuer les absences à l'étudiant
-        $etudiant->absence = $absences;
-    
-        // Sauvegarder les modifications dans la base de données
+        $etudiant = Etudians::find($request->id);
+        
+        $etudiant->absence= $request->absence;
+      
         $etudiant->save();
-    
-        // Retourner une réponse réussie
-        return response()->json(['message' => 'Absences enregistrées avec succès.']);
+        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
     }
     
 }
