@@ -22,7 +22,12 @@
                 /* Set max-width to match iPad Air width */
             }
         }
-
+        @media (width: 2560px) {
+           table {
+               width: 2204px;
+                /* Set max-width to match iPad Air width */
+            }
+        }
         .fixed {
             margin-top: 20PX;
         }

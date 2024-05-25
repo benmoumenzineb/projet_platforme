@@ -22,6 +22,7 @@ class PaiementetudiantController extends Controller
             'n_telephone' => 'required',
             'montant' => 'required',
             'choix' => 'required',
+            'date_paiement' => 'required',
             'mode_paiement' => 'required',
             'mois_concerne'=>'required',
             'image' => 'nullable|max:2048',
@@ -36,6 +37,7 @@ class PaiementetudiantController extends Controller
         $paiement->cni = $request->cni;
         $paiement->n_telephone = $request->n_telephone;
         $paiement->montant = $request->montant;
+        $paiement->date_paiement=$request->date_paiement;
         $paiement->choix = $request->choix;
         $paiement->mode_paiement = $request->mode_paiement;
         $paiement->Email = $request->Email;

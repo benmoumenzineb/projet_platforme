@@ -26,17 +26,21 @@
                             <tr>
                                
                          <th class="th-color border" scope="col">Numero de demande</th>
-                                     <th class="th-color border" scope="col">Mois</th>
+                         <th class="th-color border" scope="col">Date Paiement</th>
+                                     
                                                 <th class="th-color border" scope="col">Nom</th>
                                                 <th class="th-color border" scope="col">Prenom</th>
-                                                <th class="th-color border" scope="col">Filiére</th>
-                                                <th class="th-color border" scope="col">CNI</th>
-                                                <th class="th-color border" scope="col">Numero de Téléphone</th>
-                                                <th class="th-color border" scope="col">Montant</th>
-                                                <th class="th-color border" scope="col">Choix</th>
-                                                <th class="th-color border" scope="col">Mode de Paiement</th>
-                                                <th class="th-color border" scope="col">Image</th>
                                                 <th class="th-color border" scope="col">E-mail</th>
+                                                <th class="th-color border" scope="col">Numero de Téléphone</th>
+                                                <th class="th-color border" scope="col">CNI</th>
+                                                <th class="th-color border" scope="col">Montant</th>
+                                                <th class="th-color border" scope="col">Mode de Paiement</th>
+                                                <th class="th-color border" scope="col">Mois</th>
+                                                <th class="th-color border" scope="col">Choix</th>
+                                                <th class="th-color border" scope="col">Filiére</th>
+ 
+                                                <th class="th-color border" scope="col">Image</th>
+                                               
                                                
                 
                             </tr>
@@ -59,18 +63,25 @@
             serverSide: true,
             ajax: "{{ route('getDataPaiement')}}",
             columns: [
-                { data: 'id', name: 'id' },
-                  { data: 'mois_concerne', name: 'mois_concerne' },
+                { data: 'id_paiement', name: 'id_paiement' },
+                { data: 'date_paiement', name: 'date_paiement' },
                 { data: 'nom', name: 'nom' },
                 { data: 'prenom', name: 'prenom' },
-                { data: 'filiere', name: 'filiere' },
-                { data: 'cni', name: 'cni' },
-                { data: 'n_telephone', name: 'n_telephone' },
-                { data: 'montant', name: 'montant' },
-                { data: 'choix', name: 'choix' },
-               { data: 'mode_paiement', name: 'mode_paiement' },  
-               { data: 'image', name: 'image' },
                 { data: 'Email', name: 'Email' },
+                { data: 'n_telephone', name: 'n_telephone' },
+                { data: 'cni', name: 'cni' },
+                { data: 'montant', name: 'montant' },
+                { data: 'mode_paiement', name: 'mode_paiement' },  
+                  { data: 'mois_concerne', name: 'mois_concerne' },
+                  { data: 'choix', name: 'choix' },
+                { data: 'filiere', name: 'filiere' },
+                { data: 'image', name: 'image' },
+               
+              
+              
+              
+             
+               
               
                 
               

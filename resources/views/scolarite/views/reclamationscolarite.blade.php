@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                
-                                <th class="th-color border" scope="col">Numero de demande</th>
+                                <th class="th-color border" scope="col">Numero reclamation</th>
                                 <th class="th-color border" scope="col">Nom</th>
                                 <th class="th-color border" scope="col">Prénom</th>
                                 <th class="th-color border" scope="col">Numero de Téléphone</th>
@@ -54,7 +54,7 @@
             serverSide: true,
             ajax: "{{ route('getDataReclamation')}}",
             columns: [
-                { data: 'id', name: 'id' },
+                { data: 'num_rcl', name: 'num_rcl' },
                 { data: 'Nom', name: 'Nom' },
                 { data: 'Prenom', name: 'Prenom' },
                 { data: 'Numero', name: 'Numero' },

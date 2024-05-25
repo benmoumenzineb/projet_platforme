@@ -44,7 +44,7 @@
                 <div class="card custom-background custom-rounded  p-3">
                     <div class="card-header custom-background text-size text-color text-center "><strong >Login</strong></div>
                     <div class="card-body">
-                        <form id="loginForm" action="{{ route('homeetudiant') }}" method="GET">
+                        <form id="loginForm" action="" method="get">
                             <div class="form-group">
                                 <label for="nom-d'utilisateur" class="text-color">Nom d'utilisateur</label>
                                 <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" required>

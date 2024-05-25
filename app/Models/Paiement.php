@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paiement extends Model
 {
-    use HasFactory;
+    protected $table = 'paiement';
     protected $fillable = [
         
         'nom',
@@ -17,7 +17,7 @@ class Paiement extends Model
         'n_telephone',
         'montant',
         'choix',
-        
+        'date_paiement',
         'mode_paiement',
         'mois_concerne',
        'image',

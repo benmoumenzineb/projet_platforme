@@ -16,7 +16,7 @@ class ReclamationscolariteController extends Controller
     }
     public function reclamationEtudiants()
     {
-        $reclamations = Reclamation::select(['id','Nom', 'Prenom','Numero','Email','Type','Description','file_reclamation']);
+        $reclamations = Reclamation::select(['num_rcl','Nom', 'Prenom','Numero','Email','Type','Description','file_reclamation']);
     
         return DataTables::of($reclamations)
             ->addColumn('file_reclamation', function ($reclamation) {

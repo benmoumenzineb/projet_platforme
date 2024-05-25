@@ -27,18 +27,20 @@ use App\Http\Controllers\AjouteNoteController;
 use App\Http\Controllers\ListePresenceController;
 use App\Http\Controllers\AjouterEtudiantController;
 use App\Http\Controllers\RhPersonnelControlleur;
-
+use App\Http\Controllers\homeRHController;
 
 
 Route::get('/', function () {
-    return view('etudiant.views.login_etudiant');
+    return view('etudiant.views.login');
+});
+Route::get('/register', function () {
+    return view('etudiant.views.register');
 });
 Route::get('/loginscolarite', function () {
     return view('etudiant.views.login_etudiant');
 });
-Route::get('/footer', function () {
-    return view('etudiant.layouts.footer');
-});
+
+
 Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
 
 route::get('/emploi','App\Http\Controllers\EmploietudiantController@index')->name('emploi');
@@ -148,7 +150,7 @@ Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->na
 
 Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant'])->name('ajouter.etudiant');
 
-
+Route::get('/homeRH', [homeRHController::class, 'index'])->name('homeRH');
 Route::post('/ajouter-Personnel', [RhPersonnelControlleur::class,'ajouterPersonnel'])->name('ajouter-Personnel');
 
 Route::post('/delete-Personnel', [RhPersonnelControlleur::class, 'deletePersonne'])->name('delete-Personnel');
@@ -171,3 +173,7 @@ Route::post('/miseajour', [AjouteNoteController::class, 'update'])->name('profup
 
 
 Route::post('/update-absence', [ListePresenceController::class, 'updateAbsence'])->name('updateAbsence');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

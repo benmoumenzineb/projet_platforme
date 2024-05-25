@@ -22,7 +22,7 @@ class ListetudiantController extends Controller
     
     public function fetchEtudiants()
     {
-        $etudiant = Etudians::select(['id', 'apogee', 'CNE', 'CNI', 'Nom', 'Prenom', 'Sexe', 'Date_naissance', 'Pays', 'Diplome_acces', 'Serie_bac', 'Date_inscription', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
+        $etudiant = Etudians::select(['id', 'apogee', 'CNE', 'CNI', 'Nom', 'Prenom', 'Sexe', 'Date_naissance', 'Pays', 'Diplome_acces', 'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
     
         return DataTables::of($etudiant)
             ->addIndexColumn()
@@ -56,7 +56,6 @@ class ListetudiantController extends Controller
         $etudiant->Diplome_acces = $request->Diplome_acces;
         $etudiant->Serie_bac = $request->Serie_bac;
         $etudiant->Mention_bac = $request->Mention_bac;
-        $etudiant->Date_inscription = $request->Date_inscription;
         $etudiant->Etablissement_bac = $request->Etablissement_bac;
         $etudiant->Pourcentage_bourse = $request->Pourcentage_bourse;
         // Mettez à jour d'autres champs si nécessaire
@@ -78,6 +77,7 @@ class ListetudiantController extends Controller
     {
         // Valider les données du formulaire
         $request->validate([
+            'apogee' =>'required',
             'Nom' => 'required|string',
             'Prenom' => 'required|string',
             'CNE' => 'required|string',
@@ -87,7 +87,7 @@ class ListetudiantController extends Controller
             'Pays' => 'required|string',
             'Diplome_acces' => 'required|string',
             'Serie_bac' => 'required|string',
-            'Date_inscription' => 'required',
+            
             'Specialite_diplome' => 'nullable|string',
             'Mention_bac' => 'required|string',
             'Etablissement_bac' => 'required|string',
@@ -96,6 +96,7 @@ class ListetudiantController extends Controller
 
        
         $etudiant = new Etudians([
+            'apogee' =>$request->input('apogee'),
             'Nom' => $request->input('Nom'),
             'Prenom' => $request->input('Prenom'),
             'CNE' => $request->input('CNE'),
@@ -105,7 +106,7 @@ class ListetudiantController extends Controller
             'Pays' => $request->input('Pays'),
             'Diplome_acces' => $request->input('Diplome_acces'),
             'Serie_bac' => $request->input('Serie_bac'),
-            'Date_inscription' => $request->input('Date_inscription'),
+           
             'Specialite_diplome' => $request->input('Specialite_diplome'),
             'Mention_bac' => $request->input('Mention_bac'),
             'Etablissement_bac' => $request->input('Etablissement_bac'),

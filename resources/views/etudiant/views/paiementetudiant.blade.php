@@ -240,18 +240,12 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="N_passeport" class="form-label"><strong>Choix:</strong></label>
+                                    <label for="date_paiement" class="form-label"><strong>Date paiement:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-select" id="choix" name="choix" required>
-                                        <option value="Internat">Internat</option>
-                                        <option value="Ecole">Ecole</option>
-                                        <option value="Salle de sport">Salle de sport</option>
-                                        <option value="Transport">Transport</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                                    <input type="date" class="form-control" id="date_paiement" name="date_paiement" required>
+                                </div></div></div>
+                       
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
@@ -264,6 +258,22 @@
                         </div>
                     </div>
 
+                    <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="N_passeport" class="form-label"><strong>Choix:</strong></label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select" id="choix" name="choix" required>
+                                    <option value="Internat">Internat</option>
+                                    <option value="Ecole">Ecole</option>
+                                    <option value="Salle de sport">Salle de sport</option>
+                                    <option value="Transport">Transport</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div></div>
 
                     <div class="row mt-3">
                         <div class="col-md-6">

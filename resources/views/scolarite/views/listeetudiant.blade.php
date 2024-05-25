@@ -144,15 +144,16 @@
 
 
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Date inscription</label>
-                                            <input type="text" class="form-control" id="Date_inscription"
-                                                name="Date_inscription" required>
-                                        </div>
+                                       
                                         <div class="form-group col-md-4">
                                             <label for="inputCNI">Mention Bac</label>
                                             <input type="text" class="form-control" id="Mention_bac"
                                                 name="Mention_bac" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputDateNaissance">apogee</label>
+                                            <input type="text" class="form-control" id="apogee"
+                                                name="apogee">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputDateNaissance">Specialite diplôme</label>
@@ -264,11 +265,8 @@
 
 
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputCNI">Date inscription</label>
-                            <input type="text" class="form-control" id="inputDate_inscription"
-                                name="Date_inscription">
-                        </div>
+                        
+                           
                         <div class="form-group col-md-4">
                             <label for="inputCNI">Mention Bac</label>
                             <input type="text" class="form-control" id="inputMention_bac"
@@ -336,12 +334,10 @@
                                 <th class="th-color border">Pays</th>
                                 <th class="th-color border">Diplome d'acces</th>
                                 <th class="th-color border">Serie de bac</th>
-                                <th class="th-color border">Date inscription</th>
                                 <th class="th-color border">Specialite diplome</th>
                                 <th class="th-color border">Mention BAC</th>
                                 <th class="th-color border">Etablissement diplome</th>
                                 <th class="th-color border">Pourcentage bourse</th>
-
                                 <th class="th-color border">Actions</th>
                             </tr>
                         </thead>
@@ -371,7 +367,6 @@
             { data: 'Pays', name: 'Pays' },
             { data: 'Diplome_acces', name: 'Diplome_acces' },
             { data: 'Serie_bac', name: 'Serie_bac' },
-            { data: 'Date_inscription', name: 'Date_inscription' },
             { data: 'Specialite_diplome', name: 'Specialite_diplome' },
             { data: 'Mention_bac', name: 'Mention_bac' },
             { data: 'Etablissement_bac', name: 'Etablissement_bac' },
