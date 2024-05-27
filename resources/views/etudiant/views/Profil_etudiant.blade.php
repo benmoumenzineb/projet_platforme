@@ -146,7 +146,7 @@ tr{
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="Code_National" class="form-label"><strong>Code National de l'Etudiant(CNE)
-                                            :</strong></label>
+                                 :</strong></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="Code_National" name="Cne"
@@ -177,7 +177,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control" id="date_inscription" name="Date_inscription"
+                                    <input type="text" class="form-control" id="date_inscription" name="Date_inscription"
                                     readonly>
 
                                 </div>
@@ -254,8 +254,8 @@ tr{
                                 <div class="col-md-6">
                                     <select class="form-select" id="sexe" name="Sexe" required>
                                         <option value="" disabled selected></option>
-                                        <option value="M" {{ $user->Sexe == 'M' ? 'selected' : '' }} readonly>M</option>
-                                        <option value="F" {{ $user->Sexe == 'F' ? 'selected' : '' }} readonly>F</option>
+                                        <option value="M" {{ $user->Sexe == 'M' ? 'selected' : '' }}>M</option>
+                                        <option value="F" {{ $user->Sexe == 'F' ? 'selected' : '' }}>F</option>
                                     </select>
                                 </div>
                             </div>
@@ -713,14 +713,14 @@ tr{
             document.getElementById('identifiants-etudiant-content').style.display = 'block';
             document.getElementById('renseignements-etudiant-content').style.display = 'block';
             document.getElementById('informations-parents-content').style.display = 'block';
-            document.querySelector('.modifier-content').style.display = 'block';
+            
            
         
             // Masquer les contenus du cursus
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
-            document.getElementById('documents-content').style.display = 'none';
+            
 
         });
         
@@ -732,15 +732,14 @@ tr{
     document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
     
     
-    // Masquer les contenus liés aux informations étudiant
+    
     document.getElementById('image-content').style.display = 'none';
     document.querySelector('.etablissment-content').style.display = 'none';
     document.getElementById('identifiants-etudiant-content').style.display = 'none';
     document.getElementById('renseignements-etudiant-content').style.display = 'none';
     document.getElementById('informations-parents-content').style.display = 'none';
-    document.querySelector('.modifier-content').style.display = 'none';
-    document.getElementById('documents-content').style.display = 'none';
-  
+   
+    
     
 });
 

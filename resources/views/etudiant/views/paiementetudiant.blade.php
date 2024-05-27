@@ -206,7 +206,7 @@
                                     <label for="CIN" class="form-label"><strong>CNI :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="CIN" name="cni" required>
+                                    <input type="text" class="form-control" id="CIN" name="cni"  value="{{ $user->CNI ?? '' }}" required>
                                 </div>
                             </div>
                         </div>
