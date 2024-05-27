@@ -102,76 +102,104 @@ public function getEtudiantsByCycle(Request $request)
     $request->session()->put('matiere', $matiere);
     $request->session()->put('groupe', $groupe);
     
-    // Initialisez un tableau pour stocker les conditions de recherche
-    $conditions = [];
+    $query = Etudians::query();
 
-    // Si le cycle est sélectionné, ajoutez-le aux conditions de recherche
-    if ($cycle) {
-        $conditions[] = ['Cycle', $cycle];
-    }
-
-    // Si la filière est sélectionnée, ajoutez-la aux conditions de recherche
-    if ($filiere) {
-        $conditions[] = ['Filiere', $filiere];
-    }
-
-    // Si la matière est sélectionnée, ajoutez-la aux conditions de recherche
-    if ($matiere) {
-        $conditions[] = ['Matiere', $matiere];
-    }
-
-    // Si le groupe est sélectionné, ajoutez-le aux conditions de recherche
-    if ($groupe) {
-        $conditions[] = ['Groupe', $groupe];
-    }
-
-    // Effectuez la recherche en fonction des conditions sélectionnées
-    $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom','CTR1','CTR2','EF','TP']);
+    // Joindre la table "seance" pour obtenir les informations pertinentes
+    $query
+          ->join('programme_filiere', 'programme_filiere.id_filiere', '=', 'filiere.id_filiere')
+          -> join('groupe', 'filiere.id_filiere', '=', 'groupe.id_filiere')
+          ->join('notes_evaluation', 'programme_filiere.num_element', '=', 'notes_evaluation.num_element')
+          ->leftJoin('notes_evaluation', 'etudient.apogee', '=', 'notes_evaluation.apogee');
+   
+          if ($cycle) {
+            $query->where('filiere.cycle', $cycle);
+        }
+        if ($matiere) {
+            $query->where('element.intitule', $matiere);
+        }
+        if ($groupe) {
+            $query->where('groupe.intitule', $groupe);
+        }
+        if ($filiere) {
+            $query->where('filiere.intitule', $filiere);
+        }
+        // Récupérer les données du DataTables
+       /* $etudiants = $query->get([
+            'etudient.apogee',
+            'etudient.CNE',
+            'etudient.CNI',
+            'etudient.Nom',
+            'etudient.Prenom',
+            'notes_evaluation.CTR1',
+            'notes_evaluation.CTR2',
+            'notes_evaluation.EF',
+            'notes_evaluation.TP'
+        ]);*/
     
-    // Redirigez vers la deuxième vue avec les choix comme paramètres d'URL
-    return view('Prof.views.ajoutenote', compact('etudiants'));
+    
+        // Renvoyer les données au format JSON requis par DataTables
+        
+    
+  
+   
+    
+    
+ 
+    return view('Prof.views.ajoutenote');
 }
 
 public function getEtudiantsData(Request $request)
 { 
-    // Récupérez les valeurs choisies
     $cycle = $request->session()->get('cycle');
     $filiere = $request->session()->get('filiere');
     $matiere = $request->session()->get('matiere');
     $groupe = $request->session()->get('groupe');
 
-    // Initialisez un tableau pour stocker les conditions de recherche
-    $conditions = [];
-
-    // Si le cycle est sélectionné, ajoutez-le aux conditions de recherche
-    if ($cycle) {
-        $conditions[] = ['Cycle', $cycle];
-    }
-
-    // Si la filière est sélectionnée, ajoutez-la aux conditions de recherche
-    if ($filiere) {
-        $conditions[] = ['Filiere', $filiere];
-    }
-
-    // Si la matière est sélectionnée, ajoutez-la aux conditions de recherche
-    if ($matiere) {
-        $conditions[] = ['Matiere', $matiere];
-    }
-
-    // Si le groupe est sélectionné, ajoutez-le aux conditions de recherche
-    if ($groupe) {
-        $conditions[] = ['Groupe', $groupe];
-    }
-
-    // Effectuez la recherche en fonction des conditions sélectionnées
-    $etudiants = Etudians::where($conditions)->get(['id','apogee','CNE','CNI','Nom','Prenom','CTR1','CTR2','EF','TP']);
     
-    // Formatez les données pour DataTables
+    
+  
+    $query = Etudians::query();
+
+    // Joindre la table "seance" pour obtenir les informations pertinentes
+   
+    // Joindre la table "seance" pour obtenir les informations pertinentes
+    $query
+          ->join('programme_filiere', 'programme_filiere.id_filiere', '=', 'filiere.id_filiere')
+          -> join('groupe', 'filiere.id_filiere', '=', 'groupe.id_filiere')
+          ->join('notes_evaluation', 'programme_filiere.num_element', '=', 'notes_evaluation.num_element')
+          ->leftJoin('notes_evaluation', 'etudient.apogee', '=', 'notes_evaluation.apogee');
+   
+          if ($cycle) {
+            $query->where('filiere.cycle', $cycle);
+        }
+        if ($matiere) {
+            $query->where('element.intitule', $matiere);
+        }
+        if ($groupe) {
+            $query->where('groupe.intitule', $groupe);
+        }
+        if ($filiere) {
+            $query->where('filiere.intitule', $filiere);
+        }
+        /// Récupérer les données du DataTables
+        $etudiants = $query->get([
+            'etudient.apogee',
+            'etudient.CNE',
+            'etudient.CNI',
+            'etudient.Nom',
+            'etudient.Prenom',
+            'notes_evaluation.CTR1',
+            'notes_evaluation.CTR2',
+            'notes_evaluation.EF',
+            'notes_evaluation.TP'
+        ]);
+    
+   
     $formattedData = DataTables::of($etudiants)
     ->addIndexColumn()
     ->addColumn('actions', function($etudiants) {
         return '<div style="display: flex; gap: 5px;">
-        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiants->id . '" style="width:50px;">Edit</button> </div>';
+        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiants->apogee . '" style="width:50px;">Edit</button> </div>';
             })
             ->rawColumns(['actions'])
         ->make(true);
@@ -182,7 +210,7 @@ public function getEtudiantsData(Request $request)
 
 public function update(Request $request)
     {
-        $etudiant = Etudians::find($request->id);
+        $etudiant = Note::find($request->apogee);
         
         $etudiant->CTR1= $request->CTR1;
         $etudiant->CTR2= $request->CTR2;

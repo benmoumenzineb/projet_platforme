@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
-    use HasFactory;
+    protected $table = 'module';
+
+    public $incrementing = false;
+
+    public $timestamps = false;
 }

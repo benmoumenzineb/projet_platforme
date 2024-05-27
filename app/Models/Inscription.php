@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inscription extends Model
 {
-    use HasFactory;
+    protected $table = 'inscriptions';
+
+    public $incrementing = false;
+
+    public $timestamps = false;
 }
