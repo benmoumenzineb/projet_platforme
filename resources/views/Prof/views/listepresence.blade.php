@@ -11,42 +11,33 @@
         <div class="row">
             <div class="col-md-9">
 
-               <!-- <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Éditer les notes</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="update-form" action="" method="POST">
-                                   
-                                    <div class="form-group">
-                                        <label for="CTR1">CTR1</label>
-                                        <input type="text" class="form-control" id="CTR1" name="CTR1">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="CTR2">CTR2</label>
-                                        <input 
-                                        ùùtype="text" class="form-control" id="CTR2" name="CTR2">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="EF">EF</label>
-                                        <input type="text" class="form-control" id="EF" name="EF">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="TP">TP</label>
-                                        <input type="text" class="form-control" id="TP" name="TP">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                </form>
+              <!-- modfier modal--><div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                                <div class="modal-body">
+                                    <form id="formModifierEtudiant" action="{{ route('updateAbsence') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" id="id" name="id" value="">
+                                       
+                                        
+                                        <div class="form-group col-md-4">
+                                            <label for="inputAbsence">Absence</label>
+                                            <input type="text" class="form-control" id="inputAbsence" name="absence" min="0" max="20">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>-->
-
+                </div>
                 <div class="container">
                     <table class="table table-striped" id="etudiants-table">
                         <thead>
@@ -57,6 +48,7 @@
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
+                                <th class="th-color border">Absence</th>
                                 <th class="th-color border">Actions</th>
                                
                                 
@@ -65,10 +57,8 @@
                         </thead>
                     </table>
                 </div>
-                <button type="button" id="btnEnregistrer" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-style="background-color: #173165;margin-left: 70px;">
-Enregistrer
-</button>
+             
+
             </div>
         </div>
     </div>
@@ -91,6 +81,7 @@ $('#etudiants-table').DataTable({
         { data: 'CNI', name: 'CNI' },
         { data: 'Nom', name: 'Nom' },
         { data: 'Prenom', name: 'Prenom' },
+        { data: 'absence', name: 'absence' },
       
         {  data: 'actions',
                 name: 'actions',
@@ -105,37 +96,40 @@ $('#etudiants-table').DataTable({
 </script>
 <script>
    
-   $('#btnEnregistrer').click(function() {
-        var absences = [];
-        $('input[name="absence"]:checked').each(function() {
-            absences.push($(this).val());
+  
+ 
+    $(document).ready(function() {
+        $('#etudiants-table').on('click', '.edit-btn', function(e) {
+            e.preventDefault();
+         
+            var etudiantId = $(this).data('id');
+            var row = $(this).closest('tr');
+
+            var absence = row.find('td:eq(6)').text();
+        
+        $('#id').val(etudiantId);
+        $('#inputAbsence').val(absence);
+        $('#exampleModalEdit').modal('show');
         });
-        console.log($('input[name="absence"]:checked').length);
-        var form = $('<form>', {
-            'action': '{{ route('updateAbsence') }}',
-            'method': 'POST'
-        });
-
-        // Ajouter le jeton CSRF au formulaire
-        form.append($('<input>', {
-            'type': 'hidden',
-            'name': '_token',
-            'value': '{{ csrf_token() }}'
-        }));
-
-        absences.forEach(function(absence) {
-            form.append($('<input>', {
-                'type': 'hidden',
-                'name': 'absences[]',
-                'value': absence
-            }));
-        });
-
-        $('body').append(form);
-
-        form.submit();
     });
-   
-    </script>
+</script>
+<script>
+   $(document).ready(function() {
+    $('#formModifierEtudiant').submit(function(e) {
+      
+        var absence = $('#inputAbsence').val().toUpperCase().trim(); // Convertir en majuscules pour la comparaison
+
+        // Vérifier si l'entrée n'est pas égale à A, P ou R
+        if (absence !== "R" && absence !== "P" && absence !== "A") {
+            alert("Tu dois entrer soit A, P ou R en majuscules ou minuscules.");
+            return false;
+        }
+
+    });
+});
+
+
+</script>
+
     
 @endsection

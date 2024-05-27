@@ -141,7 +141,7 @@ $('#etudiants-table').DataTable({
         var ef = parseFloat($('#inputEF').val());
         var tp = parseFloat($('#inputTP').val());
 
-        if (isNaN(ctr1) || isNaN(ctr2) || isNaN(ef) || isNaN(tp) ||
+        if (
             ctr1 < 0 || ctr1 > 20 || ctr2 < 0 || ctr2 > 20 ||
             ef < 0 || ef > 20 || tp < 0 || tp > 20) {
             e.preventDefault(); 
