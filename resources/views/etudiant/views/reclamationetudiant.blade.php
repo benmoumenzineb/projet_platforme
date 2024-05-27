@@ -2,23 +2,22 @@
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
     <style>
-        /* Style pour le conteneur du formulaire */
-       /* Style pour le conteneur du formulaire */
+      
 #reclamation {
     margin: 80px auto 50px;
     background-color: #f9f9f9;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Augmentez la largeur maximale du formulaire */
-    width: 90%; /* Ajoutez cette règle pour étendre la largeur du formulaire sur toute la largeur disponible */
-    margin-left: auto; /* Centrez horizontalement le formulaire */
-    margin-right: auto; /* Centrez horizontalement le formulaire */
+    max-width: 800px; 
+    width: 90%; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 @media (max-width: 320px) {
     #reclamation {
-        padding: 20px; /* Réduire le padding pour les petits écrans */
+        padding: 20px; 
     }
 }
 

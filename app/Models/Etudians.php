@@ -1,17 +1,20 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class Etudians extends Model
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
+class Etudians extends Authenticatable implements AuthenticatableContract
 {
+    use HasFactory;
+
     protected $table = 'etudient';
 
     public $incrementing = false;
 
     public $timestamps = false;
+
     protected $fillable = [
         'id',
         'Nom',
@@ -28,16 +31,13 @@ class Etudians extends Model
         'Mention_bac',
         'Etablissement_bac',
         'Pourcentage_bourse',
-        'password',
         'apogee',
-      
     ];
-   
-    protected $hidden = ['password', 'remember_token'];
 
-    public function getAuthIdentifierName()
+    public function getAuthPassword()
     {
-        return 'apogee';
+        return $this->apogee; // Utilise 'apogee' comme mot de passe
     }
-    
+
+    protected $hidden = ['apogee', 'remember_token'];
 }

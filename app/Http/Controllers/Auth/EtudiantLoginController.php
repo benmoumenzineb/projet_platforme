@@ -9,28 +9,33 @@ use App\Models\Etudians;
 
 class EtudiantLoginController extends Controller
 {
-    public function showLoginForm()
+    public function index()
     {
-        return view('etudiant.views.login');
+        return view('etudiant.views.etudient-login');
     }
 
-    public function login(Request $request)
-    {
-        // Validation des données du formulaire
-        $request->validate([
-            'apogee' => 'required',
-            'password' => 'required',
-        ]);
+    public function login_etudient(Request $request)
+{
+    $this->validate($request, [
+        'CNE' => 'required', 
+        'apogee' => 'required',
+    ]);
 
-        // Tentative de connexion de l'étudiant
-        $credentials = $request->only('apogee', 'password');
+    
+    $user = Etudians::where('CNE', $request->CNE)
+                    ->where('apogee', $request->apogee)
+                    ->first();
 
-        if (Auth::attempt($credentials)) {
-            // L'étudiant est connecté avec succès
-            return redirect()->route('homeetudiant'); // Rediriger vers le tableau de bord de l'étudiant
-        }
+    if ($user) {
+        // Connecter manuellement l'utilisateur
+        Auth::guard('etudient')->login($user, $request->remember);
 
-        // Si la connexion échoue, redirigez l'utilisateur vers le formulaire de connexion avec un message d'erreur
-        return redirect()->back()->withErrors(['error' => 'Code Apogée ou mot de passe incorrect.'])->withInput($request->only('apogee'));
+        return redirect()->intended(route('homeetudiant'));
     }
+
+    return redirect()->back()->withInput($request->only('CNE', 'remember'))->withErrors([
+        'CNE' => 'Nom d\'utilisateur ou mot de passe invalide !',
+    ])->with('error_class', 'text-red');
+    
+}
 }

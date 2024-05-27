@@ -28,16 +28,13 @@ use App\Http\Controllers\ListePresenceController;
 use App\Http\Controllers\AjouterEtudiantController;
 use App\Http\Controllers\RhPersonnelControlleur;
 use App\Http\Controllers\homeRHController;
+use App\Http\Controllers\Auth\EtudiantLoginController;
 
 
-Route::get('/', function () {
-    return view('etudiant.views.login');
-});
-Route::get('/register', function () {
-    return view('etudiant.views.register');
-});
-Route::get('/loginscolarite', function () {
-    return view('etudiant.views.login_etudiant');
+Route::middleware(['web'])->group(function () {
+    Route::get('/loginetudiant', [EtudiantLoginController::class, 'index'])->name('etudient.login');
+    Route::post('/loginetudiant2', [EtudiantLoginController::class, 'login_etudient'])->name('login.submit');
+    Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
 });
 
 

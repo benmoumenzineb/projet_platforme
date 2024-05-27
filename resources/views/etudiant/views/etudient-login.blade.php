@@ -44,16 +44,23 @@
                 <div class="card custom-background custom-rounded  p-3">
                     <div class="card-header custom-background text-size text-color text-center "><strong >Login</strong></div>
                     <div class="card-body">
-                        <form id="loginForm" action="" method="get">
+                        <form id="loginForm" action="{{ route('login.submit') }}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="nom-d'utilisateur" class="text-color">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" required>
-                                 
+                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" value="{{ old('CNE') }}" required autocomplete="CNE" autofocus required>
+                                @error('CNE')
+                                <span role="alert" style="color: rgb(236, 42, 42); font-size:12px;">{{ $message }}</span>
+
+                            @enderror
                                   
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-color">Mot de Passe</label>
-                                <input type="password"  name="password" class="form-control" id="password" placeholder=" Entrer votre Mot de passe " required>
+                                <input type="password"  name="apogee" class="form-control" id="password" required autocomplete="current-password" placeholder=" Entrer votre Mot de passe " required>
+                                @error('apogee')
+                                <span role="alert">{{ $message }}</span>
+                            @enderror
                                 <div class="mot-de-passe-oublie"><input type="checkbox" class=" custom-checkbox"> Mot de Passe oublié ?</div>
                             </div>
                             <button type="submit"   class="btn btn-primary w-100 background-color text-color">Connexion</button>

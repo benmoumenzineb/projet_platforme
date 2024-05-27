@@ -107,11 +107,11 @@ tr{
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
                         <div class="suptech_sante_radio">
                             <label style="margin-right: 100px;">
-                                <input type="radio" name="Etablissement" value="Mohammedia">
+                                <input type="radio" name="Etablissement" value="Mohammedia" readonly>
                                 Mohammedia
                             </label>
                             <label>
-                                <input type="radio" name="Etablissement" value="Essouira">
+                                <input type="radio" name="Etablissement" value="Essouira" readonly>
                                 Essouira
                             </label>
                         </div>
@@ -122,9 +122,7 @@ tr{
         </div>
     </div>
 
-    <!-- Autres formulaires et sections existants ici -->
-
-    <!-- Formulaire pour Identifiants étudiant-->
+   
     <div id="identifiants-etudiant-content" class="content" style="margin-left: -20px; margin-top:20px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
             <fieldset class="border p-3">
@@ -139,7 +137,7 @@ tr{
                                     <label for="id_etudiant" class="form-label"><strong>Code Apogee :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="id_etudiant" name="apogee" required>
+                                    <input type="text" class="form-control" id="id_etudiant" name="apogee" readonly>
 
                                 </div>
                             </div>
@@ -152,7 +150,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="Code_National" name="Cne"
-                                        required>
+                                    value="{{ $user->CNE ?? '' }}" readonly>
                                     <div class="invalid-feedback">
 
                                     </div>
@@ -167,7 +165,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Cycle :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cycle" name="Cycle" required>
+                                    <input type="text" class="form-control" id="cycle" name="Cycle" readonly>
 
                                 </div>
                             </div>
@@ -180,12 +178,24 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="date" class="form-control" id="date_inscription" name="Date_inscription"
-                                        required>
+                                    readonly>
 
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="cycle" class="form-label"><strong>Pourcentage de Bourse :</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="Pourcentage_bourse"  value="{{ $user->Pourcentage_bourse ?? '' }}" readonly>
+
+                                </div>
+                            </div>
+                        </div></div>
                 </form>
             </fieldset>
         </div>
@@ -208,7 +218,7 @@ tr{
                                     <label for="nom" class="form-label"><strong>Nom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom" name="Nom" required>
+                                    <input type="text" class="form-control" id="nom" name="Nom" value="{{ $user->Nom ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +228,7 @@ tr{
                                     <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom" name="Prenom" required>
+                                    <input type="text" class="form-control" id="prenom" name="Prenom" value="{{ $user->Prenom ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -231,8 +241,8 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control" id="date_naissance" name="Date_naissance"
-                                        required>
+                                    <input type="text" class="form-control" id="date_naissance" name="Date_naissance" value="{{ $user->Date_naissance ?? '' }}"
+                                    readonly>
                                 </div>
                             </div>
                         </div>
@@ -244,8 +254,8 @@ tr{
                                 <div class="col-md-6">
                                     <select class="form-select" id="sexe" name="Sexe" required>
                                         <option value="" disabled selected></option>
-                                        <option value="homme">M</option>
-                                        <option value="femme">F</option>
+                                        <option value="M" {{ $user->Sexe == 'M' ? 'selected' : '' }} readonly>M</option>
+                                        <option value="F" {{ $user->Sexe == 'F' ? 'selected' : '' }} readonly>F</option>
                                     </select>
                                 </div>
                             </div>
@@ -260,7 +270,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="lieu_naissance" name="Lieu_naissance"
-                                        required>
+                                    readonly>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +281,7 @@ tr{
                                         :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cin" name="Cni" required>
+                                    <input type="text" class="form-control" id="cin" name="Cni" value="{{ $user->CNI ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -287,7 +297,7 @@ tr{
                                     <label for="adresse" class="form-label"><strong>Adresse :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="adresse" name="Adresse" required>
+                                    <input type="text" class="form-control" id="adresse" name="Adresse" readonly>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +307,7 @@ tr{
                                     <label for="Pays" class="form-label"><strong>Pays:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pays" name="Pays" required>
+                                    <input type="text" class="form-control" id="Pays" name="Pays" value="{{ $user->Pays ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -309,7 +319,7 @@ tr{
                                     <label for="telephone" class="form-label"><strong>Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="tele" name="Telephone" required>
+                                    <input type="text" class="form-control" id="tele" name="Telephone" readonly>
                                 </div>
                             </div>
                         </div>
@@ -321,7 +331,7 @@ tr{
                                     <label for="email" class="form-label"><strong>E-mail :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="email" name="Email" required>
+                                    <input type="text" class="form-control" id="email" name="Email" readonly>
                                 </div>
                             </div>
                         </div>
@@ -355,7 +365,7 @@ tr{
                                     <label for="nom_pere" class="form-label"><strong>Nom pére :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_pere" name="Nom_pere" required>
+                                    <input type="text" class="form-control" id="nom_pere" name="Nom_pere" readonly>
                                 </div>
                             </div>
                         </div>
@@ -366,7 +376,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"
-                                        required>
+                                    readonly>
                                 </div>
                             </div>
                         </div>
@@ -378,7 +388,7 @@ tr{
                                     <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="Telephone_pere" required>
+                                    <input type="text" class="form-control" id="N_tele" name="Telephone_pere" readonly>
                                 </div>
                             </div>
                         </div>
@@ -390,7 +400,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="Profession_pere"
-                                        name="Profession_pere" required>
+                                        name="Profession_pere" readonly>
                                 </div>
                             </div>
                         </div>
@@ -402,7 +412,7 @@ tr{
                                     <label for="nom_mére" class="form-label"><strong>Nom mére:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_mére" name="Nom_mere" required>
+                                    <input type="text" class="form-control" id="nom_mére" name="Nom_mere" readonly>
                                 </div>
                             </div>
                         </div>
@@ -413,7 +423,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="prenom_mere" name="Prenom_mere"
-                                        required>
+                                    readonly>
                                 </div>
                             </div>
                         </div>
@@ -425,7 +435,7 @@ tr{
                                     <label for="N_tele" class="form-label"><strong>N° Téléphone:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="Telephone_mere" required>
+                                    <input type="text" class="form-control" id="N_tele" name="Telephone_mere" readonly>
                                 </div>
                             </div>
                         </div>
@@ -437,7 +447,7 @@ tr{
                                     <label for="prof_mere" class="form-label"><strong>Profession mére :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prof_mere" name="Profesion_mere" required>
+                                    <input type="text" class="form-control" id="prof_mere" name="Profesion_mere" readonly>
                                 </div>
                             </div>
                         </div>
@@ -450,7 +460,7 @@ tr{
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="persone_urgence"
-                                        name="Nom_tuteur" required>
+                                        name="Nom_tuteur" readonly>
                                 </div>
                             </div>
                         </div>
@@ -462,7 +472,7 @@ tr{
                                     <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="Telephone_tuteur" required>
+                                    <input type="text" class="form-control" id="N_tele" name="Telephone_tuteur" readonly>
                                 </div>
                             </div>
                         </div>
@@ -475,16 +485,7 @@ tr{
         </div>
     </div>
 
-    <div class="modifier-content" style="margin-top: 20px; margin-right:10px; overflow: hidden;">
-        <div class="row justify-content-end">
-            <div class="col-md-6">
-                <div class="d-flex justify-content-end">
-                    <button type="submit" id="modifier" name="modifier" class="btn btn-primary"
-                        style="background-color: #173165;border:none;">Modifier</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!--Tableau pour Renseignements Académique -->
     <div id="renseignement-academique-baccalaureat-content" class="content"
@@ -498,32 +499,57 @@ tr{
                         <fieldset class="border p-3">
                             <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Baccalauréat</strong>
                             </legend>
-                            <table class="table" id="renseignement-academique" style="background-color:#ccc">
-                                <!-- Entête du tableau -->
-                                <thead>
-                                    <!-- Entête du tableau -->
-                                    <tr>
-                                        <th class="th-color th-color border" scope="col">Année Bac</th>
-                                        <th class="th-color th-color border" scope="col">Etablissment</th>
-                                        <th class="th-color th-color border" scope="col">Bac</th>
-                                        <th class="th-color th-color border" scope="col">Mention</th>
-                                        <th class="th-color th-color border" scope="col">Ville</th>
+                            <form id="informations-parents">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="nom_pere" class="form-label"><strong>Année Bac:</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="prenom_pere" class="form-label"><strong> Etablissment:</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"readonly
+                                                   >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="N_tele" class="form-label"><strong>Bac :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="Profession_pere" class="form-label"><strong>Mention
+                                                        :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="Profession_pere"
+                                                    name="Profession_pere" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        
 
-                                    </tr>
-                                </thead>
-                                <!-- Corps du tableau -->
-                                <tbody style="background-color:#f4f0f0">
-                                    <!-- Ligne de données de démonstration -->
-                                    <tr>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                    </tr>
-                                    <!-- Ajoutez plus de lignes selon vos besoins -->
-                                </tbody>
-                            </table>
+                                    
                     </div>
                 </div>
             </div>
@@ -541,34 +567,59 @@ tr{
                         <fieldset class="border p-3">
                             <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Cursus Externe</strong>
                             </legend>
-                            <table class="table" id="renseignement-academique">
-                                <!-- Entête du tableau -->
-                                <thead>
-                                    <!-- Entête du tableau -->
-                                    <tr>
-                                        <th class="th-color th-color border" scope="col">Année universitaire </th>
-                                        <th class="th-color th-color border" scope="col">Diplôme</th>
-                                        <th class="th-color th-color border" scope="col">Obtenu</th>
-                                        <th class="th-color th-color border" scope="col">Etablissement</th>
-                                        <th class="th-color th-color border" scope="col">Mention</th>
-                                        <th class="th-color th-color border" scope="col">Ville</th>
+                            <form id="informations-parents">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="nom_pere" class="form-label"><strong>Année universitaire :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="prenom_pere" class="form-label"><strong> Diplôme:</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" readonly
+                                                   >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="N_tele" class="form-label"><strong>Obtenu :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="Profession_pere" class="form-label"><strong>Etablissement
+                                                        :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="Profession_pere"
+                                                    name="Profession_pere" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                        
 
-                                    </tr>
-                                </thead>
-                                <!-- Corps du tableau -->
-                                <tbody style="background-color:#f4f0f0">
-                                    <!-- Ligne de données de démonstration -->
-                                    <tr>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                    </tr>
-                                    <!-- Ajoutez plus de lignes selon vos besoins -->
-                                </tbody>
-                            </table>
+                                   
+                                    
                     </div>
                 </div>
             </div>
@@ -585,78 +636,68 @@ tr{
                         <fieldset class="border p-3">
                             <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Cursus Interne</strong>
                             </legend>
-                            <table class="table" id="renseignement-academique">
-                                <!-- Entête du tableau -->
-                                <thead>
-                                    <!-- Entête du tableau -->
-                                    <tr>
-                                        <th class="th-color th-color border" scope="col">Année universitaire </th>
-                                        <th class="th-color th-color border" scope="col">Inscription</th>
-                                        <th class="th-color th-color border" scope="col">Mention</th>
-                                        <th class="th-color th-color border" scope="col">Etat</th>
+                            
+                            <form id="informations-parents">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="nom_pere" class="form-label"><strong>Année universitaire :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="prenom_pere" class="form-label"><strong> Inscription:</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"readonly
+                                                   >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="N_tele" class="form-label"><strong>Mention:</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="Profession_pere" class="form-label"><strong>Etat
+                                                        :</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="Profession_pere"
+                                                    name="Profession_pere" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                        
+
+                                       
 
 
-                                    </tr>
-                                </thead>
-                                <!-- Corps du tableau -->
-                                <tbody style="background-color:#f4f0f0">
-                                    <!-- Ligne de données de démonstration -->
-                                    <tr>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-
-                                    </tr>
-
-                                    <!-- Ajoutez plus de lignes selon vos besoins -->
-                                </tbody>
-                            </table>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
     <!--bourse-->
-    <div id="renseignement-academique-bourse-content" class="content"
-        style="margin-left: -20px; margin-top:20px; overflow: hidden;">
-        <div class="content" style="margin-left: 300px; margin-top: 20px;">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-
-                        <fieldset class="border p-3">
-                            <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Bourse</strong></legend>
-                            <table class="table" id="renseignement-academique">
-                                <!-- Entête du tableau -->
-                                <thead>
-                                    <!-- Entête du tableau -->
-                                    <tr>
-                                        <th class="th-color th-color border" scope="col"> Etat de Bourse</th>
-                                        <th class="th-color th-color border" scope="col">Pourcentage de Bourse</th>
-
-
-                                    </tr>
-                                </thead>
-                                <!-- Corps du tableau -->
-                                <tbody style="background-color:#f4f0f0">
-                                    <!-- Ligne de données de démonstration -->
-                                    <tr>
-                                        <td class="border"></td>
-                                        <td class="border"></td>
-
-
-                                    </tr>
-
-                                    <!-- Ajoutez plus de lignes selon vos besoins -->
-                                </tbody>
-                            </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     
 
 
@@ -679,7 +720,6 @@ tr{
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
-            document.getElementById('renseignement-academique-bourse-content').style.display = 'none';
             document.getElementById('documents-content').style.display = 'none';
 
         });
@@ -690,7 +730,7 @@ tr{
     document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
     document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
     document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
-    document.getElementById('renseignement-academique-bourse-content').style.display = 'block';
+    
     
     // Masquer les contenus liés aux informations étudiant
     document.getElementById('image-content').style.display = 'none';

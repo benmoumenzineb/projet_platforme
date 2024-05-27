@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\Paiement;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class PaiementetudiantController extends Controller
 {
     public function index()
     {
-        return view('etudiant.views.paiementetudiant');
+        $user = Auth::guard('etudient')->user();
+        return view('etudiant.views.paiementetudiant' ,compact('user'));
     }
     
     public function enregistrerPaiement(Request $request)

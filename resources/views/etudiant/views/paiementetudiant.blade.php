@@ -172,7 +172,7 @@
                                     <label for="nom" class="form-label"><strong>Nom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom" name="nom" required>
+                                    <input type="text" class="form-control" id="nom" name="nom" value="{{ $user->Nom ?? '' }}" required>
                                 </div>
                             </div>
 
@@ -183,7 +183,7 @@
                                     <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                    <input type="text" class="form-control" id="prenom" name="prenom" value="{{ $user->Prenom ?? '' }}" required>
                                 </div>
                             </div>
                         </div>

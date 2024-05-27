@@ -160,7 +160,7 @@
     @media (min-width: 1441px) and (max-width: 2560px) {
         .container {
             padding: 0 70px;
-            /* Adjust padding for larger screens */
+           
         }
 
     }
@@ -177,8 +177,13 @@
         <div class="container">
             <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
             <div class="navbar-left">
-
-                <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
+                @if($authUser)
+                    <span class="navbar-item p-5"  style="text-decoration: none; color:#173165; font-weight: 600;">
+                        {{ $authUser->Nom }} {{ $authUser->Prenom }}
+                    </span>
+                @else
+                    <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
+                @endif
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                     class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
@@ -186,6 +191,7 @@
             </div>
         </div>
     </nav>
+    
 
     <div class="container-fluid">
         <div id="vertical-sidebar">
