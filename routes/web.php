@@ -74,6 +74,7 @@ Route::get('/paiementscolarite', [PaiementScolariteController::class, 'index'])-
 
 
 Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');
+Route::post('/upload-image', [Profil_etudiantController::class, 'uploadImage'])->name('upload.image');
 
 
 Route::get('/cahiertextprof', [CahierTextProfController::class, 'index'])->name('cahiertextprof');

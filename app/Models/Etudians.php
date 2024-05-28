@@ -32,12 +32,17 @@ class Etudians extends Authenticatable implements AuthenticatableContract
         'Etablissement_bac',
         'Pourcentage_bourse',
         'apogee',
+        'image',
     ];
 
     public function getAuthPassword()
     {
         return $this->apogee; // Utilise 'apogee' comme mot de passe
     }
-
+   
+    public function inscription()
+    {
+        return $this->hasOne(Inscription::class, 'apogee');
+    }
     protected $hidden = ['apogee', 'remember_token'];
 }

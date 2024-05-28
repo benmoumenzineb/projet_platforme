@@ -15,7 +15,7 @@ return new class extends Migration
     {
         $inscriptions = DB::table('inscriptions')->select('id', 'apogee')->get();
 
-        // Mettre à jour les étudiants avec les codes apogée correspondants
+        
         foreach ($inscriptions as $inscription) {
             DB::table('etudient')->where('id', $inscription->id)->update([
                 'apogee' => $inscription->apogee,

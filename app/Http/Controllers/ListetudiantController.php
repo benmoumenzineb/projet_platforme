@@ -22,7 +22,7 @@ class ListetudiantController extends Controller
     
     public function fetchEtudiants()
     {
-        $etudiant = Etudians::select(['id', 'apogee', 'CNE', 'CNI', 'Nom', 'Prenom', 'Sexe', 'Date_naissance', 'Pays', 'Diplome_acces', 'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
+        $etudiant = Etudians::select(['id', 'CNE', 'CNI', 'Nom', 'Prenom', 'Sexe', 'Date_naissance', 'Pays', 'Diplome_acces', 'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
     
         return DataTables::of($etudiant)
             ->addIndexColumn()

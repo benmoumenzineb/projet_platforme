@@ -324,7 +324,7 @@
                         <thead>
                             <tr>
                                 <th class="th-color border">ID</th>
-                                <th class="th-color border">Code Apogee</th>
+                               
                                 <th class="th-color border">CNE</th>
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
@@ -357,7 +357,7 @@
         ajax: "{{ route('getDataEtudients') }}",
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'apogee', name: 'apogee' },
+           
             { data: 'CNE', name: 'CNE' },
             { data: 'CNI', name: 'CNI' },
             { data: 'Nom', name: 'Nom' },

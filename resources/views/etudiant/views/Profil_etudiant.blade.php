@@ -70,6 +70,7 @@ tr{
                 margin-left: 270px;
             }
         }
+        
     </style>
 
 
@@ -84,19 +85,35 @@ tr{
         </div>
         
     </div></div>
-    <div class="content">
-    <div id="image-content" style="margin-left: -20px;">
-    <form action="" method="" enctype="multipart/form-data">
-        <fieldset class="border p-3">
-        @csrf
-        <input type="file" name="image">
-       
-        
-    <img src="" alt="Image de profil" style="width: 100px; height: 100px; margin-left:10px; object-fit: cover;">
+    <form>
+    
+        <div class="content">
+            <div id="image-content" style="margin-left: -20px;">
+                <fieldset class="border p-3">
+                    <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Image Profile</strong></legend>
+                    <form method="POST" action="{{ route('upload.image') }}" enctype="multipart/form-data" style="display: flex; align-items: center;">
+                        @csrf
+                        <div id="imagePreview" style="width: 120px; height: 120px; overflow: hidden; border: 1px solid #ddd;">
+                            @if($user->image)
+                                <img src="{{ asset('storage/' . $user->image) }}" alt="Image de profil" id="profileImage" style="width: 100%; height: 100%; object-fit: cover;">
+                            @else
+                                <img id="profileImage" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                            @endif
+                        </div>
+                        <div style="margin-right: 20px;">
+                            <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+                           
+                        </div>
+                       
+                    </form>
+                </fieldset>
+            </div>
+        </div>
 
 
-    </form>
-</fieldset></div></div>
+
+  
+
     <!-- Formulaire pour Etablissement -->
     <div class="content">
         <div class="etablissment-content" style="margin-left: -20px;">
@@ -107,11 +124,11 @@ tr{
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
                         <div class="suptech_sante_radio">
                             <label style="margin-right: 100px;">
-                                <input type="radio" name="Etablissement" value="Mohammedia" readonly>
+                                <input type="radio" name="Etablissement" value="{{ $etablissement->ville ?? '' }}" {{ $etablissement ? 'checked' : '' }}  readonly>
                                 Mohammedia
                             </label>
                             <label>
-                                <input type="radio" name="Etablissement" value="Essouira" readonly>
+                                <input type="radio" name="Etablissement" value="{{ $etablissement->ville ?? '' }}" {{ $etablissement ? 'checked' : '' }} readonly>
                                 Essouira
                             </label>
                         </div>
@@ -129,7 +146,7 @@ tr{
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Identifiants étudiant</strong>
                 </legend>
 
-                <form id="identifiants_etudiant">
+                <form id="identifiants_etudiant" action="" method="" >
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
@@ -137,7 +154,7 @@ tr{
                                     <label for="id_etudiant" class="form-label"><strong>Code Apogee :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="id_etudiant" name="apogee" readonly>
+                                    <input type="text" class="form-control" id="id_etudiant" name="apogee" value="{{ $user->apogee ?? '' }}"readonly>
 
                                 </div>
                             </div>
@@ -165,7 +182,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Cycle :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cycle" name="Cycle" readonly>
+                                    <input type="text" class="form-control" id="cycle" name="Cycle" value="{{ $filiere->cycle ?? '' }}" readonly>
 
                                 </div>
                             </div>
@@ -177,7 +194,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="date_inscription" name="Date_inscription"
+                                    <input type="text" class="form-control" id="date_inscription" name="num_annee"  value="{{ $inscription->num_annee ?? '' }}"
                                     readonly>
 
                                 </div>
@@ -486,7 +503,7 @@ tr{
     </div>
 
     
-
+</form>
     <!--Tableau pour Renseignements Académique -->
     <div id="renseignement-academique-baccalaureat-content" class="content"
         style="margin-left: -20px; margin-top:20px; overflow: hidden;">
@@ -507,7 +524,7 @@ tr{
                                                 <label for="nom_pere" class="form-label"><strong>Année Bac:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac" readonly>
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"  readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -517,7 +534,7 @@ tr{
                                                 <label for="prenom_pere" class="form-label"><strong> Etablissment:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"readonly
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" value="{{ $user->Etablissement_bac ?? '' }}" readonly
                                                    >
                                             </div>
                                         </div>
@@ -530,7 +547,7 @@ tr{
                                                 <label for="N_tele" class="form-label"><strong>Bac :</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" readonly>
+                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" value="{{ $user->Serie_bac ?? '' }}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -542,7 +559,7 @@ tr{
                                             </div>
                                             <div class="col-md-6">
                                                 <input type="text" class="form-control" id="Profession_pere"
-                                                    name="Profession_pere" readonly>
+                                                    name="Profession_pere" value="{{ $user->Mention_bac ?? '' }}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -585,7 +602,7 @@ tr{
                                                 <label for="prenom_pere" class="form-label"><strong> Diplôme:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" readonly
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" value="{{ $user->Specialite_diplome ?? '' }}" readonly
                                                    >
                                             </div>
                                         </div>
@@ -645,7 +662,7 @@ tr{
                                                 <label for="nom_pere" class="form-label"><strong>Année universitaire :</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"readonly>
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -742,7 +759,19 @@ tr{
     
     
 });
+</script>
 
-    </script>
-    
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('profileImage');
+            output.src = reader.result;
+            output.style.display = 'block';  
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+
     
