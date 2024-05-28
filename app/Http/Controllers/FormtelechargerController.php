@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\seance;
+use App\Models\Seance;
+use App\Models\Groupe;
+use App\Models\Element;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -13,39 +15,49 @@ class FormtelechargerController extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-           //name
-           'Cycle' => 'required',
-           'Filiere' => 'required',
-           'Groupe' => 'required',
-           'Niveau' => 'required',
-           'Matiere' => 'required',
-           'nom_enseignant' => 'required',
-           'horaire' => 'required',
-           'Date' => 'required',
-           'Activites' =>'required',
+          
         ]);
-    
-        // Création d'une nouvelle séance
-        $seance = new seance();
-        $seance->Cycle = $request->Cycle;
-        $seance->Filiere = $request->Filiere;
-        $seance->Groupe = $request->Groupe;
-        $seance->Niveau = $request->Niveau;
-        $seance->Matiere = $request->Matiere;
-        $seance->horaire = $request->horaire;
-        $seance->Date= $request->Date;
-        $seance->nom_enseignant = $request->nom_enseignant;
-        $seance->Activites= $request->Activites;
-    
-        // Enregistrement de la séance dans la base de données
-        $seance->save();
-    
-        // Génération et téléchargement du fichier PDF
-        $this->telechargerFichier($request);
-    
-        // Redirection avec message de succès
-        return redirect()->route('enregistrercahiertext')->with('success', 'Cahier de texte enregistré avec succès.');
+    $donnees = $request->all();
+
+    $hd = $request->input('hd');
+    $hf = $request->input('hf');
+    $date= $request->input('date');
+    $activite = $request->input('activite');
+
+    // Ajuster les valeurs des champs dans le tableau $donnees
+    $donnees['heure_depart'] = $hd;
+    $donnees['heure_fin'] = $hf;
+    $donnees['date_seance'] = $date;
+    $donnees['objectif'] = $activite;
+
+    // Effectuez les vérifications nécessaires et insérez les données dans la base de données
+    // Exemple de vérification pour la matière
+    $matiereExistante = Element::where('intitule', $donnees['matiere'])->first();
+    if ($matiereExistante) {
+        // Stockez le numéro de l'élément dans la table Seance
+        $donnees['num_element'] = $matiereExistante->num_element;
     }
+
+    // Vérification pour le groupe
+    $groupeExistante = Groupe::where('intitule', $donnees['groupe'])->first();
+    if ($groupeExistante) {
+        // Stockez l'id du groupe dans la table Seance
+        $donnees['id_groupe'] = $groupeExistante->id;
+    }
+
+    // Autres vérifications et opérations similaires pour la filière, le cycle, le niveau, l'enseignant, etc.
+
+    // Enregistrez les données dans la table Seance
+    Seance::create($donnees);
+
+     
+
+    // Redirigez l'utilisateur ou renvoyez une réponse JSON en fonction de vos besoins
+    return response()->json(['message' => 'Les données ont été enregistrées avec succès'], 200);
+}
+       
+       
+       
     public function telechargerFichier(Request $request)
     {
         // Obtenir les données du formulaire

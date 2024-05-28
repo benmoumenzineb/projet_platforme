@@ -101,14 +101,6 @@ $('#etudiants-table').DataTable({
             }
     ]
 });
-
-
-
-  
-
-
-
-
 </script>
 <script>
     $(document).ready(function() {
