@@ -12,11 +12,11 @@
 <style>
     .custom-background {
         background-color: #173165;
-         /* Couleur de fond personnalisée */
+         
          
     }
     .card {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Adjust values as needed */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); 
 }
 
    .text-color{
@@ -38,7 +38,9 @@
 
 
 <body class="bg-light text-color">
+   
     <div class="container">
+       
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="card custom-background custom-rounded  p-3">

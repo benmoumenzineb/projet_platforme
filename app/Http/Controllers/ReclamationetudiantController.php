@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Reclamation;
 use Illuminate\Support\Facades\Storage;
@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ReclamationetudiantController extends Controller
 {
-    public function index(){
-        return view('etudiant.views.reclamationetudiant');
+    public function index()
+    {
+        $user = Auth::guard('etudient')->user();
+        return view('etudiant.views.reclamationetudiant' ,compact('user'));
     }
+   
 
    public function enregistrerReclamation(Request $request)
     {

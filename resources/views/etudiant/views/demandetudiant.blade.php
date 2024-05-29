@@ -122,17 +122,17 @@ h6 {
             <div class="row">
                 <div class="col-md-6">
                     <h6>Nom</h6>
-                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" required>
+                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" required>
                 </div>
               
                 <div class="col-md-6">
                     <h6>Prénom</h6>
-                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" required>
+                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" required>
                 </div>  </div>
                 <div class="row">
                     <div class="col-md-6">
                         <h6>Votre numéro de téléphone</h6>
-                        <input class="form-control" type="text" name="Numero" id="" placeholder="Téléphone" required>
+                        <input class="form-control" type="text" name="Numero" id="" placeholder="Téléphone"  required>
                     </div>
                     <div class="col-md-6">
                         <h6>Votre Email</h6>

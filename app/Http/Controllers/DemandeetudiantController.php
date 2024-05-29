@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Demande;
 class DemandeetudiantController extends Controller
 {
     public function index(){
-        return view ('etudiant.views.demandetudiant');}
+        $user = Auth::guard('etudient')->user();
+       
+        return view ('etudiant.views.demandetudiant',compact('user'));}
         public function enregistrerDemande(Request $request)
     {
         // Validation des données du formulaire

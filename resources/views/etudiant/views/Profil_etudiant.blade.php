@@ -4,20 +4,22 @@
 @section('contenu')
 
     <style>
-        /* Ajout de style pour les boutons */
+       input :read-only{
+        background-color: #ffffff;
+       }
        #boutonInformations, #boutonCursus{
-    background-color: #173165; /* couleur de fond */
-    color: white; /* couleur du texte */
+    background-color: #173165; 
+    color: white; 
    
-    text-align: center; /* alignement du texte */
-    text-decoration: none; /* pas de soulignement */
+    text-align: center; 
+    text-decoration: none; 
  padding: 5px;
-    font-size: 17px; /* taille de police */
-    margin: 4px 2px; /* marge externe */
-    cursor: pointer; /* curseur de type pointeur */
-    border-radius: 5px; /* bord arrondi */
-    border: 5px #173165; /* pas de bordure */
-    transition-duration: 0.4s; /* durée de transition */
+    font-size: 17px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 5px;
+    border: 5px #173165; 
+    transition-duration: 0.4s; 
 }
 tr{
     color: rgb(105, 101, 101)
@@ -61,7 +63,7 @@ tr{
 
         @media (min-width: 768px) {
 
-            /* Adjust margin-left for larger screens */
+           
             .content {
                 margin-left: 300px;
             }
@@ -70,12 +72,16 @@ tr{
                 margin-left: 270px;
             }
         }
+        .form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+   
+}
         
     </style>
 
 
 
-    <!-- Boutons pour accéder aux informations -->
+   
     <div   style=" margin-top:20px; overflow: hidden;">
     <div style="margin-left: 0px; margin-top: 100px;">
         <div class="content">
@@ -94,18 +100,20 @@ tr{
                     <form method="POST" action="{{ route('upload.image') }}" enctype="multipart/form-data" style="display: flex; align-items: center;">
                         @csrf
                         <div id="imagePreview" style="width: 120px; height: 120px; overflow: hidden; border: 1px solid #ddd;">
-                            @if($user->image)
-                                <img src="{{ asset('storage/' . $user->image) }}" alt="Image de profil" id="profileImage" style="width: 100%; height: 100%; object-fit: cover;">
+                            @if(auth()->guard('etudient')->user()->image)
+                                <img src="{{ asset(auth()->guard('etudient')->user()->image) }}" alt="Image de profil" id="profileImage" style="width: 100%; height: 100%; object-fit: cover;">
                             @else
-                                <img id="profileImage" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                                <img id="profileImage" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             @endif
                         </div>
-                        <div style="margin-right: 20px;">
+                        <div style="margin-left: 10px;">
                             <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
-                           
+                            <button type="submit" style="margin-top: 10px;">Enregistrer l'image</button>
                         </div>
-                       
                     </form>
+                    
+                    
+                    
                 </fieldset>
             </div>
         </div>
@@ -118,7 +126,7 @@ tr{
     <div class="content">
         <div class="etablissment-content" style="margin-left: -20px;">
             <fieldset class="border p-3">
-                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Etablissment</strong></legend>
+                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Etablissment</strong></legend>
                 <form id="etablissment">
                     <div class="form-group">
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
@@ -269,7 +277,7 @@ tr{
                                     <label for="sexe" class="form-label"><strong>Sexe :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-select" id="sexe" name="Sexe" required>
+                                    <select class="form-select" id="sexe" name="Sexe" required disabled>
                                         <option value="" disabled selected></option>
                                         <option value="M" {{ $user->Sexe == 'M' ? 'selected' : '' }}>M</option>
                                         <option value="F" {{ $user->Sexe == 'F' ? 'selected' : '' }}>F</option>
@@ -572,7 +580,7 @@ tr{
             </div>
         </div>
     </div>
-    <!-- cursus externe-->
+    
     <div id="renseignement-academique-cursus-externe-content" class="content"
         style="margin-left: -20px; margin-top:20px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top: 20px;">
@@ -713,7 +721,7 @@ tr{
             </div>
         </div>
     </div>
-    <!--bourse-->
+  
 
     
 
@@ -722,9 +730,9 @@ tr{
         const boutonInformations = document.getElementById('boutonInformations');
         const boutonCursus = document.getElementById('boutonCursus');
         
-        // Écouteur d'événement pour le bouton "Informations étudiant"
+        
         boutonInformations.addEventListener('click', function() {
-            // Masquer tous les contenus sauf celui de l'Établissement
+
             document.getElementById('image-content').style.display = 'block';
             document.querySelector('.etablissment-content').style.display = 'block';
             document.getElementById('identifiants-etudiant-content').style.display = 'block';
@@ -733,7 +741,7 @@ tr{
             
            
         
-            // Masquer les contenus du cursus
+            
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
@@ -741,9 +749,9 @@ tr{
 
         });
         
-        // Écouteur d'événement pour le bouton "Cursus"
+       
         boutonCursus.addEventListener('click', function() {
-    // Masquer tous les contenus sauf ceux du cursus
+    
     document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
     document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
     document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
@@ -767,11 +775,11 @@ tr{
         reader.onload = function() {
             var output = document.getElementById('profileImage');
             output.src = reader.result;
-            output.style.display = 'block';  
-        };
+        }
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
+
 
 
     
