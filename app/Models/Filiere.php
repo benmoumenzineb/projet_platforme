@@ -7,9 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Filiere extends Model
 {
+    public function groupe()
+    {
+        return $this->hasMany(Groupe::class, 'id_filiere');
+    }
+
+    public function inscription()
+    {
+        return $this->hasMany(Inscription::class, 'id_filiere');
+    }
     protected $table = 'filiere';
 
     public $incrementing = false;
 
     public $timestamps = false;
+    protected $fillable = [
+       
+       
+        'id_filiere',
+        'intitule',
+        'description',
+        'nombre_annee',
+        'cycle',
+        'cin_coordinateur',
+          
+           
+       ];
 }

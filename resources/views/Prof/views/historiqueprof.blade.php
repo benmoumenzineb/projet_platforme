@@ -17,15 +17,17 @@
                         <thead>
                             <tr>
                                 <th class="th-color border">Numero de seance</th>
-                                <th class="th-color border">Enseignant</th>
-                                <th class="th-color border">Cycle</th>
-                                <th class="th-color border">Filiere</th>
-                                <th class="th-color border">Matière</th>
-                                <th class="th-color border">Niveau </th>
-                                <th class="th-color border">Groupe</th>
-                                <th class="th-color border">Horaire</th>
                                 <th class="th-color border">Date</th>
+                                <th class="th-color border">Heure de depart</th>
+                                <th class="th-color border">Heure de fin</th>
+                                <!--<th class="th-color border">Matière</th>
+                                <th class="th-color border">Niveau </th>
+                                <th class="th-color border">Groupe</th>-->
                                 <th class="th-color border">Activites</th>
+                               <th class="th-color border">Element</th>
+                                <th class="th-color border">Groupe</th>
+                                <th class="th-color border">Filiere</th>
+                                <th class="th-color border">Niveau</th>
                             </tr>
                         </thead>
                     </table>
@@ -47,19 +49,45 @@
             serverSide: true,
             ajax: "{{ route('hisroriqueprofesseur') }}",
             columns: [
-                { data: 'Num_seance', name: 'Num_seance' },  
-                { data: 'nom_enseignant', name: 'nom_enseignant' },
-                { data: 'Cycle', name: 'Cycle' },
-                { data: 'Filiere', name: 'Filiere' },
-                { data: 'Matiere', name: 'Matiere' },
-                { data: 'Niveau', name: 'Niveau' },
-                { data: 'Groupe', name: 'Groupe' },
-                { data: 'horaire', name: 'horaire' },
-                { data: 'Date', name: 'Date' },
-                { data: 'Activites', name: 'Activites' },
-               
-            ]
-        });
+                { data: 'num_seance', name: 'num_seance' },  
+                { data: 'date_seance', name: 'date_seance' },
+                { data: 'heure_depart', name: 'heure_depart' },
+                { data: 'heure_fin', name: 'heure_fin' },
+                { data: 'objectif', name: 'objectif' },
+                /*{ data: 'element.intitule', name: 'element.intitule' },
+        { 
+            data: 'groupe.intitule',
+            name: 'groupe.intitule',
+            render: function(data, type, full, meta) {
+                // Si vous avez plusieurs groupes, vous devrez les concaténer ici
+                return data; 
+            } 
+        },
+        { 
+            data: 'groupe.filiere.intitule',
+            name: 'groupe.filiere.intitule',
+            render: function(data, type, full, meta) {
+                // Si vous avez plusieurs filières, vous devrez les concaténer ici
+                return data; 
+            } 
+        },
+        { 
+            data: 'groupe.inscriptions.0.niveau',
+            name: 'groupe.inscriptions.niveau',
+            render: function(data, type, full, meta) {
+                // Vous pouvez ajuster cette logique selon vos besoins
+                return data; 
+            } 
+        }*/
+    
+            { data: 'element', name: 'element' },
+            { data: 'groupe', name: 'groupe' },
+            { data: 'filiere', name: 'filiere' },
+            { data: 'niveau', name: 'niveau' }
+    ]
+});
+    
+          
     
 </script>
 

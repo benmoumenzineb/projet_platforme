@@ -23,4 +23,8 @@ class Element extends Model
           
            
        ];
+       public function seance()
+    {
+        return $this->hasMany(Seance::class, 'num_element',);
+    }
 }

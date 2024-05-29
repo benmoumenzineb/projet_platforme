@@ -24,36 +24,34 @@ class FormtelechargerController extends Controller
     $date= $request->input('date');
     $activite = $request->input('activite');
 
-    // Ajuster les valeurs des champs dans le tableau $donnees
+    
+    
+  
+   
+   
+    $matiereExistante = Element::where('intitule', $donnees['matiere'])->first();
+    if ($matiereExistante) {
+       
+        $donnees['num_element'] = $matiereExistante->num_element;
+    }
+
+ 
+    $groupeExistante = Groupe::where('intitule', $donnees['groupe'])->first();
+    if ($groupeExistante) {
+      
+        $donnees['id_groupe'] = $groupeExistante->id;
+    } 
     $donnees['heure_depart'] = $hd;
     $donnees['heure_fin'] = $hf;
     $donnees['date_seance'] = $date;
     $donnees['objectif'] = $activite;
 
-    // Effectuez les vérifications nécessaires et insérez les données dans la base de données
-    // Exemple de vérification pour la matière
-    $matiereExistante = Element::where('intitule', $donnees['matiere'])->first();
-    if ($matiereExistante) {
-        // Stockez le numéro de l'élément dans la table Seance
-        $donnees['num_element'] = $matiereExistante->num_element;
-    }
-
-    // Vérification pour le groupe
-    $groupeExistante = Groupe::where('intitule', $donnees['groupe'])->first();
-    if ($groupeExistante) {
-        // Stockez l'id du groupe dans la table Seance
-        $donnees['id_groupe'] = $groupeExistante->id;
-    }
-
-    // Autres vérifications et opérations similaires pour la filière, le cycle, le niveau, l'enseignant, etc.
-
-    // Enregistrez les données dans la table Seance
+    
     Seance::create($donnees);
 
      
 
-    // Redirigez l'utilisateur ou renvoyez une réponse JSON en fonction de vos besoins
-    return response()->json(['message' => 'Les données ont été enregistrées avec succès'], 200);
+    return redirect()->back()->with('success', 'Les données ont été enregistrées avec succès');
 }
        
        

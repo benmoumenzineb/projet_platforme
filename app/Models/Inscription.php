@@ -26,5 +26,17 @@ class Inscription extends Model
         
         return $this->belongsTo(Filiere::class, 'id_filiere', 'id_filiere');
     }
-}
+    protected $fillable = [
+        'apogee',
+        'code-etab',
+        'num_annee',
+        'id_filiere',
+        'frais',
+        'niveau',
+       
+    ];
+    }
+
+    
+
 
