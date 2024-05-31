@@ -17,10 +17,7 @@ class Groupe extends Model
         return $this->belongsTo(Filiere::class, 'id_filiere','id_filiere');
     }
 
-    public function inscription()
-    {
-        return $this->hasMany(Inscription::class, 'id_filiere','id_filiere');
-    }
+    
     protected $table = 'groupe';
 
 public $incrementing = false;

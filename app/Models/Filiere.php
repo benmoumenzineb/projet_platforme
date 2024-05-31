@@ -12,7 +12,7 @@ class Filiere extends Model
         return $this->hasMany(Groupe::class, 'id_filiere');
     }
 
-    public function inscription()
+    public function inscriptions()
     {
         return $this->hasMany(Inscription::class, 'id_filiere');
     }

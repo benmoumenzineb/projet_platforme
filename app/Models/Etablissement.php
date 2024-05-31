@@ -9,6 +9,10 @@ class Etablissement extends Model
 {
 
     use HasFactory;
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class, 'code_etab', 'code_etab');
+    }
     protected $table = 'etablissement';
     protected $primaryKey = 'code_etab';
     public $incrementing = false;

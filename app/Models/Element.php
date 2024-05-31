@@ -27,4 +27,12 @@ class Element extends Model
     {
         return $this->hasMany(Seance::class, 'num_element',);
     }
+    public function notes_evaluation()
+    {
+        return $this->hasMany(Note::class, 'num_element',);
+    }
+    public function module()
+    {
+        return $this->hasMany(Module::class, 'num_element',);
+    }
 }
