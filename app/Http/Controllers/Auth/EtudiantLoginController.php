@@ -38,4 +38,10 @@ class EtudiantLoginController extends Controller
     ])->with('error_class', 'text-red');
     
 }
+public function logout()
+{
+    
+    Auth::guard('etudient')->logout();
+    return redirect()->route('etudient.login');
+}
 }

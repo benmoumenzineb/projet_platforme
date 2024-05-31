@@ -61,7 +61,7 @@
                                 @error('apogee')
                                 <span role="alert">{{ $message }}</span>
                             @enderror
-                                <div class="mot-de-passe-oublie"><input type="checkbox" class=" custom-checkbox"> Mot de Passe oublié ?</div>
+                                
                             </div>
                             <button type="submit"   class="btn btn-primary w-100 background-color text-color">Connexion</button>
                         </form>

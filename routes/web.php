@@ -37,6 +37,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
 });
 
+Route::get('/logout', [EtudiantLoginController::class, 'logout'])->name('logout.etudiant');
 
 Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
 

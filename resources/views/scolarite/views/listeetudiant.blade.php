@@ -151,9 +151,9 @@
                                                 name="Mention_bac" required>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">apogee</label>
+                                            <label for="inputDateNaissance">Date inscription</label>
                                             <input type="text" class="form-control" id="apogee"
-                                                name="apogee">
+                                                name="num_annee">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputDateNaissance">Specialite diplôme</label>

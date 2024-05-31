@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Inscription extends Model
 {
     protected $table = 'inscriptions';
-    protected $primaryKey = 'apogee';
+    //protected $primaryKey = 'apogee';
+   
     public $incrementing = false;
 
+   
+
     public $timestamps = false;
+
     public function etudiant()
     {
         return $this->belongsTo(Etudians::class, 'apogee');

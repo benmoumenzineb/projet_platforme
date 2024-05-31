@@ -28,10 +28,10 @@ class ListetudiantController extends Controller
             ->addIndexColumn()
             ->addColumn('actions', function($etudiant) {
                 return '<div style="display: flex; gap: 5px;">
-                        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
+                        <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:auto;">Modifier</button>
                         <form id="delete-form-' . $etudiant->id . '" action="' . route('etudiants.destroy', $etudiant->id) . '" method="POST" style="margin: 0;">
                             ' . csrf_field() . method_field('DELETE') . '
-                            <button type="button" class="btn btn-danger" onclick="confirmDelete(' . $etudiant->id . ')" style="width:70px;">Delete</button>
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete(' . $etudiant->id . ')" style="width:auto;">Supprimer</button>
                         </form>
                     </div>';
         })
@@ -115,9 +115,16 @@ class ListetudiantController extends Controller
         ]);
 
       
+        
+
+        $request->validate([ 
+            'num_annee' => 'required',
+        ]);
+        $etudiant = new Inscription([
+            'num_annee' => $request->input('num_annee'),
+        ]);
         $etudiant->save();
 
-       
         return redirect()->route('listetudiant')->with('success', 'Étudiant ajouté avec succès.');
     }
     
