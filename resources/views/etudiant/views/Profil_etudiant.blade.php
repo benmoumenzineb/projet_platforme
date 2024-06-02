@@ -93,30 +93,7 @@ tr{
     </div></div>
     <form>
     
-        <div class="content">
-            <div id="image-content" style="margin-left: -20px;">
-                <fieldset class="border p-3">
-                    <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Image Profile</strong></legend>
-                    <form method="POST" action="{{ route('upload.image') }}" enctype="multipart/form-data" style="display: flex; align-items: center;">
-                        @csrf
-                        <div id="imagePreview" style="width: 120px; height: 120px; overflow: hidden; border: 1px solid #ddd;">
-                            @if(auth()->guard('etudient')->user()->image)
-                                <img src="{{ asset(auth()->guard('etudient')->user()->image) }}" alt="Image de profil" id="profileImage" style="width: 100%; height: 100%; object-fit: cover;">
-                            @else
-                                <img id="profileImage" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                            @endif
-                        </div>
-                        <div style="margin-left: 10px;">
-                            <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
-                            <button type="submit" style="margin-top: 10px;">Enregistrer l'image</button>
-                        </div>
-                    </form>
-                    
-                </fieldset>
-            </div>
-        </div>
-
-
+       
 
   
 
@@ -208,6 +185,17 @@ tr{
                         </div>
                     </div>
                     <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="cycle" class="form-label"><strong>Filiere :</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="intitule"  value="{{ $filiere->intitule ?? '' }}" readonly>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
@@ -320,7 +308,7 @@ tr{
                                     <label for="adresse" class="form-label"><strong>Adresse :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="adresse" name="Adresse" readonly>
+                                    <input type="text" class="form-control" id="adresse" name="Adresse" value="{{ $user->Adresse ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -342,7 +330,7 @@ tr{
                                     <label for="telephone" class="form-label"><strong>Téléphone :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="tele" name="Telephone" readonly>
+                                    <input type="text" class="form-control" id="tele" name="Telephone" value="{{ $user->telephone ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -354,7 +342,7 @@ tr{
                                     <label for="email" class="form-label"><strong>E-mail :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="email" name="Email" readonly>
+                                    <input type="text" class="form-control" id="email" name="Email" value="{{ $user->Email ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -378,14 +366,14 @@ tr{
         style="margin-left: -20px; margin-top:20px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
             <fieldset class="border p-3">
-                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations parents</strong>
+                <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Tuteur</strong>
                 </legend>
                 <form id="informations-parents">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="nom_pere" class="form-label"><strong>Nom pére :</strong></label>
+                                    <label for="nom_pere" class="form-label"><strong>Nom Tuteur :</strong></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="nom_pere" name="Nom_pere" readonly>
@@ -395,7 +383,7 @@ tr{
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="prenom_pere" class="form-label"><strong>Prenom pére :</strong></label>
+                                    <label for="prenom_pere" class="form-label"><strong>Prenom Tuteur :</strong></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"
@@ -418,7 +406,7 @@ tr{
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="Profession_pere" class="form-label"><strong>Profession pére
+                                    <label for="Profession_pere" class="form-label"><strong>Profession Tuteur
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
@@ -428,78 +416,10 @@ tr{
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="nom_mére" class="form-label"><strong>Nom mére:</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_mére" name="Nom_mere" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="prenom_mere" class="form-label"><strong>Prenom mére:</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom_mere" name="Prenom_mere"
-                                    readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="N_tele" class="form-label"><strong>N° Téléphone:</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="Telephone_mere" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="prof_mere" class="form-label"><strong>Profession mére :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prof_mere" name="Profesion_mere" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="persone_urgence" class="form-label"><strong>Tuteur:</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="persone_urgence"
-                                        name="Nom_tuteur" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="Telephone_tuteur" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
+                 
+                        
+                   
 
 
 
@@ -530,7 +450,7 @@ tr{
                                                 <label for="nom_pere" class="form-label"><strong>Année Bac:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"  readonly>
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac" value="{{ $user->Annee_bac ?? '' }}"   readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -731,7 +651,7 @@ tr{
         
         boutonInformations.addEventListener('click', function() {
 
-            document.getElementById('image-content').style.display = 'block';
+           
             document.querySelector('.etablissment-content').style.display = 'block';
             document.getElementById('identifiants-etudiant-content').style.display = 'block';
             document.getElementById('renseignements-etudiant-content').style.display = 'block';
@@ -756,7 +676,7 @@ tr{
     
     
     
-    document.getElementById('image-content').style.display = 'none';
+    
     document.querySelector('.etablissment-content').style.display = 'none';
     document.getElementById('identifiants-etudiant-content').style.display = 'none';
     document.getElementById('renseignements-etudiant-content').style.display = 'none';

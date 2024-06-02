@@ -13,7 +13,7 @@ class PaiementScolariteController extends Controller
     }
     public function paiementEtudiants()
     {
-        $paiement = Paiement::select(['id_paiement','date_paiement','nom', 'prenom','n_telephone','Email','cni','montant','image','filiere','mois_concerne','mode_paiement','choix']);
+        $paiement = Paiement::select(['id_paiement','date_paiement','nom', 'prenom','n_telephone','Email','cni','montant','image','mois_concerne','mode_paiement','choix']);
     
         return DataTables::of($paiement)
             ->addColumn('image', function ($paiement) {

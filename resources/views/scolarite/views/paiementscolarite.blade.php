@@ -37,7 +37,7 @@
                                                 <th class="th-color border" scope="col">Mode de Paiement</th>
                                                 <th class="th-color border" scope="col">Mois</th>
                                                 <th class="th-color border" scope="col">Choix</th>
-                                                <th class="th-color border" scope="col">Filiére</th>
+                                               
  
                                                 <th class="th-color border" scope="col">Image</th>
                                                
@@ -74,7 +74,7 @@
                 { data: 'mode_paiement', name: 'mode_paiement' },  
                   { data: 'mois_concerne', name: 'mois_concerne' },
                   { data: 'choix', name: 'choix' },
-                { data: 'filiere', name: 'filiere' },
+               
                 { data: 'image', name: 'image' },
                
               

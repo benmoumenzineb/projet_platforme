@@ -18,7 +18,7 @@ class PaiementetudiantController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'filiere' => 'required',
+           
             'cni' => 'required',
             'n_telephone' => 'required',
             'montant' => 'required',
@@ -34,7 +34,7 @@ class PaiementetudiantController extends Controller
         $paiement = new Paiement();
         $paiement->nom = $request->nom;
         $paiement->prenom = $request->prenom;
-        $paiement->filiere = $request->filiere;
+        
         $paiement->cni = $request->cni;
         $paiement->n_telephone = $request->n_telephone;
         $paiement->montant = $request->montant;

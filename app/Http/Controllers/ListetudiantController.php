@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Etudians;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables; 
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Inscription;
 
 class ListetudiantController extends Controller
 {
@@ -22,7 +25,7 @@ class ListetudiantController extends Controller
     
     public function fetchEtudiants()
     {
-        $etudiant = Etudians::select(['id', 'CNE', 'CNI', 'Nom', 'Prenom', 'Sexe', 'Date_naissance', 'Pays', 'Diplome_acces', 'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
+        $etudiant = Etudians::select(['id', 'CNE', 'CNI', 'Nom', 'Prenom','telephone','Email','Adresse', 'Annee_bac', 'Sexe', 'Date_naissance', 'Pays',  'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
     
         return DataTables::of($etudiant)
             ->addIndexColumn()
@@ -53,7 +56,8 @@ class ListetudiantController extends Controller
         $etudiant->CNI = $request->CNI;
         $etudiant->Date_naissance = $request->Date_naissance;
         $etudiant->Pays = $request->Pays;
-        $etudiant->Diplome_acces = $request->Diplome_acces;
+        $etudiant->Email = $request->Email;
+        $etudiant->Adresse = $request->Adresse;
         $etudiant->Serie_bac = $request->Serie_bac;
         $etudiant->Mention_bac = $request->Mention_bac;
         $etudiant->Etablissement_bac = $request->Etablissement_bac;
@@ -85,7 +89,9 @@ class ListetudiantController extends Controller
             'Sexe' => 'required|string',
             'Date_naissance' => 'required|date',
             'Pays' => 'required|string',
-            'Diplome_acces' => 'required|string',
+            'Email' => 'required|string',
+            'telephone' => 'required',
+            'Adresse' => 'required|string',
             'Serie_bac' => 'required|string',
             
             'Specialite_diplome' => 'nullable|string',
@@ -96,7 +102,7 @@ class ListetudiantController extends Controller
 
        
         $etudiant = new Etudians([
-            'apogee' =>$request->input('apogee'),
+            
             'Nom' => $request->input('Nom'),
             'Prenom' => $request->input('Prenom'),
             'CNE' => $request->input('CNE'),
@@ -106,6 +112,9 @@ class ListetudiantController extends Controller
             'Pays' => $request->input('Pays'),
             'Diplome_acces' => $request->input('Diplome_acces'),
             'Serie_bac' => $request->input('Serie_bac'),
+            'Email' => $request->input('Email'),
+            'Adresse' => $request->input('Adresse'),
+            'telephone' => $request->input('telephone'),
            
             'Specialite_diplome' => $request->input('Specialite_diplome'),
             'Mention_bac' => $request->input('Mention_bac'),

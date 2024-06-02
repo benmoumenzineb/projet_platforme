@@ -136,9 +136,9 @@
                                                 required>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Diplôme d'acces</label>
+                                            <label for="inputDateNaissance">Email</label>
                                             <input type="text" class="form-control" id="Diplome_acces"
-                                                name="Diplome_acces" required>
+                                                name="Email" required>
                                         </div>
                                     </div>
 
@@ -151,9 +151,9 @@
                                                 name="Mention_bac" required>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date inscription</label>
+                                            <label for="inputDateNaissance">Adresse</label>
                                             <input type="text" class="form-control" id="apogee"
-                                                name="num_annee">
+                                                name="Adresse">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputDateNaissance">Specialite diplôme</label>
@@ -189,13 +189,22 @@
                                             </div>
                                         </div>
 
-
+                                        <div class="form-group col-md-4">
+                                            <label for="inputDateNaissance">Téléphone</label>
+                                            <input type="text" class="form-control" id="Etablissement_bac"
+                                                name="telephone" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputDateNaissance">date inscription</label>
+                                            <input type="text" class="form-control" id="Etablissement_bac"
+                                                name="num_annee" required>
+                                        </div>
                                     </div>
 
 
 
 
-                                    <!-- Ajoutez d'autres paires de champs ici -->
+                                    
                                     <button type="submit" class="btn btn-primary"
                                         style="width: 100%; background-color:#173165;">Ajouter</button>
                                 </form>
@@ -257,7 +266,7 @@
                             >
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Diplôme d'acces</label>
+                            <label for="inputDateNaissance">Email</label>
                             <input type="text" class="form-control" id="inputDiplome_acces"
                                 name="Diplome_acces">
                         </div>
@@ -276,6 +285,11 @@
                             <label for="inputDateNaissance">Specialite diplôme</label>
                             <input type="text" class="form-control" id="inputSpecialite_diplome"
                                 name="Specialite_diplome">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputDateNaissance">Adresse</label>
+                            <input type="text" class="form-control" id="inputAdresse"
+                                name="Adresse">
                         </div>
                     </div>
                     <div class="form-row">
@@ -323,17 +337,21 @@
                     <table class="table table-striped" id="etudiants-table">
                         <thead>
                             <tr>
-                                <th class="th-color border">ID</th>
+                                <th class="th-color border">Id étudiant</th>
                                
                                 <th class="th-color border">CNE</th>
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
+                                <th class="th-color border">Téléphone</th>
+                                <th class="th-color border">Email</th>
+                                <th class="th-color border">Adresse</th>
                                 <th class="th-color border">Sexe</th>
                                 <th class="th-color border">Date Naissance</th>
                                 <th class="th-color border">Pays</th>
-                                <th class="th-color border">Diplome d'acces</th>
+                               
                                 <th class="th-color border">Serie de bac</th>
+                                <th class="th-color border">Année bac</th>
                                 <th class="th-color border">Specialite diplome</th>
                                 <th class="th-color border">Mention BAC</th>
                                 <th class="th-color border">Etablissement diplome</th>
@@ -362,11 +380,15 @@
             { data: 'CNI', name: 'CNI' },
             { data: 'Nom', name: 'Nom' },
             { data: 'Prenom', name: 'Prenom' },
+            { data: 'telephone', name: 'telephone' },
+            { data: 'Email', name: 'Email' },
+            { data: 'Adresse', name: 'Adresse' },
             { data: 'Sexe', name: 'Sexe' },
             { data: 'Date_naissance', name: 'Date_naissance' },
             { data: 'Pays', name: 'Pays' },
-            { data: 'Diplome_acces', name: 'Diplome_acces' },
+            
             { data: 'Serie_bac', name: 'Serie_bac' },
+            { data: 'Annee_bac', name: 'Annee_bac' },
             { data: 'Specialite_diplome', name: 'Specialite_diplome' },
             { data: 'Mention_bac', name: 'Mention_bac' },
             { data: 'Etablissement_bac', name: 'Etablissement_bac' },
@@ -391,19 +413,20 @@
 
         var etudiantId = $(this).data('id');
         var row = $(this).closest('tr');
-        var nom = row.find('td:eq(4)').text();
-        var prenom = row.find('td:eq(5)').text();
+        var nom = row.find('td:eq(3)').text();
+        var prenom = row.find('td:eq(4)').text();
         var cne = row.find('td:eq(2)').text();
-        var cni = row.find('td:eq(3)').text();
-        var dateNaissance = row.find('td:eq(7)').text(); 
-        var sexe = row.find('td:eq(6)').text();
-        var pays = row.find('td:eq(8)').text();
-        var Diplome_acces = row.find('td:eq(9)').text();
-        var Serie_bac = row.find('td:eq(10)').text();
-        var Date_inscription = row.find('td:eq(11)').text();
-        var Mention_bac= row.find('td:eq(13)').text();
-        var Etablissement_bac = row.find('td:eq(14)').text();
-        var Pourcentage_bourse = row.find('td:eq(15)').text();
+        var cni = row.find('td:eq(5)').text();
+        var dateNaissance = row.find('td:eq(9)').text(); 
+        var sexe = row.find('td:eq(8)').text();
+        var pays = row.find('td:eq(10)').text();
+        var Email = row.find('td:eq(6)').text();
+        var Serie_bac = row.find('td:eq(11)').text();
+        var telephone = row.find('td:eq(5)').text();
+        var Mention_bac= row.find('td:eq(14)').text();
+        var Etablissement_bac = row.find('td:eq(15)').text();
+        var Pourcentage_bourse = row.find('td:eq(16)').text();
+        var Adresse = row.find('td:eq(7)').text();
 
 
 
@@ -416,12 +439,13 @@
         $('#inputSexe').val(sexe);
         $('#inputPays').val(pays);
         $('#inputSerie_bac').val(Serie_bac);
-        $('#inputDiplome_acces').val(Diplome_acces);
-        $('#inputDate_inscription').val(Date_inscription);
+        $('#inputDiplome_acces').val(Email);
         $('#inputMention_bac').val(Mention_bac);
         $('#inputEtablissement_bac').val(Etablissement_bac);
         $('#inputPourcentage_bourse').val(Pourcentage_bourse);
+        $('#inputAdresse').val(Adresse);
         $('#exampleModalEdit').modal('show');
+        
     });
 });
 

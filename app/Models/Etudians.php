@@ -33,6 +33,10 @@ class Etudians extends Authenticatable implements AuthenticatableContract
         'Pourcentage_bourse',
         'apogee',
         'image',
+        'telephone',
+        'Email',
+        'Adresse',
+
     ];
 
     public function getAuthPassword()
@@ -44,5 +48,9 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     {
         return $this->hasOne(Inscription::class, 'apogee');
     }
+
+    
+
+
     protected $hidden = ['apogee', 'remember_token'];
 }
