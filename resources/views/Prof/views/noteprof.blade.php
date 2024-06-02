@@ -49,8 +49,8 @@
                         <div class="col-md-6">
                             <select class="form-control" id="etablissement" name="etablissement" >
                                 <option value="0: undefined" selected></option>
-                                <option value="mohammadia" >Mohammadia</option>
-                                <option value="essaouira" >Essaouira</option>
+                                <option value="MOHAMMEDIA" >MOHAMMEDIA</option>
+                                <option value="ESSAOUIRA" >ESSAOUIRA</option>
                             </select>
                         </div>
                     </div>

@@ -44,13 +44,16 @@ class Etudians extends Authenticatable implements AuthenticatableContract
         return $this->apogee; // Utilise 'apogee' comme mot de passe
     }
    
-    public function inscription()
+    public function inscriptions()
     {
         return $this->hasOne(Inscription::class, 'apogee');
     }
 
-    
-
+    public function notes_evaluation()
+    {
+        return $this->hasOne(Note::class, 'apogee');
+    }
 
     protected $hidden = ['apogee', 'remember_token'];
+  
 }

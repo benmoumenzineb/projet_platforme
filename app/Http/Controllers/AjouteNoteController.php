@@ -5,7 +5,11 @@ use App\Models\Etudians;
 use Illuminate\Http\Request;
 use App\Models\Element;
 use App\Models\Etablissement;
+use App\Models\Filiere;
+use App\Models\Groupe;
+use App\Models\Inscription;
 use App\Models\Note;
+use DB;
 use Yajra\DataTables\DataTables;
 class AjouteNoteController extends Controller
 {
@@ -97,65 +101,61 @@ public function getEtudiantsByCycle(Request $request)
     $filiere = $request->input('filiere');
     $matiere = $request->input('matiere');
     $groupe = $request->input('groupe');
-   
+    $niveau = $request->input('niveau');
     // Stockez les choix dans des variables de session
     $request->session()->put('etablissement', $etab);
     $request->session()->put('cycle', $cycle);
     $request->session()->put('filiere', $filiere);
     $request->session()->put('matiere', $matiere);
     $request->session()->put('groupe', $groupe);
-    
-    $query = Etudians::query();
-   $query->select([
-    'etudient.id as id',
-    'etudient.apogee as apogee',
-    'etudient.CNE as CNE',
-    'etudient.CNI as CNI',
-    'etudient.Nom as Nom',
-    'etudient.Prenom as Prenom',
-    'notes_evaluation.CTR1 as CTR1',
-    'notes_evaluation.CTR2 as CTR2',
-    'notes_evaluation.EF as EF',
-    'notes_evaluation.TP as TP'
-]);
+    $request->session()->put('niveau', $niveau);
+    $query = Etudians::query()
+    ->select([
+        'etudient.id',
+        'etudient.apogee',
+        'etudient.CNE',
+        'etudient.CNI',
+        'etudient.Nom',
+        'etudient.Prenom',
+        'notes_evaluation.CTR1 as CTR1',
+        'notes_evaluation.CTR2 as CTR2 ',
+        'notes_evaluation.EF  as EF',
+        'notes_evaluation.TP  as TP'
+    ])->leftJoin('notes_evaluation', 'etudient.apogee', '=', 'notes_evaluation.apogee')
+    ->join('inscriptions as i', 'i.apogee', '=', 'etudient.apogee')
+    ->join('element as e', 'e.num_element', '=', 'notes_evaluation.num_element')
+    ->join('filiere as f', 'f.id_filiere', '=', 'i.id_filiere')
+    ->join('etablissement as et', 'et.code_etab', '=', 'i.code_etab')
+    ->join('groupe as g', 'g.id_filiere', '=', 'f.id_filiere');
 
-$query->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
-          ->join('notes_evaluation as ne', 'ne.apogee', '=', 'etudient.apogee')
-          ->join('element as em', 'em.num_element', '=', 'ne.num_element')
-          ->join('filiere as f', 'f.id_filiere', '=', 'inscriptions.id_filiere')
-          ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
-          ->join('groupe as g', 'g.id_filiere', '=', 'f.id_filiere');
+if ($etab) {
+    $query->where('et.ville', $etab);
+}
+if ($cycle) {
+    $query->where('f.cycle', $cycle);
+}
+if ($matiere) {
+    $query->where('e.intitule', $matiere);
+}
 
-    if ($etab) {
-        $query->where('etablissement.ville', $etab);
-    }
-    if ($cycle) {
-        $query->where('f.cycle', $cycle);
-    }
-    if ($matiere) {
-        $query->where('em.intitule', $matiere);
-    }
-    if ($groupe) {
-        $query->where('g.intitule', $groupe);
-    }
-    if ($filiere) {
-        $query->where('f.intitule', $filiere);
-    }
+if ($filiere) {
+    $query->where('f.intitule', $filiere);
+}
+if ($cycle) {
+    $query->where('f.cycle', $cycle);
+}
+if ($groupe) {
+    $query->where('g.intitule', $groupe);
+} elseif ($niveau) {
+    $query->where('i.niveau', $niveau);
+}
 
-    
-        // Récupérer les données du DataTables
-       /* $etudiants = $query->get([
-            'etudient.apogee',
-            'etudient.CNE',
-            'etudient.CNI',
-            'etudient.Nom',
-            'etudient.Prenom',
-            'notes_evaluation.CTR1',
-            'notes_evaluation.CTR2',
-            'notes_evaluation.EF',
-            'notes_evaluation.TP'
-        ]);*/
-    
+// Log the generated SQL query and bindings
+\Log::info($query->toSql());
+\Log::info($query->getBindings());
+
+$etudiants = $query->get();
+
     
       
         
@@ -171,94 +171,85 @@ $query->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
 public function getEtudiantsData(Request $request)
 { 
     $etab = $request->session()->get('etablissement');
-    $cycle = $request->session()->get('cycle');
-    $filiere = $request->session()->get('filiere');
-    $matiere = $request->session()->get('matiere');
-    $groupe = $request->session()->get('groupe');
+        $cycle = $request->session()->get('cycle');
+        $filiere = $request->session()->get('filiere');
+        $matiere = $request->session()->get('matiere');
+        $groupe = $request->session()->get('groupe');
+        $niveau= $request->session()->get('niveau');
+        $query = Etudians::query()
+            ->select([
+                'etudient.id',
+                'etudient.CNE',
+                'etudient.CNI',
+                'etudient.Nom',
+                'etudient.Prenom',
+                'notes_evaluation.CTR1 as CTR1',
+                'notes_evaluation.CTR2 as CTR2',
+                'notes_evaluation.EF as EF',
+                'notes_evaluation.TP as TP'
+            ])
+            ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
+            ->join('notes_evaluation', 'notes_evaluation.apogee', '=', 'etudient.apogee')
+            ->join('element', 'element.num_element', '=', 'notes_evaluation.num_element')
+            ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
+            ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
+            ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
 
-   $query = Etudians::query();
-   $query->select([
-    'etudient.id',
-    'etudient.apogee',
-    'etudient.CNE',
-    'etudient.CNI',
-    'etudient.Nom',
-    'etudient.Prenom',
-    'notes_evaluation.CTR1 as CTR1',
-    'notes_evaluation.CTR2 as CTR2',
-    'notes_evaluation.EF as EF',
-    'notes_evaluation.TP as TP'
-]);
-
-$query->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
-          ->join('notes_evaluation as ne', 'ne.apogee', '=', 'etudient.apogee')
-          ->join('element as em', 'em.num_element', '=', 'ne.num_element')
-          ->join('filiere as f', 'f.id_filiere', '=', 'inscriptions.id_filiere')
-          ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
-          ->join('groupe as g', 'g.id_filiere', '=', 'f.id_filiere');
-
-    if ($etab) {
-        $query->where('etablissement.ville', $etab);
-    }
-    if ($cycle) {
-        $query->where('f.cycle', $cycle);
-    }
-    if ($matiere) {
-        $query->where('em.intitule', $matiere);
-    }
-    if ($groupe) {
-        $query->where('g.intitule', $groupe);
-    }
-    if ($filiere) {
-        $query->where('f.intitule', $filiere);
-    }
-
-    
-     
-
-$etudiants = $query->get();
-
-$formattedData = DataTables::of($etudiants)
-    ->addIndexColumn()
-    ->addColumn('actions', function($etudiant) {
-        return '<div style="display: flex; gap: 5px;">
-            <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
-        </div>';
-    })
-    ->rawColumns(['actions'])
-    ->make(true);
-
-return $formattedData;
-   
-   
-}
-
-public function update(Request $request)
-    {
-        /*$etudiant = Note::find($request->apogee);
+        if ($etab) {
+            $query->where('etablissement.ville', $etab);
+        }
+        if ($cycle) {
+            $query->where('filiere.cycle', $cycle);
+        }
+        if ($matiere) {
+            $query->where('element.intitule', $matiere);
+        }
+        if ($groupe) {
+            $query->where('groupe.intitule', $groupe);
+        } 
+       
         
-        $etudiant->CTR1= $request->CTR1;
-        $etudiant->CTR2= $request->CTR2;
-        $etudiant->EF = $request->EF;
-        $etudiant->TP = $request->TP;
-        $etudiant->save();
-        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
-    }*/
-    try {
-        DB::beginTransaction();
-    
-        $etudiant = Note::find($request->apogee);
-        $etudiant->CTR1 = $request->CTR1;
-        $etudiant->CTR2 = $request->CTR2;
-        $etudiant->EF = $request->EF;
-        $etudiant->TP = $request->TP;
-        $etudiant->save();
-    
-        DB::commit();
-    
-        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
-    } catch (\Exception $e) {
-        DB::rollback();
-        return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
+        if ($filiere) {
+            $query->where('filiere.intitule', $filiere);
+        }
+        \Log::info($query->toSql());
+        \Log::info($query->getBindings());
+        
+        $etudiants = $query->get();
+        
+        $formattedData = DataTables::of($etudiants)
+            ->addIndexColumn()
+            ->addColumn('actions', function ($etudiant) {
+                return '<div style="display: flex; gap: 5px;">
+                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
+                </div>';
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+
+        return $formattedData;
     }
-}}
+
+    public function update(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+           $note = Note::where('apogee', $request->apogee)->first();
+        if (!$note) {
+            throw new \Exception('Notes non trouvée');
+        }
+            $note->CTR1 = $request->CTR1;
+            $note->CTR2 = $request->CTR2;
+            $note->EF = $request->EF;
+            $note->TP = $request->TP;
+            $note->save();
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
+        }
+    }}
