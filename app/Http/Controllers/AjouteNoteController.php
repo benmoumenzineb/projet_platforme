@@ -111,8 +111,8 @@ public function getEtudiantsByCycle(Request $request)
     $request->session()->put('niveau', $niveau);
     $query = Etudians::query()
     ->select([
+       
         'etudient.id',
-        'etudient.apogee',
         'etudient.CNE',
         'etudient.CNI',
         'etudient.Nom',
@@ -156,7 +156,6 @@ if ($groupe) {
 
 $etudiants = $query->get();
 
-    
       
         
     
@@ -212,16 +211,16 @@ public function getEtudiantsData(Request $request)
         if ($filiere) {
             $query->where('filiere.intitule', $filiere);
         }
-        \Log::info($query->toSql());
+       \Log::info($query->toSql());
         \Log::info($query->getBindings());
-        
+      
         $etudiants = $query->get();
-        
+        \Log::info($etudiants);
         $formattedData = DataTables::of($etudiants)
             ->addIndexColumn()
             ->addColumn('actions', function ($etudiant) {
                 return '<div style="display: flex; gap: 5px;">
-                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
+                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->apogee. '" style="width:50px;">Edit</button>
                 </div>';
             })
             ->rawColumns(['actions'])
@@ -234,19 +233,22 @@ public function getEtudiantsData(Request $request)
     {
         try {
             DB::beginTransaction();
-
-           $note = Note::where('apogee', $request->apogee)->first();
-        if (!$note) {
-            throw new \Exception('Notes non trouvée');
-        }
+    
+            // Trouver la note en utilisant le code Apogee
+            $note = Note::where('apogee', $request->apogee)->first();
+            if (!$note) {
+                throw new \Exception('Notes non trouvées');
+            }
+    
+            // Mettre à jour les notes
             $note->CTR1 = $request->CTR1;
             $note->CTR2 = $request->CTR2;
             $note->EF = $request->EF;
             $note->TP = $request->TP;
             $note->save();
-
+    
             DB::commit();
-
+    
             return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
         } catch (\Exception $e) {
             DB::rollback();

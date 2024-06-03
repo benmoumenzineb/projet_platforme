@@ -43,11 +43,13 @@
                         <thead>
                             <tr>
                                 <th class="th-color border">Numéro</th>
-                                <th class="th-color border">Code Apogee</th>
+                      
                                 <th class="th-color border">CNE</th>
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
+                                <th class="th-color border">Date</th>
+                                <th class="th-color border">heure</th>
                                 <th class="th-color border">Absence</th>
                                 <th class="th-color border">Actions</th>
                                
@@ -76,13 +78,14 @@ $('#etudiants-table').DataTable({
     ajax: "{{ route('dataetudiant') }}",
     columns: [
         { data: 'id', name: 'id' },
-        { data: 'apogee', name: 'apogee' },
+       
         { data: 'CNE', name: 'CNE' },
         { data: 'CNI', name: 'CNI' },
         { data: 'Nom', name: 'Nom' },
         { data: 'Prenom', name: 'Prenom' },
+        { data: 'Date', name: 'Date' },
+        { data: 'Heure', name: 'Heure' },
         { data: 'absence', name: 'absence' },
-      
         {  data: 'actions',
                 name: 'actions',
                 orderable: false,
@@ -105,7 +108,7 @@ $('#etudiants-table').DataTable({
             var etudiantId = $(this).data('id');
             var row = $(this).closest('tr');
 
-            var absence = row.find('td:eq(6)').text();
+            var absence = row.find('td:eq(7)').text();
         
         $('#id').val(etudiantId);
         $('#inputAbsence').val(absence);

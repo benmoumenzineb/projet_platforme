@@ -23,7 +23,7 @@
                     <div class="modal-body">
                         <form id="formModifierEtudiant" action="{{ route('profupdate') }}" method="POST">
                             @csrf
-                            <input type="hidden" id="apogee" name="apogee" value="">
+                            <input type="hidden" id="id" name="id" value="">
 
                             <div class="form-group col-md-4">
                                 <label for="inputCTR1">CTR1</label>
@@ -52,8 +52,9 @@
             <table class="table table-striped" id="etudiants-table">
                 <thead>
                     <tr>
+                     
+                    
                         <th class="th-color border">Numéro</th>
-                        
                         <th class="th-color border">CNE</th>
                         <th class="th-color border">CNI</th>
                         <th class="th-color border">Nom</th>
@@ -71,7 +72,8 @@
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
-<script>
+<script type="text/javascript"
+.>
     $('#etudiants-table').DataTable({
         processing: true,
         serverSide: true,
@@ -80,7 +82,8 @@
                 type: 'GET'
             },
 
-        columns: [
+        columns: [ 
+           
             { data: 'id', name: 'id' },
             { data: 'CNE', name: 'CNE' },
             { data: 'CNI', name: 'CNI' },
@@ -103,7 +106,7 @@
         $('#etudiants-table').on('click', '.edit-btn', function(e) {
             e.preventDefault();
 
-            var etudiantId = $(this).data('apogee');
+            var etudiantId = $(this).data('id');
             var row = $(this).closest('tr');
 
             var CTR1 = row.find('td:eq(5)').text();
@@ -111,7 +114,7 @@
             var EF = row.find('td:eq(7)').text();
             var TP = row.find('td:eq(8)').text();
 
-            $('#apogee').val(etudiantId);
+            $('#id').val(etudiantId);
             $('#inputCTR1').val(CTR1);
             $('#inputCTR2').val(CTR2);
             $('#inputEF').val(EF);
