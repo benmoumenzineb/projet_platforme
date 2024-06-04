@@ -6,17 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Filiere extends Model
-{
-    public function groupe()
-    {
-        return $this->hasMany(Groupe::class, 'id_filiere');
-    }
-
-    public function inscriptions()
-    {
-        return $this->hasMany(Inscription::class, 'id_filiere');
-    }
-    protected $table = 'filiere';
+{ protected $table = 'filiere';
 
     public $incrementing = false;
 
@@ -33,8 +23,14 @@ class Filiere extends Model
           
            
        ];
-       public function programmeEvaluations()
-       {
-           return $this->hasMany(Programme_Evaluation::class, 'id_filiere');
-       }
+    public function groupe()
+    {
+        return $this->hasMany(Groupe::class, 'id_filiere');
+    }
+
+    public function inscription()
+    {
+        return $this->hasMany(Inscription::class, 'id_filiere', 'id_filiere');
+    }
+    
 }

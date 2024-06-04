@@ -57,114 +57,95 @@ class FormtelechargerController extends Controller
        
        
     public function telechargerFichier(Request $request)
-    {
-        // Obtenir les données du formulaire
-        $donnees = $request->all();
-       // Utilisez public_path() pour obtenir le chemin absolu complet vers l'image
+    { 
+        $enseignantName = $request->input('enseignant');
+        $seance = Seance::select(
+            'seance.date_seance',
+            'seance.heure_depart',
+            'seance.heure_fin',
+            'seance.objectif',
+            'element.intitule as Matiere',
+            'groupe.intitule as Groupe',
+            'filiere.intitule as Filiere',
+            'filiere.cycle as Cycle',
+            'etablissement.intitule as Etablissement'
+        )
+        ->join('element', 'element.num_element', '=', 'seance.num_element')
+        ->join('groupe', 'groupe.id_groupe', '=', 'seance.id_groupe')
+        ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
+        ->join('etudient', 'etudient.apogee', '=', 'inscriptions.apogee')
+        ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
+        ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
+        ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere')
+        ->get();
 
+        $imagePath = public_path('assets/images/logo_img.png');
 
-$contenu = "
-<!DOCTYPE html>
-<html lang='fr'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Cahier de textes</title>
-    <style>
-        /* Votre style CSS ici */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-        }
-        h3 {
-            font-weight: bold;
-            font-size: 30px;
-            text-align: center;
-            color: #173165;
-            margin-bottom: 20px;
-        }
-        img {
-            display: block;
-            margin: 0 auto;
-            width: 120px;
-            height: 70px;
-            margin-bottom: 20px;
-        }
-        .info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .info p {
-            margin: 10px;
-        }
-        .strong-label {
-            font-weight: bold;
-            font-size:18px;
-            color: #173165;
-        }
-        .seance-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .seance-info p {
-            margin: 5px;
-        }
-        .activites {
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class='container'>
-    <img src='{{ asset('asset/images/logo_img.png') }}' alt='Logo'>
+        $contenu = "
+        <!DOCTYPE html>
+        <html lang='fr'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Cahier de textes</title>
+            <style>
+                // Styles CSS
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <img src='data:image/png;base64," . base64_encode(file_get_contents($imagePath)) . "' alt='Logo'>
+                <h3>CAHIER DE TEXTES</h3>
+                <div class='info'>
+                    <p><span class='strong-label'>Cycle :</span> " . htmlspecialchars($seance->Cycle) . "</p>
+                    <p><span class='strong-label'>Filière :</span> " . htmlspecialchars($seance->Filiere) . "</p>
+                    <p><span class='strong-label'>Groupe :</span> " . htmlspecialchars($seance->Groupe) . "</p>
+                    <p><span class='strong-label'>Niveau :</span> " . htmlspecialchars($seance->Filiere) . "</p>
+                    <p><span class='strong-label'>Matière :</span> " . htmlspecialchars($seance->Matiere) . "</p>
+                </div>
+                <hr>
+                <div class='seance-info'>
+                    <p><span class='strong-label enseignant'>Enseignant :</span> " . htmlspecialchars($enseignantName) . "</p>
+                    <p><span class='strong-label'>Horaire :</span> " . htmlspecialchars($seance->heure_depart . ' - ' . $seance->heure_fin) . "</p>
+                    <p><span class='strong-label date'>Date Séance :</span> " . htmlspecialchars($seance->date_seance) . "</p>
+                </div>
+                <p class='activites'><span class='strong-label'>Activités objectifs de la séance :</span> " . htmlspecialchars($seance->objectif) . "</p>
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date Absence</th>
+                            <th>Activités</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($seance as $data)
+                        <tr>
+                            <td>{{ $data->nom }}</td>
+                            <td>{{ $enseignantName }}</td>
+                            <td>{{ $data->objectif }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </body>
+        </html>
+        ";
 
-        <h3>CAHIER DE TEXTES</h3>
-        
-        <div class='info'>
-            <p><span class='strong-label'>Cycle :</span> " . htmlspecialchars($donnees['Cycle']) . " </p>
-            <p><span class='strong-label'>Filière :</span> " . htmlspecialchars($donnees['Filiere']) . " </p>
-            <p><span class='strong-label'>Groupe :</span> " . htmlspecialchars($donnees['Groupe']) . " </p>
-            <p><span class='strong-label'>Niveau :</span> " . htmlspecialchars($donnees['Niveau']) . " </p>
-            <p><span class='strong-label'>Matière :</span> " . htmlspecialchars($donnees['Matiere']) . " </p>
-        </div>
-        <hr>
-        <div class='seance-info'>
-            <p><span class='strong-label enseignant'>Enseignant :</span> " . htmlspecialchars($donnees['nom_enseignant']) . " </p>
-            <p><span class='strong-label'>Horaire :</span> " . htmlspecialchars($donnees['horaire']) . " </p>
-            <p><span class='strong-label date'>Date Séance :</span> " . htmlspecialchars($donnees['Date']) . " </p>
-        </div>
-        <p class='activites'><span class='strong-label'>Activités objectifs de la séance :</span> " . htmlspecialchars($donnees['Activites']) . " </p>
-    </div>
-</body>
-</html>
-";
+        // Convertir le contenu HTML en PDF
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
 
-// Convertir le contenu HTML en PDF
-$options = new Options();
-$options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($contenu);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
 
-$dompdf = new Dompdf($options);
-$dompdf->loadHtml($contenu);
-$dompdf->setPaper('A4', 'portrait');
-
-// Rendre le PDF
-$dompdf->render();
-
-// Télécharger le fichier PDF
-return $dompdf->stream('Cahierdetextes.pdf');
-
-    // Convertir le contenu HTML en PDF
-   
-    
-}
+        // Télécharger le fichier PDF
+        return $dompdf->stream('Cahierdetextes.pdf');
+    }
 }
