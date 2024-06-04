@@ -48,25 +48,28 @@ public function index()
         ->select('inscriptions.*', 'etablissement.ville as etablissement_ville', 'filiere.intitule as filiere_intitule','filiere.cycle as filiere_cycle')
         ->where('inscriptions.apogee', $user->apogee)
         ->first();
-
-    $etablissement = ['ville' => ''];
+      
+    $filiere = null;
     if ($inscription) {
-        $etablissement['code_etab'] = $inscription->code_etab;
-        $etablissement['ville'] = $inscription->etablissement_ville;
+        $etablissement = [
+            'code_etab' => $inscription->code_etab,
+            'ville' => $inscription->etablissement_ville,
+        ];
 
         $filiere = [
             'id_filiere' => $inscription->id_filiere,
             'intitule' => $inscription->filiere_intitule,
             'cycle' => $inscription->filiere_cycle,
         ];
-    } else {
-        $filiere = null;
     }
 
     return view('etudiant.views.Profil_etudiant', compact('user', 'inscription', 'etablissement', 'filiere'));
 }
 
 
+}
+
+
    
-    }
+    
 

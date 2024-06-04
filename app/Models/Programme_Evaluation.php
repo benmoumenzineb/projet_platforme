@@ -19,12 +19,12 @@ class Programme_Evaluation extends Model
    
     public function element()
     {
-        return $this->belongsTo(Element::class, 'num_element');
+        return $this->belongsTo(Element::class, 'num_element', 'num_element');
     }
 
     public function filiere()
     {
-        return $this->belongsTo(Filiere::class, 'id_filiere');
+        return $this->belongsTo(Filiere::class, 'id_filiere', 'id_filiere');
     }
     public $timestamps = false;
 }

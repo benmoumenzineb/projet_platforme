@@ -150,7 +150,7 @@
             "matieres": ["","Informatique", "Électronique", "Mécanique"]
         },
         "Master": {
-            "filieres": ["","Master en dispositifs médicaux et affaires réglementaires", "Master en Maintenance et Génie biomédical","Master en entreprenariat et Management Technologique"],
+            "filieres": ["","Master en dispositifs médicaux et affaires réglementaires", "Master en Maintenance et Génie biomédical","Entrepreneuriat et Management Technologique"],
             "niveaux":[""],
             "groupes": ["","Groupe I", "Groupe II", "Groupe III"],
             "matieres": ["","Recherche Opérationnelle", "Machine Learning", "Big Data"]

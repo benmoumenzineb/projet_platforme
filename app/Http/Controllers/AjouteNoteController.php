@@ -177,7 +177,7 @@ public function getEtudiantsData(Request $request)
         $niveau= $request->session()->get('niveau');
         $query = Etudians::query()
             ->select([
-                'etudient.id',
+                'etudient.apogee',
                 'etudient.CNE',
                 'etudient.CNI',
                 'etudient.Nom',

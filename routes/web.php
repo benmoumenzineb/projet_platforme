@@ -31,6 +31,13 @@ use App\Http\Controllers\homeRHController;
 use App\Http\Controllers\Auth\EtudiantLoginController;
 use App\Http\Controllers\ProgrammeEvaluationController;
 use App\Http\Controllers\HomeaAccuielController;
+
+use App\Http\Controllers\ExamNotificationController;
+
+Route::get('/exam/create', [ExamNotificationController::class, 'create'])->name('exam.create');
+Route::post('/exam/store', [ExamNotificationController::class, 'store'])->name('exam.store');
+
+
 Route::middleware(['web'])->group(function () {
     Route::get('/loginetudiant', [EtudiantLoginController::class, 'index'])->name('etudient.login');
     Route::post('/loginetudiant2', [EtudiantLoginController::class, 'login_etudient'])->name('login.submit');
@@ -65,7 +72,7 @@ Route::get('/navbarsscolarite', function () {
 });
 Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
 Route::get('/homeaccueil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
-Route::get('/scolarite', [ListetudiantController::class, 'index'])->name('listetudiant');
+Route::get('/scolaritelisteetudient', [ListetudiantController::class, 'index'])->name('listetudiant');
 Route::get('/etudiants/search/scolarite', [ListetudiantController::class, 'search'])->name('etudiant.search.scolarite');
 Route::get('/demandescolarite', [DemandeScolariteController::class, 'index'])->name('demandescolarite');
 Route::get('/demandescolarite/search', [DemandeScolariteController::class, 'search'])->name('demandescolarite.search');

@@ -107,11 +107,11 @@ tr{
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
                         <div class="suptech_sante_radio">
                             <label style="margin-right: 100px;">
-                                <input type="radio" name="Etablissement" value="Mohammedia" {{ $etablissement['ville'] === 'Mohammedia' ? 'checked' : '' }}  readonly>
+                                <input type="radio" name="Etablissement" value="{{ $inscription->etablissement_ville ?? '' }}" {{ $inscription ? 'checked' : '' }}  readonly>
                                 Mohammedia
                             </label>
                             <label>
-                                <input type="radio" name="Etablissement" value="Essaouira" {{ $etablissement['ville'] === 'Essaouira' ? 'checked' : '' }} readonly>
+                                <input type="radio" name="Etablissement" value="{{ $inscription->etablissement_ville ?? '' }}" {{ $inscription ? 'checked' : '' }} readonly>
                                 Essaouira
                             </label>
                         </div>
