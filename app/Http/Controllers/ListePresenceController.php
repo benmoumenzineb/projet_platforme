@@ -99,7 +99,7 @@ class ListePresenceController extends Controller
              ->addIndexColumn()
              ->addColumn('actions', function ($etudiant) {
                  return '<div style="display: flex; gap: 5px;">
-                     <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
+                     <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->apogee . '" style="width:50px;">Edit</button>
                  </div>';
              })
              ->rawColumns(['actions'])
