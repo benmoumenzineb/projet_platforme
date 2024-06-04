@@ -107,12 +107,12 @@ tr{
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
                         <div class="suptech_sante_radio">
                             <label style="margin-right: 100px;">
-                                <input type="radio" name="Etablissement" value="{{ $etablissement->ville ?? '' }}" {{ $etablissement ? 'checked' : '' }}  readonly>
+                                <input type="radio" name="Etablissement" value="Mohammedia" {{ $etablissement['ville'] === 'Mohammedia' ? 'checked' : '' }}  readonly>
                                 Mohammedia
                             </label>
                             <label>
-                                <input type="radio" name="Etablissement" value="{{ $etablissement->ville ?? '' }}" {{ $etablissement ? 'checked' : '' }} readonly>
-                                Essouira
+                                <input type="radio" name="Etablissement" value="Essaouira" {{ $etablissement['ville'] === 'Essaouira' ? 'checked' : '' }} readonly>
+                                Essaouira
                             </label>
                         </div>
                         
@@ -165,7 +165,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Cycle :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cycle" name="Cycle" value="{{ $filiere->cycle ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="cycle" name="Cycle" value="{{ $inscription->filiere_cycle ?? '' }}" readonly>
 
                                 </div>
                             </div>
@@ -191,7 +191,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Filiere :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="intitule"  value="{{ $filiere->intitule ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="intitule"  value="{{  $inscription->filiere_intitule ?? '' }}" readonly>
 
                                 </div>
                             </div>
@@ -376,33 +376,26 @@ tr{
                                     <label for="nom_pere" class="form-label"><strong>Nom Tuteur :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_pere" name="Nom_pere" readonly>
+                                    <input type="text" class="form-control" id="nom_pere" value="{{ $user->nom_tuteur ?? '' }}" name="nom_tuteur" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="prenom_pere" class="form-label"><strong>Prenom Tuteur :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"
-                                    readonly>
-                                </div>
+                           
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="N_tele" name="telephone_tuteur" value="{{ $user->telephone_tuteur ?? '' }}"  readonly>
+                                    </div>
+                               
                             </div>
+
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="N_tele" name="Telephone_pere" readonly>
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
@@ -410,8 +403,8 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Profession_pere"
-                                        name="Profession_pere" readonly>
+                                    <input type="text" class="form-control" value="{{ $user->proffesion_tuteur ?? '' }}"  id="Profession_pere"
+                                        name="proffesion_tuteur" readonly>
                                 </div>
                             </div>
                         </div>
@@ -651,7 +644,7 @@ tr{
         
         boutonInformations.addEventListener('click', function() {
 
-           
+            
             document.querySelector('.etablissment-content').style.display = 'block';
             document.getElementById('identifiants-etudiant-content').style.display = 'block';
             document.getElementById('renseignements-etudiant-content').style.display = 'block';

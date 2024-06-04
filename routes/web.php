@@ -29,8 +29,8 @@ use App\Http\Controllers\AjouterEtudiantController;
 use App\Http\Controllers\RhPersonnelControlleur;
 use App\Http\Controllers\homeRHController;
 use App\Http\Controllers\Auth\EtudiantLoginController;
-
-
+use App\Http\Controllers\ProgrammeEvaluationController;
+use App\Http\Controllers\HomeaAccuielController;
 Route::middleware(['web'])->group(function () {
     Route::get('/loginetudiant', [EtudiantLoginController::class, 'index'])->name('etudient.login');
     Route::post('/loginetudiant2', [EtudiantLoginController::class, 'login_etudient'])->name('login.submit');
@@ -64,6 +64,7 @@ Route::get('/navbarsscolarite', function () {
    
 });
 Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
+Route::get('/homeaccueil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
 Route::get('/scolarite', [ListetudiantController::class, 'index'])->name('listetudiant');
 Route::get('/etudiants/search/scolarite', [ListetudiantController::class, 'search'])->name('etudiant.search.scolarite');
 Route::get('/demandescolarite', [DemandeScolariteController::class, 'index'])->name('demandescolarite');
@@ -77,6 +78,10 @@ Route::get('/paiementscolarite', [PaiementScolariteController::class, 'index'])-
 Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');
 Route::post('/upload-image', [Profil_etudiantController::class, 'uploadImage'])->name('upload.image');
 
+
+
+Route::get('/programme-evaluation/create', [ProgrammeEvaluationController::class, 'create'])->name('programme_evaluation.create');
+Route::post('/programme-evaluation/store', [ProgrammeEvaluationController::class, 'store'])->name('programme_evaluation.store');
 
 Route::get('/cahiertextprof', [CahierTextProfController::class, 'index'])->name('cahiertextprof');
 Route::get('/Presence', [ PresenceProfController::class, 'index'])->name('PresenceEtudiant');

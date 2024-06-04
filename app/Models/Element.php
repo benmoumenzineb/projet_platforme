@@ -35,4 +35,8 @@ class Element extends Model
     {
         return $this->hasMany(Module::class, 'num_element',);
     }
+    public function programmeEvaluations()
+    {
+        return $this->hasMany(Programme_Evaluation::class, 'num_element');
+    }
 }

@@ -17,15 +17,7 @@ class Inscription extends Model
         return $this->belongsTo(Etudians::class, 'apogee', 'apogee');
     }
 
-    public function filiere()
-    {
-        return $this->belongsTo(Filiere::class, 'id_filiere', 'id_filiere');
-    }
-
-    public function etablissement()
-    {
-        return $this->belongsTo(Etablissement::class, 'code_etab', 'code_etab');
-    }
+   
     protected $fillable = [
         'apogee',
         'code_etab',

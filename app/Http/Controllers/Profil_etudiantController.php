@@ -7,6 +7,7 @@ use App\Models\Etablissement;
 use App\Models\Filiere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Validator;
 class Profil_etudiantController extends Controller
@@ -37,27 +38,35 @@ public function uploadImage(Request $request)
     
     
 
-    public function index()
-    {
-        $user = Auth::guard('etudient')->user();
-            
-        $inscription = Inscription::where('apogee', $user->apogee)->first();
+public function index()
+{
+    $user = Auth::guard('etudient')->user();
 
-        if ($inscription) {
-           
-            $etablissement = Etablissement::where('code_etab', $inscription->code_etab)->first();
-        } else {
-            $etablissement = null;
-        }
-        if ($inscription) {
-            
-            $filiere = Filiere::where('id_filiere', $inscription->id_filiere)->first();
-        } else {
-            $filiere = null;
-        }
-    
-        return view('etudiant.views.Profil_etudiant', compact('user', 'inscription', 'etablissement','filiere'));
+    $inscription = DB::table('inscriptions')
+        ->join('etablissement', 'inscriptions.code_etab', '=', 'etablissement.code_etab')
+        ->join('filiere', 'inscriptions.id_filiere', '=', 'filiere.id_filiere')
+        ->select('inscriptions.*', 'etablissement.ville as etablissement_ville', 'filiere.intitule as filiere_intitule','filiere.cycle as filiere_cycle')
+        ->where('inscriptions.apogee', $user->apogee)
+        ->first();
+
+    $etablissement = ['ville' => ''];
+    if ($inscription) {
+        $etablissement['code_etab'] = $inscription->code_etab;
+        $etablissement['ville'] = $inscription->etablissement_ville;
+
+        $filiere = [
+            'id_filiere' => $inscription->id_filiere,
+            'intitule' => $inscription->filiere_intitule,
+            'cycle' => $inscription->filiere_cycle,
+        ];
+    } else {
+        $filiere = null;
     }
+
+    return view('etudiant.views.Profil_etudiant', compact('user', 'inscription', 'etablissement', 'filiere'));
+}
+
+
    
     }
 

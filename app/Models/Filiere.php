@@ -33,4 +33,8 @@ class Filiere extends Model
           
            
        ];
+       public function programmeEvaluations()
+       {
+           return $this->hasMany(Programme_Evaluation::class, 'id_filiere');
+       }
 }

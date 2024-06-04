@@ -13,7 +13,11 @@ class Etablissement extends Model
     {
         return $this->hasMany(Inscription::class, 'code_etab', 'code_etab');
     }
+
     protected $table = 'etablissement';
+    protected $fillable = [
+        'ville',
+        ];
     protected $primaryKey = 'code_etab';
     public $incrementing = false;
 

@@ -415,8 +415,8 @@
         var row = $(this).closest('tr');
         var nom = row.find('td:eq(3)').text();
         var prenom = row.find('td:eq(4)').text();
-        var cne = row.find('td:eq(2)').text();
-        var cni = row.find('td:eq(5)').text();
+        var cne = row.find('td:eq(1)').text();
+        var cni = row.find('td:eq(2)').text();
         var dateNaissance = row.find('td:eq(9)').text(); 
         var sexe = row.find('td:eq(8)').text();
         var pays = row.find('td:eq(10)').text();
