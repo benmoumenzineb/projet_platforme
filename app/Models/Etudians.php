@@ -10,13 +10,13 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     use HasFactory;
 
     protected $table = 'etudient';
-
+    protected $primaryKey = 'apogee';
     public $incrementing = false;
 
     public $timestamps = false;
 
     protected $fillable = [
-        'id',
+        'apogee',
         'Nom',
         'Prenom',
         'CNE',
@@ -31,7 +31,7 @@ class Etudians extends Authenticatable implements AuthenticatableContract
         'Mention_bac',
         'Etablissement_bac',
         'Pourcentage_bourse',
-        'apogee',
+        'id',
         'image',
         'telephone',
         'Email',

@@ -112,7 +112,7 @@ public function getEtudiantsByCycle(Request $request)
     $query = Etudians::query()
     ->select([
        
-        'etudient.id',
+        'etudient.apogee',
         'etudient.CNE',
         'etudient.CNI',
         'etudient.Nom',
@@ -156,7 +156,7 @@ if ($groupe) {
 
 $etudiants = $query->get();
 
-      
+     
         
     
   
@@ -177,7 +177,7 @@ public function getEtudiantsData(Request $request)
         $niveau= $request->session()->get('niveau');
         $query = Etudians::query()
             ->select([
-                'etudient.id',
+                'etudient.apogee as Apogee',
                 'etudient.CNE',
                 'etudient.CNI',
                 'etudient.Nom',
@@ -220,7 +220,7 @@ public function getEtudiantsData(Request $request)
             ->addIndexColumn()
             ->addColumn('actions', function ($etudiant) {
                 return '<div style="display: flex; gap: 5px;">
-                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->apogee. '" style="width:50px;">Edit</button>
+                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant-> Apogee. '" style="width:50px;">Edit</button>
                 </div>';
             })
             ->rawColumns(['actions'])
@@ -230,28 +230,50 @@ public function getEtudiantsData(Request $request)
     }
 
     public function update(Request $request)
-    {
-        try {
-            DB::beginTransaction();
+{
+    // Validation des données de la requête
+    $validated = $request->validate([
+        'apogee' => 'required|exists:notes_evaluation,apogee',
+        'CTR1' => 'nullable|numeric|min:0|max:20',
+        'CTR2' => 'nullable|numeric|min:0|max:20',
+        'EF' => 'nullable|numeric|min:0|max:20',
+        'TP' => 'nullable|numeric|min:0|max:20',
+    ]);
+
+    // Log the validated data
+    \Log::info('Validated data: ', $validated);
     
-            // Trouver la note en utilisant le code Apogee
-            $note = Note::where('apogee', $request->apogee)->first();
-            if (!$note) {
-                throw new \Exception('Notes non trouvées');
-            }
-    
-            // Mettre à jour les notes
-            $note->CTR1 = $request->CTR1;
-            $note->CTR2 = $request->CTR2;
-            $note->EF = $request->EF;
-            $note->TP = $request->TP;
-            $note->save();
-    
-            DB::commit();
-    
-            return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
-        } catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
+    try {
+        DB::beginTransaction();
+
+        // Trouver la note en utilisant le code Apogee
+        $note = Note::where('apogee', $validated['apogee'])->first();
+
+        // Si la note n'existe pas, créer une nouvelle instance de Note
+        if (!$note) {
+            $note = new Note();
+            $note->apogee = $validated['apogee'];
+            \Log::info('Création d\'une nouvelle note pour Apogee: ' . $validated['apogee']);
+        } else {
+            \Log::info('Mise à jour de la note existante pour Apogee: ' . $validated['apogee']);
         }
-    }}
+
+        // Mettre à jour les notes, en gérant les valeurs nulles
+        $note->CTR1 = $validated['CTR1'] ?? null;
+        $note->CTR2 = $validated['CTR2'] ?? null;
+        $note->EF = $validated['EF'] ?? null;
+        $note->TP = $validated['TP'] ?? null;
+        $note->save();
+
+        \Log::info('Notes mises à jour avec succès pour Apogee: ' . $validated['apogee']);
+
+        DB::commit();
+
+        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
+    } catch (\Exception $e) {
+        DB::rollback();
+        \Log::error('Erreur de mise à jour des notes : ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
+    }
+}
+}

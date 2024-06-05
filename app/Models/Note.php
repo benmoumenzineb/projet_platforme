@@ -15,7 +15,7 @@ class Note extends Model
         return $this->hasMany(Element::class, 'num_element',);
     }
     protected $table = 'notes_evaluation';
-
+    protected $primaryKey = 'apogee';
     public $incrementing = false;
 
     public $timestamps = false;
