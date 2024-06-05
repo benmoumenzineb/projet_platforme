@@ -146,7 +146,7 @@ class ListePresenceController extends Controller
              \Log::info('Absence trouvée: ', $absence->toArray());
      
              // Mettre à jour l'état, en gérant les valeurs nulles
-             $absence->absence = $validated['absence']??null;
+             $absence->absence = $validated['absence'] ?? null;
              $absence->save();
      
              \Log::info('Absence mise à jour avec succès pour Apogee: ' . $validated['apogee']);
