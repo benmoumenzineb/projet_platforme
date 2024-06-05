@@ -1,61 +1,37 @@
 <?php
 
+// app/Notifications/ExamNotification.php
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
+use App\Models\Programme_Evaluation;
 
 class ExamNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $programmeEvaluation;
+
+    public function __construct(Programme_Evaluation $programmeEvaluation)
     {
-        //
+        $this->programmeEvaluation = $programmeEvaluation;
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toArray($notifiable)
     {
         return [
-            //
+            'num_element' => $this->programmeEvaluation->num_element,
+            'id_filiere' => $this->programmeEvaluation->id_filiere,
+            'date_exam' => $this->programmeEvaluation->date_exam,
+            'heure_exam' => $this->programmeEvaluation->heure_exam,
         ];
     }
 }

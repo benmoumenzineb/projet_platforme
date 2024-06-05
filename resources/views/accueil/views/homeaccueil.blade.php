@@ -65,9 +65,9 @@ background-color:#1858b1;
     }
 }
 
-/* For screens between 1025px and 1440px */
+
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
-    /* Adjust the margin and padding for large screens */
+    
     #page-content {
         margin-left: 150px;
         margin-right: 150px;
@@ -76,9 +76,9 @@ background-color:#1858b1;
     }
 }
 
-/* For screens between 1441px and 2560px */
+
 @media screen and (min-width: 1441px) and (max-width: 2560px) {
-    /* Adjust the margin and padding for extra large screens */
+   
     #page-content {
         margin-left: 200px;
         margin-right: 200px;
@@ -87,9 +87,9 @@ background-color:#1858b1;
     }
 }
 
-/* For screens larger than 2560px */
+
 @media screen and (min-width: 2561px) {
-    /* Adjust the margin and padding for extra large screens */
+   
     #page-content {
         margin-left: 250px;
         margin-right: 250px;
@@ -106,7 +106,7 @@ margin-right:10px;margin-top:30px; padding: 40px;
 ">
     <div class="d-flex justify-content-left">
        <a href="{{ route('PresenceEtudiant') }}"> <div class="card mb-3 mr-3 mt-4  custom-background" style="width: 300px;color:#ffffff; margin-right: 20px;"style="color: #ffffff;">
-            <!-- Contenu de la carte "Mon Profil" -->
+           
             <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-clipboard2-check-fill" viewBox="0 0 16 16"style="color: #ffffff;">
                     <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5"/>
@@ -118,11 +118,15 @@ margin-right:10px;margin-top:30px; padding: 40px;
          </div></a>
 
        <a href="{{route('cahiertextprof')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
-            <!-- Contenu de la carte "Emploi du temps" -->
+          
             <div class="card-body text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-book-fill" viewBox="0 0 16 16" style="color: #ffffff;">
-                    <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
-                  </svg>
+                <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="70"
+                                    height="70" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16" style="color: #ffffff;">
+                                    <path
+                                        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                    <path
+                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                </svg>
                 <h5 class="card-title" style="color: #ede8e8"><a href="{{route('cahiertextprof')}}" class="{{ Request::is('emploi') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Emploi du temps</a></h5>
                
             </div>
