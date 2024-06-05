@@ -10,7 +10,7 @@ class Absence extends Model
     use HasFactory;
 
     protected $table = 'absence';
-
+    protected $primaryKey = 'apogee';
     public $incrementing = false;
 
     public $timestamps = false;
@@ -29,7 +29,7 @@ class Absence extends Model
         'num_element',
         'date_abs',
         'heure_abs',
-        'etat',
+        'absence',
         'remarque',
 
           

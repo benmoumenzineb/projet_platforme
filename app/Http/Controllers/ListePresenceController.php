@@ -55,14 +55,14 @@ class ListePresenceController extends Controller
          $niveau= $request->session()->get('niveau');
          $query = Etudians::query()
              ->select([
-                 'etudient.apogee as id',
+                 'etudient.apogee as Apogee',
                  'etudient.CNE',
                  'etudient.CNI',
                  'etudient.Nom',
                  'etudient.Prenom',
                  'absence.date_abs as Date',
                  'absence.heure_abs as Heure',
-                 'absence.etat as absence'
+                 'absence.absence as absence'
                  
              ])
              ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
@@ -85,7 +85,7 @@ class ListePresenceController extends Controller
              $query->where('groupe.intitule', $groupe);
          } 
         elseif ($niveau) {
-            $query->where('inscriptions.niveau', $nivea);
+            $query->where('inscriptions.niveau', $niveau);
         } 
          if ($filiere) {
              $query->where('filiere.intitule', $filiere);
@@ -99,7 +99,7 @@ class ListePresenceController extends Controller
              ->addIndexColumn()
              ->addColumn('actions', function ($etudiant) {
                  return '<div style="display: flex; gap: 5px;">
-                     <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:50px;">Edit</button>
+                     <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->Apogee . '" style="width:50px;">Edit</button>
                  </div>';
              })
              ->rawColumns(['actions'])
@@ -109,15 +109,56 @@ class ListePresenceController extends Controller
      }
         
     
-    public function updateAbsence(Request $request)
-    {
-        $etudiant = Absence::find($request->apogee);
-        
-        $etudiant->etat= $request->absence;
-      
-        $etudiant->save();
-        DB::commit();
-        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
-    }
     
+    
+      
+            
+     
+     
+   
+     
+      
+
+
+     public function updateAbsence(Request $request)
+     {
+         $validated = $request->validate([
+             'apogee' => 'required|exists:absence,apogee',
+             'absence' => 'nullable|in:A,P,R',
+         ]);
+     
+         // Affiche les données validées pour vérification
+         \Log::info('Données validées: ', $validated);
+     
+         try {
+             DB::beginTransaction();
+     
+             // Trouver l'absence en utilisant le code Apogee
+             $absence = Absence::where('apogee', $validated['apogee'])->first();
+     
+             // Vérifiez si l'enregistrement est trouvé
+             if (!$absence) {
+                 \Log::warning('Aucune absence trouvée pour Apogee: ' . $validated['apogee']);
+                 DB::rollback();
+                 return redirect()->back()->with('error', 'Aucune absence trouvée pour cet Apogee.');
+             }
+     
+             \Log::info('Absence trouvée: ', $absence->toArray());
+     
+             // Mettre à jour l'état, en gérant les valeurs nulles
+             $absence->absence = $validated['absence']??null;
+             $absence->save();
+     
+             \Log::info('Absence mise à jour avec succès pour Apogee: ' . $validated['apogee']);
+     
+             DB::commit();
+     
+             return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
+         } catch (\Exception $e) {
+             DB::rollback();
+             \Log::error('Erreur de mise à jour de l\'absence : ' . $e->getMessage());
+             return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
+         }
+     }
 }
+     

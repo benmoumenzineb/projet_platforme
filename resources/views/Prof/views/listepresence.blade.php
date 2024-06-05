@@ -24,7 +24,7 @@
                                 <div class="modal-body">
                                     <form id="formModifierEtudiant" action="{{ route('updateAbsence') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" id="apogee" name="iapogee value="">
+                                        <input type="hidden" id="apogee" name="apogee" value="">
                                        
                                         
                                         <div class="form-group col-md-4">
@@ -77,7 +77,7 @@ $('#etudiants-table').DataTable({
     serverSide: true,
     ajax: "{{ route('dataetudiant') }}",
     columns: [
-        { data: 'id', name: 'id' },
+        { data: 'Apogee', name: 'Apogee' },
        
         { data: 'CNE', name: 'CNE' },
         { data: 'CNI', name: 'CNI' },
@@ -105,7 +105,7 @@ $('#etudiants-table').DataTable({
         $('#etudiants-table').on('click', '.edit-btn', function(e) {
             e.preventDefault();
          
-            var etudiantId = $(this).data('apogee');
+            var etudiantId = $(this).data('id');
             var row = $(this).closest('tr');
 
             var absence = row.find('td:eq(7)').text();
