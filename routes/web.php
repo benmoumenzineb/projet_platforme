@@ -34,8 +34,11 @@ use App\Http\Controllers\HomeaAccuielController;
 
 use App\Http\Controllers\ExamNotificationController;
 
-Route::get('/exam/create', [ExamNotificationController::class, 'create'])->name('exam.create');
-Route::post('/exam/store', [ExamNotificationController::class, 'store'])->name('exam.store');
+
+Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name('scolarite.views.notificationsexam');
+Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
+Route::get('/student/exams', [ExamNotificationController::class, 'studentExams'])->name('etudiant.views.exametudiant');
+
 
 
 Route::middleware(['web'])->group(function () {
@@ -57,7 +60,7 @@ Route::post('/enregistrer-paiement', 'App\Http\Controllers\PaiementetudiantContr
 
 route::get('/paiement','App\Http\Controllers\PaiementetudiantController@index')->name('paiement');
 route::get('/note','App\Http\Controllers\NoteEtudiantController@index')->name('note');
-route::get('/exam','App\Http\Controllers\ExamEtudiantController@index')->name('exam');
+
 Route::get('/nav', function () {
     return view('prof.layouts.navbarprof');
    
@@ -105,10 +108,10 @@ Route::get('/search', [ListePresenceController::class, 'search'])->name('listepr
 
 
 
-route::get('/notificationsexame','App\Http\Controllers\NotifactionsexamController@index')->name('notificationsexam');
 
 
-Route::post('/notificationsexame', 'App\Http\Controllers\NotifactionsexamController@enregistrercahiertext')->name('enregnotificationsexam');
+
+
 
 
 Route::post('/enregistrer-exam', 'App\Http\Controllers\NotifactionsexamController@enregistrerPaiement')->name('enregnotificationsexam');

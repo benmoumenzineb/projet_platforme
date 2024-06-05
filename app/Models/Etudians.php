@@ -53,14 +53,15 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     {
         return $this->hasOne(Note::class, 'apogee');
     }
-    public function inscriptions()
-    {
-        return $this->hasMany(Inscription::class, 'apogee');
-    }
+    
     protected $hidden = ['apogee', 'remember_token'];
     public function absence()
     {
         return $this->hasMany(Absence::class, 'apogee');
+    }
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class, 'id');
     }
     
 }

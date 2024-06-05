@@ -147,13 +147,13 @@ margin-right:10px;margin-top:30px; padding: 40px;
      
 
         
-           <a href="{{ route('exam') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+           <a href="{{ route('etudiant.views.exametudiant') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
                 <!-- Contenu de la carte "Mes Demandes" -->
                 <div class="card-body text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16" style="color: #ffffff">
                         <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
                       </svg>
-                    <h5 class="card-title" style="color: #ede8e8"><a href="{{ route('exam') }}" class="{{ Request::is('exam') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Mes Exames</a></h5>
+                    <h5 class="card-title" style="color: #ede8e8"><a href="{{ route('etudiant.views.exametudiant') }}" class="{{ Request::is('etudiant.views.exametudiant') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Mes Exames</a></h5>
                     
                 </div>
             </div></a>

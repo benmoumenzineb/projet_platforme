@@ -66,30 +66,18 @@
   <div class="container">
   <div class="card" id="myCard">
     <div class="card-body">
-      <h5 class="card-title">Thermodynamique | Base de données</h5>
-      <h6 class="card-subtitle mb-2 text-muted">24/05/2024 - 30/05/2024</h6>
-      <h6 class="card-subtitle mb-2 text-muted">8:30 - 10:30 | 14:30 - 16:30</h6>
-      div class="container">
-      <h2>Mes Examens</h2>
-      @foreach(auth()->user()->notifications as $notification)
-          <div class="card">
-              <div class="card-body">
-                  <h5 class="card-title">{{ $notification->data['num_element'] }}</h5>
-                  <p class="card-text">Filière: {{ $notification->data['id_filiere'] }}</p>
-                  <p class="card-text">Date de l'examen: {{ $notification->data['date_exam'] }}</p>
-                  <p class="card-text">Heure de l'examen: {{ $notification->data['heure_exam'] }}</p>
-              </div>
-          </div>
-      @endforeach
-  </div>
+      @foreach($exams as $exam)
+      <h4 class="card-title">{{ $exam->element->intitule }}</h4>
+            <h5 class="card-subtitle mb-2 text-muted"><strong> Date:</strong>  {{ $exam->date_exam }}</h5>
+            <h5 class="card-subtitle mb-2 text-muted"><strong> Heure:</strong> {{ $exam->heure_exam }}</h5>
+            <p class="card-text">Chers étudiants, un rappel : un examen est prévu à la date et à l'heure indiquées. Assurez-vous d'être présents et prêts à temps. Bonne chance à tous !</p>
+            @endforeach
     </div>
   </div>
 </div>
 
   
   
-
-
 
 <script>
 const card = document.getElementById('myCard');

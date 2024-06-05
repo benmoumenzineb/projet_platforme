@@ -35,4 +35,5 @@ class Inscription extends Model
         'niveau',
        
     ];
+  
     }

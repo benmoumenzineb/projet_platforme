@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Seance;
 use App\Models\Groupe;
 use App\Models\Element;
@@ -8,58 +9,48 @@ use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-
 class FormtelechargerController extends Controller
 {
     public function enregistrercahiertext(Request $request)
     {
-        // Validation des données du formulaire
-        $request->validate([
-          
-        ]);
-    $donnees = $request->all();
-
-    $hd = $request->input('hd');
-    $hf = $request->input('hf');
-    $date= $request->input('date');
-    $activite = $request->input('activite');
-
-    
-    
-  
-   
-   
-    $matiereExistante = Element::where('intitule', $donnees['matiere'])->first();
-    if ($matiereExistante) {
        
-        $donnees['num_element'] = $matiereExistante->num_element;
+        $request->validate([
+
+        ]);
+
+        $donnees = $request->all();
+
+        $hd = $request->input('hd');
+        $hf = $request->input('hf');
+        $date= $request->input('date');
+        $activite = $request->input('activite');
+
+        $matiereExistante = Element::where('intitule', $donnees['matiere'])->first();
+        if ($matiereExistante) {
+            $donnees['num_element'] = $matiereExistante->num_element;
+        }
+
+        $groupeExistante = Groupe::where('intitule', $donnees['groupe'])->first();
+        if ($groupeExistante) {
+            $donnees['id_groupe'] = $groupeExistante->id;
+        }
+
+        $donnees['heure_depart'] = $hd;
+        $donnees['heure_fin'] = $hf;
+        $donnees['date_seance'] = $date;
+        $donnees['objectif'] = $activite;
+
+        Seance::create($donnees);
+
+        return redirect()->back()->with('success', 'Les données ont été enregistrées avec succès');
     }
 
- 
-    $groupeExistante = Groupe::where('intitule', $donnees['groupe'])->first();
-    if ($groupeExistante) {
-      
-        $donnees['id_groupe'] = $groupeExistante->id;
-    } 
-    $donnees['heure_depart'] = $hd;
-    $donnees['heure_fin'] = $hf;
-    $donnees['date_seance'] = $date;
-    $donnees['objectif'] = $activite;
-
-    
-    Seance::create($donnees);
-
-     
-
-    return redirect()->back()->with('success', 'Les données ont été enregistrées avec succès');
-}
-       
-       
-       
     public function telechargerFichier(Request $request)
-    { 
+    {
         $enseignantName = $request->input('enseignant');
-        $seance = Seance::select(
+       
+
+        $seances = Seance::select(
             'seance.date_seance',
             'seance.heure_depart',
             'seance.heure_fin',
@@ -79,10 +70,9 @@ class FormtelechargerController extends Controller
         ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere')
         ->get();
 
-        $imagePath = public_path('assets/images/logo_img.png');
+        $imagePath = public_path('asset/images/logo_img.png');
 
-        $contenu = "
-        <!DOCTYPE html>
+        $contenu = "<!DOCTYPE html>
         <html lang='fr'>
         <head>
             <meta charset='UTF-8'>
@@ -93,8 +83,10 @@ class FormtelechargerController extends Controller
             </style>
         </head>
         <body>
-            <div class='container'>
-                <img src='data:image/png;base64," . base64_encode(file_get_contents($imagePath)) . "' alt='Logo'>
+            <div class='container'>";
+
+        foreach ($seances as $seance) {
+            $contenu .= "<img src='data:image/png;base64," . base64_encode(file_get_contents($imagePath)) . "' alt='Logo'>
                 <h3>CAHIER DE TEXTES</h3>
                 <div class='info'>
                     <p><span class='strong-label'>Cycle :</span> " . htmlspecialchars($seance->Cycle) . "</p>
@@ -121,19 +113,14 @@ class FormtelechargerController extends Controller
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($seance as $data)
-                        <tr>
-                            <td>{{ $data->nom }}</td>
-                            <td>{{ $enseignantName }}</td>
-                            <td>{{ $data->objectif }}</td>
-                        </tr>
-                        @endforeach
+                        <!-- Ajoutez ici les données des étudiants pour cette séance -->
                     </tbody>
-                </table>
-            </div>
+                </table>";
+        }
+
+        $contenu .= "</div>
         </body>
-        </html>
-        ";
+        </html>";
 
         // Convertir le contenu HTML en PDF
         $options = new Options();
@@ -145,7 +132,6 @@ class FormtelechargerController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        // Télécharger le fichier PDF
         return $dompdf->stream('Cahierdetextes.pdf');
     }
 }

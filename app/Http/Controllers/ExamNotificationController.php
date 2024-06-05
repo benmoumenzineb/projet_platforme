@@ -1,47 +1,57 @@
-<?php
-
+<?php 
+// app/Http/Controllers/ExamNotificationController.php
 namespace App\Http\Controllers;
-
-
 
 use Illuminate\Http\Request;
 use App\Models\Element;
 use App\Models\Filiere;
 use App\Models\Programme_Evaluation;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\ExamNotification;
+use App\Models\Inscription;
+use Illuminate\Support\Facades\Auth;
 
 class ExamNotificationController extends Controller
 {
+   
+
     public function create()
     {
         $elements = Element::all();
         $filieres = Filiere::all();
-        return view('exam.create', compact('elements', 'filieres'));
+        
+        return view('scolarite.views.notificationsexam', compact('elements', 'filieres'));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'num_element' => 'required|exists:elements,num_element',
-            'id_filiere' => 'required|exists:filieres,id_filiere',
+        $request->validate([
+            'num_element' => 'required|exists:element,num_element',
+            'id_filiere' => 'required|exists:filiere,id_filiere',
             'date_exam' => 'required',
             'heure_exam' => 'required',
         ]);
 
-        $programmeEvaluation = ProgrammeEvaluation::create([
-            'num_element' => $validatedData['num_element'],
-            'id_filiere' => $validatedData['id_filiere'],
-            'date_exam' => $validatedData['date_exam'],
-            'heure_exam' => $validatedData['heure_exam'],
+        Programme_Evaluation::create([
+            'num_element' => $request->num_element,
+            'id_filiere' => $request->id_filiere,
+            'date_exam' => $request->date_exam,
+            'heure_exam' => $request->heure_exam,
         ]);
 
-        // Logique pour récupérer les étudiants de la filière concernée
-        $students = []; // À implémenter
+        // Logique pour envoyer la notification aux étudiants (à implémenter selon vos besoins)
 
-        Notification::send($students, new ExamNotification($programmeEvaluation));
+        return redirect()->route('scolarite.views.notificationsexam')->with('success', 'Notification envoyée avec succès.');
+    }
 
-        return redirect()->route('exam.create')->with('success', 'Notification d\'examen envoyée avec succès!');
+    public function studentExams()
+    {
+        $studentId = Auth::guard('etudient')->id();
+
+        
+        $filieres = Inscription::where('id', $studentId)->pluck('id_filiere');
+
+        // Récupérer les examens associés à ces filières
+        $exams = Programme_Evaluation::whereIn('id_filiere', $filieres)->get();
+
+        return view('etudiant.views.exametudiant', compact('exams'));
     }
 }
-
