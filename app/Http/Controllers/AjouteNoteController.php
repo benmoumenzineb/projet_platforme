@@ -109,7 +109,7 @@ public function getEtudiantsByCycle(Request $request)
     $request->session()->put('matiere', $matiere);
     $request->session()->put('groupe', $groupe);
     $request->session()->put('niveau', $niveau);
-    $query = Etudians::query()
+   /* $query = Etudians::query()
     ->select([
        
         'etudient.apogee',
@@ -155,7 +155,7 @@ if ($groupe) {
 \Log::info($query->getBindings());
 
 $etudiants = $query->get();
-
+*/
      
         
     
@@ -227,7 +227,81 @@ public function getEtudiantsData(Request $request)
             ->make(true);
 
         return $formattedData;
+
+    // Récupérez les valeurs choisies
+   /* $etab = $request->session()->get('etablissement');
+    $cycle = $request->session()->get('cycle');
+    $filiere = $request->session()->get('filiere');
+    $matiere = $request->session()->get('matiere');
+    $groupe = $request->session()->get('groupe');
+    $niveau = $request->session()->get('niveau');
+    $date = $request->session()->get('date');
+    $time = $request->session()->get('time');
+
+    $query = Etudians::query()
+        ->select([
+            'etudient.apogee as Apogee',
+            'etudient.CNE',
+            'etudient.CNI',
+            'etudient.Nom',
+            'etudient.Prenom',
+        ])
+        ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
+        ->join('element', 'element.id_element', '=', 'inscriptions.id_element')
+        ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
+        ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
+        ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
+
+    if ($etab) {
+        $query->where('etablissement.ville', $etab);
     }
+    if ($cycle) {
+        $query->where('filiere.cycle', $cycle);
+    }
+    if ($matiere) {
+        $query->where('element.intitule', $matiere);
+    }
+    if ($groupe) {
+        $query->where('groupe.intitule', $groupe);
+    }
+    if ($niveau) {
+        $query->where('inscriptions.niveau', $niveau);
+    }
+    if ($filiere) {
+        $query->where('filiere.intitule', $filiere);
+    }
+
+    \Log::info($query->toSql());
+    \Log::info($query->getBindings());
+
+    $etudiants = $query->get();
+
+    foreach ($etudiants as $etudiant) {
+        $element = Element::where('intitule', $matiere)->first();
+
+        Absence::create([
+            'apogee' => $etudiant->Apogee,
+            'date_abs' => $date,
+            'heure_abs' => $time,
+            'id_element' => $element->id_element,
+            'absence' => 'A' // Assuming 'A' stands for a default absence status
+        ]);
+    }
+
+    $formattedData = DataTables::of($etudiants)
+        ->addIndexColumn()
+        ->addColumn('actions', function ($etudiant) {
+            return '<div style="display: flex; gap: 5px;">
+                <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->Apogee . '" style="width:50px;">Edit</button>
+            </div>';
+        })
+        ->rawColumns(['actions'])
+        ->make(true);
+
+    return $formattedData;*/
+}
+
+    
 
     public function update(Request $request)
 {
