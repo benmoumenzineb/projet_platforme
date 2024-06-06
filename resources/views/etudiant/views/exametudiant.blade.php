@@ -62,6 +62,7 @@
 
     
     </style>
+    
 
   <div class="container">
   <div class="card" id="myCard">
@@ -70,7 +71,7 @@
       <h4 class="card-title">{{ $exam->element->intitule }}</h4>
             <h5 class="card-subtitle mb-2 text-muted"><strong> Date:</strong>  {{ $exam->date_exam }}</h5>
             <h5 class="card-subtitle mb-2 text-muted"><strong> Heure:</strong> {{ $exam->heure_exam }}</h5>
-            <p class="card-text">Chers étudiants, un rappel : un examen est prévu à la date et à l'heure indiquées. Assurez-vous d'être présents et prêts à temps. Bonne chance à tous !</p>
+            <p class="card-text">Chers étudiants, un rappel : un examen est prévu à la date et à l'heure indiquées. Assurez-vous d'être présents et prêts à temps. Bonne chance à tous !</p>
             @endforeach
     </div>
   </div>

@@ -17,9 +17,10 @@ class Inscription extends Model
         return $this->belongsTo(Etudians::class, 'apogee', 'apogee');
     }
 
+   
     public function filiere()
     {
-        return $this->belongsTo(Filiere::class, 'id_filiere', 'id_filiere');
+        return $this->belongsTo(Filiere::class, 'id_filiere');
     }
 
     public function etablissement()

@@ -47,8 +47,8 @@ class ExamNotificationController extends Controller
         $studentId = Auth::guard('etudient')->id();
 
         
-        $filieres = Inscription::where('id', $studentId)->pluck('id_filiere');
-
+        $filieres = Inscription::where('apogee', $studentId)->pluck('id_filiere');
+      
         // Récupérer les examens associés à ces filières
         $exams = Programme_Evaluation::whereIn('id_filiere', $filieres)->get();
 

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Programme_Filiere extends Model
 {
-    use HasFactory;
+    protected $table = 'programme_filiere';
+    protected $fillable = [
+        
+        'num_element',
+        'id_filiere',
+        
+    ];
 }

@@ -39,8 +39,6 @@ Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name
 Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
 Route::get('/student/exams', [ExamNotificationController::class, 'studentExams'])->name('etudiant.views.exametudiant');
 
-
-
 Route::middleware(['web'])->group(function () {
     Route::get('/loginetudiant', [EtudiantLoginController::class, 'index'])->name('etudient.login');
     Route::post('/loginetudiant2', [EtudiantLoginController::class, 'login_etudient'])->name('login.submit');
@@ -95,12 +93,15 @@ Route::post('/programme-evaluation/store', [ProgrammeEvaluationController::class
 
 Route::get('/cahiertextprof', [CahierTextProfController::class, 'index'])->name('cahiertextprof');
 Route::get('/Presence', [ PresenceProfController::class, 'index'])->name('PresenceEtudiant');
-Route::post('/telecharger-fichier', [FormtelechargerController::class, 'telechargerFichier'])->name('telecharger.fichier');
+//Route::post('/telecharger-fichier', [FormtelechargerController::class, 'telechargerFichier'])->name('telecharger.fichier');
 
 
-Route::post('/enregistrercahiertext', 'App\Http\Controllers\FormtelechargerController@enregistrercahiertext')->name('enregistrercahiertext');
+//Route::post('/enregistrercahiertext', 'App\Http\Controllers\FormtelechargerController@enregistrercahiertext')->name('enregistrercahiertext');
 
+Route::post('/enregistrer-cahier-de-texte', [FormtelechargerController::class, 'enregistrerCahierDeTexte'])->name('enregistrer.cahier');
 
+// Route pour télécharger le cahier de texte
+Route::post('/telecharger-cahier-de-texte', [FormtelechargerController::class, 'telechargerCahierDeTexte'])->name('telecharger.cahier');
 
 
 Route::get('/search', [ListePresenceController::class, 'search'])->name('listepresence.search');

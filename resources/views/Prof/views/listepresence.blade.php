@@ -24,7 +24,7 @@
                                 <div class="modal-body">
                                     <form id="formModifierEtudiant" action="{{ route('updateAbsence') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" id="apogee" name="iapogee value="">
+                                        <input type="hidden" id="apogee" name="apogee" value="">
                                        
                                         
                                         <div class="form-group col-md-4">
@@ -77,7 +77,7 @@ $('#etudiants-table').DataTable({
     serverSide: true,
     ajax: "{{ route('dataetudiant') }}",
     columns: [
-        { data: 'id', name: 'id' },
+        { data: 'Apogee', name: 'Apogee' },
        
         { data: 'CNE', name: 'CNE' },
         { data: 'CNI', name: 'CNI' },
@@ -98,41 +98,38 @@ $('#etudiants-table').DataTable({
 
 </script>
 <script>
-   
-  
- 
     $(document).ready(function() {
+        // Lorsqu'on clique sur le bouton "edit"
         $('#etudiants-table').on('click', '.edit-btn', function(e) {
             e.preventDefault();
-         
-            var etudiantId = $(this).data('apogee');
+            var etudiantId = $(this).data('id');
             var row = $(this).closest('tr');
-
             var absence = row.find('td:eq(7)').text();
-        
-        $('#apogee').val(etudiantId);
-        $('#inputAbsence').val(absence);
-        $('#exampleModalEdit').modal('show');
+            
+            $('#apogee').val(etudiantId);
+            $('#inputAbsence').val(absence);
+            $('#exampleModalEdit').modal('show');
+        });
+    
+        // Lorsqu'on soumet le formulaire
+        $('#formModifierEtudiant').submit(function(e) {
+            var absence = $('#inputAbsence').val().toUpperCase().trim(); // Convertir en majuscules et supprimer les espaces
+            
+            // Ne pas afficher l'alerte si le champ est vide
+            if (absence === "") {
+                return true; // Permettre la soumission du formulaire
+            }
+    
+            // Vérifier si l'entrée n'est pas égale à A, P ou R
+            if (absence !== "A" && absence !== "P" && absence !== "R") {
+                alert("Tu dois entrer soit A, P ou R en majuscules ou minuscules.");
+                return false; // Empêcher la soumission du formulaire
+            }
+    
+            // Mettre à jour la valeur du champ input avec la version en majuscules
+            $('#inputAbsence').val(absence);
         });
     });
-</script>
-<script>
-   $(document).ready(function() {
-    $('#formModifierEtudiant').submit(function(e) {
-      
-        var absence = $('#inputAbsence').val().toUpperCase().trim(); // Convertir en majuscules pour la comparaison
-
-        // Vérifier si l'entrée n'est pas égale à A, P ou R
-        if (absence !== "R" && absence !== "P" && absence !== "A") {
-            alert("Tu dois entrer soit A, P ou R en majuscules ou minuscules.");
-            return false;
-        }
-
-    });
-});
-
-
-</script>
-
+    </script>
     
 @endsection

@@ -45,7 +45,7 @@ h3{
                 <li class="alert alert-danger">{{ $error }}</li>
             @endforeach
         </ul>
-    <form id="informations-personnelles" action="{{ route('enregistrercahiertext') }}" method="post">
+    <form id="informations-personnelles" action="{{ route('enregistrer.cahier') }}" method="post">
         @csrf
         <div style="text-align: center;">
             <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="25%">
@@ -140,7 +140,7 @@ h3{
                         <label for="somme" class="form-label"><strong>Enseignant:</strong></label>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="somme" name="nom_enseignant" required>
+                        <input type="text" class="form-control" id="somme" name="enseignant" required>
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@ h3{
                         <label for="date" class="form-label"><strong>Date Seance:</strong></label>
                     </div>
                     <div class="col-md-6">
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input type="date" class="form-control" id="date" name="date_seance" required>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,10 @@ h3{
 
             <div class="row mt-3">
                 <div class="col-md-12">
-        <button type="submit" id="modifier" name="enregistrer" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" class="submit-btn" name="action" value="enregistrer_telecharger">Enregistrer et Télécharger le Cahier de Texte</button>
+
+                    <!-- Bouton pour seulement enregistrer -->
+                    <button type="submit" class="submit-btn" name="action" value="enregistrer">Enregistrer le Cahier de Texte</button>
             </div></div>
        
     </form>
@@ -277,6 +280,24 @@ h3{
     
  
  </script>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.submit-btn');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                const action = event.target.value;
+                const form = document.getElementById('informations-personnelles');
+
+                if (action === 'enregistrer_telecharger') {
+                    form.action = "{{ route('telecharger.cahier') }}";
+                } else if (action === 'enregistrer') {
+                    form.action = "{{ route('enregistrer.cahier') }}";
+                }
+            });
+        });
+    });
+</script>
+
  
 
 @endsection
