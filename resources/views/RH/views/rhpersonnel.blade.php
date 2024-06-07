@@ -1,16 +1,17 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @extends('RH.layouts.navbarrh')
 @section('contenu')
-    <div class="container" style="margin-left: 210px; margin-top:90px; ">
+    <div class="container" style="margin-left: 160px; margin-top:90px; ">
 
         <div class="row">
             <div class="col-md-9">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAdd">
-                    Ajouter un étudiant
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAdd" style="background-color: #173165;margin-left:55px">
+                    Ajouter Personnel
                 </button>
                 @if (session('success'))
                     <div class="alert alert-success">
@@ -27,9 +28,10 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             <div class="modal-body">
                                 <form id="formAjouterEtudiant" action="{{ route('ajouter-Personnel') }}" method="POST">
@@ -45,92 +47,27 @@
                                             <input type="text" class="form-control" id="Prenom" name="Prenom">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputCNE">CNE</label>
+                                            <label for="inputCNE">CNI Personnel</label>
                                             <input type="text" class="form-control" id="CNE" name="CNE">
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <label for="inputCNI">CNI</label>
+                                            <label for="inputCNI">Etablissement</label>
                                             <input type="text" class="form-control" id="CNI" name="CNI">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date Naissance</label>
+                                            <label for="inputDateNaissance">Matricule CNSS</label>
                                             <input type="text" class="form-control" id="DateNaissance"
                                                 name="Date_naissance">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="inputCNI">Sexe</label>
+                                            <label for="inputCNI">RIB</label>
                                             <input type="text" class="form-control" id="CNI" name="Sexe">
                                         </div>
                                     </div>
-                                    <!-- Ajoutez d'autres paires de champs ici -->
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Pays</label>
-                                            <input type="text" class="form-control" id="DateNaissance" name="Pays">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Série de bac</label>
-                                            <input type="text" class="form-control" id="CNI" name="Serie_bac">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Diplôme d'acces</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Diplome_acces">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Date inscription</label>
-                                            <input type="text" class="form-control" id="CNI"
-                                                name="Date_inscription">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Mention Bac</label>
-                                            <input type="text" class="form-control" id="CNI"
-                                                name="Mention_bac">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Specialite diplôme</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Specialite_diplome">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-6">
-                                            <label for="inputDateNaissance">Etablissement du diplôme</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Etablissement_bac">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputCNI">Pourcentage Bourse</label>
-                                            <div class="col-md-6">
-                                                <select class="form-select" id="Pourcentage_bourse"
-                                                    name="Pourcentage_bourse">
-                                                    <option value="" disabled selected></option>
-                                                    <option value="0%">0%</option>
-                                                    <option value="10%">10%</option>
-                                                    <option value="20%">20%</option>
-                                                    <option value="30%">30%</option>
-                                                    <option value="40%">40%</option>
-                                                    <option value="50%">50%</option>
-                                                    <option value="60%">60%</option>
-                                                    <option value="70%">70%</option>
-                                                    <option value="80%">80%</option>
-                                                    <option value="90%">90%</option>
-                                                    <option value="100%">100%</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <!-- Ajoutez les autres champs de formulaire ici -->
+                                   
                                     <button type="submit" class="btn btn-primary"
                                         style="width: 100%;background-color:#173165">Ajouter</button>
                                 </form>
@@ -204,157 +141,57 @@
                     </div>
                 </div>
                 <div class="container">
-                    <table class="table table-striped" id="etudiants-table" >
+                    <table class="table table-striped" id="personnel-table">
                         <thead>
                             <tr>
-                                <th class="th-color border">ID</th>
-                                <th class="th-color border">Code Apogee</th>
-                                <th class="th-color border">CNE</th>
-                                <th class="th-color border">CNI</th>
+                                <th class="th-color border">CIN Personnel</th>
+                                <th class="th-color border">Matricule CNSS</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
-                                <th class="th-color border">Sexe</th>
-                                <th class="th-color border">Date Naissance</th>
-                                <th class="th-color border">Pays</th>
-                                <th class="th-color border">Diplome d'acces</th>
-                                <th class="th-color border">Serie de bac</th>
-                                <th class="th-color border">Date inscription</th>
-                                <th class="th-color border">Specialite de diplome</th>
-                                <th class="th-color border">Mention BAC</th>
-                                <th class="th-color border">Etablissement de diplome</th>
-                                <th class="th-color border">Pourcentage de bourse</th>
-
-                                <th class="th-color border">Actions</th>
+                                <th class="th-color border">Etablissement</th>
+                                <th class="th-color border">RIB</th>
+                                <th class="th-color border">Action</th>
+                               
                             </tr>
                         </thead>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
-    <script>
-        $('#etudiants-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('getDataPersonnel') }}",
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'apogee',
-                    name: 'apogee'
-                },
-                {
-                    data: 'CNE',
-                    name: 'CNE'
-                },
-                {
-                    data: 'CNI',
-                    name: 'CNI'
-                },
-                {
-                    data: 'Nom',
-                    name: 'Nom'
-                },
-                {
-                    data: 'Prenom',
-                    name: 'Prenom'
-                },
-                {
-                    data: 'Sexe',
-                    name: 'Sexe'
-                },
-                {
-                    data: 'Date_naissance',
-                    name: 'Date_naissance'
-                },
-                {
-                    data: 'Pays',
-                    name: 'Pays'
-                },
-                {
-                    data: 'Diplome_acces',
-                    name: 'Diplome_acces'
-                },
-                {
-                    data: 'Serie_bac',
-                    name: 'Serie_bac'
-                },
-                {
-                    data: 'Date_inscription',
-                    name: 'Date_inscription'
-                },
-                {
-                    data: 'Specialite_diplome',
-                    name: 'Specialite_diplome'
-                },
-                {
-                    data: 'Mention_bac',
-                    name: 'Mention_bac'
-                },
-                {
-                    data: 'Etablissement_bac',
-                    name: 'Etablissement_bac'
-                },
-                {
-                    data: 'Pourcentage_bourse',
-                    name: 'Pourcentage_bourse'
-                },
-
-                {
-                    data: 'actions',
-                    name: 'actions',
-                    orderable: false,
-                    searchable: false
-                }
-            ]
-        });
-    
+            
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+            <script>
+               
+            $('#personnel-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('getDatapersonnel') }}",
+                columns: [
+            
+                    { data: 'cin_salarie', name: 'cin_salarie' },
+                    { data: 'matricule_cnss', name: 'matricule_cnss' },
+                   
+                    { data: 'nom', name: 'nom' },
+                    { data: 'prenom', name: 'prenom' },
+                    { data: 'etablissement', name: 'etablissement' },
+                    { data: 'RIB', name: 'RIB' },
+                    {
+                            data: 'actions',
+                            name: 'actions',
+                            orderable: false,
+                            searchable: false
+                        }
+                ]
+            });
+           
 
         
-        $('#etudiants-table').on('click', '.edit-btn', function(e) {
-            e.preventDefault();
-            
-            var etudiantId = $(this).closest('tr').find('td:first')
-        .text(); 
-            var nom = $(this).closest('tr').find('td:eq(4)')
-        .text(); 
-            var prenom = $(this).closest('tr').find('td:eq(5)')
-        .text(); // Supposant que le sixième td contient le prénom de l'étudiant
-            var cne = $(this).closest('tr').find('td:eq(2)')
-        .text(); // Supposant que le troisième td contient le CNE de l'étudiant
-            var cni = $(this).closest('tr').find('td:eq(3)')
-        .text(); // Supposant que le quatrième td contient le CNI de l'étudiant
-            var dateNaissance = $(this).closest('tr').find('td:eq(7)')
-        .text(); // Supposant que le huitième td contient la date de naissance de l'étudiant
-            var sexe = $(this).closest('tr').find('td:eq(6)')
-        .text(); // Supposant que le septième td contient le sexe de l'étudiant
-
-            // Pré-remplir les champs du formulaire de modification avec les informations récupérées
-            $('#id').val(etudiantId);
-            $('#inputNom').val(nom);
-            $('#inputPrenom').val(prenom);
-            $('#inputCNE').val(cne);
-            $('#inputCNI').val(cni);
-            $('#inputDateNaissance').val(dateNaissance);
-            $('#inputSexe').val(sexe);
-
-            
-            $('#exampleModalEdit').modal('show');
-            console.log(etudiantId);
-
-
-        });
+      
     
 
     
         document.getElementById('formAjouterEtudiant').addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche la soumission du formulaire par défaut
+            event.preventDefault();
 
             // Récupérer les données du formulaire
             var formData = new FormData(this);
@@ -373,14 +210,21 @@
                     // Fermer le modal
                     $('#exampleModalAdd').modal('hide');
 
-                    // Recharger la page pour afficher les changements (ou rediriger l'utilisateur vers une autre page)
+                    
                     window.location.reload();
                 },
                 error: function(xhr, status, error) {
-                    // Si la requête échoue, vous pouvez gérer les erreurs ici
+                    
                     console.error(error);
                 }
             });
         });
+    </script>
+    <script>
+        function confirmDelete(cin_salarie){
+        if (confirm("Are you sure you want to delete this student?")) {
+            document.getElementById('delete-form-' + cin_salarie).submit();
+        }
+    }
     </script>
 @endsection

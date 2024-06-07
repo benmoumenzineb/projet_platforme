@@ -33,8 +33,10 @@ use App\Http\Controllers\ProgrammeEvaluationController;
 use App\Http\Controllers\HomeaAccuielController;
 
 use App\Http\Controllers\ExamNotificationController;
+use App\Http\Controllers\AbsenceProfacceuilcontroller;
 
 
+Route::get('/absenceaccuiel', [AbsenceProfacceuilcontroller::class, 'index'])->name('absence.accueil');
 Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name('scolarite.views.notificationsexam');
 Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
 Route::get('/student/exams', [ExamNotificationController::class, 'studentExams'])->name('etudiant.views.exametudiant');
@@ -127,7 +129,7 @@ Route::get('/Note_etudiants_Ajoute', [AjouteNoteController::class, 'indexx'])->n
 
 Route::post('/ajouter-etudiant', [ListetudiantController::class, 'ajouterEtudiant'])->name('ajouter.etudiant');
 
-
+Route::get('/getDataprofs', [AbsenceProfacceuilcontroller::class, 'fetchPersonnel'])->name('getDataprofs');
 Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])->name('getDataEtudients');
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
 Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
@@ -135,13 +137,15 @@ Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'dem
 Route::get('/historiqueprofesseur/search', [HistoriqueprofController::class, 'fetchHistorique'])->name('hisroriqueprofesseur');
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
 
-
+Route::get('demadneetudiants', [DemandeetudiantController::class, 'demandeEtudiants'])->name('getDataDemandeetudiant');
 Route::get('/fetch-etudiants', [AjouteNoteController::class, 'indexx'])->name('fetch.etudiants');
 Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 
 
 Route::get('reclamationscolariteetudiants', [ReclamationScolariteController::class, 'reclamationEtudiants'])->name('getDataReclamation');
 Route::get('paiementscolariteetudiants', [PaiementScolariteController::class, 'paiementEtudiants'])->name('getDataPaiement');
+Route::get('paiementetudiants', [PaiementetudiantController::class, 'paiementEtudiantshistorique'])->name('getDataPaiementetudiant');
+Route::get('/getPaidMonths', [PaiementetudiantController::class, 'getPaidMonths']);
 
 
 
@@ -155,7 +159,7 @@ Route::post('update-etudiant', [ListetudiantController::class, 'update'])->name(
 
 
 Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->name('etudiants.destroy');
-
+Route::delete('/personnel/{cin_salarie}', [RhPersonnelController::class, 'destroy'])->name('personnel.destroy');
 
 
 
@@ -167,7 +171,7 @@ Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant
 
 Route::get('/homeRH', [homeRHController::class, 'index'])->name('homeRH');
 Route::post('/ajouter-Personnel', [RhPersonnelControlleur::class,'ajouterPersonnel'])->name('ajouter-Personnel');
-
+Route::get('/getDatapersonnel', [RhPersonnelControlleur::class, 'fetchPersonnel'])->name('getDatapersonnel');
 Route::post('/delete-Personnel', [RhPersonnelControlleur::class, 'deletePersonne'])->name('delete-Personnel');
 
 Route::post('/update-Personnel', [RhPersonnelControlleur::class, 'updatePersonne'])->name('update-Personnel');
