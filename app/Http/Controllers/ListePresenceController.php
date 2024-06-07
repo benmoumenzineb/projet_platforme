@@ -10,7 +10,7 @@ use App\Models\Groupe;
 use App\Models\Inscription;
 use App\Models\Absence;
 use DB;
-
+use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 class ListePresenceController extends Controller
 {
@@ -21,24 +21,64 @@ class ListePresenceController extends Controller
     public function getEtudiants(Request $request)
     {
         $etab = $request->input('etablissement');
-    $cycle = $request->input('cycle');
-    $filiere = $request->input('filiere');
-    $matiere = $request->input('matiere');
-    $groupe = $request->input('groupe');
-    $niveau = $request->input('niveau');
-    // Stockez les choix dans des variables de session
-    $request->session()->put('etablissement', $etab);
-    $request->session()->put('cycle', $cycle);
-    $request->session()->put('filiere', $filiere);
-    $request->session()->put('matiere', $matiere);
-    $request->session()->put('groupe', $groupe);
-    $request->session()->put('niveau', $niveau);
-        
+        $cycle = $request->input('cycle');
+        $filiere = $request->input('filiere');
+        $matiere = $request->input('matiere');
+        $groupe = $request->input('groupe');
+        $niveau = $request->input('niveau');
+
+        $request->session()->put('etablissement', $etab);
+        $request->session()->put('cycle', $cycle);
+        $request->session()->put('filiere', $filiere);
+        $request->session()->put('matiere', $matiere);
+        $request->session()->put('groupe', $groupe);
+        $request->session()->put('niveau', $niveau);
+
+        // Récupérer la date et l'heure actuelles
+        $date = Carbon::now()->toDateString();
+        $heure = Carbon::now()->toTimeString();
+
+        // Récupérer le num_element de l'élément (matière) choisi
+        $element = Element::where('intitule', $matiere)->first();
+
+        if (!$element) {
+            return response()->json(['error' => 'Element not found'], 404);
+        }
+
+        // Récupérer les étudiants en fonction des critères
+        $etudiants = Etudians::query()
+            ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
+            ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
+            ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
+            ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere')
+            ->where('etablissement.ville', $etab)
+            ->where('filiere.cycle', $cycle)
+            ->where('groupe.intitule', $groupe)
+            ->whereNull('inscriptions.niveau')
+            ->where('filiere.intitule', $filiere)
+            ->select('etudient.*')
+            ->get();
+
+        // Insérer les enregistrements dans la table 'absence'
+        foreach ($etudiants as $etudiant) {
+            Absence::create([
+                'apogee' => $etudiant->apogee,
+                'num_element' => $element->num_element,
+                'date_abs' => $date,
+                'heure_abs' => $heure,
+                'absence' => null
+            ]);
+        }
+
+    // Afficher les étudiants dans la vue
+    return view('Prof.views.listepresence');
+
+
       
        
     
       
-        return view('Prof.views.listepresence');
+        
         
       
     
@@ -52,7 +92,8 @@ class ListePresenceController extends Controller
          $filiere = $request->session()->get('filiere');
          $matiere = $request->session()->get('matiere');
          $groupe = $request->session()->get('groupe');
-         $niveau= $request->session()->get('niveau');
+         $niveau = $request->session()->get('niveau');
+         
          $query = Etudians::query()
              ->select([
                  'etudient.apogee as Apogee',
@@ -63,7 +104,6 @@ class ListePresenceController extends Controller
                  'absence.date_abs as Date',
                  'absence.heure_abs as Heure',
                  'absence.absence as absence'
-                 
              ])
              ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
              ->join('absence', 'absence.apogee', '=', 'etudient.apogee')
@@ -83,16 +123,17 @@ class ListePresenceController extends Controller
          }
          if ($groupe) {
              $query->where('groupe.intitule', $groupe);
-         } 
-        elseif ($niveau) {
-            $query->where('inscriptions.niveau', $niveau);
-        } 
+         }
+         if ($niveau) {
+             $query->where('inscriptions.niveau', $niveau);
+         }
          if ($filiere) {
              $query->where('filiere.intitule', $filiere);
          }
+         
          \Log::info($query->toSql());
          \Log::info($query->getBindings());
-         
+ 
          $etudiants = $query->get();
          
          $formattedData = DataTables::of($etudiants)
@@ -106,7 +147,8 @@ class ListePresenceController extends Controller
              ->make(true);
  
          return $formattedData;
-     }
+     } 
+     
         
     
     
@@ -161,4 +203,3 @@ class ListePresenceController extends Controller
          }
      }
 }
-     
