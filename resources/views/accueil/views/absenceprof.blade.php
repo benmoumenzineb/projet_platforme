@@ -8,7 +8,7 @@
 <style>
 
 </style>
-<div class="container" style="margin-left: 150px; margin-top:140px; ">
+<div class="container" style="margin-left: 210px; margin-top:140px; ">
 
     <!-- Button trigger modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">

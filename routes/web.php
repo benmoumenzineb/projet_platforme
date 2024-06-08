@@ -34,7 +34,11 @@ use App\Http\Controllers\HomeaAccuielController;
 
 use App\Http\Controllers\ExamNotificationController;
 use App\Http\Controllers\AbsenceProfacceuilcontroller;
+use App\Http\Controllers\DashboardController;
 
+
+Route::get('/homeadmin', [DashboardController::class, 'index'])->name('dashboard.admin');
+Route::get('/dashboard-data', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/absenceaccuiel', [AbsenceProfacceuilcontroller::class, 'index'])->name('absence.accueil');
 Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name('scolarite.views.notificationsexam');
