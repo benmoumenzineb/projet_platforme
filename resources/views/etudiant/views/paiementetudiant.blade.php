@@ -83,17 +83,9 @@
 
 
 
-<div   style=" margin-top:-10px; overflow: hidden;">
-    <div style="margin-left: 0px; margin-top: 100px;">
-        <div class="content">
-            <button id="boutonInformations">Informations Paiement</button>
-            <button id="boutonCursus">Historique</button>
-            
-        </div>
-        
-    </div></div>
+<
 
-    <div id="informations-paiement-content" class="content" style="margin-left: -20px; margin-top:-20px; overflow: hidden;">
+    <div id="informations-paiement-content" class="content" style="margin-left: -20px; margin-top:30px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
             @if (session('success'))
                 <div class="alert alert-success">
@@ -328,36 +320,12 @@
     </div>
     </div>
 
-    <div id="historique-paiement-content" class="content" style="margin-left: 200px; margin-top:10px; ">
-    <!--Informations Payment-->
-    <div class="container">
-        <table class="table table-striped" id="paiementscolarite">
-            <thead>
-                <tr>
-                   
-           
-             <th class="th-color border" scope="col">Date Paiement</th>
-                         
-                                    <th class="th-color border" scope="col">Nom</th>
-                                    <th class="th-color border" scope="col">Prenom</th>
-                                    <th class="th-color border" scope="col">E-mail</th>
-                                    <th class="th-color border" scope="col">Numero de Téléphone</th>
-                                    <th class="th-color border" scope="col">CNI</th>
-                                    <th class="th-color border" scope="col">Montant</th>
-                                    <th class="th-color border" scope="col">Mode de Paiement</th>
-                                    <th class="th-color border" scope="col">Mois</th>
-                                    <th class="th-color border" scope="col">Choix</th>
-                                   
-
+    
                                     
                                    
                                    
     
-                </tr>
-            </thead>
-        </table>
-    </div>
-
+               
 
 
 
@@ -368,24 +336,9 @@
 
 <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
 
-<script>
+
   
-        $('#paiementscolarite').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('getDataPaiementetudiant')}}",
-            columns: [
-               
-                { data: 'date_paiement', name: 'date_paiement' },
-                { data: 'nom', name: 'nom' },
-                { data: 'prenom', name: 'prenom' },
-                { data: 'Email', name: 'Email' },
-                { data: 'n_telephone', name: 'n_telephone' },
-                { data: 'cni', name: 'cni' },
-                { data: 'montant', name: 'montant' },
-                { data: 'mode_paiement', name: 'mode_paiement' },  
-                  { data: 'mois_concerne', name: 'mois_concerne' },
-                  { data: 'choix', name: 'choix' },
+       
                
                 
                
@@ -397,10 +350,7 @@
               
                 
               
-            ]
-        });
-    
-</script>
+     
 
     <script>
        
@@ -461,37 +411,6 @@ $('#savebtn').on('click', function() {
         
     </script>
 
-<script>
-    const boutonInformations = document.getElementById('boutonInformations');
-    const boutonCursus = document.getElementById('boutonCursus');
-    
-    
-    boutonInformations.addEventListener('click', function() {
 
-        
-       
-        document.getElementById('informations-paiement-content').style.display = 'block';
-        
-       
-    
-        
-        document.getElementById('historique-paiement-content').style.display = 'none';
-      
-    });
-    
-   
-    boutonCursus.addEventListener('click', function() {
-
-document.getElementById('historique-paiement-content').style.display = 'block';
-
-
-
-
-document.getElementById('informations-paiement-content').style.display = 'none';
-
-
-
-});
-</script>
 
 @endsection

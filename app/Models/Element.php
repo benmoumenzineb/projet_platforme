@@ -39,4 +39,8 @@ class Element extends Model
     {
         return $this->hasMany(Programme_Evaluation::class, 'num_element');
     }
+    public function Absence_accueil()
+    {
+        return $this->hasMany(Absence_Accueil::class, 'num_element');
+    }
 }

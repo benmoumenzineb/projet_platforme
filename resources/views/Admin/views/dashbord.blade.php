@@ -16,7 +16,7 @@
     
         .card-body {
             padding: 20px;
-            text-align: center;
+            text-align: center rgb(191, 139, 6);
             box-shadow: 0 8px 14px rgba(16, 16, 16, 0.1);
         }
     
@@ -41,7 +41,7 @@
  
 @section('contenu')
 <body style="background-color: #f4f4f4;">
-<div style="margin-left: 260px;margin-top:100px;">
+<div style="margin-left: 240px;margin-top:100px;">
 <div class="container">
     <div class="row mb-4">
         <div class="col-lg-3 col-md-6 mb-3">
@@ -122,6 +122,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white" style="background-color:rgb(255, 250, 250);">
+                <div class="card-body" style="color:rgb(174, 6, 109)">
+                    <h5 class="card-title">Etablissement</h5>
+                    <p class="card-text" style="color:rgb(174, 6, 109)" >{{ $etablissementCount }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Charts Section -->
@@ -150,9 +158,16 @@
         </div>
         <div class="col-md-6">
             <canvas id="reclamationsChart" width="800" height="400"></canvas></div>
-        </div>
-        <div class="col-md-6">
+
+            <div class="col-md-6">
+                <canvas id="demandessChart" width="800" height="400"></canvas></div>
+            
+        
+        <div class="col-md-12">
             <canvas id="filieresBubbleChart" width="300" height="200"></canvas>
+        </div>
+        <div class="col-md-8">
+            <canvas id="etablissementsBubbleChart" width="300" height="200"></canvas>
         </div>
         
 </div></div>
@@ -301,40 +316,100 @@ var elementsChart = new Chart(elementsCtx, {
 });
 </script>
 <script>
-    var filieresCtx = document.getElementById('filieresBubbleChart').getContext('2d');
-var filieresChart = new Chart(filieresCtx, {
-    type: 'bubble',
-    data: {
-        datasets: data.bubbleData.map(filiere => ({
-            label: filiere.intitule,
-            data: [{
-                x: filiere.x,
-                y: filiere.y,
-                r: 10 // Spécifiez la taille de la bulle ici, vous pouvez ajuster cette valeur selon vos besoins
-            }],
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }))
-    },
-    options: {
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Nombre de cours'
-                }
+var data = {
+            bubbleData: @json($bubbleData)
+        };
+
+        var datasets = [];
+        for (var i = 0; i < data.bubbleData.length; i++) {
+            var filiere = data.bubbleData[i];
+            datasets.push({
+                label: filiere.intitule,
+                data: [{
+                    x: filiere.x,
+                    y: filiere.y,
+                    r: 10 
+                }],
+                backgroundColor: ' rgb(16, 87, 239)',
+                borderColor: ' rgb(16, 87, 239)',
+                borderWidth: 1
+            });
+        }
+
+        // Create the bubble chart
+        var filieresCtx = document.getElementById('filieresBubbleChart').getContext('2d');
+        var filieresChart = new Chart(filieresCtx, {
+            type: 'bar',
+            data: {
+                datasets: datasets
             },
-            y: {
-                title: {
-                    display: true,
-                    text: 'Nombre d\'étudiants'
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Filiére' // Adjust this title as needed
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nombre d\'étudiants'
+                        }
+                    }
                 }
             }
-        }
-    }
-});
+        });
 </script>
+
+
+<script>
+    var data = {
+                $lineData: @json($lineData)
+            };
+    
+            var datasets = [];
+            for (var i = 0; i < data.$lineData.length; i++) {
+                var etablissement = data.$lineData[i];
+                datasets.push({
+                    label: etablissement.ville,
+                    data: [{
+                        x: etablissement.x,
+                        y: etablissement.y,
+                        r: 10 
+                    }],
+                    backgroundColor: 'rgb(174, 6, 109)',
+                    borderColor: 'rgb(174, 6, 109)',
+                    borderWidth: 1
+                });
+            }
+    
+            // Create the bubble chart
+            var etablissementsCtx = document.getElementById('etablissementsBubbleChart').getContext('2d');
+            var etablissementsChart = new Chart(etablissementsCtx, {
+                type: 'bar',
+                data: {
+                    datasets: datasets
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Etablissement' // Adjust this title as needed
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Nombre d\'étudiants'
+                            }
+                        }
+                    }
+                }
+            });
+    </script>
+    
 <script>
 const moisLabels = <?php echo json_encode($moisLabels); ?>;
         const reclamationsData = <?php echo json_encode($reclamationsData); ?>;
@@ -352,6 +427,37 @@ const moisLabels = <?php echo json_encode($moisLabels); ?>;
                     data: reclamationsData,
                     backgroundColor: 'rgb(57, 102, 194)',
                     borderColor: 'rgb(57, 102, 194)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+</script>
+
+<script>
+
+ const moisLabel = <?php echo json_encode($moisLabel); ?>;
+        const demandesData = <?php echo json_encode($demandesData); ?>;
+
+        // Créer le contexte du graphique
+        var demandesCtx = document.getElementById('demandessChart').getContext('2d');
+
+        // Initialiser le graphique avec les données
+        var demandessChart = new Chart(demandesCtx, {
+            type: 'line',
+            data: {
+                labels: moisLabel,
+                datasets: [{
+                    label: 'Nombre de demande par mois',
+                    data: demandesData,
+                    backgroundColor: 'rgb(191, 139, 6)',
+                    borderColor: 'rgb(191, 139, 6)',
                     borderWidth: 1
                 }]
             },

@@ -123,8 +123,15 @@ h6 {
 {
     display: none;
 }
-        
+        /* Style pour les boutons cochés avec la couleur de fond verte */
     </style>
+
+
+
+
+
+
+
 
 <div   style=" margin-top:-10px; overflow: hidden;">
     <div style="margin-left: 0px; margin-top: 100px;">

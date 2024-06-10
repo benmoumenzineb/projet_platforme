@@ -22,32 +22,34 @@
                 </div>
                 <div class="modal-body">
                     <form id="editForm">
-                        <!-- Form fields go here -->
-                       
+                        <input type="hidden" id="cin_salarie" name="cin_salarie">
                         <div class="form-group">
-                            <label for="nom">Heure d'entrer</label>
-                            <input type="time" class="form-control" id="nom" name="nom">
+                            <label for="heure_depart">Heure d'entrer</label>
+                            <input type="time" class="form-control" id="heure_depart" name="heure_depart">
                         </div>
                         <div class="form-group">
-                            <label for="prenom">Heure de sortie</label>
-                            <input type="time" class="form-control" id="prenom" name="prenom">
+                            <label for="heure_fin">Heure de sortie</label>
+                            <input type="time" class="form-control" id="heure_fin" name="heure_fin">
                         </div>
                         <div class="form-group">
-                            <label for="prenom">Date</label>
-                            <input type="date" class="form-control" id="prenom" name="prenom">
+                            <label for="date_seance">Date</label>
+                            <input type="date" class="form-control" id="date_seance" name="date_seance">
                         </div>
                         <div class="form-group">
-                            <label for="prenom">Matiére</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom">
+                            <label for="num_element">Matière</label>
+                            <select name="num_element" id="num_element" class="form-control">
+                                @foreach($elements as $element)
+                                    <option value="{{ $element->num_element }}">{{ $element->intitule }}</option>
+                                @endforeach
+                            </select>
                         </div>
-
-                       
-                        <button type="submit" class="btn btn-primary" style="background-color: #173165">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary" style="background-color: #173165" >Enregistrer</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="container">
         <table class="table table-striped" id="prof-table">
             <thead>
@@ -98,4 +100,6 @@ $('#prof-table').DataTable({
    
 
 </script>
+
+ 
 @endsection

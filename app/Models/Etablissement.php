@@ -22,6 +22,9 @@ class Etablissement extends Model
     public $incrementing = false;
 
     public $timestamps = false;
-
+    public function students()
+    {
+        return $this->hasManyThrough(Etudians::class, Inscription::class, 'code_etab', 'apogee', 'code_etab', 'apogee');
+    }
    
 }

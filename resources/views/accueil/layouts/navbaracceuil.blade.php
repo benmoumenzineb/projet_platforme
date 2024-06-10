@@ -199,8 +199,8 @@
                                     <path
                                         d="M4.176 9.032a.5.5 0 0 1-.656.327l-.5 1.7a.5.5 0 0 1 .294.605l4.5 1.8a.5.5 0 0 1 .372 0l4.5-1.8a.5.5 0 0 1 .294-.605l-.5-1.7a.5.5 0 0 1-.656-.327L8 10.466z" />
                                 </svg>&nbsp;&nbsp;&nbsp;
-                                <a class="lien" href="{{ route('absence.accueil') }}"
-                                    class="{{ Request::is('absence.accueil') ? 'active' : '' }}">Présence Enseignant</a>
+                                <a class="lien" href="{{ route('absenceacceuil') }}"
+                                    class="{{ Request::is('absenceacceuil') ? 'active' : '' }}">Présence Enseignant</a>
                             </li>
                             
                            

@@ -104,16 +104,24 @@ tr{
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Etablissment</strong></legend>
                 <form id="etablissment">
                     
-                    <div class="form-group">
-                        
-                        <label for="Suptech"><strong>Suptech Santé :</strong></label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="Code_National" name="ville"
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="Suptech"><strong>Suptech Santé :</strong></label>
+                             
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="Code_National" name="ville"
                             value="{{ $inscription->etablissement_ville ?? '' }}" readonly>
                            
+                                
+                            </div>
                         </div>
-                        
                     </div>
+                        
+                        
+                        
+                    
                 </form>
             </fieldset>
         </div>

@@ -24,6 +24,7 @@
    }
     .background-color{
         background-color: #3966c2;
+        border: #3966c2;
     }
    
 .custom-rounded {
@@ -36,49 +37,43 @@
         
 </style>
 
-
-<body class="bg-light text-color">
+<body class=" text-color">
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
-                <div class="card custom-background custom-rounded  p-3">
-                    <div class="card-header custom-background text-size text-color text-center "><strong >Login</strong></div>
+                <img class="m-0 p-0 mt-0 img-logo mx-auto d-block" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="55%">
+
+                <div class="card custom-background custom-rounded p-3">
+                    <div class="card-header custom-background text-size text-color text-center"><strong>Connexion</strong></div>
                     <div class="card-body">
                         <form id="loginForm" action="{{ route('login.submit') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="nom-d'utilisateur" class="text-color">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" value="{{ old('CNE') }}" required autocomplete="CNE" autofocus required>
+                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" value="{{ old('CNE') }}" required autocomplete="CNE" autofocus required >
                                 @error('CNE')
                                 <span role="alert" style="color: rgb(236, 42, 42); font-size:12px;">{{ $message }}</span>
-
-                            @enderror
-                                  
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-color">Mot de Passe</label>
-                                <input type="password"  name="apogee" class="form-control" id="password" required autocomplete="current-password" placeholder=" Entrer votre Mot de passe " required>
+                                <input type="password" name="apogee" class="form-control" id="password" required autocomplete="current-password" placeholder=" Entrer votre Mot de passe " required>
                                 @error('apogee')
                                 <span role="alert">{{ $message }}</span>
-                            @enderror
-                                
+                                @enderror
                             </div>
-                            <button type="submit"   class="btn btn-primary w-100 background-color text-color">Connexion</button>
+                            <button type="submit" class="btn btn-primary w-100 background-color text-color">Connexion</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div> </div> 
-       
     </div>
-
-   
-<script src="/assets/jquery.js"></script>
+    <script src="/assets/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   
 </body>
 </html>
+
 

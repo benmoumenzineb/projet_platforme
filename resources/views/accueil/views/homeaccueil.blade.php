@@ -105,14 +105,14 @@ background-color:#1858b1;
 margin-right:10px;margin-top:30px; padding: 40px;
 ">
     <div class="d-flex justify-content-left">
-       <a href="{{ route('absence.accueil') }}"> <div class="card mb-3 mr-3 mt-4  custom-background" style="width: 300px;color:#ffffff; margin-right: 20px;"style="color: #ffffff;">
+       <a href="{{ route('absenceacceuil') }}"> <div class="card mb-3 mr-3 mt-4  custom-background" style="width: 300px;color:#ffffff; margin-right: 20px;"style="color: #ffffff;">
            
             <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-clipboard2-check-fill" viewBox="0 0 16 16"style="color: #ffffff;">
                     <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5"/>
                     <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5m6.769 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
                   </svg>
-                <h5 class="card-title" style="color: #ede8e8"> <a href="{{ route('absence.accueil') }}" style="color: #ede8e8; text-decoration:none;">Présence Enseignant</a></h5>
+                <h5 class="card-title" style="color: #ede8e8"> <a href="{{ route('absenceacceuil') }}" style="color: #ede8e8; text-decoration:none;">Présence Enseignant</a></h5>
                 
             </div>
          </div></a>

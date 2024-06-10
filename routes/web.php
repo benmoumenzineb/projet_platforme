@@ -41,6 +41,8 @@ Route::get('/homeadmin', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/dashboard-data', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/absenceaccuiel', [AbsenceProfacceuilcontroller::class, 'index'])->name('absence.accueil');
+Route::get('/absence/create', [AbsenceProfacceuilcontroller::class, 'create'])->name('absenceacceuil');
+Route::post('/absence/accueil', [AbsenceProfacceuilcontroller::class, 'store'])->name('absence.store');
 Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name('scolarite.views.notificationsexam');
 Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
 Route::get('/student/exams', [ExamNotificationController::class, 'studentExams'])->name('etudiant.views.exametudiant');

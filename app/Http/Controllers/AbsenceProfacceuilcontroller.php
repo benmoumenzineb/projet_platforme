@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Personnel; 
+use App\Models\Enseignant; 
+use App\Models\Element;
+use App\Models\Absence_Accueil; 
 use DataTables;
 
 class AbsenceProfacceuilcontroller extends Controller
 {
-    public function index(Request $request)
-    {
-        return view('accueil.views.absenceprof');
-    }
+   
 
     public function fetchPersonnel()
     {
@@ -30,17 +30,24 @@ class AbsenceProfacceuilcontroller extends Controller
         ->rawColumns(['actions'])
         ->make(true);
     }
+    public function create()
+    {
+        $elements = Element::all();
+        $enseignants=Enseignant::all();
+        return view('accueil.views.absenceprof', compact('elements','enseignants'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'cin_salarie' => 'required|exists:personnel,cin_salarie',
+            'cin_salarie' => 'required|exists:enseignant,cin_salarie',
             'num_element' => 'required|exists:element,num_element',        
             'heure_depart' => 'required',
             'heure_fin' => 'required',
             'date_seance' => 'required',
         ]);
 
-        Accueil::create([
+        Absence_Accueil::create([
             'cin_salarie' => $request->cin_salarie,
             'num_element' => $request->num_element,
             'heure_fin' => $request->heure_fin,
@@ -48,8 +55,6 @@ class AbsenceProfacceuilcontroller extends Controller
             'date_seance' => $request->date_seance,
         ]);
 
-        
-
-        return redirect()->route('accueil.views.absenceprof')->with('success', 'Notification envoyée avec succès.');
+        return redirect()->route('accueil.views.absenceprof')->with('success', 'Absence enregistrée avec succès.');
     }
 }
