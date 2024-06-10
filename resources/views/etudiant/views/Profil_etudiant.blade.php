@@ -103,17 +103,14 @@ tr{
             <fieldset class="border p-3">
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong>Etablissment</strong></legend>
                 <form id="etablissment">
+                    
                     <div class="form-group">
+                        
                         <label for="Suptech"><strong>Suptech Santé :</strong></label>
-                        <div class="suptech_sante_radio">
-                            <label style="margin-right: 100px;">
-                                <input type="radio" name="Etablissement" value="{{ $inscription->etablissement_ville ?? '' }}" {{ $inscription ? 'checked' : '' }}  readonly>
-                                Mohammedia
-                            </label>
-                            <label>
-                                <input type="radio" name="Etablissement" value="{{ $inscription->etablissement_ville ?? '' }}" {{ $inscription ? 'checked' : '' }} readonly>
-                                Essaouira
-                            </label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="Code_National" name="ville"
+                            value="{{ $inscription->etablissement_ville ?? '' }}" readonly>
+                           
                         </div>
                         
                     </div>

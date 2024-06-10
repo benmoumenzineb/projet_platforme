@@ -1,4 +1,6 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
     <style>
@@ -55,7 +57,23 @@
     }
     
 }
-
+#boutonInformations, #boutonCursus{
+    background-color: #173165; 
+    color: white; 
+   
+    text-align: center; 
+    text-decoration: none; 
+ padding: 5px;
+    font-size: 17px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 5px;
+    border: 5px #173165; 
+    transition-duration: 0.4s; 
+}
+#historique-paiement-content{
+    display: none;
+}
         /* Style pour les boutons cochés avec la couleur de fond verte */
     </style>
 
@@ -65,9 +83,17 @@
 
 
 
+<div   style=" margin-top:-10px; overflow: hidden;">
+    <div style="margin-left: 0px; margin-top: 100px;">
+        <div class="content">
+            <button id="boutonInformations">Informations Paiement</button>
+            <button id="boutonCursus">Historique</button>
+            
+        </div>
+        
+    </div></div>
 
-
-    <div id="informations-personnelles-content" class="content" style="margin-left: -20px; margin-top:90px; overflow: hidden;">
+    <div id="informations-paiement-content" class="content" style="margin-left: -20px; margin-top:-20px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
             @if (session('success'))
                 <div class="alert alert-success">
@@ -302,37 +328,97 @@
     </div>
     </div>
 
-
+    <div id="historique-paiement-content" class="content" style="margin-left: 200px; margin-top:10px; ">
     <!--Informations Payment-->
+    <div class="container">
+        <table class="table table-striped" id="paiementscolarite">
+            <thead>
+                <tr>
+                   
+           
+             <th class="th-color border" scope="col">Date Paiement</th>
+                         
+                                    <th class="th-color border" scope="col">Nom</th>
+                                    <th class="th-color border" scope="col">Prenom</th>
+                                    <th class="th-color border" scope="col">E-mail</th>
+                                    <th class="th-color border" scope="col">Numero de Téléphone</th>
+                                    <th class="th-color border" scope="col">CNI</th>
+                                    <th class="th-color border" scope="col">Montant</th>
+                                    <th class="th-color border" scope="col">Mode de Paiement</th>
+                                    <th class="th-color border" scope="col">Mois</th>
+                                    <th class="th-color border" scope="col">Choix</th>
+                                   
 
-
-
-
-
-    <div class="content" style="margin-top: 20px; overflow: hidden;">
-        <div class="row justify-content-end">
-
-        </div>
+                                    
+                                   
+                                   
+    
+                </tr>
+            </thead>
+        </table>
     </div>
 
+
+
+
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+
+<script>
+  
+        $('#paiementscolarite').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('getDataPaiementetudiant')}}",
+            columns: [
+               
+                { data: 'date_paiement', name: 'date_paiement' },
+                { data: 'nom', name: 'nom' },
+                { data: 'prenom', name: 'prenom' },
+                { data: 'Email', name: 'Email' },
+                { data: 'n_telephone', name: 'n_telephone' },
+                { data: 'cni', name: 'cni' },
+                { data: 'montant', name: 'montant' },
+                { data: 'mode_paiement', name: 'mode_paiement' },  
+                  { data: 'mois_concerne', name: 'mois_concerne' },
+                  { data: 'choix', name: 'choix' },
+               
+                
+               
+              
+              
+              
+             
+               
+              
+                
+              
+            ]
+        });
+    
+</script>
+
     <script>
-        // JavaScript pour gérer le clic sur les boutons des mois
+       
         document.querySelectorAll('.month-btn').forEach(button => {
             button.addEventListener('click', function() {
-                // Récupérer le mois à partir de l'attribut data-month
+                
                 const month = this.getAttribute('data-month');
-                // Vous pouvez ajouter votre propre logique pour gérer le clic sur le mois sélectionné
+                
             });
         });
-        // Sélectionnez tous les éléments avec la classe "month-btn"
+       
         const monthButtons = document.querySelectorAll('.month-btn');
 
-        // Parcourez chaque bouton
+      
         monthButtons.forEach(button => {
-            // Ajoutez un écouteur d'événements pour le clic
+            
             button.addEventListener('click', () => {
-                // Vérifiez si le bouton a déjà la classe "active"
+                
                 const isActive = button.classList.contains('active');
 
                 // Si le bouton est actif, supprimez la classe "active", sinon ajoutez-la
@@ -352,16 +438,16 @@
     });
     $.ajax({
         type: 'POST',
-        url: '{{ route('enpaiement') }}', // Assurez-vous que l'URL est correcte
+        url: '{{ route('enpaiement') }}', 
         data: {
             mois_concerne: moisSelectionnes
         },
         success: function(response) {
-            // Afficher un message de succès ou effectuer d'autres actions si nécessaire
+            
             alert('Mois enregistrés avec succès!');
         },
         error: function(xhr, status, error) {
-            // Gérer les erreurs si nécessaire
+
             console.error(error);
         }
     });
@@ -374,4 +460,38 @@ $('#savebtn').on('click', function() {
 
         
     </script>
+
+<script>
+    const boutonInformations = document.getElementById('boutonInformations');
+    const boutonCursus = document.getElementById('boutonCursus');
+    
+    
+    boutonInformations.addEventListener('click', function() {
+
+        
+       
+        document.getElementById('informations-paiement-content').style.display = 'block';
+        
+       
+    
+        
+        document.getElementById('historique-paiement-content').style.display = 'none';
+      
+    });
+    
+   
+    boutonCursus.addEventListener('click', function() {
+
+document.getElementById('historique-paiement-content').style.display = 'block';
+
+
+
+
+document.getElementById('informations-paiement-content').style.display = 'none';
+
+
+
+});
+</script>
+
 @endsection

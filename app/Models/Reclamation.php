@@ -16,6 +16,7 @@ class Reclamation extends Model
         'Email',
         'Type',
         'Description',
-        'file_reclamation', 
+        'file_reclamation',
+        'date',
     ];
 }

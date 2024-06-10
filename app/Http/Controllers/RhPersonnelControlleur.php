@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudians;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\Personnel;
 class RhPersonnelControlleur extends Controller
 {
     
@@ -25,27 +26,23 @@ class RhPersonnelControlleur extends Controller
     
     public function fetchPersonnel()
     {
-        $etudiant = Etudians::select(['id', 'apogee', 'CNE', 'CNI', 'Nom', 'Prenom','Sexe','Date_naissance','Pays','Diplome_acces','Serie_bac','Date_inscription','Specialite_diplome','Mention_bac','Etablissement_bac','Pourcentage_bourse']);
-    
-        return DataTables::of($etudiant)
-        ->addColumn('actions', function ($etudiant) {
-            return '<div class="btn-group" role="group" aria-label="Actions">' .
-                    '<a href="#" class="edit-btn">' .
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" style="color: #173165;">' .
-                        '<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>' .
-                        '<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>' .
-                    '</svg>' .
-                '</a>'.
-                '<a href="#" class="delet-btn">' .
-                    '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="color:#173165;">' .
-                        '<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>' .
-                    '</svg>' .
-                '</a>' .
-            '</div>';
-        })
-        
-            ->rawColumns(['actions'])
-       ->make(true);
+        $personnel = Personnel::select(['cin_salarie','matricule_cnss','RIB', 'nom', 'prenom', 'etablissement']);
+
+        return DataTables::of($personnel)
+        ->addIndexColumn()
+        ->addColumn('actions', function($personnel) {
+            return '<div style="display: flex; gap: 5px;">
+                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $personnel->cin_salarie . '" style="width:auto; background-color: #173165;">Modifier</button>
+                                           <form id="delete-form-' .  $personnel->cin_salarie. '" action="' . route('personnel.destroy',  $personnel->cin_salarie) . '" method="POST" style="margin: 0;">
+                            ' . csrf_field() . method_field('DELETE') . '
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete(' .  $personnel->cin_salarie. ')" style="width:auto;">Supprimer</button>
+                        </form>
+                </div>';
+    })
+           
+ 
+        ->rawColumns(['actions'])
+        ->make(true);
     }
    
     public function updatePersonnel(Request $request)

@@ -10,6 +10,7 @@ class Demande extends Model
     protected $table = 'demandes';
     protected $fillable = [
         'id',
+        'apogee',
         'Nom',
         'Prenom',
         'Numero',
@@ -17,4 +18,8 @@ class Demande extends Model
         'Type',
        
     ];
+    public function etudient()
+    {
+        return $this->belongsTo(Etudians::class, 'apogee', 'apogee');
+    }
 }

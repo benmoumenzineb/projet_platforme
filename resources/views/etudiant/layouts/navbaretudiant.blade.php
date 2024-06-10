@@ -23,6 +23,7 @@
         top: 40px;
         left: 0;
         overflow-y: hidden;
+        z-index: 999;
 
     }
 
@@ -152,7 +153,7 @@
         .container {
             padding: 0 60px;
            
-            /* Adjust padding for laptops */
+           
         }
         
     }
@@ -167,17 +168,12 @@
 </style>
 
 <body>
-    <!--sidebar horizontal
-   
     
-    
-=======
-    sidebar Vertical-->
     <nav class="navbar">
         <div class="container">
             <img class="m-0 p-0 mt-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="13%">
             <div class="navbar-left">
-                <div class="d-flex align-items-center"> <!-- Utilisation de flexbox pour aligner les éléments horizontalement -->
+                <div class="d-flex align-items-center"> 
                     @if($authUser)
                         <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
                             {{ $authUser->Nom }} {{ $authUser->Prenom }}

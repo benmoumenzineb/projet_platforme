@@ -1,41 +1,41 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
     <style>
-        /* Style pour le conteneur du formulaire */
-        /* Style pour le conteneur du formulaire */
-/* Style pour le conteneur du formulaire */
+       
 #demande {
     margin: 80px auto 50px;
-    background-color: #f9f9f9;
+    background-color: #b7b7b7;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Augmentez la largeur maximale du formulaire */
-    width: 90%; /* Ajoutez cette règle pour étendre la largeur du formulaire sur toute la largeur disponible */
-    margin-left: auto; /* Centrez horizontalement le formulaire */
-    margin-right: auto; /* Centrez horizontalement le formulaire */
+    max-width: 800px; 
+    width: 90%; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
-/* Style pour les titres */
+
 h6 {
     color: #173165;
     margin-bottom: 10px;
 }
 
-/* Style pour les inputs */
+
 .form-control {
     border-radius: 5px;
     border: 1px solid #ddd;
-    padding: 8px; /* Augmentez la taille de la zone de saisie */
+    padding: 8px; 
     margin-bottom: 20px;
 }
 
-/* Style pour le bouton "Enregistrer" */
+
 .button-enregistrer {
     width: 100%;
     padding: 10px;
-    background-color: #1858b1;
+    background-color:#173165;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -44,46 +44,46 @@ h6 {
     transition: background-color 0.3s ease;
 }
 
-/* Style pour le bouton "Enregistrer" au survol */
+
 .button-enregistrer:hover {
     background-color: #0d3d82;
 }
 
-/* Media Queries pour la mise en page responsive */
+
 @media (max-width: 320px) {
     #demande {
-        padding: 20px; /* Réduire le padding pour les petits écrans */
+        padding: 20px; 
     }
     .form-control {
-        padding: 6px; /* Réduire la taille de la zone de saisie pour les petits écrans */
+        padding: 6px;
     }
 }
 
 @media (min-width: 375px) {
     #demande {
-        max-width: 80%; /* Réduire la largeur du formulaire pour les petits écrans */
+        max-width: 80%; 
     }
 }
 
 @media (min-width: 425px) {
     #demande {
-        max-width: 90%; /* Réduire la largeur du formulaire pour les écrans moyens */
+        max-width: 90%; 
     }
 }
 
 @media (min-width: 768px) {
     #demande {
-        max-width: 600px; /* Réduire la largeur du formulaire pour les écrans plus grands */
+        max-width: 600px; 
     }
 }
 @media (min-width: 1440px) {
     #demande {
-        max-width: 900px; /* Réduire la largeur du formulaire pour les écrans plus grands */
+        max-width: 900px; 
     }
 }
 @media (min-width: 1024px) {
     #demande {
-        max-width: 800px; /* Réduire la largeur du formulaire pour les écrans plus grands */
+        max-width: 800px; 
     }
 }
 @media (width: 2560px) {
@@ -92,7 +92,7 @@ h6 {
      height: 500px;
      margin-left:-80px;
      margin-top: 120px;
-      /* Rétablir la largeur maximale pour les écrans plus grands */
+     
     }
     .button-enregistrer{
         margin-top: 40px;
@@ -104,9 +104,39 @@ h6 {
     }
     
 }
-       </style>
+      
+#boutonInformations, #boutonCursus{
+    background-color: #173165; 
+    color: white; 
+   
+    text-align: center; 
+    text-decoration: none; 
+ padding: 5px;
+    font-size: 17px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 5px;
+    border: 5px #173165; 
+    transition-duration: 0.4s; 
+}
+#historique-demande-content
+{
+    display: none;
+}
+        
+    </style>
 
-    <div id="demande" class="container">
+<div   style=" margin-top:-10px; overflow: hidden;">
+    <div style="margin-left: 0px; margin-top: 100px;">
+        <div class="content">
+            <button id="boutonInformations">Informations Demande</button>
+            <button id="boutonCursus">Historique</button>
+            
+        </div>
+        
+    </div></div>
+    <div class="container"  id="informations-demande-content" style="margin-left: 250px; margin-top:10px; ">
+    
         @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -117,6 +147,9 @@ h6 {
             <li class="alert alert-danger">{{ $error }}</li>
         @endforeach
     </ul>
+    <fieldset class="border p-4">
+        <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong>
+        </legend>
         <form action="{{route('endemande') }}" method="POST">
             @csrf
             <div class="row">
@@ -165,6 +198,89 @@ h6 {
                     <button class="btn button-enregistrer">Enregistrer</button>
                 </div>
             </div>
-        </form>
+        </form></fieldset>
+    </div></div>
+
+    <div class="container" id="historique-demande-content" style="margin-left: 250px; margin-top:90px; ">
+        <div class="row">
+            <div class="col-md-9">
+                
+                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    
+                </div>
+                <div class="container">
+                    <table class="table table-striped" id="demandescolarite">
+                        <thead>
+                            <tr>
+                               
+                <th class="th-color border" scope="col">Nom</th>
+                <th class="th-color border" scope="col">Prénom</th>
+                <th class="th-color border" scope="col">Numero de Téléphone</th>
+                <th class="th-color border" scope="col">Email</th>
+                <th class="th-color border" scope="col">Type</th>
+               
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-@endsection
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+    
+    <script>
+      
+            $('#demandescolarite').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('getDataDemandeetudiant')}}",
+                columns: [
+                  
+                    { data: 'Nom', name: 'Nom' },
+                    { data: 'Prenom', name: 'Prenom' },
+                    { data: 'Numero', name: 'Numero' },
+                    { data: 'Email', name: 'Email' },
+                    { data: 'Type', name: 'Type' },
+                   
+                    
+                ]
+            });
+        
+    </script>
+    <script>
+        const boutonInformations = document.getElementById('boutonInformations');
+        const boutonCursus = document.getElementById('boutonCursus');
+        
+        
+        boutonInformations.addEventListener('click', function() {
+
+            
+           
+            document.getElementById('informations-demande-content').style.display = 'block';
+            
+           
+        
+            
+            document.getElementById('historique-demande-content').style.display = 'none';
+          
+        });
+        
+       
+        boutonCursus.addEventListener('click', function() {
+    
+    document.getElementById('historique-demande-content').style.display = 'block';
+    
+    
+    
+   
+    document.getElementById('informations-demande-content').style.display = 'none';
+   
+    
+    
+});
+</script>
+    
+    @endsection

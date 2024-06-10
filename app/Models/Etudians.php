@@ -63,5 +63,8 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     {
         return $this->hasMany(Inscription::class, 'apogee');
     }
-  
+    public function demande()
+    {
+        return $this->hasMany(Demande::class, 'apogee');
+    }
 }

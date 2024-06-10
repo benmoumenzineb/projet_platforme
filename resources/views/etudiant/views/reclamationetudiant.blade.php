@@ -10,7 +10,8 @@
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     max-width: 800px; 
-    width: 90%; 
+    width: 100%;
+   
     margin-left: auto; 
     margin-right: auto; 
 }
@@ -167,8 +168,8 @@
                     <select class="form-control" name="Type" required>
                         
                         <option value="internat">Réclamation d'internat</option>
-                        <option value="suptech">Réclamation de Suptech</option>
-                        <option value="transport">Réclamation de Transport</option>
+                        <option value="suptech">Réclamation  Suptech</option>
+                        <option value="transport">Réclamation  Transport</option>
                     </select>
                 </div>
             </div>
@@ -185,7 +186,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h6>Télécharger un fichier :</h6>
+                    <h6>Sélectionner un fichier :</h6>
                     
                     <label for="file-reclamation" class="file-upload-btn btn btn-outline-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" fill="currentColor"
