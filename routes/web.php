@@ -187,7 +187,7 @@ Route::get('/Presence-etudiant', [ListePresenceController::class, 'getEtudiantsD
 Route::post('/miseajour', [AjouteNoteController::class, 'update'])->name('profupdate');
 
 
-Route::post('/update-absence', [ListePresenceController::class, 'updateAbsence'])->name('updateAbsence');
+Route::post('/update-absence', [ListePresenceController::class, 'saveAbsence'])->name('saveAbsence');
 
 Auth::routes();
 

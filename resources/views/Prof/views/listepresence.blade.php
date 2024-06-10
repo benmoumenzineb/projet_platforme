@@ -10,40 +10,15 @@
 
         <div class="row">
             <div class="col-md-9">
-
-              <!-- modfier modal--><div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                                <div class="modal-body">
-                                    <form id="formModifierEtudiant" action="{{ route('updateAbsence') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" id="apogee" name="apogee" value="">
-                                       
-                                        
-                                        <div class="form-group col-md-4">
-                                            <label for="inputAbsence">Absence</label>
-                                            <input type="text" class="form-control" id="inputAbsence" name="absence" min="0" max="20">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <button id="saveAbsences" class="btn btn-primary mt-3">Enregistrer</button>
+        </div>
+    </div>                  
                 <div class="container">
                     <table class="table table-striped" id="etudiants-table">
                         <thead>
                             <tr>
                                 <th class="th-color border">Numéro</th>
-                      
+                                <th class="th-color border">Apogée</th>
                                 <th class="th-color border">CNE</th>
                                 <th class="th-color border">CNI</th>
                                 <th class="th-color border">Nom</th>
@@ -51,7 +26,7 @@
                                 <th class="th-color border">Date</th>
                                 <th class="th-color border">heure</th>
                                 <th class="th-color border">Absence</th>
-                                <th class="th-color border">Actions</th>
+                             
                                
                                 
                                
@@ -77,59 +52,74 @@ $('#etudiants-table').DataTable({
     serverSide: true,
     ajax: "{{ route('dataetudiant') }}",
     columns: [
+        { data: 'numero', name: 'numero' },
         { data: 'Apogee', name: 'Apogee' },
-       
         { data: 'CNE', name: 'CNE' },
         { data: 'CNI', name: 'CNI' },
         { data: 'Nom', name: 'Nom' },
         { data: 'Prenom', name: 'Prenom' },
+      
         { data: 'Date', name: 'Date' },
         { data: 'Heure', name: 'Heure' },
-        { data: 'absence', name: 'absence' },
-        {  data: 'actions',
-                name: 'actions',
-                orderable: false,
-    searchable: false
-            }
+     
+        {
+                        data: 'absence',
+                        name: 'absence',
+                        render: function(data, type, row) {
+                            return `
+                                <select class="form-control absence-select" data-apogee="${row.numero}">
+                                    <option value="">Sélectionner</option>
+                                    <option value="A" ${data === 'A' ? 'selected' : ''}>A</option>
+                                    <option value="P" ${data === 'P' ? 'selected' : ''}>P</option>
+                                    <option value="R" ${data === 'R' ? 'selected' : ''}>R</option>
+                                </select>
+                            `;
+                        }
+                    }
        
     ]
 });
 
 
-</script>
-<script>
-    $(document).ready(function() {
-        // Lorsqu'on clique sur le bouton "edit"
-        $('#etudiants-table').on('click', '.edit-btn', function(e) {
-            e.preventDefault();
-            var etudiantId = $(this).data('id');
-            var row = $(this).closest('tr');
-            var absence = row.find('td:eq(7)').text();
-            
-            $('#apogee').val(etudiantId);
-            $('#inputAbsence').val(absence);
-            $('#exampleModalEdit').modal('show');
-        });
+
     
-        // Lorsqu'on soumet le formulaire
-        $('#formModifierEtudiant').submit(function(e) {
-            var absence = $('#inputAbsence').val().toUpperCase().trim(); // Convertir en majuscules et supprimer les espaces
-            
-            // Ne pas afficher l'alerte si le champ est vide
-            if (absence === "") {
-                return true; // Permettre la soumission du formulaire
-            }
-    
-            // Vérifier si l'entrée n'est pas égale à A, P ou R
-            if (absence !== "A" && absence !== "P" && absence !== "R") {
-                alert("Tu dois entrer soit A, P ou R en majuscules ou minuscules.");
-                return false; // Empêcher la soumission du formulaire
-            }
-    
-            // Mettre à jour la valeur du champ input avec la version en majuscules
-            $('#inputAbsence').val(absence);
-        });
+$('#saveAbsences').on('click', function() {
+    var absences = [];
+    $('.absence-select').each(function() {
+        var id_absence = $(this).data('apogee'); // Ensure this fetches id_absence correctly
+        var absence = $(this).val();
+        if (absence) {
+            absences.push({ id_absence: id_absence, absence: absence });
+        }
     });
-    </script>
-    
+
+    // Use Fetch API to send the data
+    fetch('{{ route("saveAbsence") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Ensure CSRF token is sent
+        },
+        body: JSON.stringify({
+            updates: absences
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Absences sauvegardées avec succès.');
+        } else {
+            alert(data.error || 'Une erreur est survenue lors de la mise à jour des absences.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Une erreur est survenue lors de la mise à jour des absences.');
+    });
+});
+
+
+
+ 
+</script>
 @endsection
