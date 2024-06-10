@@ -350,4 +350,19 @@ public function getEtudiantsData(Request $request)
         return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
     }
 }
+public function exportExcel()
+    {
+        return Excel::download(new EtudiantsExport, 'etudiants.xlsx');
+    }
+
+    public function importExcel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx'
+        ]);
+
+        Excel::import(new EtudiantsImport, $request->file('file'));
+
+        return redirect()->back()->with('success', 'Notes importées avec succès');
+    }
 }

@@ -197,8 +197,10 @@ Route::get('/Presence-etudiant', [ListePresenceController::class, 'getEtudiantsD
 Route::post('/miseajour', [AjouteNoteController::class, 'update'])->name('profupdate');
 
 
-Route::post('/update-absence', [ListePresenceController::class, 'updateAbsence'])->name('updateAbsence');
+Route::post('/update-absence', [ListePresenceController::class, 'saveAbsence'])->name('saveAbsence');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('exportExcel', [AjouteNoteController::class, 'exportExcel'])->name('exportExcel');
+Route::post('importExcel', [AjouteNoteController::class, 'importExcel'])->name('importExcel');

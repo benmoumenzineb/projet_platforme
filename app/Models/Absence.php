@@ -10,7 +10,7 @@ class Absence extends Model
     use HasFactory;
 
     protected $table = 'absence';
-    protected $primaryKey = 'apogee';
+    protected $primaryKey = 'id_absence';
     public $incrementing = false;
 
     public $timestamps = false;
@@ -24,7 +24,7 @@ class Absence extends Model
     }
     protected $fillable = [
        
-       
+       'id_absence',
         'apogee',
         'num_element',
         'date_abs',
