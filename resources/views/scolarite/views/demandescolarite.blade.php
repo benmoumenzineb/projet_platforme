@@ -13,7 +13,7 @@
             
         }}
 </style>
-    <div class="container" style="margin-left: 250px; margin-top:140px; ">
+    <div class="container" style="margin-left: 150px; margin-top:140px; ">
         <div class="row">
             <div class="col-md-9">
                 

@@ -35,11 +35,30 @@ use App\Http\Controllers\HomeaAccuielController;
 use App\Http\Controllers\ExamNotificationController;
 use App\Http\Controllers\AbsenceProfacceuilcontroller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\homelogincontroller;
+use App\Http\Controllers\loginscolaritecontroller;
+use App\Http\Controllers\loginaccueilcontroller;
+use App\Http\Controllers\loginadmincontroller;
+use App\Http\Controllers\loginrhcontroller;
+use App\Http\Controllers\loginprofcontroller;
+use App\Http\Controllers\homeadminController;
+use App\Http\Controllers\Auth\AdminLoginController;
 
 
-Route::get('/homeadmin', [DashboardController::class, 'index'])->name('dashboard.admin');
+
+
+
+
+
+Route::get('/homelogin', [homelogincontroller::class, 'index'])->name('home.login');
+Route::get('/loginscolarite', [loginscolaritecontroller::class, 'index'])->name('login.scolarite');
+Route::get('/loginprof', [loginprofcontroller::class, 'index'])->name('login.prof');
+Route::get('/loginaccueil', [loginaccueilcontroller::class, 'index'])->name('login.accueil');
+Route::get('/loginRH', [loginrhcontroller::class, 'index'])->name('login.rh');
+
+
+
 Route::get('/dashboard-data', [DashboardController::class, 'dashboard'])->name('dashboard');
-
 Route::get('/absenceaccuiel', [AbsenceProfacceuilcontroller::class, 'index'])->name('absence.accueil');
 Route::get('/absence/create', [AbsenceProfacceuilcontroller::class, 'create'])->name('absenceacceuil');
 Route::post('/absence/accueil', [AbsenceProfacceuilcontroller::class, 'store'])->name('absence.store');
@@ -54,6 +73,15 @@ Route::middleware(['web'])->group(function () {
 });
 
 Route::get('/logout', [EtudiantLoginController::class, 'logout'])->name('logout.etudiant');
+
+Route::middleware(['web'])->group(function () {
+    Route::get('/loginadmin', [AdminLoginController::class, 'index'])->name('login.admin');
+    Route::post('/loginadmin2', [AdminLoginController::class, 'login_admin'])->name('login.submit.admin');
+    Route::get('/homeadmin', [DashboardController::class, 'index'])->name('homeadmin');
+});
+
+
+
 
 Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
 

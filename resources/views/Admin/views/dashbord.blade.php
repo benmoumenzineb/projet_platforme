@@ -1,5 +1,6 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
     @extends('Admin.layouts.navbaradmin')
+    
     <style>
         .card {
             width:210px;
@@ -16,7 +17,7 @@
     
         .card-body {
             padding: 20px;
-            text-align: center rgb(191, 139, 6);
+            text-align: center rgb(235, 245, 87) rgb(255, 255, 255);
             box-shadow: 0 8px 14px rgba(16, 16, 16, 0.1);
         }
     
@@ -35,6 +36,9 @@
             margin: 20px;
             background-color: rgb(255, 250, 250);
             box-shadow: 0 6px 12px rgba(16, 16, 16, 0.1);
+        }
+        #doughnutChartEssaouira{
+            height: 100px;
         }
     </style>
     
@@ -69,18 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card text-white" style="background-color:rgb(255, 250, 250);">
-                <div class="card-body">
-                    <h5 class="card-title" style="color:rgb(23, 49, 101); ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16" style="color:rgb(23, 49, 101);">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                        </svg>&nbsp;Personnel
-                    </h5>
-                    <p class="card-text" style="color:rgb(23, 49, 101);">{{ $personnelCount }}</p>
-                </div>
-            </div>
-        </div>
+      
         <div class="col-lg-3 col-md-6 mb-3">
             <div class="card text-white" style="background-color: rgb(255, 250, 250);">
                 <div class="card-body" style=" color:rgb(227, 108, 22);">
@@ -137,25 +130,19 @@
 
     <div class="row">
         <div class="col-md-6">
-            <canvas id="etudiantsChart"></canvas>
+     
+            <canvas id="doughnutChartEssaouira"></canvas>
         </div>
         <div class="col-md-6">
-            <canvas id="personnelChart"></canvas>
-        </div>
-        <div class="col-md-12">
-           
-            <canvas id="elementsPieChart"></canvas>
-        </div>
+        
+        <canvas id="doughnutChartMohammadia"></canvas></div>
+        
+       
        
 
         
-        <div class="col-md-6 ">
-            <canvas id="demandesChart"></canvas>
-        </div>
         
-        <div class="col-md-6">
-            <canvas id="elementsChart"></canvas>
-        </div>
+      
         <div class="col-md-6">
             <canvas id="reclamationsChart" width="800" height="400"></canvas></div>
 
@@ -163,253 +150,120 @@
                 <canvas id="demandessChart" width="800" height="400"></canvas></div>
             
         
-        <div class="col-md-12">
-            <canvas id="filieresBubbleChart" width="300" height="200"></canvas>
-        </div>
-        <div class="col-md-8">
-            <canvas id="etablissementsBubbleChart" width="300" height="200"></canvas>
-        </div>
+       
+       
         
 </div></div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Chart pour le personnel
-    var personnelCtx = document.getElementById('personnelChart').getContext('2d');
-    var personnelChart = new Chart(personnelCtx, {
-        type: 'line',
-        data: {
-            labels: ['Personnel'],
-            datasets: [{
-                label: 'Nombre de personnel',
-                data: [{{ $personnelCount }}],
-                backgroundColor: 'rgb(23, 49, 101)',
-                borderColor: 'rgb(23, 49, 101)', 
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-doughnutlabel@1.0.3"></script>
 
-<script>
-    
-    // Chart pour les étudiants
-    var etudiantsCtx = document.getElementById('etudiantsChart').getContext('2d');
-    var etudiantsChart = new Chart(etudiantsCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Etudiants'],
-            datasets: [{
-                label: 'Nombre d\'étudiants',
-                data: [{{ $etudiantsCount }}],
-                backgroundColor: 'rgb(26, 131, 160)',
-                borderColor: 'rgb(26, 131, 160)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    </script>
+   
 
-    <script>
-    var elementsCtx = document.getElementById('elementsChart').getContext('2d');
-    var elementsChart = new Chart(elementsCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Element'],
-            datasets: [{
-                label: 'Nombre des elements',
-                data: [{{ $elementsCount }}],
-                backgroundColor: 'rgb(6, 129, 51)',
-                borderColor: 'rgb(6, 129, 51)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-   </script>
-<script>
-    var demandesCtx = document.getElementById('demandesChart').getContext('2d');
-    var demandesChart = new Chart(demandesCtx, {
-        type: 'line',
-        data: {
-            labels: ['Demande'],
-            datasets: [{
-                label: 'Nombre de Demande',
-                data: [{{ $demandesCount }}],
-                backgroundColor: 'rgb(180, 0, 24)',
-                borderColor: 'rgb(180, 0, 24)',
-                width:100,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    </script>
-<script>
-    var elementsCtx = document.getElementById('elementsPieChart').getContext('2d');
-var elementsChart = new Chart(elementsCtx, {
-    type: 'bar',
-    data: {
-        labels: ['Etudiants','Enseignant', 'Personnel', 'Filières', 'Éléments'],
-        datasets: [{
-            label: 'Distribution',
-            data: [{{ $etudiantsCount }},{{ $enseignantsCount }}, {{ $personnelCount }}, {{ $filieresCount }}, {{ $elementsCount }}],
-            backgroundColor: [
-                'rgb(26, 131, 160)',
-                'rgb(71, 0, 85)',
-                'rgb(23, 49, 101)',
-                'rgb(227, 108, 22)',
-                'rgb(6, 129, 51)'
-            ],
-            borderColor: [
-                'rgb(26, 131, 160)',
-                'rgb(71, 0, 85)',
-                'rgb(23, 49, 101)',
-                'rgb(227, 108, 22)',
-                'rgb(6, 129, 51)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        indexAxis: 'y', // Pour afficher les barres horizontalement
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return tooltipItem.label + ': ' + tooltipItem.raw;
-                    }
-                }
-            }
-        }
-    }
-});
-</script>
-<script>
-var data = {
-            bubbleData: @json($bubbleData)
-        };
 
-        var datasets = [];
-        for (var i = 0; i < data.bubbleData.length; i++) {
-            var filiere = data.bubbleData[i];
-            datasets.push({
-                label: filiere.intitule,
-                data: [{
-                    x: filiere.x,
-                    y: filiere.y,
-                    r: 10 
-                }],
-                backgroundColor: ' rgb(16, 87, 239)',
-                borderColor: ' rgb(16, 87, 239)',
-                borderWidth: 1
-            });
-        }
-
-        // Create the bubble chart
-        var filieresCtx = document.getElementById('filieresBubbleChart').getContext('2d');
-        var filieresChart = new Chart(filieresCtx, {
-            type: 'bar',
-            data: {
-                datasets: datasets
-            },
-            options: {
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Filiére' // Adjust this title as needed
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Nombre d\'étudiants'
-                        }
-                    }
-                }
-            }
-        });
-</script>
 
 
 <script>
-    var data = {
-                $lineData: @json($lineData)
-            };
-    
-            var datasets = [];
-            for (var i = 0; i < data.$lineData.length; i++) {
-                var etablissement = data.$lineData[i];
-                datasets.push({
-                    label: etablissement.ville,
-                    data: [{
-                        x: etablissement.x,
-                        y: etablissement.y,
-                        r: 10 
-                    }],
-                    backgroundColor: 'rgb(174, 6, 109)',
-                    borderColor: 'rgb(174, 6, 109)',
-                    borderWidth: 1
-                });
-            }
-    
-            // Create the bubble chart
-            var etablissementsCtx = document.getElementById('etablissementsBubbleChart').getContext('2d');
-            var etablissementsChart = new Chart(etablissementsCtx, {
-                type: 'bar',
+    document.addEventListener('DOMContentLoaded', function() {
+        var data = @json($data);
+
+        function createDoughnutChart(ctx, labels, data, ville) {
+            // Calculate total students count for the center label
+            var totalStudents = data.reduce((sum, value) => sum + value, 0);
+
+            new Chart(ctx, {
+                type: 'doughnut',
                 data: {
-                    datasets: datasets
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nombre d\'étudiantes',
+                        data: data,
+                        backgroundColor: [
+                            'rgb(174, 6, 109)',
+                            'rgb(57, 102, 194)',
+                            'rgb(3, 69, 47)',
+                            ' rgb(103, 75, 6)',
+                            'rgb(8, 8, 133)',
+                            'rgb(235, 245, 87)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgb(235, 245, 87)'
+                        ],
+                        borderWidth: 0
+                    }]
                 },
                 options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Etablissement' // Adjust this title as needed
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Nombre d\'Étudiantes par Filière - ' + ville
+                        },
+                        datalabels: {
+                            color: 'rgb(255, 255, 255)',
+                            formatter: (value, ctx) => {
+                                return value;
                             }
                         },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Nombre d\'étudiants'
-                            }
+                        doughnutlabel: {
+                            labels: [
+                                {
+                                    text: totalStudents,
+                                    font: {
+                                        size: 20,
+                                        weight: 'bold'
+                                    }
+                                },
+                                {
+                                    text: 'Total',
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            ]
                         }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
-    </script>
-    
+        }
+
+        var ctxEssaouira = document.getElementById('doughnutChartEssaouira').getContext('2d');
+        if (ctxEssaouira) {
+            var essaouiraData = data['ESSAOUIRA'];
+            var essaouiraLabels = [];
+            var essaouiraCounts = [];
+            for (var i = 0; i < essaouiraData.length; i++) {
+                essaouiraLabels.push(essaouiraData[i].label);
+                essaouiraCounts.push(essaouiraData[i].count);
+            }
+            createDoughnutChart(ctxEssaouira, essaouiraLabels, essaouiraCounts, 'ESSAOUIRA');
+        }
+
+        var ctxMohammadia = document.getElementById('doughnutChartMohammadia').getContext('2d');
+        if (ctxMohammadia) {
+            var mohammadiaData = data['MOHAMMEDIA'];
+            var mohammadiaLabels = [];
+            var mohammadiaCounts = [];
+            for (var i = 0; i < mohammadiaData.length; i++) {
+                mohammadiaLabels.push(mohammadiaData[i].label);
+                mohammadiaCounts.push(mohammadiaData[i].count);
+            }
+            createDoughnutChart(ctxMohammadia, mohammadiaLabels, mohammadiaCounts, 'MOHAMMEDIA');
+        }
+    });
+</script>
+
 <script>
 const moisLabels = <?php echo json_encode($moisLabels); ?>;
         const reclamationsData = <?php echo json_encode($reclamationsData); ?>;

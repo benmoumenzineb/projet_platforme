@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeaAccuielController extends Controller
+class loginprofcontroller extends Controller
 {
     public function index()
     {
-        return view('accueil.views.homeaccueil');
+        
+        return view('prof.views.prof_login');
     }
-    
 }

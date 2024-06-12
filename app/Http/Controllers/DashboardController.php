@@ -16,9 +16,16 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        
+
         return view('Admin.views.homeadmin');
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:Admin');
+    }
 
 
 
@@ -35,40 +42,69 @@ class DashboardController extends Controller
         $etablissementCount = Etablissement::count();
     
         $etudiantsCounts = Etudians::count();
-        $filieres = Filiere::withCount(['students'])->get(['intitule', 'cycle', 'id_filiere']);
+        $villes = ['ESSAOUIRA', 'MOHAMMEDIA'];
+    $data = [];
+
+    foreach ($villes as $ville) {
+        $etablissements = Etablissement::where('ville', $ville)->get(['code_etab']);
+
+        $filiereIds = Inscription::whereIn('code_etab', $etablissements->pluck('code_etab'))
+            ->pluck('id_filiere')
+            ->unique();
+
+        $filieres = Filiere::whereIn('id_filiere', $filiereIds)->get(['intitule', 'id_filiere']);
 
         $bubbleData = [];
         foreach ($filieres as $filiere) {
-            $etudiantsCounts = Inscription::where('id_filiere', $filiere->id_filiere)->count();
+            $etudiantsCounts = Inscription::where('id_filiere', $filiere->id_filiere)
+                ->whereIn('code_etab', $etablissements->pluck('code_etab'))
+                ->count();
             $bubbleData[] = [
-                'x' => $filiere->intitule, // Placeholder for x value (or actual data if available)
-                'y' => $etudiantsCounts,
-               
+                'label' => $filiere->intitule,
+                'count' => $etudiantsCounts,
             ];
         }
-        $etudiantsCountss = Etudians::count();
-        $etablissements = Etablissement::withCount(['students'])->get(['ville',  'code_etab']);
+
+        $data[$ville] = $bubbleData;
+    }
+
+        //return response()->json($data);
+        $etablissements = Etablissement::where('ville', 'ESSAOUIRA')->get(['ville', 'code_etab']);
+
+        // Préparer les données pour le graphique en ligne
         $lineData = [];
         foreach ($etablissements as $etablissement) {
-            $etudiantsCountss = Inscription::where('code_etab', $etablissement->code_etab)->count();
+            $etudiantsCounts = Inscription::where('code_etab', $etablissement->code_etab)->count();
             $lineData[] = [
-                'x' => $etablissement->ville, // Placeholder for x value (or actual data if available)
-                'y' => $etudiantsCountss,
-               
+                'x' => $etablissement->ville, // Utiliser le code de l'établissement comme label
+                'y' => $etudiantsCounts,
             ];
+           
         }
-        // return response()->json($bubbleData);*/
+        $etablissements = Etablissement::where('ville', 'MOHAMMEDIA')->get(['ville', 'code_etab']);
+
+        // Préparer les données pour le graphique en ligne
+        $lineDatas = [];
+        foreach ($etablissements as $etablissement) {
+            $etudiantsCounts = Inscription::where('code_etab', $etablissement->code_etab)->count();
+            $lineDatas[] = [
+                'x' => $etablissement->ville, // Utiliser le code de l'établissement comme label
+                'y' => $etudiantsCounts,
+            ];
+           
+        }
+       
         $reclamationsParMois = Reclamation::selectRaw('MONTH(updated_at) as mois, COUNT(*) as total')
             ->groupBy('mois')
             ->get();
     
-        // Création des tableaux pour les données du graphique
+     
         $moisLabels = [];
         $reclamationsData = [];
     
-        // Remplissage des tableaux avec les données récupérées
+        
         foreach ($reclamationsParMois as $reclamation) {
-            // Récupérer le nom du mois à partir de son numéro
+            
             $moisLabels[] = date("F", mktime(0, 0, 0, $reclamation->mois, 1));
             $reclamationsData[] = $reclamation->total;
         }
@@ -77,7 +113,7 @@ class DashboardController extends Controller
             ->groupBy('mois')
             ->get();
     
-        // Création des tableaux pour les données du graphique
+        
         $moisLabel = [];
         $demandesData = [];
     
@@ -103,8 +139,9 @@ class DashboardController extends Controller
             'reclamationsData' => $reclamationsData,
             'enseignantsCount' =>$enseignantsCount,
             'bubbleData' => $bubbleData,
+            'lineDatas' =>$lineDatas,
             'lineData' =>$lineData,
-            'etudiantsCountss' =>$etudiantsCountss,
+           'data'=>$data,
             'etablissementCount' =>$etablissementCount
             //'lineData'=>$lineData
 
