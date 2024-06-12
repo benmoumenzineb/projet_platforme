@@ -9,7 +9,34 @@
 
 <div class="container-fluid mt-5" style="margin-left: 200px;margin-top: 120px;">
     <div class="container barrecherche fixed-top-barre" style="margin-top: 50px;">
+        @if(session('success'))
+        <div>{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div>{{ session('error') }}</div>
+    @endif
 
+    @if(session('success'))
+        <div>{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div>{{ session('error') }}</div>
+    @endif
+
+    <form action="{{ route('importExcel') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div>
+            <label for="file">Télécharger le fichier Excel :</label>
+            <input type="file" name="file" id="file" accept=".xlsx">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" style="background-color:#173165">Uploader</button>
+        </div>
+    </form>
+
+    <div>
+        <a href="{{ route('exportExcel') }}">Exporter les notes</a>
+    </div>
       
         <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -135,6 +162,23 @@
             return false;
         }
     });
+});
+new DataTable('#etudiants-table', {
+    layout: {
+        topStart: {
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: 'Save current page',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                }
+            ]
+        }
+    }
 });
 
 </script>
