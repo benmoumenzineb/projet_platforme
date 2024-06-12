@@ -1,36 +1,38 @@
 <?php
 
-    namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
+
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
-
-class AdminLoginController extends Controller
+use App\Models\Accueil;
+class AccueilLoginController extends Controller
 {
     public function index()
     {
-        return view('Admin.views.admin_login');
+        
+        return view('accueil.views.accueil_login');
     }
 
-    public function login_admin(Request $request)
+    public function login_accueil(Request $request)
     {
         $this->validate($request, [
             'nom_utilisateur' => 'required', 
-            'mot_pass' => 'required',
+            'cin_salarie' => 'required',
         ]);
     
         
-        $user = Admin::where('nom_utilisateur', $request->nom_utilisateur)
-                        ->where('mot_pass', $request->mot_pass)
+        $user = Accueil::where('nom_utilisateur', $request->nom_utilisateur)
+                        ->where('cin_salarie', $request->cin_salarie)
                         ->first();
     
         if ($user) {
             // Connecter manuellement l'utilisateur
-            Auth::guard('admin')->login($user, $request->remember);
+            Auth::guard('accueil')->login($user, $request->remember);
     
-            return redirect()->intended(route('homeadmin'));
+            return redirect()->intended(route('homeacceuil'));
         }
     
         return redirect()->back()->withInput($request->only('nom_utilisateur', 'remember'))->withErrors([
@@ -40,3 +42,5 @@ class AdminLoginController extends Controller
     }
 
 }
+
+

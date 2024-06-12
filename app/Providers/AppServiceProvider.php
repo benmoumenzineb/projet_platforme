@@ -19,5 +19,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('authUser', Auth::guard('etudient')->user());
         });
+        View::composer('*', function ($view) {
+            $view->with('authUser', Auth::guard('admin')->user());
+        });
+        View::composer('*', function ($view) {
+            $view->with('authUser', Auth::guard('scolarite')->user());
+        });
     }
 }

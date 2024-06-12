@@ -46,11 +46,11 @@
                 <div class="card custom-background custom-rounded p-3">
                     <div class="card-header custom-background text-size text-color text-center"><strong>Connexion</strong></div>
                     <div class="card-body">
-                        <form id="loginForm" action="{{ route('login.submit.admin') }}" method="post">
+                        <form id="loginForm" action="{{ route('login.admin.submit') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="nom-d'utilisateur" class="text-color">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="nom_utilisateur" value="nom_utilisateur" required autocomplete="nom_utilisateur" autofocus required >
+                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="nom_utilisateur" value="{{ old('nom_utilisateur') }}"  required autocomplete="nom_utilisateur" autofocus required >
                                 @error('nom_utilisateur')
                               
                                 <span role="alert" style="color: rgb(236, 42, 42); font-size:12px;">{{ $message }}</span>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-color">Mot de Passe</label>
-                                <input type="password" name="mot_pass" class="form-control" id="password" required autocomplete="current-password" placeholder=" Entrer votre Mot de passe " required>
+                                <input type="password" name="mot_pass" class="form-control" id="password" required autocomplete="current-password"  placeholder=" Entrer votre Mot de passe " required>
                                 @error('mot_pass')
                                
                                 <span role="alert">{{ $message }}</span>

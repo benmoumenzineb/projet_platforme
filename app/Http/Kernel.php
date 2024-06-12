@@ -67,6 +67,9 @@ class Kernel extends HttpKernel
             // ...
             \App\Http\Middleware\RedirectIfNotAuthenticated::class,
         ],
-        'role' => \App\Http\Middleware\CheckRole::class,
+        'admin' => \App\Http\Middleware\RedirectIfAuthenticatedAdmin::class,
+        'scolarite' => \App\Http\Middleware\RedirectIfAuthenticatedScolarite::class,
+        'accueil' => \App\Http\Middleware\RedirectIfAuthenticatedAccueil::class,
+        'prof' => \App\Http\Middleware\RedirectIfAuthenticatedProf::class, 
     ];
 }

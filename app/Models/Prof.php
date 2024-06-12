@@ -6,23 +6,27 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model;
 
+class Prof extends Authenticatable implements AuthenticatableContract
 
-class Admin extends Authenticatable implements AuthenticatableContract
 {
     use HasFactory;
-    protected $table = 'admin';
+    protected $table = 'personnel';
 
-    protected $guard = 'admin';
+    protected $guard = 'prof';
 
     protected $fillable = [
-        'mot_pass',
+        'cin_salarie',
         'nom',
         'prenom',
-        'nom_utilisateur',
+        'matricule_cnss',
     ];
 
     protected $hidden = [
-        'mot_pass', 'remember_token',
+        'cin_salarie', 'remember_token',
     ];
 }
+
+
+

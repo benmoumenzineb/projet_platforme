@@ -44,7 +44,22 @@ return [
             'driver' => 'session',
             'provider' => 'etudient',
         ],
-        
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+        'scolarite' => [
+            'driver' => 'session',
+            'provider' => 'scolarite',
+        ],
+        'accueil' => [
+            'driver' => 'session',
+            'provider' => 'accueil',
+        ],
+        'prof' => [
+            'driver' => 'session',
+            'provider' => 'prof',
+        ],
     ],
 
     /*
@@ -72,6 +87,22 @@ return [
         'etudient' => [
             'driver' => 'eloquent',
             'model' => App\Models\Etudians::class,
+        ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'scolarite' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Scolarite::class,
+        ],
+        'accueil' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Accueil::class,
+        ],
+        'prof' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Prof::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -103,6 +134,24 @@ return [
         ],
         'etudient' => [
             'provider' => 'etudient',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admin' => [
+            'provider' => 'admin',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'scolarite' => [
+            'provider' => 'scolarite',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'prof' => [
+            'provider' => 'prof',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

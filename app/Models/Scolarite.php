@@ -8,21 +8,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
 
-class Admin extends Authenticatable implements AuthenticatableContract
+class Scolarite extends Authenticatable implements AuthenticatableContract
 {
+    
     use HasFactory;
-    protected $table = 'admin';
+    protected $table = 'personnel';
 
-    protected $guard = 'admin';
+    protected $guard = 'scolarite';
 
     protected $fillable = [
-        'mot_pass',
+        'cin_salarie',
         'nom',
         'prenom',
-        'nom_utilisateur',
+        'mail',
     ];
 
     protected $hidden = [
-        'mot_pass', 'remember_token',
+        'cin_salarie', 'remember_token',
     ];
 }

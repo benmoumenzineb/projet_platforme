@@ -43,17 +43,47 @@ use App\Http\Controllers\loginrhcontroller;
 use App\Http\Controllers\loginprofcontroller;
 use App\Http\Controllers\homeadminController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\ScolariteLoginController;
+use App\Http\Controllers\Auth\AccueilLoginController;
+use App\Http\Controllers\Auth\ProfLoginController;
+use App\Http\Controllers\DashbordRHController;
 
 
+Route::get('/dashboardRH', [DashbordRHController::class, 'index'])->name('dashboardrh');
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/login/admin', [AdminLoginController::class, 'index'])->name('admin.login');
+    Route::post('/loginadmin2', [AdminLoginController::class, 'login_admin'])->name('login.admin.submit');
+    Route::get('/homeadmin', [homeadminController::class, 'index'])->name('homeadmin');
+});
+//************************************************************* */
+Route::group(['middleware' => ['scolarite']], function () {
+    Route::get('/login/scolarite', [ScolariteLoginController::class, 'index'])->name('login.scolarite');
+    Route::post('/loginscolarite2', [ScolariteLoginController::class, 'login_scolarite'])->name('login.scolarite.submit');
+    Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
+
+});
+Route::group(['middleware' => ['accueil']], function () {
+    Route::get('/login/accueil', [AccueilLoginController::class, 'index'])->name('login.accueil');
+    Route::post('/loginaccueil2', [AccueilLoginController::class, 'login_accueil'])->name('login.accueil.submit');
+    Route::get('/homeaccueil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
+
+});
+//**************************************PROF LOGIN */
+Route::group(['middleware' => ['prof']], function () {
+    Route::get('/loginprof', [ProfLoginController::class, 'index'])->name('login.prof');
+    Route::post('/loginprof2', [ProfLoginController::class, 'login_prof'])->name('login.prof.submit');
+    Route::get('/homeprof', [homeProfController::class, 'index'])->name('homeprof');
+
+});
+//µµµµµ***************************RHLOGIN//
 
 
-
-
-
+/***********************************************/
 Route::get('/homelogin', [homelogincontroller::class, 'index'])->name('home.login');
-Route::get('/loginscolarite', [loginscolaritecontroller::class, 'index'])->name('login.scolarite');
-Route::get('/loginprof', [loginprofcontroller::class, 'index'])->name('login.prof');
-Route::get('/loginaccueil', [loginaccueilcontroller::class, 'index'])->name('login.accueil');
+
+
+
 Route::get('/loginRH', [loginrhcontroller::class, 'index'])->name('login.rh');
 
 
@@ -74,14 +104,6 @@ Route::middleware(['web'])->group(function () {
 
 Route::get('/logout', [EtudiantLoginController::class, 'logout'])->name('logout.etudiant');
 
-Route::middleware(['web'])->group(function () {
-    Route::get('/loginadmin', [AdminLoginController::class, 'index'])->name('login.admin');
-    Route::post('/loginadmin2', [AdminLoginController::class, 'login_admin'])->name('login.submit.admin');
-    Route::get('/homeadmin', [DashboardController::class, 'index'])->name('homeadmin');
-});
-
-
-
 
 Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('homeetudiant');
 
@@ -101,14 +123,14 @@ Route::get('/nav', function () {
 });
 Route::get('/etudiants', [LoginetudiantController::class, 'index']);
 Route::get('/etudiants/search', [LoginetudiantController::class, 'search'])->name('etudiant.search');
-Route::get('/homeprof', [homeProfController::class, 'index'])->name('homeprof');
+
 
 Route::get('/navbarsscolarite', function () {
     return view('scolarite.layouts.navbarscolarite');
    
 });
-Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
-Route::get('/homeaccueil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
+
+
 Route::get('/scolaritelisteetudient', [ListetudiantController::class, 'index'])->name('listetudiant');
 Route::get('/etudiants/search/scolarite', [ListetudiantController::class, 'search'])->name('etudiant.search.scolarite');
 Route::get('/demandescolarite', [DemandeScolariteController::class, 'index'])->name('demandescolarite');
