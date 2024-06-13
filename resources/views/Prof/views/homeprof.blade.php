@@ -143,7 +143,7 @@ margin-right:10px;margin-top:30px; padding: 40px;
      
 
         
-        <a href="{{ route('noteetudiants') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+        <a href="{{ route('noteetudiants') }}" ><div class="card mb-3 mr-3 custom-background" style="width: 280px;color:#ffffff;margin-right: 20px;">
              <!-- Contenu de la carte "Mes Demandes" -->
              <div class="card-body text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16"  style="color: #ede8e8"><!-- ce lien pour icon mes notes-->

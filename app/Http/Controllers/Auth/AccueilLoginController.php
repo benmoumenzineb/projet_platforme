@@ -40,7 +40,12 @@ class AccueilLoginController extends Controller
         ])->with('error_class', 'text-red');
         
     }
-
+    public function logout()
+    {
+        
+        Auth::guard('accueil')->logout();
+        return redirect()->route('login.accueil');
+    }
 }
 
 

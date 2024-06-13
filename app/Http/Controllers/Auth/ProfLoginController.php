@@ -37,7 +37,12 @@ class ProfLoginController extends Controller
         ])->with('error_class', 'text-red');
         
     }
-
+    public function logout()
+    {
+        
+        Auth::guard('prof')->logout();
+        return redirect()->route('login.prof');
+    }
 }
 
 

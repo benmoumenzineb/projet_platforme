@@ -38,5 +38,10 @@ class ScolariteLoginController extends Controller
         ])->with('error_class', 'text-red');
         
     }
-
+    public function logout()
+    {
+        
+        Auth::guard('scolarite')->logout();
+        return redirect()->route('login.scolarite');
+    }
 }

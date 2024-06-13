@@ -147,7 +147,7 @@ h6 {
         @endforeach
     </ul>
     <fieldset class="border p-4">
-        <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Paiement</strong>
+        <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Demande</strong>
         </legend>
         <form action="{{route('endemande') }}" method="POST">
             @csrf

@@ -64,12 +64,14 @@ Route::group(['middleware' => ['scolarite']], function () {
     Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
 
 });
+Route::get('/logoutScolarite', [ScolariteLoginController::class, 'logout'])->name('logout.scolarite');
 Route::group(['middleware' => ['accueil']], function () {
     Route::get('/login/accueil', [AccueilLoginController::class, 'index'])->name('login.accueil');
     Route::post('/loginaccueil2', [AccueilLoginController::class, 'login_accueil'])->name('login.accueil.submit');
     Route::get('/homeaccueil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
 
 });
+Route::get('/logoutaccueil', [AccueilLoginController::class, 'logout'])->name('logout.accueil');
 //**************************************PROF LOGIN */
 Route::group(['middleware' => ['prof']], function () {
     Route::get('/loginprof', [ProfLoginController::class, 'index'])->name('login.prof');
@@ -77,6 +79,7 @@ Route::group(['middleware' => ['prof']], function () {
     Route::get('/homeprof', [homeProfController::class, 'index'])->name('homeprof');
 
 });
+Route::get('/logoutprof', [ProfLoginController::class, 'logout'])->name('logout.prof');
 //µµµµµ***************************RHLOGIN//
 
 

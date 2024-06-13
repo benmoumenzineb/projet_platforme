@@ -5,10 +5,10 @@
     .navbar {
         box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
         font-family: Arial, sans-serif;
-        height: auto;
         z-index: 1000;
         position: fixed;
         top: 0;
+        height:60px;
         width: 100%;
         background-color: #fff;
     }
@@ -79,6 +79,8 @@
     .navbar-item {
         text-decoration: none;
         color: #173165;
+        margin:-40px ;
+
     }
 
     /* Media query for screens smaller than 768px */
@@ -169,35 +171,37 @@
 </style>
 
 <body>
-  
+   
    
     <nav class="navbar">
         <div class="container">
-            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="13%">
             <div class="navbar-left">
-                @if($authAdmin)
-                <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
-                    {{ $authAdmin->nom }} {{ $authAdmin->prenom }}
-                </span>
-            @else
-                <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
-            @endif
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                        class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                    </svg>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu" >
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout.admin') }}" style="text-decoration: none;">Déconnexion</a></li>
-                </ul>
-            </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                    class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                </svg>
+              
+                <div class="d-flex align-items-center"> 
+                    @if($authAdmin)
+                    <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
+                        {{ $authAdmin->nom }} {{ $authAdmin->prenom }}
+                    </span>
+                @else
+                    <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
+                @endif 
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu" >
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout.admin') }}" style="text-decoration: none;">Déconnexion</a></li>
+                        </ul>
+                    </div>
+                </div>
+          
+           
+                
             </div>
         </div>
     </nav>
@@ -260,6 +264,19 @@
                     this.classList.add('active');
                 });
             });
+        });
+    </script>
+    <script>
+      
+        var userButton = document.querySelector('.dropdown-toggle');
+    
+        
+        var userDropdownMenu = document.querySelector('#userDropdownMenu');
+    
+        
+        userButton.addEventListener('click', function() {
+            
+            userDropdownMenu.classList.toggle('show');
         });
     </script>
 </body>
