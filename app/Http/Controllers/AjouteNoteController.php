@@ -193,7 +193,10 @@ public function getEtudiantsData(Request $request)
             ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
             ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
             ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 72fe4bf22fb6f4ca90c9fb6b04af96098e2774ac
         if ($etab) {
             $query->where('etablissement.ville', $etab);
         }
