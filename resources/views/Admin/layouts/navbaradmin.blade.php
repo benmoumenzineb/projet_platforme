@@ -175,14 +175,25 @@
         <div class="container">
             <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
             <div class="navbar-left">
-                @if($authUser)
+                @if($authAdmin)
                 <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
-                    {{ $authUser->nom }} {{ $authUser->prenom }}
+                    {{ $authAdmin->nom }} {{ $authAdmin->prenom }}
                 </span>
             @else
                 <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
             @endif
-                
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                        class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu" >
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout.admin') }}" style="text-decoration: none;">Déconnexion</a></li>
+                </ul>
+            </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                     class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />

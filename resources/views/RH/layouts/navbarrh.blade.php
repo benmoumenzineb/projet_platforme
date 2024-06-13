@@ -195,8 +195,13 @@
                     <div class="sidebar">
                         <ul class="list-unstyled">
                           
-                            
-                            <li class="p-2 mb-2 mt-5 ">
+                            <li class="p-2 mb-2 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                                  </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('dashboardrh') }}"
+                                    class="{{ Request::is('dashboardrh') ? 'active' : '' }}"> Dashboard </a>
+                            </li>
+                            <li class="p-2 mb-2 mt-3 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                                     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
@@ -204,12 +209,7 @@
                                     class="{{ Request::is('listPersonnel') ? 'active' : '' }}">Personnels</a>
                             </li>
                            
-                            <li class="p-2 mb-2 mt-3 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
-                                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
-                                  </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('dashboardrh') }}"
-                                    class="{{ Request::is('dashboardrh') ? 'active' : '' }}"> Dashboard </a>
-                            </li>
+                          
                            
                            
                             

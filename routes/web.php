@@ -56,6 +56,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/loginadmin2', [AdminLoginController::class, 'login_admin'])->name('login.admin.submit');
     Route::get('/homeadmin', [homeadminController::class, 'index'])->name('homeadmin');
 });
+Route::get('/logoutadmin', [AdminLoginController::class, 'logout'])->name('logout.admin');
 //************************************************************* */
 Route::group(['middleware' => ['scolarite']], function () {
     Route::get('/login/scolarite', [ScolariteLoginController::class, 'index'])->name('login.scolarite');
@@ -221,12 +222,16 @@ Route::delete('/personnel/{cin_salarie}', [RhPersonnelController::class, 'destro
 
 
 
+Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('import.etudiants');
 
+
+Route::get('/export-etudiants', [EtudiantController::class, 'export'])->name('export.etudiants');
 
 Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant'])->name('ajouter.etudiant');
 
 Route::get('/homeRH', [homeRHController::class, 'index'])->name('homeRH');
-Route::post('/ajouter-Personnel', [RhPersonnelControlleur::class,'ajouterPersonnel'])->name('ajouter-Personnel');
+
+Route::post('/ajouter-Personnel', [RhPersonnelControlleur::class, 'store'])->name('ajouter-Personnel');
 Route::get('/getDatapersonnel', [RhPersonnelControlleur::class, 'fetchPersonnel'])->name('getDatapersonnel');
 Route::post('/delete-Personnel', [RhPersonnelControlleur::class, 'deletePersonne'])->name('delete-Personnel');
 

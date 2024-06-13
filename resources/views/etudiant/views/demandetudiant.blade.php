@@ -133,16 +133,8 @@ h6 {
 
 
 
-<div   style=" margin-top:-10px; overflow: hidden;">
-    <div style="margin-left: 0px; margin-top: 100px;">
-        <div class="content">
-            <button id="boutonInformations">Informations Demande</button>
-            <button id="boutonCursus">Historique</button>
-            
-        </div>
-        
-    </div></div>
-    <div class="container"  id="informations-demande-content" style="margin-left: 250px; margin-top:10px; ">
+
+    <div class="container"  id="informations-demande-content" style="margin-left: 250px; margin-top:100px; ">
     
         @if(session('success'))
         <div class="alert alert-success">
@@ -208,55 +200,13 @@ h6 {
         </form></fieldset>
     </div></div>
 
-    <div class="container" id="historique-demande-content" style="margin-left: 250px; margin-top:90px; ">
-        <div class="row">
-            <div class="col-md-9">
-                
-                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    
-                </div>
-                <div class="container">
-                    <table class="table table-striped" id="demandescolarite">
-                        <thead>
-                            <tr>
-                               
-                <th class="th-color border" scope="col">Nom</th>
-                <th class="th-color border" scope="col">Prénom</th>
-                <th class="th-color border" scope="col">Numero de Téléphone</th>
-                <th class="th-color border" scope="col">Email</th>
-                <th class="th-color border" scope="col">Type</th>
-               
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
     <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     
-    <script>
-      
-            $('#demandescolarite').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('getDataDemandeetudiant')}}",
-                columns: [
-                  
-                    { data: 'Nom', name: 'Nom' },
-                    { data: 'Prenom', name: 'Prenom' },
-                    { data: 'Numero', name: 'Numero' },
-                    { data: 'Email', name: 'Email' },
-                    { data: 'Type', name: 'Type' },
-                   
-                    
-                ]
-            });
-        
-    </script>
+
     <script>
         const boutonInformations = document.getElementById('boutonInformations');
         const boutonCursus = document.getElementById('boutonCursus');

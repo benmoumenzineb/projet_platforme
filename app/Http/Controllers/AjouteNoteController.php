@@ -192,9 +192,8 @@ public function getEtudiantsData(Request $request)
             ->join('element', 'element.num_element', '=', 'notes_evaluation.num_element')
             ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
             ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
-            ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere')
-       ->select('etudient.*')
-     ->get();
+            ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
+
         if ($etab) {
             $query->where('etablissement.ville', $etab);
         }
@@ -221,7 +220,7 @@ public function getEtudiantsData(Request $request)
             ->addIndexColumn()
             ->addColumn('actions', function ($etudiant) {
                 return '<div style="display: flex; gap: 5px;">
-                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant-> Apogee. '" style="width:50px;">Edit</button>
+                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant-> Apogee. '" style="width:80px; background-color: #173165">Ajouter</button>
                 </div>';
             })
             ->rawColumns(['actions'])
@@ -229,7 +228,77 @@ public function getEtudiantsData(Request $request)
 
         return $formattedData;
 
-   
+    // Récupérez les valeurs choisies
+   /* $etab = $request->session()->get('etablissement');
+    $cycle = $request->session()->get('cycle');
+    $filiere = $request->session()->get('filiere');
+    $matiere = $request->session()->get('matiere');
+    $groupe = $request->session()->get('groupe');
+    $niveau = $request->session()->get('niveau');
+    $date = $request->session()->get('date');
+    $time = $request->session()->get('time');
+
+    $query = Etudians::query()
+        ->select([
+            'etudient.apogee as Apogee',
+            'etudient.CNE',
+            'etudient.CNI',
+            'etudient.Nom',
+            'etudient.Prenom',
+        ])
+        ->join('inscriptions', 'inscriptions.apogee', '=', 'etudient.apogee')
+        ->join('element', 'element.id_element', '=', 'inscriptions.id_element')
+        ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
+        ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
+        ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
+
+    if ($etab) {
+        $query->where('etablissement.ville', $etab);
+    }
+    if ($cycle) {
+        $query->where('filiere.cycle', $cycle);
+    }
+    if ($matiere) {
+        $query->where('element.intitule', $matiere);
+    }
+    if ($groupe) {
+        $query->where('groupe.intitule', $groupe);
+    }
+    if ($niveau) {
+        $query->where('inscriptions.niveau', $niveau);
+    }
+    if ($filiere) {
+        $query->where('filiere.intitule', $filiere);
+    }
+
+    \Log::info($query->toSql());
+    \Log::info($query->getBindings());
+
+    $etudiants = $query->get();
+
+    foreach ($etudiants as $etudiant) {
+        $element = Element::where('intitule', $matiere)->first();
+
+        Absence::create([
+            'apogee' => $etudiant->Apogee,
+            'date_abs' => $date,
+            'heure_abs' => $time,
+            'id_element' => $element->id_element,
+            'absence' => 'A' // Assuming 'A' stands for a default absence status
+        ]);
+    }
+
+    $formattedData = DataTables::of($etudiants)
+        ->addIndexColumn()
+        ->addColumn('actions', function ($etudiant) {
+            return '<div style="display: flex; gap: 5px;">
+                <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->Apogee . '" style="width:50px;">Edit</button>
+            </div>';
+        })
+        ->rawColumns(['actions'])
+        ->make(true);
+
+    return $formattedData;*/
 }
 
     
@@ -281,19 +350,21 @@ public function getEtudiantsData(Request $request)
         return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
     }
 }
+
+
+public function importExcel(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx'
+    ]);
+
+    Excel::import(new EtudiantsImport, $request->file('file'));
+
+    return response()->json(['message' => 'Data imported successfully']);
+}
+
 public function exportExcel()
-    {
-        return Excel::download(new EtudiantsExport, 'etudiants.xlsx');
-    }
-
-    public function importExcel(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|mimes:xlsx'
-        ]);
-
-        Excel::import(new EtudiantsImport, $request->file('file'));
-
-        return redirect()->back()->with('success', 'Notes importées avec succès');
-    }
+{
+    return Excel::download(new EtudiantsExport, 'etudiants.xlsx');
+}
 }
