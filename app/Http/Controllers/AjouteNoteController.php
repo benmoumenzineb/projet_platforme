@@ -192,9 +192,7 @@ public function getEtudiantsData(Request $request)
             ->join('element', 'element.num_element', '=', 'notes_evaluation.num_element')
             ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
             ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
-            ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere')
-       ->select('etudient.*')
-     ->get();
+            ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
         if ($etab) {
             $query->where('etablissement.ville', $etab);
         }

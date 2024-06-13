@@ -163,23 +163,8 @@
         }
     });
 });
-new DataTable('#etudiants-table', {
-    layout: {
-        topStart: {
-            buttons: [
-                {
-                    extend: 'excel',
-                    text: 'Save current page',
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'
-                        }
-                    }
-                }
-            ]
-        }
-    }
-});
+
+ 
 
 </script>
 @endsection
