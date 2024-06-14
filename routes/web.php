@@ -252,5 +252,8 @@ Route::post('/update-absence', [ListePresenceController::class, 'saveAbsence'])-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('exportExcel', [AjouteNoteController::class, 'exportExcel'])->name('exportExcel');
-Route::post('importExcel', [AjouteNoteController::class, 'importExcel'])->name('importExcel');
+Route::post('/import-etudiants', [EtudiantController::class, 'importExcel'])->name('import');
+
+
+Route::get('/export-etudiants', [EtudiantController::class, 'exportExcel'])->name('export');
+
