@@ -24,23 +24,25 @@
                         <form id="formModifierEtudiant" action="{{ route('profupdate') }}" method="POST">
                             @csrf
                             <input type="hidden" id="apogee" name="apogee" value="">
-                        
-                            <div class="form-group col-md-4">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
                                 <label for="inputCTR1">CTR1</label>
                                 <input type="text" class="form-control" id="inputCTR1" name="CTR1" min="0" max="20">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="inputCTR2">CTR2</label>
                                 <input type="text" class="form-control" id="inputCTR2" name="CTR2" min="0" max="20">
-                            </div>
-                            <div class="form-group col-md-4">
+                            </div></div>
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
                                 <label for="inputEF">EF</label>
                                 <input type="text" class="form-control" id="inputEF" name="EF" min="0" max="20">
                             </div>
-                            <div class="form-group col-md-4">
+                           
+                            <div class="form-group col-md-6">
                                 <label for="inputTP">TP</label>
                                 <input type="text" class="form-control" id="inputTP" name="TP" min="0" max="20">
-                            </div>
+                            </div></div>
                             <button type="submit" class="btn btn-primary" style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
                         </form>
                         
