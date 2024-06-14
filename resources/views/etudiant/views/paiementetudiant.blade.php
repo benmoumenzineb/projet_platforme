@@ -85,7 +85,7 @@
 
 
 
-    <div id="informations-paiement-content" class="content" style="margin-left: -20px; margin-top:30px; overflow: hidden;">
+    <div id="informations-paiement-content" class="content" style="margin-left: -20px; margin-top:50px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top:20px; overflow: hidden;">
             @if (session('success'))
                 <div class="alert alert-success">
