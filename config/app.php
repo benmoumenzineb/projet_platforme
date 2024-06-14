@@ -181,7 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-       
+        //Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -195,7 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        //Maatwebsite\Excel\ExcelServiceProvider::class,
+        
 
     ],
    
@@ -214,7 +214,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+ // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 ];
