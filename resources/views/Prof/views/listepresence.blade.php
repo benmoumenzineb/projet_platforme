@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-9">
-            <button id="saveAbsences" class="btn btn-primary mt-3">Enregistrer</button>
+            <button id="saveAbsences" class="btn btn-primary mt-3 ml-5" style=" background-color: #173165">Enregistrer</button>
         </div>
     </div>                  
                 <div class="container">
