@@ -193,7 +193,10 @@ public function getEtudiantsData(Request $request)
             ->join('filiere', 'filiere.id_filiere', '=', 'inscriptions.id_filiere')
             ->join('etablissement', 'etablissement.code_etab', '=', 'inscriptions.code_etab')
             ->join('groupe', 'groupe.id_filiere', '=', 'filiere.id_filiere');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 72fe4bf22fb6f4ca90c9fb6b04af96098e2774ac
         if ($etab) {
             $query->where('etablissement.ville', $etab);
         }
@@ -220,7 +223,7 @@ public function getEtudiantsData(Request $request)
             ->addIndexColumn()
             ->addColumn('actions', function ($etudiant) {
                 return '<div style="display: flex; gap: 5px;">
-                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant-> Apogee. '" style="width:50px;">Edit</button>
+                    <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant-> Apogee. '" style="width:80px; background-color: #173165">Ajouter</button>
                 </div>';
             })
             ->rawColumns(['actions'])
@@ -350,19 +353,21 @@ public function getEtudiantsData(Request $request)
         return redirect()->back()->with('error', 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.');
     }
 }
+
+
+public function importExcel(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx'
+    ]);
+
+    Excel::import(new EtudiantsImport, $request->file('file'));
+
+    return response()->json(['message' => 'Data imported successfully']);
+}
+
 public function exportExcel()
-    {
-        return Excel::download(new EtudiantsExport, 'etudiants.xlsx');
-    }
-
-    public function importExcel(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|mimes:xlsx'
-        ]);
-
-        Excel::import(new EtudiantsImport, $request->file('file'));
-
-        return redirect()->back()->with('success', 'Notes importées avec succès');
-    }
+{
+    return Excel::download(new EtudiantsExport, 'etudiants.xlsx');
+}
 }

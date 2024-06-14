@@ -11,6 +11,8 @@
     <div class="container barrecherche fixed-top-barre" style="margin-top: 50px;">
       
           
+      
+          
         <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -49,6 +51,8 @@
             </div>
         </div>
         
+
+        
         <div class="container">
             <table class="table table-striped" id="etudiants-table">
                 <thead>
@@ -71,6 +75,8 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -141,6 +147,33 @@
 
  
 
+</script>
+<script>
+    //exporter 
+    document.getElementById('exporter').addEventListener('click', function() {
+            var data = table.rows().data().toArray();
+            var rows = [['Numéro', 'CNE', 'CNI', 'Nom', 'Prénom', 'CTR1', 'CTR2', 'EF', 'TP']];
+
+            data.forEach(function(row) {
+                rows.push([
+                    row.Apogee,
+                    row.CNE,
+                    row.CNI,
+                    row.Nom,
+                    row.Prenom,
+                    row.CTR1,
+                    row.CTR2,
+                    row.EF,
+                    row.TP
+                ]);
+            });
+
+            var worksheet = XLSX.utils.aoa_to_sheet(rows);
+            var workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Etudiants");
+
+            XLSX.writeFile(workbook, "etudiants.xlsx");
+        });
 </script>
 <script>
     //exporter 

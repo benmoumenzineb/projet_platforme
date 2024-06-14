@@ -10,6 +10,7 @@ use App\Models\Demande;
 use App\Models\Reclamation;
 use App\Models\Enseignant;
 use App\Models\Etablissement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -22,6 +23,7 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
+        $user = Auth::guard('admin')->user();
         $etudiantsCount = Etudians::count();
         $personnelCount = Personnel::count();
         $filieresCount = Filiere::count();

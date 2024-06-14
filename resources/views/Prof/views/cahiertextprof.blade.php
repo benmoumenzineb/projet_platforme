@@ -8,7 +8,10 @@
     <style>
         
 
-        
+        .btn-primary {
+            background-color: #3966c2;
+            width: 100px;
+        }
       
         #modifier {
             background-color: #173165;
@@ -79,6 +82,7 @@ h3{
                             <option value="Master">Master</option>
                         </select>
                     </div>
+                    
                 </div>
 
             </div>
@@ -91,6 +95,12 @@ h3{
                         <select class="form-control" id="filiere" name="filiere" >
                             <option value="0: undefined" selected></option>
                         </select>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <label for="date" class="form-label"><strong>Date Seance:</strong></label>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <input type="date" class="form-control" id="date" name="date_seance" required>
                     </div>
                 </div>
             </div>
@@ -167,16 +177,7 @@ h3{
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label for="date" class="form-label"><strong>Date Seance:</strong></label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="date" class="form-control" id="date" name="date_seance" required>
-                    </div>
-                </div>
-            </div>
+           
         </div>
 
 
@@ -194,10 +195,7 @@ h3{
 
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <button type="submit" class="submit-btn" name="action" value="enregistrer_telecharger">Enregistrer et Télécharger le Cahier de Texte</button>
-
-                    <!-- Bouton pour seulement enregistrer -->
-                    <button type="submit" class="submit-btn" name="action" value="enregistrer">Enregistrer le Cahier de Texte</button>
+                    <button type="submit" id="modifier" name="modifier" class="btn btn-primary">Enregistrer</button>
             </div></div>
        
     </form>

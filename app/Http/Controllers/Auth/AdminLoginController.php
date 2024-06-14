@@ -38,5 +38,11 @@ class AdminLoginController extends Controller
         ])->with('error_class', 'text-red');
         
     }
+    public function logout()
+{
+    
+    Auth::guard('admin')->logout();
+    return redirect()->route('admin.login');
+}
 
 }
