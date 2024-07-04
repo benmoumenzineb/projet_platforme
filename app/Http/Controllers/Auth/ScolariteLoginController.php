@@ -42,6 +42,6 @@ class ScolariteLoginController extends Controller
     {
         
         Auth::guard('scolarite')->logout();
-        return redirect()->route('login.scolarite');
+        return view('homelogin');
     }
 }

@@ -44,7 +44,7 @@ class AccueilLoginController extends Controller
     {
         
         Auth::guard('accueil')->logout();
-        return redirect()->route('login.accueil');
+        return view('homelogin');
     }
 }
 

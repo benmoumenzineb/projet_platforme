@@ -41,7 +41,7 @@ class ProfLoginController extends Controller
     {
         
         Auth::guard('prof')->logout();
-        return redirect()->route('login.prof');
+        return view('homelogin');
     }
 }
 

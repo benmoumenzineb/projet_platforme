@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Etudians;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
+
 use App\Models\Personnel;
 
 
@@ -90,7 +92,7 @@ class RhPersonnelControlleur extends Controller
     public function deletePersonnel(Request $request)
     {
         // Récupérer l'étudiant à partir de l'ID et le supprimer
-        $etudiant = Etudians::find($request->etudiant_id);
+        $etudiant = Personnel::find($request->cin_salarie);
         $etudiant->delete();
 
         // Retourner une réponse JSON ou une réponse de redirection si nécessaire
@@ -114,6 +116,7 @@ class RhPersonnelControlleur extends Controller
         ]);
 
         $personnel = new Personnel($validatedData);
+        $personnel->cin_salarie = Hash::make($request->cin_salarie);
 
         if ($request->hasFile('RIB_pdf')) {
             $file = $request->file('RIB_pdf');

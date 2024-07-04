@@ -46,25 +46,46 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\ScolariteLoginController;
 use App\Http\Controllers\Auth\AccueilLoginController;
 use App\Http\Controllers\Auth\ProfLoginController;
+use App\Http\Controllers\Auth\RHLoginController;
 use App\Http\Controllers\DashbordRHController;
+use App\Http\Controllers\EmploiscolariteController;
+use App\Http\Controllers\GestioncompteController;
+
+
+
+Route::post('/creationcomptes', [GestioncompteController::class, 'store'])->name('creationcomptes');
+
+
+Route::get('/gestioncomptes', [GestioncompteController::class, 'index'])->name('gestioncomptes');
+
+Route::get('/groupes/{id}', 'EmploiscolariteController@getGroupesByFiliere')->name('groupes.by.filiere');
+
 
 
 Route::get('/dashboardRH', [DashbordRHController::class, 'index'])->name('dashboardrh');
 
-Route::group(['middleware' => ['admin']], function () {
-    Route::get('/login/admin', [AdminLoginController::class, 'index'])->name('admin.login');
-    Route::post('/loginadmin2', [AdminLoginController::class, 'login_admin'])->name('login.admin.submit');
+
+
+Route::get('/login/admin', [AdminLoginController::class, 'index'])->name('admin.login');
+Route::post('/login/admin', [AdminLoginController::class, 'login_admin'])->name('login.admin.submit');
+
+Route::middleware(['admin'])->group(function () {
     Route::get('/homeadmin', [homeadminController::class, 'index'])->name('homeadmin');
+    Route::get('/logoutadmin', [AdminLoginController::class, 'logout'])->name('logout.admin');
 });
-Route::get('/logoutadmin', [AdminLoginController::class, 'logout'])->name('logout.admin');
-//************************************************************* */
-Route::group(['middleware' => ['scolarite']], function () {
-    Route::get('/login/scolarite', [ScolariteLoginController::class, 'index'])->name('login.scolarite');
-    Route::post('/loginscolarite2', [ScolariteLoginController::class, 'login_scolarite'])->name('login.scolarite.submit');
+
+//********************************************************* */
+
+Route::get('/login/scolarite', [ScolariteLoginController::class, 'index'])->name('login.scolarite');
+Route::post('/login/scolarite', [ScolariteLoginController::class, 'login_scolarite'])->name('login.scolarite.submit');
+
+Route::middleware(['scolarite'])->group(function () {
     Route::get('/homescolarite', [homeScolariteController::class, 'index'])->name('homescolarite');
 
+    Route::get('/logoutScolarite', [ScolariteLoginController::class, 'logout'])->name('logout.scolarite');
 });
-Route::get('/logoutScolarite', [ScolariteLoginController::class, 'logout'])->name('logout.scolarite');
+
+
 Route::group(['middleware' => ['accueil']], function () {
     Route::get('/login/accueil', [AccueilLoginController::class, 'index'])->name('login.accueil');
     Route::post('/loginaccueil2', [AccueilLoginController::class, 'login_accueil'])->name('login.accueil.submit');
@@ -85,7 +106,7 @@ Route::get('/logoutprof', [ProfLoginController::class, 'logout'])->name('logout.
 
 /***********************************************/
 Route::get('/homelogin', [homelogincontroller::class, 'index'])->name('home.login');
-
+Route::get('/login/rh', [RHLoginController::class, 'index'])->name('login.RH');
 
 
 Route::get('/loginRH', [loginrhcontroller::class, 'index'])->name('login.rh');
@@ -99,6 +120,11 @@ Route::post('/absence/accueil', [AbsenceProfacceuilcontroller::class, 'store'])-
 Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name('scolarite.views.notificationsexam');
 Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
 Route::get('/student/exams', [ExamNotificationController::class, 'studentExams'])->name('etudiant.views.exametudiant');
+
+// Emploi etudiant
+Route::get('/emploi/create', [EmploiscolariteController::class, 'create'])->name('scolarite.views.emploi');
+Route::post('/emploi', [EmploiscolariteController::class, 'store'])->name('emploi.store');
+Route::get('/etudiant/emplois', [EmploiscolariteController::class, 'studentEmploi'])->name('etudiant.emplois');
 
 Route::middleware(['web'])->group(function () {
     Route::get('/loginetudiant', [EtudiantLoginController::class, 'index'])->name('etudient.login');

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Absence_Accueil extends Model
 {
     protected $table = 'absence_accueil';
+    public $timestamps = false;
     protected $fillable = [
        
        

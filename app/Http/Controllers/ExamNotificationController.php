@@ -37,8 +37,7 @@ class ExamNotificationController extends Controller
             'heure_exam' => $request->heure_exam,
         ]);
 
-        // Logique pour envoyer la notification aux étudiants (à implémenter selon vos besoins)
-
+        
         return redirect()->route('scolarite.views.notificationsexam')->with('success', 'Notification envoyée avec succès.');
     }
 

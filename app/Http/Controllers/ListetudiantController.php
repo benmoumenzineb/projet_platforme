@@ -6,14 +6,14 @@ use App\Models\Etudians;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables; 
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Inscription;
 
 class ListetudiantController extends Controller
 {
     public function index()
     {
-        
+        $user = Auth::guard('scolarite')->user();
         $etudiants = Etudians::paginate(10); 
 
         
@@ -141,13 +141,14 @@ class ListetudiantController extends Controller
     public function destroy($id)
     {
         $etudiant = Etudians::find($id);
-    
+   
         if ($etudiant) {
             $etudiant->delete();
-            return redirect('/scolarite')->with('success', 'Student deleted successfully.');
+            return redirect('/scolaritelisteetudient')->with('success', 'Student deleted successfully.');
         } else {
-            return redirect('/scolarite')->with('error', 'Student not found.');
+            return redirect('/scolaritelisteetudient')->with('error', 'Student not found.');
         }
+
     }
     
     

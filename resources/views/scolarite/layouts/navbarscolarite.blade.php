@@ -268,6 +268,7 @@
                             </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('paiementscolarite') }}"
                                     class="{{ Request::is('paiementscolarite') ? 'active' : '' }}">Suivie de Paiement</a>
                             </li>
+                            
                             <li class="p-2 mb-2 "><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
                                 <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
                                 <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -280,6 +281,16 @@
                                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
                                   </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamationscolarite') }}"
                                     class="{{ Request::is('reclamationscolarite') ? 'active' : '' }}"> Réclamations Etudiants</a>
+                            </li>
+                            <li class="p-2 mb-2">
+                                <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
+                                    height="26" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                                    <path
+                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('scolarite.views.emploi') }}"
+                                    class="{{ Request::is('scolarite.views.emploi') ? 'active' : '' }}">Emploi du Temps</a>
                             </li>
                         </ul>
                     </div>
@@ -294,7 +305,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
+     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarItems = document.querySelectorAll('#vertical-sidebar ul li');
 
@@ -313,7 +324,7 @@
             });
         });
        
-    </script>
+    </script> 
      <script>
       
         var userButton = document.querySelector('.dropdown-toggle');

@@ -105,6 +105,18 @@ background-color:#1858b1;
 margin-right:0px;margin-top:30px; padding: 40px;">
     <div class="d-flex justify-content-left">
       
+       
+
+       <a href="{{route('dashboardrh')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
+          
+            <div class="card-body text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" style="color:#ffffff;">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                  </svg>
+                <h5 class="card-title" style="color: #ede8e8"><a href="{{route('dashboardrh')}}" class="{{ Request::is('emploi') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Tableau de bord</a></h5>
+               
+            </div>
+        </div></a>
         <a href="{{ route('listPersonnel') }}"> <div class="card mb-3 mr-3 mt-4  custom-background" style="width: 300px;color:#ffffff; margin-right: 20px;"style="color: #ffffff;">
            
             <div class="card-body text-center">
@@ -116,17 +128,6 @@ margin-right:0px;margin-top:30px; padding: 40px;">
                 
             </div>
          </div></a>
-
-       <a href="{{route('dashboardrh')}}"> <div class="card mb-3 mr-3 mt-4 custom-background" style="width: 300px;color:#ffffff;margin-right: 20px;">
-          
-            <div class="card-body text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" style="color:#ffffff;">
-                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
-                  </svg>
-                <h5 class="card-title" style="color: #ede8e8"><a href="{{route('dashboardrh')}}" class="{{ Request::is('emploi') ? 'active' : '' }}" style="color: #ede8e8;text-decoration:none;">Dashboard</a></h5>
-               
-            </div>
-        </div></a>
       
       
     </div>

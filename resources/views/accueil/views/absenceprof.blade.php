@@ -9,6 +9,7 @@
 
 </style>
 <div class="container" style="margin-left: 210px; margin-top:140px; ">
+    
 
     <!-- Button trigger modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -20,13 +21,41 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+               
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
                 <div class="modal-body">
-                    <form id="editForm">
+                    <form id="editForm" action="{{ route('absence.store') }}" method="post">
+                        @csrf
+                        
                         <input type="hidden" id="cin_salarie" name="cin_salarie">
+                        <div class="form-group">
+                            <label for="heure_depart">CIN PROF</label>
+                            <input type="text" class="form-control" id="inputCIN" name="cin_salarie">
+                        </div>
                         <div class="form-group">
                             <label for="heure_depart">Heure d'entrer</label>
                             <input type="time" class="form-control" id="heure_depart" name="heure_depart">
                         </div>
+
                         <div class="form-group">
                             <label for="heure_fin">Heure de sortie</label>
                             <input type="time" class="form-control" id="heure_fin" name="heure_fin">
@@ -101,5 +130,24 @@ $('#prof-table').DataTable({
 
 </script>
 
- 
+<script>
+    $(document).ready(function() {
+        $('#prof-table').on('click', '.edit-btn', function(e) {
+            e.preventDefault();
+            
+            // Obtenez la ligne contenant le bouton cliqué
+            var row = $(this).closest('tr');
+            
+            // Récupérez le CIN du professeur à partir de la première cellule de la ligne
+            var cin_salarie = row.find('td:eq(0)').text();
+            
+            // Mettez à jour la valeur du champ de saisie du modal
+            $('#inputCIN').val(cin_salarie);
+            
+            // Affichez le modal
+            $('#editModal').modal('show');
+        });
+    });
+    </script>
+    
 @endsection
