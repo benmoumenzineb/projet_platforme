@@ -31,7 +31,7 @@ class RhPersonnelControlleur extends Controller
     public function fetchPersonnel()
 {
     $personnel = Personnel::select([
-        'cin_salarie', 'matricule_cnss', 'RIB', 'nom', 'prenom', 'etablissement',
+        'id', 'matricule_cnss', 'RIB', 'nom', 'prenom', 'etablissement',
         'RIB_pdf', 'type_contrat', 'contrat_pdf', 'cv_pdf', 'cin_pdf'
     ]);
 
@@ -51,53 +51,50 @@ class RhPersonnelControlleur extends Controller
         })
         ->addColumn('actions', function ($personnel) {
             return '<div style="display: flex; gap: 5px;">
-                        <button type="button" class="btn btn-primary edit-btn" data-id="' . $personnel->cin_salarie . '" style="width:auto; background-color: #173165;">Modifier</button>
-                        <form id="delete-form-' . $personnel->cin_salarie . '" action="' . route('personnel.destroy', $personnel->cin_salarie) . '" method="POST" style="margin: 0;">
+                        <button type="button" class="btn btn-primary edit-btn" data-id="' . $personnel->id . '" style="width:auto; background-color: #173165;">Modifier</button>
+                        <form id="delete-form-' . $personnel->id . '" action="' . route('personnel.destroy', $personnel->id) . '" method="POST" style="margin: 0;">
                             ' . csrf_field() . method_field('DELETE') . '
-                            <button type="button" class="btn btn-danger" onclick="confirmDelete(' . $personnel->cin_salarie . ')" style="width:auto;">Supprimer</button>
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete(\'' . $personnel->id . '\')" style="width:auto;">Supprimer</button>
                         </form>
                     </div>';
         })
+        
+        
+       
         ->rawColumns(['RIB_pdf', 'contrat_pdf', 'cv_pdf', 'cin_pdf', 'actions'])
         ->make(true);
 }
 
-    public function updatePersonnel(Request $request)
-    {
-        dd($request->id);
-        // Récupérer l'étudiant à partir de l'ID
-        $etudiants = Etudians::findOrFail($request->id);
-        if ($etudiants) {
-        // Mettre à jour les informations de l'étudiant avec les données du formulaire
-        
-        $etudiants->Nom = $request->Nom;
-        $etudiants->Prenom = $request->Prenom;
-        $etudiants->CNE = $request->CNE;
-        $etudiants->CNI = $request->CNI;
-        $etudiants->Date_naissance = $request->Date_naissance;
-        $etudiants->Sexe = $request->Sexe;
+public function updatePersonnel(Request $request)
+{
+    // Récupérer le personnel à partir de l'ID
+    $personnel = Personnel::where('id', $request->id)->firstOrFail();
 
-        
-        $etudiants->save();
-      
-        return redirect()->back()->with('success', 'Les informations de l\'étudiant ont été mises à jour avec succès.');}
-        else {
-            
-            return response()->json(['error' => 'etudiant non trouvé.'], 404);}
-        
-        
-       
-    }
-    
-    public function deletePersonnel(Request $request)
-    {
-        // Récupérer l'étudiant à partir de l'ID et le supprimer
-        $etudiant = Personnel::find($request->cin_salarie);
-        $etudiant->delete();
+    // Mettre à jour les informations du personnel avec les données du formulaire
+    $personnel->nom = $request->nom;
+    $personnel->prenom = $request->prenom;
+    $personnel->matricule_cnss = $request->matricule_cnss;
+    $personnel->etablissement = $request->etablissement;
+    $personnel->RIB = $request->RIB;
+    $personnel->type_contrat = $request->type_contrat;
 
-        // Retourner une réponse JSON ou une réponse de redirection si nécessaire
-        return response()->json(['success' => 'Etudiant supprimé avec succès']);
-    }
+    $personnel->save();
+
+    return redirect()->back()->with('success', 'Les informations du personnel ont été mises à jour avec succès.');
+}
+
+
+public function destroy($id)
+{
+    // Find the personnel by cin_salarie
+    $personnel = Personnel::where('id', $id)->firstOrFail();
+
+    // Delete the personnel
+    $personnel->delete();
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Personnel supprimé avec succès.');
+}
     public function store(Request $request)
     {
         $validatedData = $request->validate([

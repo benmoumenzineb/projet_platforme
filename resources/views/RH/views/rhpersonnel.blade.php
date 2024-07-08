@@ -4,185 +4,148 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-     @media (width: 2560px) {
-        .container {
-            max-width: 2600px;
-            
-        }
-
-        .modal-dialog {
-            max-width: 800px;
-        }
+    /* Styles par défaut */
+    
+    label {
+        font-weight: 700;
     }
 </style>
+
 @extends('RH.layouts.navbarrh')
+
 @section('contenu')
-    <div class="container" style="margin-left: 180px; margin-top:90px; ">
+<div class="container mt-5" style="margin-left: 200px; margin-top: 20px;">
 
         <div class="row">
-            <div class="col-md-9">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAdd" style="background-color: #173165;margin-left:55px">
+            <div class="col-md-12 d-flex justify-content-start mb-3 mt-5" >
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalAdd" style="background-color: #173165;">
                     Ajouter Personnel
                 </button>
-                @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            
-            <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ajouter un Personnel</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="formAjouterPersonnel" action="{{ route('ajouter-Personnel') }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="inputNom">Nom</label>
-                                        <input type="text" class="form-control" id="inputNom" name="nom">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPrenom">Prénom</label>
-                                        <input type="text" class="form-control" id="inputPrenom" name="prenom">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputCNE">CNI Personnel</label>
-                                        <input type="text" class="form-control" id="inputCNE" name="cin_salarie">
-                                    </div>
-                                </div>
-            
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="inputEtablissement">Etablissement</label>
-                                        <input type="text" class="form-control" id="inputEtablissement" name="etablissement">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputMatriculeCNSS">Matricule CNSS</label>
-                                        <input type="text" class="form-control" id="inputMatriculeCNSS" name="matricule_cnss">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputEmail">E-mail</label>
-                                        <input type="email" class="form-control" id="inputEmail" name="mail" placeholder="En cas de Scolarité">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputRIB">RIB</label>
-                                        <input type="text" class="form-control" id="inputRIB" name="RIB">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputTypeContrat">Type de Contrat</label>
-                                        <input type="text" class="form-control" id="inputTypeContrat" name="type_contrat">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputRIBPDF">RIB PDF</label>
-                                        <input type="file" class="form-control" id="inputRIBPDF" name="RIB_pdf">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputContratPDF">Contrat PDF</label>
-                                        <input type="file" class="form-control" id="inputContratPDF" name="contrat_pdf">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputCVPDF">CV</label>
-                                        <input type="file" class="form-control" id="inputCVPDF" name="cv_pdf">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputCINPDF">CIN PDF</label>
-                                        <input type="file" class="form-control" id="inputCINPDF" name="cin_pdf">
-                                    </div>
-                                </div>
-            
-                                <button type="submit" class="btn btn-primary" style="width: 100%; background-color:#173165;">Ajouter</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
-            
+            <div class="col-md-12">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-
-                <!-- modfier modal-->
-                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <!-- Modal Ajouter -->
+                <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <h5 class="modal-title" id="exampleModalLabel">Ajouter un Personnel</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formAjouterPersonnel" action="{{ route('ajouter-Personnel') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputNom">Nom</label>
+                                            <input type="text" class="form-control" id="inputNom" name="nom">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPrenom">Prénom</label>
+                                            <input type="text" class="form-control" id="inputPrenom" name="prenom">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCNE">CNI Personnel</label>
+                                            <input type="text" class="form-control" id="inputCNE" name="cin_salarie">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEtablissement">Etablissement</label>
+                                            <input type="text" class="form-control" id="inputEtablissement" name="etablissement">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputMatriculeCNSS">Matricule CNSS</label>
+                                            <input type="text" class="form-control" id="inputMatriculeCNSS" name="matricule_cnss">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail">E-mail</label>
+                                            <input type="email" class="form-control" id="inputEmail" name="mail" placeholder="En cas de Scolarité">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputRIB">RIB</label>
+                                            <input type="text" class="form-control" id="inputRIB" name="RIB">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputTypeContrat">Type de Contrat</label>
+                                            <input type="text" class="form-control" id="inputTypeContrat" name="type_contrat">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputRIBPDF">RIB PDF</label>
+                                            <input type="file" class="form-control" id="inputRIBPDF" name="RIB_pdf">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputContratPDF">Contrat PDF</label>
+                                            <input type="file" class="form-control" id="inputContratPDF" name="contrat_pdf">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCVPDF">CV</label>
+                                            <input type="file" class="form-control" id="inputCVPDF" name="cv_pdf">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCINPDF">CIN PDF</label>
+                                            <input type="file" class="form-control" id="inputCINPDF" name="cin_pdf">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%; background-color:#173165;">Ajouter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modifier Modal -->
+                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form id="formModifierEtudiant" action="{{ route('update-Personnel') }}" method="POST">
                                     @csrf
-                                    @foreach($etudiants as $etudiant)
-                                    <!-- Champs de formulaire pour la modification -->
-                                    <input type="hidden" id="id" name="id"  value="{{ $etudiant->id }}">
-                                    @endforeach
+                                    <input type="hidden" id="id" name="id" value="">
                                     <div class="form-row">
-
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label for="inputNom" class="form-label">Nom</label>
-                                            <input type="text" class="form-control" id="inputNom" name="Nom">
+                                            <input type="text" class="form-control" id="inputNom" name="nom">
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label for="inputPrenom" class="form-label">Prénom</label>
-                                            <input type="text" class="form-control" id="inputPrenom" name="Prenom">
+                                            <input type="text" class="form-control" id="inputPrenom" name="prenom">
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNE">CNE</label>
-                                            <input type="text" class="form-control" id="inputCNE" name="CNE">
-                                        </div>
+                                        <!-- Ajoutez d'autres champs nécessaires ici -->
                                     </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">CNI</label>
-                                            <input type="text" class="form-control" id="inputCNI" name="CNI">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date Naissance</label>
-                                            <input type="text" class="form-control" id="inputDateNaissance"
-                                                name="Date_naissance">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Sexe</label>
-                                            <input type="text" class="form-control" id="inputCNI" name="Sexe">
-                                        </div>
-                                    </div>
-                                    <!-- Ajoutez d'autres paires de champs ici -->
-
-
-
-                                    <!-- Ajoutez les autres champs de formulaire ici -->
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%; background-color:#173165;">Enregistrer les modifications</button>
                                 </form>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                
+                
+                <!-- Table de personnel -->
+                <div class="table-responsive">
                     <table class="table table-striped" id="personnel-table">
                         <thead>
                             <tr>
-                                <th class="th-color border">CIN Personnel</th>
+                                <th class="th-color border">id</th>
                                 <th class="th-color border">Matricule CNSS</th>
                                 <th class="th-color border">Nom</th>
                                 <th class="th-color border">Prénom</th>
@@ -194,12 +157,16 @@
                                 <th class="th-color border">CV</th>
                                 <th class="th-color border">Cin PDF</th>
                                 <th class="th-color border">Action</th>
-                               
                             </tr>
                         </thead>
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    
+
            
 
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -212,7 +179,7 @@
                 ajax: "{{ route('getDatapersonnel') }}",
                 columns: [
             
-                    { data: 'cin_salarie', name: 'cin_salarie' },
+                    { data: 'id', name: 'id' },
                     { data: 'matricule_cnss', name: 'matricule_cnss' },
                    
                     { data: 'nom', name: 'nom' },
@@ -237,19 +204,37 @@
         
       
     
-
-            </script>
+            
+            
             
             
             
 
            
-            
+            </script>
     <script>
-        function confirmDelete(cin_salarie){
-        if (confirm("Are you sure you want to delete this student?")) {
-            document.getElementById('delete-form-' + cin_salarie).submit();
+    function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete this personnel?")) {
+            document.getElementById('delete-form-' + id).submit();
         }
     }
-    </script>
+</script>
+
+   <script>
+    $(document).ready(function() {
+        $('#personnel-table').on('click', '.edit-btn', function(e) {
+            e.preventDefault();
+            var personnelId = $(this).data('id');
+            var row = $(this).closest('tr'); 
+            var nom = row.find('td:eq(2)').text(); 
+            var prenom = row.find('td:eq(3)').text();
+
+            $('#id').val(personnelId);
+            $('#inputNom').val(nom);
+            $('#inputPrenom').val(prenom);
+            $('#exampleModalEdit').modal('show');
+        });
+    });
+   
+</script>
 @endsection

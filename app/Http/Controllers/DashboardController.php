@@ -10,6 +10,7 @@ use App\Models\Demande;
 use App\Models\Reclamation;
 use App\Models\Enseignant;
 use App\Models\Etablissement;
+use App\Models\Groupe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,7 @@ class DashboardController extends Controller
         $reclamationsCount = Reclamation::count();
         $enseignantsCount = Enseignant::count();
         $etablissementCount = Etablissement::count();
+        $groupeCount = Groupe::count();
     
         $etudiantsCounts = Etudians::count();
         $villes = ['ESSAOUIRA', 'MOHAMMEDIA'];
@@ -134,7 +136,8 @@ class DashboardController extends Controller
             'lineDatas' =>$lineDatas,
             'lineData' =>$lineData,
            'data'=>$data,
-            'etablissementCount' =>$etablissementCount
+            'etablissementCount' =>$etablissementCount,
+            'groupeCount' =>$groupeCount
             //'lineData'=>$lineData
 
         ]);
