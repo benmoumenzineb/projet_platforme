@@ -82,22 +82,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-3">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="id_groupe"><strong>Groupe:</strong></label>
-                                </div>
-                                <div class="col-md-12">
-                                    <select name="id_groupe" id="id_groupe" class="form-control">
-                                        <option value="">Sélectionner un groupe</option>
-                                        @foreach ($groupes as $groupe)
-                                        <option value="{{ $groupe->id_groupe }}">{{ $groupe->intitule }}</option>
-                                    @endforeach
-                                    </select>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">

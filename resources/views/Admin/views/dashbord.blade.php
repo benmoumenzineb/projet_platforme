@@ -123,6 +123,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card text-white" style="background-color:rgb(255, 250, 250);">
+                <div class="card-body" style="color:rgb(0, 24, 71)">
+                    <h5 class="card-title">Groupe</h5>
+                    <p class="card-text" style="color:rgb(0, 24, 71)" >{{ $groupeCount }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Charts Section -->

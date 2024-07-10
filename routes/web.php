@@ -54,6 +54,8 @@ use App\Http\Controllers\GestioncompteController;
 
 
 Route::post('/creationcomptes', [GestioncompteController::class, 'store'])->name('creationcomptes');
+Route::get('/navtemplate', [GestioncompteController::class, 'indexx']);
+Route::get('/cc', [GestioncompteController::class, 'indexxx']);
 
 
 Route::get('/gestioncomptes', [GestioncompteController::class, 'index'])->name('gestioncomptes');
@@ -245,8 +247,7 @@ Route::post('update-etudiant', [ListetudiantController::class, 'update'])->name(
 
 
 Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->name('etudiants.destroy');
-Route::delete('/personnel/{cin_salarie}', [RhPersonnelController::class, 'destroy'])->name('personnel.destroy');
-
+Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
 
 
 

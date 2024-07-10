@@ -11,6 +11,16 @@ class GestioncompteController extends Controller
         
         return view('Admin.views.gestioncomptes');
     }
+    public function indexx()
+    {
+        
+        return view('Admin.views.navtemplate');
+    }
+    public function indexxx()
+    {
+        
+        return view('Admin.views.cc');
+    }
     public function store(Request $request)
     {
         $validatedData = $request->validate([

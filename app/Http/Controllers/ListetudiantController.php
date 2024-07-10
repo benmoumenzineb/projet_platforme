@@ -48,25 +48,61 @@ class ListetudiantController extends Controller
     
     
     public function update(Request $request)
-    {
-        $etudiant = Etudians::find($request->id);
-        $etudiant->Nom = $request->Nom;
-        $etudiant->Prenom = $request->Prenom;
-        $etudiant->CNE = $request->CNE;
-        $etudiant->CNI = $request->CNI;
-        $etudiant->Date_naissance = $request->Date_naissance;
-        $etudiant->Pays = $request->Pays;
-        $etudiant->Email = $request->Email;
-        $etudiant->Adresse = $request->Adresse;
-        $etudiant->Serie_bac = $request->Serie_bac;
-        $etudiant->Mention_bac = $request->Mention_bac;
-        $etudiant->Etablissement_bac = $request->Etablissement_bac;
-        $etudiant->Pourcentage_bourse = $request->Pourcentage_bourse;
-        // Mettez à jour d'autres champs si nécessaire
-        $etudiant->save();
+{
+    // Valider les données du formulaire
+    $request->validate([
+        'id' => 'required|integer|exists:etudient,id',
+        'Nom' => 'required|string|max:255',
+        'Prenom' => 'required|string|max:255',
+        'CNE' => 'required|string|max:20',
+        'CNI' => 'required|string|max:20',
+        'Date_naissance' => 'required|date',
+        'Pays' => 'required|string|max:100',
+        'Email' => 'required|email|max:255',
+        'Adresse' => 'required|string|max:255',
+        'Serie_bac' => 'required|string|max:50',
+        'Mention_bac' => 'required|string|max:50',
+        'Etablissement_bac' => 'required|string|max:100',
+        'Pourcentage_bourse' => 'nullable|numeric|min:0|max:100',
+    ]);
+
+    // Afficher les données de la requête
     
-        return redirect()->back()->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
+
+    // Trouver l'étudiant par ID
+    $etudiant = Etudians::find($request->id);
+
+    // Vérifier que l'étudiant a été trouvé
+    if (!$etudiant) {
+        return redirect()->back()->with('error', 'Étudiant non trouvé.');
     }
+
+    // Afficher l'objet étudiant récupéré
+   
+
+    // Mettre à jour les informations de l'étudiant
+    $etudiant->Nom = $request->Nom;
+    $etudiant->Prenom = $request->Prenom;
+    $etudiant->CNE = $request->CNE;
+    $etudiant->CNI = $request->CNI;
+    $etudiant->Date_naissance = $request->Date_naissance;
+    $etudiant->Pays = $request->Pays;
+    $etudiant->Email = $request->Email;
+    $etudiant->Adresse = $request->Adresse;
+    $etudiant->Serie_bac = $request->Serie_bac;
+    $etudiant->Mention_bac = $request->Mention_bac;
+    $etudiant->Etablissement_bac = $request->Etablissement_bac;
+    $etudiant->Pourcentage_bourse = $request->Pourcentage_bourse;
+
+    // Affichedd($id);
+
+    // Sauvegarder les modifications
+    $etudiant->save();
+
+    
+    return redirect()->route('listetudiant')->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
+}
+
     
 
     

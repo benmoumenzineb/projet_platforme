@@ -33,7 +33,8 @@
         }
         @media (width: 2560px) {
         .container {
-            max-width: 2600px;
+            max-width: 3000px;
+            margin-left: -20px;
             
         }
 
