@@ -8,16 +8,24 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Inscription;
-
+use App\Models\Etablissement;
+use App\Models\Filiere;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 class ListetudiantController extends Controller
 {
+    
+
     public function index()
     {
+        $filieres=Filiere::all();
+        $etablissements = Etablissement::all();
         $user = Auth::guard('scolarite')->user();
         $etudiants = Etudians::paginate(10); 
 
         
-    return view('scolarite.views.listeetudiant', ['etudiants' => $etudiants]);
+    return view('scolarite.views.listeetudiant',compact('etablissements','filieres') );
 
 
     }
@@ -48,76 +56,65 @@ class ListetudiantController extends Controller
     
     
     public function update(Request $request)
-{
-    // Valider les données du formulaire
-    $request->validate([
-        'id' => 'required|integer|exists:etudient,id',
-        'Nom' => 'required|string|max:255',
-        'Prenom' => 'required|string|max:255',
-        'CNE' => 'required|string|max:20',
-        'CNI' => 'required|string|max:20',
-        'Date_naissance' => 'required|date',
-        'Pays' => 'required|string|max:100',
-        'Email' => 'required|email|max:255',
-        'Adresse' => 'required|string|max:255',
-        'Serie_bac' => 'required|string|max:50',
-        'Mention_bac' => 'required|string|max:50',
-        'Etablissement_bac' => 'required|string|max:100',
-        'Pourcentage_bourse' => 'nullable|numeric|min:0|max:100',
-    ]);
-
-    // Afficher les données de la requête
-    
-
-    // Trouver l'étudiant par ID
-    $etudiant = Etudians::find($request->id);
-
-    // Vérifier que l'étudiant a été trouvé
-    if (!$etudiant) {
-        return redirect()->back()->with('error', 'Étudiant non trouvé.');
-    }
-
-    // Afficher l'objet étudiant récupéré
-   
-
-    // Mettre à jour les informations de l'étudiant
-    $etudiant->Nom = $request->Nom;
-    $etudiant->Prenom = $request->Prenom;
-    $etudiant->CNE = $request->CNE;
-    $etudiant->CNI = $request->CNI;
-    $etudiant->Date_naissance = $request->Date_naissance;
-    $etudiant->Pays = $request->Pays;
-    $etudiant->Email = $request->Email;
-    $etudiant->Adresse = $request->Adresse;
-    $etudiant->Serie_bac = $request->Serie_bac;
-    $etudiant->Mention_bac = $request->Mention_bac;
-    $etudiant->Etablissement_bac = $request->Etablissement_bac;
-    $etudiant->Pourcentage_bourse = $request->Pourcentage_bourse;
-
-    // Affichedd($id);
-
-    // Sauvegarder les modifications
-    $etudiant->save();
-
-    
-    return redirect()->route('listetudiant')->with('success', 'Informations de l\'étudiant mises à jour avec succès.');
-}
-
-    
-
-    
-  
-
- 
-
-
-
-
-    public function ajouterEtudiant(Request $request)
     {
         // Valider les données du formulaire
-        $request->validate([
-            'apogee' =>'required',
+        $validatedData = $request->validate([
+            'id' => 'required|integer|exists:etudient,id',
+            'Nom' => 'required|string|max:255',
+            'Prenom' => 'required|string|max:255',
+            'CNE' => 'required|string|max:20',
+            'CNI' => 'required|string|max:20',
+            'Date_naissance' => 'required|date',
+            'Pays' => 'required|string|max:100',
+            'Email' => 'required|email|max:255',
+            'Adresse' => 'required|string|max:255',
+            'Serie_bac' => 'required|string|max:50',
+            'Mention_bac' => 'required|string|max:50',
+            'Etablissement_bac' => 'required|string|max:100',
+            'Pourcentage_bourse' => 'required',
+        ]);
+    
+        // Dump and die pour vérifier l'ID
+        dd($request->id);
+    
+        try {
+            // Récupérer l'étudiant par ID
+            $etudiant = Etudians::findOrFail($validatedData['id']);
+    
+            // Mettre à jour les informations de l'étudiant
+            $etudiant->Nom = $validatedData['Nom'];
+            $etudiant->Prenom = $validatedData['Prenom'];
+            $etudiant->CNE = $validatedData['CNE'];
+            $etudiant->CNI = $validatedData['CNI'];
+            $etudiant->Date_naissance = $validatedData['Date_naissance'];
+            $etudiant->Pays = $validatedData['Pays'];
+            $etudiant->Email = $validatedData['Email'];
+            $etudiant->Adresse = $validatedData['Adresse'];
+            $etudiant->Serie_bac = $validatedData['Serie_bac'];
+            $etudiant->Mention_bac = $validatedData['Mention_bac'];
+            $etudiant->Etablissement_bac = $validatedData['Etablissement_bac'];
+            $etudiant->Pourcentage_bourse = $validatedData['Pourcentage_bourse'];
+    
+            // Sauvegarder les modifications
+            $etudiant->save();
+    
+            // Retourner une réponse JSON en cas de succès
+            return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
+    
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Retourner une réponse JSON si l'étudiant n'est pas trouvé
+            return response()->json(['error' => 'Étudiant non trouvé.'], 404);
+    
+        } catch (\Exception $e) {
+            // Gérer les autres exceptions
+            return response()->json(['error' => 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.'], 500);
+        }
+    }
+
+    
+public function store(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
             'Nom' => 'required|string',
             'Prenom' => 'required|string',
             'CNE' => 'required|string',
@@ -126,54 +123,90 @@ class ListetudiantController extends Controller
             'Date_naissance' => 'required|date',
             'Pays' => 'required|string',
             'Email' => 'required|string',
-            'telephone' => 'required',
+            'telephone' => 'required|string',
             'Adresse' => 'required|string',
             'Serie_bac' => 'required|string',
-            
+            'cinTuteur' => 'required|string',
+            'nom_tuteur' => 'required|string',
+            'proffesion_tuteur' => 'required|string',
+            'telephone_tuteur' => 'required|string',
             'Specialite_diplome' => 'nullable|string',
             'Mention_bac' => 'required|string',
             'Etablissement_bac' => 'required|string',
             'Pourcentage_bourse' => 'required|string',
+            'num_annee' => 'required|string',
+            'code_etab' => 'required|string',
+            'id_filiere' => 'required|integer', // Ajout de la validation pour id_filiere
         ]);
 
-       
-        $etudiant = new Etudians([
-            
-            'Nom' => $request->input('Nom'),
-            'Prenom' => $request->input('Prenom'),
-            'CNE' => $request->input('CNE'),
-            'CNI' => $request->input('CNI'),
-            'Sexe' => $request->input('Sexe'),
-            'Date_naissance' => $request->input('Date_naissance'),
-            'Pays' => $request->input('Pays'),
-            'Diplome_acces' => $request->input('Diplome_acces'),
-            'Serie_bac' => $request->input('Serie_bac'),
-            'Email' => $request->input('Email'),
-            'Adresse' => $request->input('Adresse'),
-            'telephone' => $request->input('telephone'),
-           
-            'Specialite_diplome' => $request->input('Specialite_diplome'),
-            'Mention_bac' => $request->input('Mention_bac'),
-            'Etablissement_bac' => $request->input('Etablissement_bac'),
-            'Pourcentage_bourse' => $request->input('Pourcentage_bourse'),
-            
-        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
-      
-        
+        try {
+            $dateInscription = $request->input('num_annee');
+            $apogee = $this->generateApogee($dateInscription);
+            $code_etab = $request->input('code_etab'); // Récupérer code_etab depuis la requête
+            $id_filiere = $request->input('id_filiere'); // Récupérer id_filiere depuis la requête
 
-        $request->validate([ 
-            'num_annee' => 'required',
-        ]);
-        $etudiant = new Inscription([
-            'num_annee' => $request->input('num_annee'),
-        ]);
-        $etudiant->save();
+            // Créer l'inscription
+            Inscription::create([
+                'apogee' => $apogee,
+                'num_annee' => $dateInscription,
+                'code_etab' => $code_etab, // Utiliser code_etab récupéré
+                'id_filiere' => $id_filiere, // Utiliser id_filiere récupéré
+            ]);
 
-        return redirect()->route('listetudiant')->with('success', 'Étudiant ajouté avec succès.');
+            // Créer l'étudiant
+            Etudians::create([
+                'apogee' => $apogee,
+                'Nom' => $request->input('Nom'),
+                'Prenom' => $request->input('Prenom'),
+                'CNE' => $request->input('CNE'),
+                'CNI' => $request->input('CNI'),
+                'Sexe' => $request->input('Sexe'),
+                'Date_naissance' => $request->input('Date_naissance'),
+                'Pays' => $request->input('Pays'),
+                'Email' => $request->input('Email'),
+                'telephone' => $request->input('telephone'),
+                'Adresse' => $request->input('Adresse'),
+                'cinTuteur' => $request->input('cinTuteur'),
+                'Serie_bac' => $request->input('Serie_bac'),
+                'proffesion_tuteur' => $request->input('proffesion_tuteur'),
+                'nom_tuteur' => $request->input('nom_tuteur'),
+                'telephone_tuteur' => $request->input('telephone_tuteur'),
+                'Specialite_diplome' => $request->input('Specialite_diplome'),
+                'Mention_bac' => $request->input('Mention_bac'),
+                'Etablissement_bac' => $request->input('Etablissement_bac'),
+                'Pourcentage_bourse' => $request->input('Pourcentage_bourse'),
+                'code_etab' => $code_etab, // Utiliser code_etab récupéré
+            ]);
+
+            return response()->json(['message' => 'Étudiant ajouté avec succès', 'apogee' => $apogee], 201);
+
+        } catch (\Exception $e) {
+            Log::error('Erreur lors de l\'ajout de l\'étudiant : ' . $e->getMessage());
+            return response()->json(['message' => 'Erreur lors de l\'ajout de l\'étudiant', 'error' => $e->getMessage()], 500);
+        }
     }
+
+    private function generateApogee($dateInscription)
+{
+    // Obtenez l'année de la date d'inscription
+    $year = date('Y', strtotime($dateInscription));
     
-   
+    // Générer un nombre aléatoire de 4 chiffres
+    $randomNumber = mt_rand(1000, 9999); // Générer un nombre aléatoire entre 1000 et 9999
+    
+    // Combiner l'année et le nombre aléatoire pour obtenir un code de 8 chiffres
+    return $year . $randomNumber;
+}
+
+
+
+
+
+
     public function destroy($id)
     {
         $etudiant = Etudians::find($id);

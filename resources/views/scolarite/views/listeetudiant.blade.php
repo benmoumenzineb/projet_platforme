@@ -53,127 +53,278 @@
                 width: 100%;
             }
         }
+        label{
+           font-weight: 600;
+            
+        }
+        h6{
+            color: #ffffff;
+            background-color: #173165;
+        }
+        
     </style>
     <body>
-    <div class="container" style="margin-left: 150px; margin-top:140px; ">
-
-        <div class="row">
-            <div class="col-md-9">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                    style="background-color: #173165;margin-left: 70px;">
-                    Ajouter un étudiant
-                </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ajouter un étudiant</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
+        <div class="container" style="margin-left: 150px; margin-top: 140px;">
+            <div class="row">
+                <div class="col-md-9">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #173165; margin-left: 70px;">
+                        Ajouter un étudiant
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document"> <!-- Utilisation de modal-lg pour une largeur plus grande -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un étudiant</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            @endif
-
-                            @if ($errors->any())
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li class="alert alert-danger">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                            <div class="modal-body">
-                                <form id="formAjouterEtudiant" action="{{ route('ajouter.etudiant') }}" method="POST">
-                                    @csrf
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputNom">Nom</label>
-                                            <input type="text" class="form-control" id="Nom" name="Nom"
-                                                required>
+                                <div class="modal-body">
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputPrenom">Prénom</label>
-                                            <input type="text" class="form-control" id="Prenom" name="Prenom"
-                                                required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNE">CNE</label>
-                                            <input type="text" class="form-control" id="CNE" name="CNE"
-                                                required>
-                                        </div>
-                                    </div>
-
-                                    <!-- Ajoutez d'autres paires de champs ici -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">CNI</label>
-                                            <input type="text" class="form-control" id="CNI" name="CNI"
-                                                required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Date Naissance</label>
-                                            <input type="text" class="form-control" id="DateNaissance"
-                                                name="Date_naissance" required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Sexe</label>
-                                            <input type="text" class="form-control" id="Sexe" name="Sexe"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Pays</label>
-                                            <input type="text" class="form-control" id="Pays" name="Pays"
-                                                required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Série de bac</label>
-                                            <input type="text" class="form-control" id="Serie_bac" name="Serie_bac"
-                                                required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Email</label>
-                                            <input type="text" class="form-control" id="Diplome_acces"
-                                                name="Email" required>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-row">
-                                       
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCNI">Mention Bac</label>
-                                            <input type="text" class="form-control" id="Mention_bac"
-                                                name="Mention_bac" required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Adresse</label>
-                                            <input type="text" class="form-control" id="apogee"
-                                                name="Adresse">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Specialite diplôme</label>
-                                            <input type="text" class="form-control" id="Specialite_diplome"
-                                                name="Specialite_diplome">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Etablissement du diplôme</label>
-                                            <input type="text" class="form-control" id="Etablissement_bac"
-                                                name="Etablissement_bac" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputCNI">Pourcentage Bourse</label>
+                                    @endif
+                    
+                                    @if ($errors->any())
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li class="alert alert-danger">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                    
+                                    <form action="{{ route('etudiants.store') }}" method="POST">
+                                        @csrf
+                                        <h6>Informations Personnelles</h6>
+                    
+                                        <div class="row">
                                             <div class="col-md-6">
-                                                <select class="form-select" id="Pourcentage_bourse"
-                                                    name="Pourcentage_bourse" required>
+                                                <div class="form-group">
+                                                    <label for="Nom">Nom:</label>
+                                                    <input type="text" name="Nom" class="form-control" placeholder="Nom" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Prenom">Prénom:</label>
+                                                    <input type="text" name="Prenom" class="form-control" placeholder="Prénom" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="CNE">Code Massar:</label>
+                                                    <input type="text" name="CNE" class="form-control" placeholder="CNE" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="CNI">Code National:</label>
+                                                    <input type="text" name="CNI" class="form-control" placeholder="CNI" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Sexe">Sexe:</label>
+                                                    <select class="form-control" id="Sexe" name="Sexe" required>
+                                                        <option value="" disabled selected></option>
+                                                        <option value="M">Masculin</option>
+                                                        <option value="F">Féminin</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Date_naissance">Date Naissance:</label>
+                                                    <input type="date" name="Date_naissance" class="form-control" placeholder="Date de naissance" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Pays">Pays:</label>
+                                                    <input type="text" name="Pays" class="form-control" placeholder="Pays" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Email">Email:</label>
+                                                    <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="telephone">Téléphone:</label>
+                                                    <input type="text" name="telephone" class="form-control" placeholder="Téléphone" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Adresse">Adresse:</label>
+                                                    <input type="text" name="Adresse" class="form-control" placeholder="Adresse" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Serie_bac">Série Bac:</label>
+                                                    <input type="text" name="Serie_bac" class="form-control" placeholder="Série bac" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cinTuteur">CIN Tuteur:</label>
+                                                    <input type="text" name="cinTuteur" class="form-control" placeholder="CIN tuteur" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="nom_tuteur">Nom Tuteur:</label>
+                                                    <input type="text" name="nom_tuteur" class="form-control" placeholder="Nom tuteur" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="proffesion_tuteur">Profession Tuteur:</label>
+                                                    <input type="text" name="proffesion_tuteur" class="form-control" placeholder="Profession tuteur" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="telephone_tuteur">Téléphone Tuteur:</label>
+                                                    <input type="text" name="telephone_tuteur" class="form-control" placeholder="Téléphone tuteur" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Specialite_diplome">Spécialité Diplôme:</label>
+                                                    <input type="text" name="Specialite_diplome" class="form-control" placeholder="Spécialité diplôme">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Mention_bac">Mention Bac:</label>
+                                                    <input type="text" name="Mention_bac" class="form-control" placeholder="Mention bac" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Etablissement_bac">Établissement Bac:</label>
+                                                    <input type="text" name="Etablissement_bac" class="form-control" placeholder="Établissement bac" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Pourcentage_bourse">Pourcentage Bourse:</label>
+                                                    <select class="form-control" id="Pourcentage_bourse" name="Pourcentage_bourse" required>
+                                                        <option value="" disabled selected></option>
+                                                        <option value="0%">0%</option>
+                                                        <option value="10%">10%</option>
+                                                        <option value="20%">20%</option>
+                                                        <option value="30%">30%</option>
+                                                        <option value="40%">40%</option>
+                                                        <option value="50%">50%</option>
+                                                        <option value="60%">60%</option>
+                                                        <option value="70%">70%</option>
+                                                        <option value="80%">80%</option>
+                                                        <option value="90%">90%</option>
+                                                        <option value="100%">100%</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="num_annee">Date inscription:</label>
+                                                    <input type="text" name="num_annee" class="form-control" placeholder="Numéro d'année" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="code_etab">Établissement:</label>
+                                                    <select name="code_etab" id="etablissement" class="form-control">
+                                                        <option value="">Sélectionner un établissement</option>
+                                                        @foreach ($etablissements as $etablissement)
+                                                            <option value="{{ $etablissement->code_etab }}">{{ $etablissement->ville }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="id_filiere">Filière:</label>
+                                                    <select name="id_filiere" id="id_filiere" class="form-control">
+                                                        <option value="">Sélectionner une filière</option>
+                                                        @foreach ($filieres as $filiere)
+                                                            <option value="{{ $filiere->id_filiere }}">{{ $filiere->intitule }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #173165;">Ajouter Étudiant</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+        
+                    <!-- Modifier Modal -->
+                    <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="formModifierEtudiant" action="{{ route('update-etudiant') }}" method="POST">
+                                        @csrf
+                                        
+                                        <input type="hidden" id="id" name="id" value="">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputNom" class="form-label">Nom</label>
+                                                <input type="text" class="form-control" id="inputNom" name="Nom">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputPrenom" class="form-label">Prénom</label>
+                                                <input type="text" class="form-control" id="inputPrenom" name="Prenom">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputCNE">CNE</label>
+                                                <input type="text" class="form-control" id="inputCNE" name="CNE">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputCNI">CNI</label>
+                                                <input type="text" class="form-control" id="inputCNI" name="CNI">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputDateNaissance">Date Naissance</label>
+                                                <input type="date" class="form-control" id="inputDateNaissance" name="Date_naissance">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputSexe">Sexe</label>
+                                                <input type="text" class="form-control" id="inputSexe" name="Sexe">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputPays">Pays</label>
+                                                <input type="text" class="form-control" id="inputPays" name="Pays">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputSerie_bac">Série de bac</label>
+                                                <input type="text" class="form-control" id="inputSerie_bac" name="Serie_bac">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail">Email</label>
+                                                <input type="email" class="form-control" id="inputEmail" name="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputMention_bac">Mention Bac</label>
+                                                <input type="text" class="form-control" id="inputMention_bac" name="Mention_bac">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputSpecialite_diplome">Spécialité diplôme</label>
+                                                <input type="text" class="form-control" id="inputSpecialite_diplome" name="Specialite_diplome">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputAdresse">Adresse</label>
+                                                <input type="text" class="form-control" id="inputAdresse" name="Adresse">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEtablissement_bac">Établissement du diplôme</label>
+                                                <input type="text" class="form-control" id="inputEtablissement_bac" name="Etablissement_bac">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputPourcentage_bourse">Pourcentage Bourse</label>
+                                                <select class="form-control" id="inputPourcentage_bourse" name="Pourcentage_bourse">
                                                     <option value="" disabled selected></option>
                                                     <option value="0%">0%</option>
                                                     <option value="10%">10%</option>
@@ -189,183 +340,46 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">Téléphone</label>
-                                            <input type="text" class="form-control" id="Etablissement_bac"
-                                                name="telephone" required>
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDateNaissance">date inscription</label>
-                                            <input type="text" class="form-control" id="Etablissement_bac"
-                                                name="num_annee" required>
-                                        </div>
-                                    </div>
-
-
-
-
-                                    
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 100%; background-color:#173165;">Ajouter</button>
-                                </form>
+                                        <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #173165;">Enregistrer les modifications</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- modfier modal--><div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modifier les informations de l'étudiant</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formModifierEtudiant" action="{{ url('update-etudiant') }}" method="POST">
-                    @csrf
-                    <input type="hidden" id="id" name="id" value="">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputNom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="inputNom" name="Nom">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputPrenom" class="form-label">Prénom</label>
-                            <input type="text" class="form-control" id="inputPrenom" name="Prenom">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputCNE">CNE</label>
-                            <input type="text" class="form-control" id="inputCNE" name="CNE">
-                        </div>
+        
+                    <div class="container mt-4">
+                        <table class="table table-striped" id="etudiants-table">
+                            <thead>
+                                <tr>
+                                    <th class="th-color border">Id étudiant</th>
+                                    <th class="th-color border">CNE</th>
+                                    <th class="th-color border">CNI</th>
+                                    <th class="th-color border">Nom</th>
+                                    <th class="th-color border">Prénom</th>
+                                    <th class="th-color border">Téléphone</th>
+                                    <th class="th-color border">Email</th>
+                                    <th class="th-color border">Adresse</th>
+                                    <th class="th-color border">Sexe</th>
+                                    <th class="th-color border">Date Naissance</th>
+                                    <th class="th-color border">Pays</th>
+                                    <th class="th-color border">Serie de bac</th>
+                                    <th class="th-color border">Année bac</th>
+                                    <th class="th-color border">Spécialité diplôme</th>
+                                    <th class="th-color border">Mention BAC</th>
+                                    <th class="th-color border">Établissement diplôme</th>
+                                    <th class="th-color border">Pourcentage bourse</th>
+                                    <th class="th-color border">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Ajouter du contenu dynamique ici -->
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputCNI">CNI</label>
-                            <input type="text" class="form-control" id="inputCNI" name="CNI">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Date Naissance</label>
-                            <input type="text" class="form-control" id="inputDateNaissance" name="Date_naissance">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputSexe">Sexe</label>
-                            <input type="text" class="form-control" id="inputSexe" name="Sexe">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Pays</label>
-                            <input type="text" class="form-control" id="inputPays" name="Pays"
-                            >
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputCNI">Série de bac</label>
-                            <input type="text" class="form-control" id="inputSerie_bac" name="Serie_bac"
-                            >
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Email</label>
-                            <input type="text" class="form-control" id="inputDiplome_acces"
-                                name="Diplome_acces">
-                        </div>
-                    </div>
-
-
-                    <div class="form-row">
-                        
-                           
-                        <div class="form-group col-md-4">
-                            <label for="inputCNI">Mention Bac</label>
-                            <input type="text" class="form-control" id="inputMention_bac"
-                                name="Mention_bac">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Specialite diplôme</label>
-                            <input type="text" class="form-control" id="inputSpecialite_diplome"
-                                name="Specialite_diplome">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Adresse</label>
-                            <input type="text" class="form-control" id="inputAdresse"
-                                name="Adresse">
-                        </div>
-                    </div>
-                    <div class="form-row">
-
-                        <div class="form-group col-md-4">
-                            <label for="inputDateNaissance">Etablissement du diplôme</label>
-                            <input type="text" class="form-control" id="inputEtablissement_bac"
-                                name="Etablissement_bac">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputCNI">Pourcentage Bourse</label>
-                            <div class="col-md-6">
-                                <select class="form-select" id="inputPourcentage_bourse"
-                                    name="Pourcentage_bourse">
-                                    <option value="" disabled selected></option>
-                                    <option value="0%">0%</option>
-                                    <option value="10%">10%</option>
-                                    <option value="20%">20%</option>
-                                    <option value="30%">30%</option>
-                                    <option value="40%">40%</option>
-                                    <option value="50%">50%</option>
-                                    <option value="60%">60%</option>
-                                    <option value="70%">70%</option>
-                                    <option value="80%">80%</option>
-                                    <option value="90%">90%</option>
-                                    <option value="100%">100%</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;background-color:#173165">Enregistrer les modifications</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-                <div class="container">
-                    <table class="table table-striped" id="etudiants-table">
-                        <thead>
-                            <tr>
-                                <th class="th-color border">Id étudiant</th>
-                               
-                                <th class="th-color border">CNE</th>
-                                <th class="th-color border">CNI</th>
-                                <th class="th-color border">Nom</th>
-                                <th class="th-color border">Prénom</th>
-                                <th class="th-color border">Téléphone</th>
-                                <th class="th-color border">Email</th>
-                                <th class="th-color border">Adresse</th>
-                                <th class="th-color border">Sexe</th>
-                                <th class="th-color border">Date Naissance</th>
-                                <th class="th-color border">Pays</th>
-                               
-                                <th class="th-color border">Serie de bac</th>
-                                <th class="th-color border">Année bac</th>
-                                <th class="th-color border">Specialite diplome</th>
-                                <th class="th-color border">Mention BAC</th>
-                                <th class="th-color border">Etablissement diplome</th>
-                                <th class="th-color border">Pourcentage bourse</th>
-                                <th class="th-color border">Actions</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>
-    </div>
-    
+        
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script>
@@ -425,6 +439,7 @@
         var Serie_bac = row.find('td:eq(11)').text();
         var telephone = row.find('td:eq(5)').text();
         var Mention_bac= row.find('td:eq(14)').text();
+        var Specialite_diplome= row.find('td:eq(13)').text();
         var Etablissement_bac = row.find('td:eq(15)').text();
         var Pourcentage_bourse = row.find('td:eq(16)').text();
         var Adresse = row.find('td:eq(7)').text();
@@ -442,6 +457,8 @@
         $('#inputSerie_bac').val(Serie_bac);
         $('#inputDiplome_acces').val(Email);
         $('#inputMention_bac').val(Mention_bac);
+        $('#inputSpecialite_diplome').val(Specialite_diplome);
+        
         $('#inputEtablissement_bac').val(Etablissement_bac);
         $('#inputPourcentage_bourse').val(Pourcentage_bourse);
         $('#inputAdresse').val(Adresse);
@@ -452,33 +469,7 @@
 
 
     </script>
-   <script>
-       document.getElementById('formAjouterEtudiant').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    var formData = new FormData(this);
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('POST', '{{ route('ajouter.etudiant') }}', true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                console.log(xhr.responseText);
-                $('#exampleModal').modal('hide');
-                window.location.reload();
-            } else {
-                console.error('Error:', xhr.statusText);
-            }
-        }
-    };
-    xhr.onerror = function() {
-        console.error('Request failed');
-    };
-    xhr.send(formData);
-});
-
-    </script>
-    
+   
   
     <script>
         function confirmDelete(id) {
@@ -490,3 +481,4 @@
     
    </body>
 @endsection
+

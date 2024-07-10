@@ -50,9 +50,17 @@ use App\Http\Controllers\Auth\RHLoginController;
 use App\Http\Controllers\DashbordRHController;
 use App\Http\Controllers\EmploiscolariteController;
 use App\Http\Controllers\GestioncompteController;
+use App\Http\Controllers\Absenceetudiant;
+use App\Http\Controllers\EmploiaccueilController;
 
 
 
+
+
+
+
+Route::get('/absence/etudiant', [Absenceetudiant::class, 'index'])->name('absence');
+Route::get('/emploi/accueil', [EmploiaccueilController::class, 'index'])->name('emploiaccueil');
 Route::post('/creationcomptes', [GestioncompteController::class, 'store'])->name('creationcomptes');
 Route::get('/navtemplate', [GestioncompteController::class, 'indexx']);
 Route::get('/cc', [GestioncompteController::class, 'indexxx']);
@@ -215,8 +223,8 @@ Route::get('/Note_etudiants_Ajoute', [AjouteNoteController::class, 'indexx'])->n
 
 
 
-Route::post('/ajouter-etudiant', [ListetudiantController::class, 'ajouterEtudiant'])->name('ajouter.etudiant');
 
+Route::post('/ajouter-etudiant', [ListetudiantController::class, 'store'])->name('etudiants.store');
 Route::get('/getDataprofs', [AbsenceProfacceuilcontroller::class, 'fetchPersonnel'])->name('getDataprofs');
 Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])->name('getDataEtudients');
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
@@ -257,7 +265,7 @@ Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('i
 
 Route::get('/export-etudiants', [EtudiantController::class, 'export'])->name('export.etudiants');
 
-Route::post('/ajouter-etudiant', [ListetudiantController::class,'ajouterEtudiant'])->name('ajouter.etudiant');
+
 
 Route::get('/homeRH', [homeRHController::class, 'index'])->name('homeRH');
 

@@ -216,7 +216,7 @@
                                         d="M4.176 9.032a.5.5 0 0 1-.656.327l-.5 1.7a.5.5 0 0 1 .294.605l4.5 1.8a.5.5 0 0 1 .372 0l4.5-1.8a.5.5 0 0 1 .294-.605l-.5-1.7a.5.5 0 0 1-.656-.327L8 10.466z" />
                                 </svg>&nbsp;&nbsp;&nbsp;
                                 <a class="lien" href="{{ route('Profil_etudiant') }}"
-                                    class="{{ Request::is('Profil_etudiant') ? 'active' : '' }}">Mon Profil</a>
+                                    class="{{ Request::is('Profil_etudiant') ? 'active' : '' }}"> Profil</a>
                             </li>
                             <li class="p-2 mb-2 ">
                                 <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
@@ -226,7 +226,7 @@
                                     <path
                                         d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
                                 </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('etudiant.emplois') }}"
-                                    class="{{ Request::is('etudiant.emplois') ? 'active' : '' }}">Emploi du Temps</a>
+                                    class="{{ Request::is('etudiant.emplois') ? 'active' : '' }}">Emploi </a>
                             </li>
                             <li class="p-2 mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -239,7 +239,7 @@
                                         d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z" />
                                     <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567" />
                                 </svg></svg>&nbsp;&nbsp;&nbsp;<a class="" href="{{ route('paiement') }}"
-                                    class="{{ Request::is('paiement') ? 'active' : '' }}">Suivi de Paiement</a>
+                                    class="{{ Request::is('paiement') ? 'active' : '' }}"> Paiement</a>
                             </li>
 
                             <li class="p-2 mb-2">
@@ -248,7 +248,7 @@
                                     <path fill-rule="evenodd"
                                         d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
                                 </svg></svg>&nbsp;&nbsp;&nbsp;<a class="" href="{{ route('etudiant.views.exametudiant') }}"
-                                    class="{{ Request::is('etudiant.views.exametudiant') ? 'active' : '' }}">Mes Exams</a>
+                                    class="{{ Request::is('etudiant.views.exametudiant') ? 'active' : '' }}">Exams</a>
                             </li>
                             <li class="p-2 mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -256,7 +256,7 @@
                                     <path
                                         d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001" />
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('note') }}"
-                                    class="{{ Request::is('note') ? 'active' : '' }}">Mes Notes</a>
+                                    class="{{ Request::is('note') ? 'active' : '' }}">Notes</a>
                             </li>
                             <li class="p-2 mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -268,7 +268,7 @@
                                     <path
                                         d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V11h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm12-9v10h-1V2h1z" />
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demande') }}"
-                                    class="{{ Request::is('demande') ? 'active' : '' }}">Mes Demandes</a>
+                                    class="{{ Request::is('demande') ? 'active' : '' }}"> Demandes</a>
                             </li>
                             <li class="p-2 mb-2">
                                 <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
@@ -279,7 +279,7 @@
                                     <path
                                         d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5m0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamation') }}"
-                                    class="{{ Request::is('reclamation') ? 'active' : '' }}">Mes Réclamations</a>
+                                    class="{{ Request::is('reclamation') ? 'active' : '' }}"> Réclamations</a>
                             </li>
                             
                         </ul>
