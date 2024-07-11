@@ -24,12 +24,13 @@
                     <table class="table table-striped" id="demandescolarite">
                         <thead>
                             <tr>
-                               
+                                <th class="th-color border" scope="col">N°Demande</th>
                 <th class="th-color border" scope="col">Nom</th>
                 <th class="th-color border" scope="col">Prénom</th>
                 <th class="th-color border" scope="col">Numero de Téléphone</th>
                 <th class="th-color border" scope="col">Email</th>
                 <th class="th-color border" scope="col">Type</th>
+                <th class="th-color border">Actions</th>
                
                             </tr>
                         </thead>
@@ -51,18 +52,29 @@
             serverSide: true,
             ajax: "{{ route('getDataDemande')}}",
             columns: [
-              
+                { data: 'id', name: 'id' },
                 { data: 'Nom', name: 'Nom' },
                 { data: 'Prenom', name: 'Prenom' },
                 { data: 'Numero', name: 'Numero' },
                 { data: 'Email', name: 'Email' },
                 { data: 'Type', name: 'Type' },
-               
+                {
+                data: 'actions',
+                name: 'actions',
+                orderable: false,
+                searchable: false
+            }
                 
             ]
         });
     
 </script>
-
+<script>
+    function confirmDelete(id) {
+    if (confirm("Are you sure you want to delete this student?")) {
+        document.getElementById('delete-form-' + id).submit();
+    }
+}
+</script>
 
 @endsection

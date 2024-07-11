@@ -14,17 +14,17 @@ class EmploiscolariteController extends Controller
 {
     public function create()
     {
-        $groupes = Groupe::all();
+      
         $filieres = Filiere::all();
         $etablissements = Etablissement::all();
-        return view('scolarite.views.emploi', compact('groupes', 'filieres','etablissements'));
+        return view('scolarite.views.emploi', compact('filieres','etablissements'));
     }
 
     public function store(Request $request)
     {
         // Validation des données du formulaire
         $validatedData = $request->validate([
-            'id_groupe' => 'required|exists:groupe,id_groupe',
+            
             'id_filiere' => 'required|exists:filiere,id_filiere',
             'emploi_pdf' => 'required|file|mimes:pdf|max:2048',
             'semestre' => 'required',
@@ -33,7 +33,7 @@ class EmploiscolariteController extends Controller
 
         // Création d'une nouvelle instance d'Emploi avec les données validées
         $emploi = new Emploi();
-        $emploi->id_groupe = $validatedData['id_groupe'];
+       
         $emploi->id_filiere = $validatedData['id_filiere'];
         $emploi->semestre = $validatedData['semestre'];
         $emploi->code_etab = $validatedData['code_etab'];
@@ -82,11 +82,11 @@ public function studentEmploi()
    
     $idFiliere = $inscription->id_filiere;
     $codeEtab = $inscription->code_etab;
-    $idGroupe = $inscription->id_groupe;
+   
 
     \Log::info('Filière de l\'étudiant : ' . $idFiliere);
     \Log::info('Code établissement de l\'étudiant : ' . $codeEtab);
-    \Log::info('Groupe de l\'étudiant : ' . $idGroupe);
+    
 
     // Récupérer les emplois du temps pour la filière, l'établissement et le groupe de l'étudiant
     $emplois = Emploi::where('id_filiere', $idFiliere)
@@ -98,7 +98,6 @@ public function studentEmploi()
 
     return view('etudiant.views.emploietudiant', compact('emplois'));
 }
-
 
 
 

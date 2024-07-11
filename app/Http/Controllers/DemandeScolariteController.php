@@ -14,12 +14,37 @@ class DemandeScolariteController extends Controller
    
     public function demandeEtudiants()
     {
-        $demande = Demande::select(['Nom', 'Prenom','Numero','Email','Type']);
+        $demande = Demande::select(['id','Nom', 'Prenom','Numero','Email','Type']);
     
         return DataTables::of($demande)
+        ->addIndexColumn()
+        ->addColumn('actions', function($demande) {
+            return '<div style="display: flex; gap: 5px;">
+                   
+                    <form id="delete-form-' . $demande->id . '" action="' . route('demandes.destroy', $demande->id) . '" method="POST" style="margin: 0;">
+                        ' . csrf_field() . method_field('DELETE') . '
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete(' . $demande->id . ')" style="width:auto;">Supprimer</button>
+                    </form>
+                </div>';
+    })
+           
+ 
+        ->rawColumns(['actions'])
             ->make(true);
+
+    }
+   
+public function destroy($id)
+{
+    // Find the personnel by cin_salarie
+   $demande = Demande::where('id', $id)->firstOrFail();
+
+    // Delete the personnel
+   $demande->delete();
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'demande supprimé avec succès.');
+}
     }
     
     
-    
-}

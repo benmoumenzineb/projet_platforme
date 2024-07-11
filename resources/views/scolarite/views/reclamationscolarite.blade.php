@@ -33,7 +33,7 @@
                                 <th class="th-color border" scope="col">Type</th>
                                 <th class="th-color border" scope="col">Description</th>
                                 <th class="th-color border" scope="col">Image,Fichier</th>
-                
+                               
                             </tr>
                         </thead>
                     </table>
@@ -54,7 +54,7 @@
             serverSide: true,
             ajax: "{{ route('getDataReclamation')}}",
             columns: [
-                { data: 'num_rcl', name: 'num_rcl' },
+                { data: 'id', name: 'id' },
                 { data: 'Nom', name: 'Nom' },
                 { data: 'Prenom', name: 'Prenom' },
                 { data: 'Numero', name: 'Numero' },
@@ -63,9 +63,11 @@
                 { data: 'Description', name: 'Description' },
                 { data: 'file_reclamation', name: 'file_reclamation' },
             ]
+           
         });
     
 </script>
+
 
 
 @endsection

@@ -56,60 +56,38 @@ class ListetudiantController extends Controller
     
     
     public function update(Request $request)
-    {
-        // Valider les données du formulaire
-        $validatedData = $request->validate([
-            'id' => 'required|integer|exists:etudient,id',
-            'Nom' => 'required|string|max:255',
-            'Prenom' => 'required|string|max:255',
-            'CNE' => 'required|string|max:20',
-            'CNI' => 'required|string|max:20',
-            'Date_naissance' => 'required|date',
-            'Pays' => 'required|string|max:100',
-            'Email' => 'required|email|max:255',
-            'Adresse' => 'required|string|max:255',
-            'Serie_bac' => 'required|string|max:50',
-            'Mention_bac' => 'required|string|max:50',
-            'Etablissement_bac' => 'required|string|max:100',
-            'Pourcentage_bourse' => 'required',
-        ]);
-    
-        // Dump and die pour vérifier l'ID
-        dd($request->id);
-    
-        try {
-            // Récupérer l'étudiant par ID
-            $etudiant = Etudians::findOrFail($validatedData['id']);
-    
-            // Mettre à jour les informations de l'étudiant
-            $etudiant->Nom = $validatedData['Nom'];
-            $etudiant->Prenom = $validatedData['Prenom'];
-            $etudiant->CNE = $validatedData['CNE'];
-            $etudiant->CNI = $validatedData['CNI'];
-            $etudiant->Date_naissance = $validatedData['Date_naissance'];
-            $etudiant->Pays = $validatedData['Pays'];
-            $etudiant->Email = $validatedData['Email'];
-            $etudiant->Adresse = $validatedData['Adresse'];
-            $etudiant->Serie_bac = $validatedData['Serie_bac'];
-            $etudiant->Mention_bac = $validatedData['Mention_bac'];
-            $etudiant->Etablissement_bac = $validatedData['Etablissement_bac'];
-            $etudiant->Pourcentage_bourse = $validatedData['Pourcentage_bourse'];
-    
-            // Sauvegarder les modifications
-            $etudiant->save();
-    
-            // Retourner une réponse JSON en cas de succès
-            return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
-    
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            // Retourner une réponse JSON si l'étudiant n'est pas trouvé
-            return response()->json(['error' => 'Étudiant non trouvé.'], 404);
-    
-        } catch (\Exception $e) {
-            // Gérer les autres exceptions
-            return response()->json(['error' => 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.'], 500);
-        }
+{
+    // Valider les données du formulaire
+    $validatedData = $request->validate([
+        'id' => 'required|integer|exists:etudient,id',
+        'Nom' => 'required|string|max:255',
+        'Prenom' => 'required|string|max:255',
+        'CNE' => 'required|string|max:20',
+        'CNI' => 'required|string|max:20',
+        'Date_naissance' => 'required|date',
+        'Pays' => 'required|string|max:100',
+        'Email' => 'required|email|max:255',
+        'Adresse' => 'required|string|max:255',
+        'Serie_bac' => 'required|string|max:50',
+        'Mention_bac' => 'required|string|max:50',
+        'Etablissement_bac' => 'required|string|max:100',
+        'Pourcentage_bourse' => 'required',
+    ]);
+
+    try {
+        // Trouver l'étudiant par ID ou lever une exception si non trouvé
+        $etudiant = Etudians::findOrFail($validatedData['id']);
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        return response()->json(['error' => 'Étudiant non trouvé.'], 404);
     }
+
+    // Mettre à jour les informations de l'étudiant
+    $etudiant->update($validatedData);
+
+    // Retourner une réponse JSON en cas de succès
+    return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
+}
+
 
     
 public function store(Request $request)
@@ -207,20 +185,19 @@ public function store(Request $request)
 
 
 
+    
+    
     public function destroy($id)
-    {
-        $etudiant = Etudians::find($id);
-   
-        if ($etudiant) {
-            $etudiant->delete();
-            return redirect('/scolaritelisteetudient')->with('success', 'Student deleted successfully.');
-        } else {
-            return redirect('/scolaritelisteetudient')->with('error', 'Student not found.');
-        }
+{
+    // Find the personnel by cin_salarie
+    $etudiant = Etudians::where('id', $id)->firstOrFail();
 
-    }
-    
-    
+    // Delete the personnel
+    $etudiant->delete();
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'etudiant supprimé avec succès.');
+}
     
 }
        

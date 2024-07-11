@@ -259,7 +259,6 @@
                                 <div class="modal-body">
                                     <form id="formModifierEtudiant" action="{{ route('update-etudiant') }}" method="POST">
                                         @csrf
-                                        
                                         <input type="hidden" id="id" name="id" value="">
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
@@ -346,6 +345,7 @@
                             </div>
                         </div>
                     </div>
+                    
         
                     <div class="container mt-4">
                         <table class="table table-striped" id="etudiants-table">
@@ -419,10 +419,8 @@
 </script>
 
    
-
-    <script>
-      
-      $(document).ready(function() {
+<script>
+$(document).ready(function() {
     $('#etudiants-table').on('click', '.edit-btn', function(e) {
         e.preventDefault();
 
@@ -435,16 +433,13 @@
         var dateNaissance = row.find('td:eq(9)').text(); 
         var sexe = row.find('td:eq(8)').text();
         var pays = row.find('td:eq(10)').text();
-        var Email = row.find('td:eq(6)').text();
-        var Serie_bac = row.find('td:eq(11)').text();
-        var telephone = row.find('td:eq(5)').text();
-        var Mention_bac= row.find('td:eq(14)').text();
-        var Specialite_diplome= row.find('td:eq(13)').text();
-        var Etablissement_bac = row.find('td:eq(15)').text();
-        var Pourcentage_bourse = row.find('td:eq(16)').text();
-        var Adresse = row.find('td:eq(7)').text();
-
-
+        var email = row.find('td:eq(6)').text();
+        var serie_bac = row.find('td:eq(11)').text();
+        var mention_bac = row.find('td:eq(14)').text();
+        var specialite_diplome = row.find('td:eq(13)').text();
+        var etablissement_bac = row.find('td:eq(15)').text();
+        var pourcentage_bourse = row.find('td:eq(16)').text();
+        var adresse = row.find('td:eq(7)').text();
 
         $('#id').val(etudiantId);
         $('#inputNom').val(nom);
@@ -454,30 +449,28 @@
         $('#inputDateNaissance').val(dateNaissance);
         $('#inputSexe').val(sexe);
         $('#inputPays').val(pays);
-        $('#inputSerie_bac').val(Serie_bac);
-        $('#inputDiplome_acces').val(Email);
-        $('#inputMention_bac').val(Mention_bac);
-        $('#inputSpecialite_diplome').val(Specialite_diplome);
-        
-        $('#inputEtablissement_bac').val(Etablissement_bac);
-        $('#inputPourcentage_bourse').val(Pourcentage_bourse);
-        $('#inputAdresse').val(Adresse);
+        $('#inputSerie_bac').val(serie_bac);
+        $('#inputEmail').val(email);
+        $('#inputMention_bac').val(mention_bac);
+        $('#inputSpecialite_diplome').val(specialite_diplome);
+        $('#inputEtablissement_bac').val(etablissement_bac);
+        $('#inputPourcentage_bourse').val(pourcentage_bourse);
+        $('#inputAdresse').val(adresse);
+
         $('#exampleModalEdit').modal('show');
-        
     });
 });
-
-
-    </script>
+</script>
    
   
     <script>
         function confirmDelete(id) {
-        if (confirm("Are you sure you want to delete this student?")) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cet étudiant ?")) {
             document.getElementById('delete-form-' + id).submit();
         }
     }
     </script>
+  
     
    </body>
 @endsection

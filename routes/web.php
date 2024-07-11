@@ -256,7 +256,9 @@ Route::post('update-etudiant', [ListetudiantController::class, 'update'])->name(
 
 Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->name('etudiants.destroy');
 Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
+Route::delete('/demande/{id}', [DemandeScolariteController::class, 'destroy'])->name('demandes.destroy');
 
+Route::delete('/reclamation/{id}', [ReclamationScolariteController::class, 'destroy'])->name('reclamations.destroy');
 
 
 
