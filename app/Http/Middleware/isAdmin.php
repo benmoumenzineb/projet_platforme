@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Auth;
-class Prof
+use Illuminate\Support\Facades\Auth;
+
+
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,10 +18,16 @@ class Prof
      */
     public function handle(Request $request, Closure $next)
     {
-
-            return $next($request);
-      
-        
+        if(Auth::check())
+        {
+            if (Auth()->user()->role_id == '1')
+            { 
+                return $next($request);
+            }
+            else
+                return redirect('homeadmin');
+        }
+        else 
+            return redirect('login');
     }
-
 }

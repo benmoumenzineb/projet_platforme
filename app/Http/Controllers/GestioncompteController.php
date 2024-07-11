@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\RH;
+use App\Models\Role;
+use App\Models\User;
+
 class GestioncompteController extends Controller
 {
     public function index()
     {
-        
-        return view('Admin.views.gestioncomptes');
+        $roles = Role::all();
+        return view('Admin.views.gestioncomptes',[
+            'roles' => $roles
+        ]);
     }
     public function indexx()
     {
@@ -23,21 +28,21 @@ class GestioncompteController extends Controller
     }
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-           
+        $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required',
-            'mot_passe' => 'required',
+            'password' => 'required',
+            'role_id' => 'required|exists:roles,id',
         ]);
 
-        $RH = new RH($validatedData);
-        $RH->mot_passe = Hash::make($request->mot_passe);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id; // Correcting role handling
+        $user->password = Hash::make($request->password); // Hashing the password
 
-       
+        $user->save();
 
-        $RH->save();
-
-        return redirect()->back()->with('success', 'RH ajouté avec succès!');
+        return redirect()->back()->with('success', 'Un nouveau compte a été ajoutée');
     }
 }

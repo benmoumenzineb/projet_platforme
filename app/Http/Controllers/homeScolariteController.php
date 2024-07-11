@@ -9,7 +9,6 @@ class homeScolariteController extends Controller
    
 public function index()
     {
-        $user = Auth::guard('scolarite')->user();
-        return view('scolarite.views.homescolarite', compact('user'));
+        return view('scolarite.views.homescolarite');
     }
 }

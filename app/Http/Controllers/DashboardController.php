@@ -16,15 +16,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    
-
-    
-
-
-
     public function dashboard()
     {
-        $user = Auth::guard('admin')->user();
         $etudiantsCount = Etudians::count();
         $personnelCount = Personnel::count();
         $filieresCount = Filiere::count();
@@ -149,12 +142,6 @@ class DashboardController extends Controller
             $etudiantsCount = Etudians::count();
             $personnelCount = Personnel::count();
             $filieresCount = Filiere::count();
-            $elementsCount = Element::count();}
-        
-          
-        
-
-       
-    
-    
+            $elementsCount = Element::count();
+        }
 }
