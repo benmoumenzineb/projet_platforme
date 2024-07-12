@@ -2,41 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Etudians;
-use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables; 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Inscription;
 use App\Models\Etablissement;
+use App\Models\Etudians;
 use App\Models\Filiere;
-use Illuminate\Support\Str;
+use App\Models\Inscription;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
+
 class ListetudiantController extends Controller
 {
-    
 
     public function index()
     {
-        $filieres=Filiere::all();
-        $etablissements = Etablissement::all(); 
-        $etudiants = Etudians::paginate(10); 
+        $filieres = Filiere::all();
+        $etablissements = Etablissement::all();
+        $etudiants = Etudians::paginate(10);
 
-        
-    return view('scolarite.views.listeetudiant',compact('etablissements','filieres') );
-
+        return view('scolarite.views.listeetudiant', compact('etablissements', 'filieres'));
 
     }
 
-    
     public function fetchEtudiants()
     {
-        $etudiant = Etudians::select(['id', 'CNE', 'CNI', 'Nom', 'Prenom','telephone','Email','Adresse', 'Annee_bac', 'Sexe', 'Date_naissance', 'Pays',  'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
-    
+        $etudiant = Etudians::select(['id', 'CNE', 'CNI', 'Nom', 'Prenom', 'telephone', 'Email', 'Adresse', 'Annee_bac', 'Sexe', 'Date_naissance', 'Pays', 'Serie_bac', 'Specialite_diplome', 'Mention_bac', 'Etablissement_bac', 'Pourcentage_bourse']);
+
         return DataTables::of($etudiant)
             ->addIndexColumn()
-            ->addColumn('actions', function($etudiant) {
+            ->addColumn('actions', function ($etudiant) {
                 return '<div style="display: flex; gap: 5px;">
                         <button type="button" class="btn btn-primary edit-btn" data-id="' . $etudiant->id . '" style="width:auto; background-color: #173165;">Modifier</button>
                         <form id="delete-form-' . $etudiant->id . '" action="' . route('etudiants.destroy', $etudiant->id) . '" method="POST" style="margin: 0;">
@@ -44,42 +37,13 @@ class ListetudiantController extends Controller
                             <button type="button" class="btn btn-danger" onclick="confirmDelete(' . $etudiant->id . ')" style="width:auto;">Supprimer</button>
                         </form>
                     </div>';
-        })
-               
-     
+            })
+
             ->rawColumns(['actions'])
             ->make(true);
     }
-    
-    
-    
-    
-    public function update(Request $request)
-<<<<<<< Updated upstream
-{
-    // Valider les données du formulaire
-    $validatedData = $request->validate([
-        'id' => 'required|integer|exists:etudient,id',
-        'Nom' => 'required|string|max:255',
-        'Prenom' => 'required|string|max:255',
-        'CNE' => 'required|string|max:20',
-        'CNI' => 'required|string|max:20',
-        'Date_naissance' => 'required|date',
-        'Pays' => 'required|string|max:100',
-        'Email' => 'required|email|max:255',
-        'Adresse' => 'required|string|max:255',
-        'Serie_bac' => 'required|string|max:50',
-        'Mention_bac' => 'required|string|max:50',
-        'Etablissement_bac' => 'required|string|max:100',
-        'Pourcentage_bourse' => 'required',
-    ]);
 
-    try {
-        // Trouver l'étudiant par ID ou lever une exception si non trouvé
-        $etudiant = Etudians::findOrFail($validatedData['id']);
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        return response()->json(['error' => 'Étudiant non trouvé.'], 404);
-=======
+    public function update(Request $request)
     {
         // Valider les données du formulaire
         $validatedData = $request->validate([
@@ -97,55 +61,22 @@ class ListetudiantController extends Controller
             'Etablissement_bac' => 'required|string|max:100',
             'Pourcentage_bourse' => 'required',
         ]);
-    
-        // Dump and die pour vérifier l'ID
-        // dd($request->id);
-    
+
         try {
-            // Récupérer l'étudiant par ID
+            // Trouver l'étudiant par ID ou lever une exception si non trouvé
             $etudiant = Etudians::findOrFail($validatedData['id']);
-    
-            // Mettre à jour les informations de l'étudiant
-            $etudiant->Nom = $validatedData['Nom'];
-            $etudiant->Prenom = $validatedData['Prenom'];
-            $etudiant->CNE = $validatedData['CNE'];
-            $etudiant->CNI = $validatedData['CNI'];
-            $etudiant->Date_naissance = $validatedData['Date_naissance'];
-            $etudiant->Pays = $validatedData['Pays'];
-            $etudiant->Email = $validatedData['Email'];
-            $etudiant->Adresse = $validatedData['Adresse'];
-            $etudiant->Serie_bac = $validatedData['Serie_bac'];
-            $etudiant->Mention_bac = $validatedData['Mention_bac'];
-            $etudiant->Etablissement_bac = $validatedData['Etablissement_bac'];
-            $etudiant->Pourcentage_bourse = $validatedData['Pourcentage_bourse'];
-    
-            // Sauvegarder les modifications
-            $etudiant->save();
-    
-            // Retourner une réponse JSON en cas de succès
-            return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
-    
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            // Retourner une réponse JSON si l'étudiant n'est pas trouvé
             return response()->json(['error' => 'Étudiant non trouvé.'], 404);
-    
-        } catch (\Exception $e) {
-            // Gérer les autres exceptions
-            return response()->json(['error' => 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.'], 500);
         }
->>>>>>> Stashed changes
+
+        // Mettre à jour les informations de l'étudiant
+        $etudiant->update($validatedData);
+
+        // Retourner une réponse JSON en cas de succès
+        return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
     }
 
-    // Mettre à jour les informations de l'étudiant
-    $etudiant->update($validatedData);
-
-    // Retourner une réponse JSON en cas de succès
-    return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
-}
-
-
-    
-public function store(Request $request)
+    public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
             'Nom' => 'required|string',
@@ -224,37 +155,27 @@ public function store(Request $request)
     }
 
     private function generateApogee($dateInscription)
-{
-    // Obtenez l'année de la date d'inscription
-    $year = date('Y', strtotime($dateInscription));
-    
-    // Générer un nombre aléatoire de 4 chiffres
-    $randomNumber = mt_rand(1000, 9999); // Générer un nombre aléatoire entre 1000 et 9999
-    
-    // Combiner l'année et le nombre aléatoire pour obtenir un code de 8 chiffres
-    return $year . $randomNumber;
-}
+    {
+        // Obtenez l'année de la date d'inscription
+        $year = date('Y', strtotime($dateInscription));
 
+        // Générer un nombre aléatoire de 4 chiffres
+        $randomNumber = mt_rand(1000, 9999); // Générer un nombre aléatoire entre 1000 et 9999
 
+        // Combiner l'année et le nombre aléatoire pour obtenir un code de 8 chiffres
+        return $year . $randomNumber;
+    }
 
-
-
-
-    
-    
     public function destroy($id)
-{
-    // Find the personnel by cin_salarie
-    $etudiant = Etudians::where('id', $id)->firstOrFail();
+    {
+        // Find the personnel by cin_salarie
+        $etudiant = Etudians::where('id', $id)->firstOrFail();
 
-    // Delete the personnel
-    $etudiant->delete();
+        // Delete the personnel
+        $etudiant->delete();
 
-    // Redirect back with a success message
-    return redirect()->back()->with('success', 'etudiant supprimé avec succès.');
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'etudiant supprimé avec succès.');
+    }
+
 }
-    
-}
-       
-    
-

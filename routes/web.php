@@ -86,6 +86,8 @@ Route::middleware(['is_scolarite'])->group(function () {
     Route::get('/reclamationscolarite', [ReclamationScolariteController::class, 'index'])->name('reclamationscolarite');
     Route::get('/emploi/create', [EmploiscolariteController::class, 'create'])->name('scolarite.views.emploi');
     Route::post('/emploi', [EmploiscolariteController::class, 'store'])->name('emploi.store');
+    Route::post('/demande/{id}', [DemandeScolariteController::class, 'destroy'])->name('demandes.destroy');
+    Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
 });
 
 Route::middleware(['is_accueil'])->group(function () {
@@ -189,7 +191,7 @@ Route::get('/getDataprofs', [AbsenceProfacceuilcontroller::class, 'fetchPersonne
 Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])->name('getDataEtudients');
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
 Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
-Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
+
 Route::get('/historiqueprofesseur/search', [HistoriqueprofController::class, 'fetchHistorique'])->name('hisroriqueprofesseur');
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
 
@@ -208,14 +210,11 @@ Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 Route::post('update-etudiant', [ListetudiantController::class, 'update'])->name('update-etudiant');
 
 Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->name('etudiants.destroy');
-<<<<<<< Updated upstream
+
 Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
-Route::delete('/demande/{id}', [DemandeScolariteController::class, 'destroy'])->name('demandes.destroy');
+
 
 Route::delete('/reclamation/{id}', [ReclamationScolariteController::class, 'destroy'])->name('reclamations.destroy');
-
-=======
->>>>>>> Stashed changes
 
 
 Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('import.etudiants');
