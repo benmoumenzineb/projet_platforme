@@ -190,7 +190,7 @@
                                     <label for="nom" class="form-label"><strong>Nom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom" name="nom" value="{{ $user->Nom ?? '' }}" required>
+                                    <input type="text" class="form-control" id="nom" name="nom" value="{{ $user->Nom ?? '' }}" readonly>
                                 </div>
                             </div>
 
@@ -201,7 +201,7 @@
                                     <label for="prenom" class="form-label"><strong>Prénom :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="prenom" name="prenom" value="{{ $user->Prenom ?? '' }}" required>
+                                    <input type="text" class="form-control" id="prenom" name="prenom" value="{{ $user->Prenom ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>

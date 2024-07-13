@@ -55,7 +55,7 @@ class ListetudiantController extends Controller
     
     
     public function update(Request $request)
-<<<<<<< Updated upstream
+
 {
     // Valider les données du formulaire
     $validatedData = $request->validate([
@@ -79,7 +79,7 @@ class ListetudiantController extends Controller
         $etudiant = Etudians::findOrFail($validatedData['id']);
     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
         return response()->json(['error' => 'Étudiant non trouvé.'], 404);
-=======
+
     {
         // Valider les données du formulaire
         $validatedData = $request->validate([
@@ -133,7 +133,7 @@ class ListetudiantController extends Controller
             // Gérer les autres exceptions
             return response()->json(['error' => 'Une erreur est survenue lors de la mise à jour des informations de l\'étudiant.'], 500);
         }
->>>>>>> Stashed changes
+
     }
 
     // Mettre à jour les informations de l'étudiant
@@ -142,9 +142,7 @@ class ListetudiantController extends Controller
     // Retourner une réponse JSON en cas de succès
     return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
 }
-
-
-    
+}
 public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
@@ -256,5 +254,5 @@ public function store(Request $request)
     
 }
        
-    
+
 

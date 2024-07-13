@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\NoteEtudiantController;
 use App\Http\Controllers\Absenceetudiant;
 use App\Http\Controllers\AbsenceProfacceuilcontroller;
 use App\Http\Controllers\AjouteNoteController;
@@ -89,7 +89,7 @@ Route::middleware(['is_scolarite'])->group(function () {
 });
 
 Route::middleware(['is_accueil'])->group(function () {
-    Route::get('/homeaccueil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
+    Route::get('/homeacceuil', [HomeaAccuielController::class, 'index'])->name('homeacceuil');
     Route::get('/absenceaccuiel', [AbsenceProfacceuilcontroller::class, 'index'])->name('absence.accueil');
     Route::get('/absence/create', [AbsenceProfacceuilcontroller::class, 'create'])->name('absenceacceuil');
     Route::post('/absence/accueil', [AbsenceProfacceuilcontroller::class, 'store'])->name('absence.store');
@@ -111,7 +111,6 @@ Route::get('/homelogin', [homelogincontroller::class, 'index'])->name('home.logi
 Route::get('/login/rh', [RHLoginController::class, 'index'])->name('login.RH');
 
 Route::get('/loginRH', [loginrhcontroller::class, 'index'])->name('login.rh');
-
 
 
 Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
@@ -139,7 +138,7 @@ Route::post('/enregistrer-reclamation', 'App\Http\Controllers\Reclamationetudian
 Route::post('/enregistrer-paiement', 'App\Http\Controllers\PaiementetudiantController@enregistrerPaiement')->name('enpaiement');
 
 route::get('/paiement', 'App\Http\Controllers\PaiementetudiantController@index')->name('paiement');
-route::get('/note', 'App\Http\Controllers\NoteEtudiantCont roller@index')->name('note');
+route::get('/note', 'App\Http\Controllers\NoteEtudiantController@index')->name('note');
 
 Route::get('/nav', function () {
     return view('prof.layouts.navbarprof');
@@ -208,14 +207,14 @@ Route::get('/fetch', [AjouteNoteController::class, 'index'])->name('fetch');
 Route::post('update-etudiant', [ListetudiantController::class, 'update'])->name('update-etudiant');
 
 Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->name('etudiants.destroy');
-<<<<<<< Updated upstream
+
 Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
 Route::delete('/demande/{id}', [DemandeScolariteController::class, 'destroy'])->name('demandes.destroy');
 
 Route::delete('/reclamation/{id}', [ReclamationScolariteController::class, 'destroy'])->name('reclamations.destroy');
 
-=======
->>>>>>> Stashed changes
+
+
 
 
 Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('import.etudiants');

@@ -146,12 +146,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <h6>Nom</h6>
-                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" required>
+                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" readonly>
                 </div>
               
                 <div class="col-md-6">
                     <h6>Prénom</h6>
-                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" required>
+                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" readonly>
                 </div>  </div>
                 <div class="row">
                     <div class="col-md-6">

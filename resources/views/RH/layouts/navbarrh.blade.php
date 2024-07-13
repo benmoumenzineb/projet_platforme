@@ -282,5 +282,6 @@
 
             userDropdownMenu.classList.toggle('show');
         });
+        
     </script>
 </body>

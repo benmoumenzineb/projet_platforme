@@ -42,6 +42,48 @@
             max-width: 800px;
         }
     }
+    @media (width: 2028px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+        img{
+            width: 130px;
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+    }
+    @media (width: 1920px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+        img{
+            width: 130px;
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+    }
+    @media (width: 2px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+        img{
+            width: 130px;
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+    }
     @media (max-width: 320px) {
             .container {
                 margin-left: 0;

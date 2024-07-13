@@ -12,6 +12,16 @@
             max-width: 2600px;
             
         }}
+        @media (width: 1920px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+        img{
+            width: 130px;
+        }
+    }
 </style>
     <div class="container" style="margin-left: 150px; margin-top:140px; ">
         <div class="row">
