@@ -42,6 +42,50 @@
             max-width: 800px;
         }
     }
+    @media (width: 2028px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+        img{
+            width:130px;
+        }
+    }
+    @media (width: 1920px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+        img{
+            width:130px;
+        }
+    }
+    @media (width: 2300px) {
+        .container {
+            max-width: 3000px;
+            margin-right: 20px;
+            overflow:hidden;
+
+            
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+        }
+        img{
+            width:130px;
+        }
+    }
     @media (max-width: 320px) {
             .container {
                 margin-left: 0;
