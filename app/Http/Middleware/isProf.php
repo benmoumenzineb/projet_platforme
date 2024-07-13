@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Auth;
-class Scolarite
+use Illuminate\Support\Facades\Auth;
+
+class isProf
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,18 @@ class Scolarite
      */
     public function handle(Request $request, Closure $next)
     {
-       
-            return $next($request);
-   
-        }
-    }
+        if(Auth::check())
+        {
+            //secretaire
+            if (Auth()->user()->role_id == "4")
+            {
 
+                return $next($request);
+            }
+            else 
+                return redirect()->route('homeprof');
+        }
+        else 
+            return redirect('login');
+    }
+}

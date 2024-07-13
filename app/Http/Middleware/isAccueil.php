@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class SuperAdmin
+class isAccueil
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,18 @@ class SuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check())
+        {
+            //secretaire
+            if (Auth()->user()->role_id == "2")
+            {
+
+                return $next($request);
+            }
+            else 
+                return redirect()->route('homeacceuil');
+        }
+        else 
+            return redirect('login');
     }
 }

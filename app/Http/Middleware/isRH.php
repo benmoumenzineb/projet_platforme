@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class RedirectIfNotEtudiant
+class isRH
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,18 @@ class RedirectIfNotEtudiant
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check())
+        {
+            //secretaire
+            if (Auth()->user()->role_id == "3")
+            {
+
+                return $next($request);
+            }
+            else 
+                return redirect()->route('homeRH');
+        }
+        else 
+            return redirect('login');
     }
 }

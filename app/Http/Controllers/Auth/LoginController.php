@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 class LoginController extends Controller
 {
     /*
@@ -17,7 +17,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -26,7 +26,28 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    public function redirectTo()
+    {
+        $user = Auth::user();
+
+        // Check the user's role and redirect accordingly
+        switch ($user->role_id) {
+            case 1:
+                return '/homeadmin';
+            case 2:
+                return '/homeacceuil';
+            case 3:
+                return '/homeRH';
+            case 4:
+                return '/homeprof';
+            case 5:
+                return '/homescolarite';
+            case 6:
+                return '/homeetudiant';
+            default:
+                return '/';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -37,5 +58,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-   
+
 }

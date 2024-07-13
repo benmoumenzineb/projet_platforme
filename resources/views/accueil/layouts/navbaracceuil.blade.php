@@ -17,7 +17,7 @@
         transition: left 0.3s ease;
         background-color: #173165;
         font-family: Arial, sans-serif;
-      width: auto;
+        width: auto;
         height: 100%;
         position: fixed;
         top: 40px;
@@ -33,21 +33,21 @@
     #vertical-sidebar ul li {
         padding: 15px;
         transition: all 0.3s ease;
-       width: 100%; 
-       display: block;      
-       
+        width: 100%;
+        display: block;
+
         /* Set width to 100% for all sidebar items */
     }
 
     #vertical-sidebar ul li a {
         color: #ffffff;
         text-decoration: none;
-        
+
     }
 
     #vertical-sidebar ul li.active {
         background-color: #3966c2;
-        width:250%;
+        width: 250%;
     }
 
     #vertical-sidebar ul li.active a {
@@ -59,7 +59,7 @@
         list-style-type: none;
         padding: 0;
         color: #e9ecef;
-       
+
     }
 
 
@@ -68,16 +68,16 @@
     .sidebar {
         background-color: #173165;
         border-right: 0px solid #ffffff;
-        
+
         width: 250px;
     }
 
-    
+
 
     .navbar-item {
         text-decoration: none;
         color: #173165;
-        margin:-40px;
+        margin: -40px;
     }
 
     /* Media query for screens smaller than 768px */
@@ -97,17 +97,17 @@
         /* Tablets */
         .sidebar {
             width: 200px;
-           
+
         }
     }
 
-   
+
     @media (max-width: 575.98px) {
 
-       
+
         .sidebar {
             width: 150px;
-           
+
         }
     }
 
@@ -117,7 +117,7 @@
     @media (max-width: 320px) {
         .container {
             padding: 0 10px;
-          
+
         }
 
     }
@@ -125,21 +125,21 @@
     @media (min-width: 321px) and (max-width: 375px) {
         .container {
             padding: 0 20px;
-           
+
         }
     }
 
     @media (min-width: 376px) and (max-width: 425px) {
         .container {
             padding: 0 30px;
-           
+
         }
     }
 
     @media (min-width: 426px) and (max-width: 768px) {
         .container {
             padding: 0 40px;
-            
+
         }
     }
 
@@ -152,47 +152,55 @@
     @media (min-width: 1025px) and (max-width: 1440px) {
         .container {
             padding: 0 60px;
-           
-           
+
+
         }
-        
+
     }
 
     @media (min-width: 1441px) and (max-width: 2560px) {
         .container {
             padding: 0 70px;
-            
+
         }
 
     }
 </style>
 
 <body>
-  
-   
+
+
     <nav class="navbar">
         <div class="container">
-            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="15%">
+            <img class="m-0 p-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="13%">
             <div class="navbar-left">
-
-                <div class="d-flex align-items-center"> 
-                    @if(isset($authAccueil))
-                        <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
-                            {{ $authAccueil->nom }} {{ $authAccueil->prenom }}
+                <div class="d-flex align-items-center">
+                    @if (Auth::user())
+                        <span class="navbar-item p-5" style="text-decoration: none; color:#173165; font-weight: 600;">
+                            {{ Auth::user()->name }}
                         </span>
                     @else
                         <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
                     @endif
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                                 class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                             </svg>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu" >
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('logout.accueil') }}" style="text-decoration: none;">Déconnexion</a></li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Se deconnecter
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -219,12 +227,12 @@
                                 <a class="lien" href="{{ route('absenceacceuil') }}"
                                     class="{{ Request::is('absenceacceuil') ? 'active' : '' }}">Présence Enseignant</a>
                             </li>
-                            
-                           
 
-                            
-                           
-                            
+
+
+
+
+
                             <li class="p-2 mb-2">
                                 <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
                                     height="26" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
@@ -232,10 +240,10 @@
                                         d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                                     <path
                                         d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                                </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamation') }}"
-                                    class="{{ Request::is('reclamation') ? 'active' : '' }}">Emploi du temps</a>
+                                </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('emploiaccueil') }}"
+                                    class="{{ Request::is('emploiaccueil') ? 'active' : '' }}">Emploi du temps</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -269,15 +277,14 @@
         });
     </script>
     <script>
-      
         var userButton = document.querySelector('.dropdown-toggle');
-    
-        
+
+
         var userDropdownMenu = document.querySelector('#userDropdownMenu');
-    
-        
+
+
         userButton.addEventListener('click', function() {
-            
+
             userDropdownMenu.classList.toggle('show');
         });
     </script>
