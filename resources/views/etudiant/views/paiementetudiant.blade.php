@@ -57,6 +57,17 @@
     }
     
 }
+@media (max-width: 2028px) {
+    form{
+        width: 1300px;
+        
+       
+    }
+    fieldset{
+        margin-left: 80px;
+    }
+    
+}
 #boutonInformations, #boutonCursus{
     background-color: #173165; 
     color: white; 
@@ -184,7 +195,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-61">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="nom" class="form-label"><strong>Nom :</strong></label>

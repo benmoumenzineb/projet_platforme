@@ -104,6 +104,25 @@ h6 {
     }
     
 }
+@media (width: 2028px) {
+    #demande {
+     max-width: 1700px; 
+     height: 500px;
+     margin-left:20px;
+     margin-top: 120px;
+     
+    }
+    .button-enregistrer{
+        margin-top: 40px;
+    }
+    form{
+        margin-top: 10px;
+        margin: 20px;
+        padding: 30px;
+    }
+    
+}
+   
       
 #boutonInformations, #boutonCursus{
     background-color: #173165; 
