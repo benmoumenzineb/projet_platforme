@@ -47,33 +47,16 @@
                     <form id="filter-form">
                         @csrf
                         <div class="form-group row mt-3">
-                            <label for="matricule_cnss" class="col-md-4 col-form-label text-md-right">Matricule CNSS :</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="matricule_cnss" name="matricule_cnss">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mt-3">
                             <label for="specialite" class="col-md-4 col-form-label text-md-right">Spécialité :</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="specialite" name="specialite">
+                                <select class="form-control" id="specialite" name="specialite">
+                                    <option value="">Sélectionner une spécialité</option>
+                                    @foreach($specialites as $specialite)
+                                        <option value="{{ $specialite->id_specialite }}">{{ $specialite->specialite }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-
-                        <div class="form-group row mt-3">
-                            <label for="contrat" class="col-md-4 col-form-label text-md-right">Contrat :</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="contrat" name="contrat">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mt-3">
-                            <label for="cin" class="col-md-4 col-form-label text-md-right">CIN :</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="cin" name="cin">
-                            </div>
-                        </div>
-
                         <div class="form-group row mt-4">
                             <div class="col-md-12 text-center">
                                 <button class="btn btn-primary button-suivant" type="submit">Filtrer</button>
@@ -101,12 +84,12 @@
             
                 @foreach ($profs as $prof)
                 <tr>
-                    <td>{{ $prof->nom }}</td>
+                <td>{{ $prof->nom }}</td>
                     <td>{{ $prof->prenom }}</td>
                     <td>{{ $prof->matricule_cnss }}</td>
                     <td>{{ $prof->specialite }}</td>
-                    <td>{{ $prof->contrat }}</td>
-                    <td>{{ $prof->cin_salarie }}</td>
+                    <td>{{ $prof->type_contrat }}</td>
+                    <td>{{ $prof->CIN }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -138,8 +121,8 @@
                                 prof.prenom,
                                 prof.matricule_cnss,
                                 prof.specialite,
-                                prof.contrat,
-                                prof.cin_salarie
+                                prof.type_contrat,
+                                prof.CIN
                             ]).draw(false);
                         });
                     }

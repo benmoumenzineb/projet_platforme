@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RHLoginController;
 use App\Http\Controllers\Auth\ScolariteLoginController;
 use App\Http\Controllers\ProfController;
 use App\Http\Controllers\StudentController;
+
 use App\Http\Controllers\CahierTextProfController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashbordRHController;
@@ -67,6 +68,7 @@ Route::middleware(['is_admin'])->group(function () {
 // ce que j'ai ajouté pour filtre des profs
     Route::get('/profs', [ProfController::class, 'index'])->name('profs.views.index');
     Route::get('/profs/data', [ProfController::class, 'data'])->name('profs.data');
+
 
 
 //===========================================Role RH=============================================================

@@ -6,13 +6,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Prof;
 use DataTables;
+use Illuminate\Support\Facades\DB;
 
 class ProfController extends Controller
 {
     public function index()
     {
-        $profs = Prof::all(); // Fetch all professors or apply any filtering logic here
-        return view('admin.views.indexp', compact('profs'));
+        $profs = Prof::all(); // Fetch all professors
+        $specialites = DB::table('specialite')->select('id_specialite', 'specialite')->get(); // Fetch all specialities with id and name
+        return view('admin.views.indexp', compact('profs', 'specialites'));
     }
 
     public function data(Request $request)
@@ -25,15 +27,13 @@ class ProfController extends Controller
         if ($request->has('specialite') && !empty($request->specialite)) {
             $query->where('specialite', $request->specialite);
         }
-        if ($request->has('contrat') && !empty($request->contrat)) {
-            $query->where('contrat', $request->contrat);
+        if ($request->has('type_contrat') && !empty($request->type_contrat)) {
+            $query->where('type_contrat', $request->type_contrat);
         }
-        if ($request->has('cin') && !empty($request->cin)) {
-            $query->where('cin_salarie', $request->cin);
+        if ($request->has('CIN') && !empty($request->CIN)) {
+            $query->where('CIN', $request->CIN);
         }
 
         return DataTables::of($query)->make(true);
     }
-
-
 }
