@@ -38,6 +38,7 @@ use App\Http\Controllers\Profil_etudiantController;
 use App\Http\Controllers\ProgrammeEvaluationController;
 use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\RhPersonnelControlleur;
+use App\Http\Controllers\DemandeScolaritearchiveController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -81,7 +82,12 @@ Route::middleware(['is_scolarite'])->group(function () {
     Route::get('/paiementscolarite', [PaiementScolariteController::class, 'index'])->name('paiementscolarite');
     Route::get('/exams/create', [ExamNotificationController::class, 'create'])->name('scolarite.views.notificationsexam');
     Route::get('/demandescolarite', [DemandeScolariteController::class, 'index'])->name('demandescolarite');
+    Route::post('/demandes/{apogee}/valider', [DemandeScolariteController::class, 'valider'])->name('demandes.valider');
+    Route::post('/demandes/archiver/{apogee}', [DemandeScolariteController::class, 'archiver'])->name('demandes.archiver');
     Route::get('/demandescolarite/search', [DemandeScolariteController::class, 'search'])->name('demandescolarite.search');
+    Route::get('/demandescolarite/archivedata', [DemandeScolaritearchiveController::class, 'demandeEtudiants'])->name('demandes.etudiants');
+    Route::get('/demandescolarite/archive', [DemandeScolaritearchiveController::class, 'index'])->name('demandescolarite.archive');
+    Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
     Route::get('/reclamationscolarite/search', [ReclamationScolariteController::class, 'search'])->name('reclamationscolarite.search');
     Route::get('/reclamationscolarite', [ReclamationScolariteController::class, 'index'])->name('reclamationscolarite');
     Route::get('/emploi/create', [EmploiscolariteController::class, 'create'])->name('scolarite.views.emploi');
@@ -132,6 +138,7 @@ Route::get('/homeetudiant', [homeetudiantController::class, 'index'])->name('hom
 
 route::get('/emploi', 'App\Http\Controllers\EmploietudiantController@index')->name('emploi');
 route::get('/demande', 'App\Http\Controllers\DemandeetudiantController@index')->name('demande');
+route::get('/demandenotification', 'App\Http\Controllers\DemandeetudiantController@espace')->name('demandenotification');
 route::post('/enregistrer-demande', 'App\Http\Controllers\DemandeetudiantController@enregistrerDemande')->name('endemande');
 route::get('/reclamation', 'App\Http\Controllers\ReclamationetudiantController@index')->name('reclamation');
 Route::post('/enregistrer-reclamation', 'App\Http\Controllers\ReclamationetudiantController@enregistrerReclamation')->name('enreclamation');
@@ -188,7 +195,7 @@ Route::get('/getDataprofs', [AbsenceProfacceuilcontroller::class, 'fetchPersonne
 Route::get('fetchetudiants', [ListetudiantController::class, 'fetchEtudiants'])->name('getDataEtudients');
 Route::post('/update-notes', [AjouteNoteController::class, 'updateNotes'])->name('update.notes');
 Route::get('fetch-etudiants', [AjouteNoteController::class, 'fetchEtudiants'])->name('fetch.etudiants');
-Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
+
 Route::get('/historiqueprofesseur/search', [HistoriqueprofController::class, 'fetchHistorique'])->name('hisroriqueprofesseur');
 Route::get('/historiqueprof', [HistoriqueprofController::class, 'index'])->name('historiqueprof');
 

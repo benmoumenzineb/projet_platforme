@@ -72,9 +72,7 @@
         
         width: 250px;
     }
-
     
-
     .navbar-item {
         text-decoration: none;
         color: #173165;
@@ -110,7 +108,9 @@
             /* Adjust the width for phones */
         }
     }
-
+.dropdown-item:hover{
+background-color: #cccccc;
+}
     /* Media queries for responsive design */
 
     /* Phones */
@@ -182,15 +182,15 @@
                         <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
                     @endif
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                                class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                             </svg>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu" >
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="userDropdownMenu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('logout.etudiant') }}" style="text-decoration: none;">Déconnexion</a></li>
+                                <a class="dropdown-item" href="{{ route('logout.etudiant') }}" style="text-decoration: none;">Déconnexion</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -258,18 +258,28 @@
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('note') }}"
                                     class="{{ Request::is('note') ? 'active' : '' }}">Notes</a>
                             </li>
+                            
                             <li class="p-2 mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                    fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5" />
-                                    <path
-                                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
-                                    <path
-                                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V11h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm12-9v10h-1V2h1z" />
-                                </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demande') }}"
-                                    class="{{ Request::is('demande') ? 'active' : '' }}"> Demandes</a>
+                                <div class="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-plus me-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5" />
+                                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V11h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm12-9v10h-1V2h1z" />
+                                    </svg>
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"style="color: #fff;">
+                                        <a class="lien" href="{{ route('demande') }}" class="{{ Request::is('demande') ? 'active' : '' }}">Demandes</a>
+                                       
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="{{ route('demande') }}" style="color: black;">Demande</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('demandenotification') }}" style="color: black;">Notifications</a></li>
+                                    </ul>
+                                   
+                                </div>
                             </li>
+                          
+                                
+                            
                             <li class="p-2 mb-2">
                                 <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
                                     height="26" fill="currentColor" class="bi bi-person-fill-exclamation"
@@ -291,10 +301,11 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarItems = document.querySelectorAll('#vertical-sidebar ul li');

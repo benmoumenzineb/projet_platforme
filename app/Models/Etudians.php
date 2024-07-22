@@ -61,10 +61,36 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     }
     public function inscriptions()
     {
-        return $this->hasMany(Inscription::class, 'apogee');
+        return $this->hasMany(Inscription::class, 'apogee', 'apogee');
     }
     public function demande()
     {
         return $this->hasMany(Demande::class, 'apogee');
     }
+    public function etablissement()
+    {
+        return $this->belongsTo(Etablissement::class, 'code_postal', 'code_postal');
+    }
+
+    public function pays()
+    {
+        return $this->belongsTo(Pays::class, 'id_pays', 'id_pays');
+    }
+
+    public function diplome()
+    {
+        return $this->belongsTo(Diplome::class, 'code_diplome', 'code_diplome');
+    }
+    public function tuteur()
+    {
+        return $this->belongsToMany(Tuteur::class, 'tuteur_etudiant', 'apogee', 'id_tuteur');
+    }
+
+
+
+
+
+
+
+
 }

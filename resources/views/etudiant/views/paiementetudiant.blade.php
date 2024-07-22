@@ -1,6 +1,10 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    
 @extends('etudiant.layouts.navbaretudiant')
 @section('contenu')
     <style>
@@ -11,7 +15,9 @@
             /* Changez la couleur du texte si nécessaire */
             width: 100px;
         }
-
+#informations-paiement-content{
+    width: 1350px;
+}
         .month-btn:not(:disabled):not(.disabled).active {
             background-color: #4CAF50;
         }
@@ -49,21 +55,33 @@
             border: none;
 
         }
-        @media (min-width: 2065px) {
-    form{
-        width: 1900px;
-        margin-left: 130px;
+        @media (max-width: 2065px) {
+            #informations-paiement-content{
+        width: 2000px;
+        margin-left: 30px;
         margin-top: 80px; /* Rétablir la largeur maximale pour les écrans plus grands */
     }
     
 }
+@media (width: 1920px) {
+    #informations-paiement-content{
+        width: 1700px;
+        margin-left: 30px;
+        margin-top: 80px; /* Rétablir la largeur maximale pour les écrans plus grands */
+    }
+    
+}
+.month-btn.selected {
+  background-color: #4CAF50; /* Vert */
+  color: #fff;
+  cursor: not-allowed; /* Curseur non cliquable */
+}
 #boutonInformations, #boutonCursus{
     background-color: #173165; 
     color: white; 
-   
     text-align: center; 
     text-decoration: none; 
- padding: 5px;
+    padding: 5px;
     font-size: 17px; 
     margin: 4px 2px; 
     cursor: pointer;
@@ -243,14 +261,12 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="somme" class="form-label"><strong>La somme totale en
-                                            chiffre:</strong></label>
+                                    <label for="date_paiement" class="form-label"><strong>Filiére:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="somme" name="montant" required>
-                                </div>
-                            </div>
-                        </div>
+                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="intitule"  value="{{  $inscription->filiere_intitule ?? '' }}" readonly>
+                                </div></div></div>
+                                <input type="hidden" id="id" name="apogee" value="{{ $user->apogee ?? '' }}">
                     </div>
 
                     <div class="row mt-3">
@@ -262,25 +278,23 @@
                                 <div class="col-md-6">
                                     <input type="date" class="form-control" id="date_paiement" name="date_paiement" required>
                                 </div></div></div>
-                       
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="N_passeport" class="form-label"><strong>Choix:</strong></label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="form-select" id="choix" name="choix" required>
-                                                <option value="Internat">Internat</option>
-                                                <option value="Ecole">Ecole</option>
-                                                <option value="Salle de sport">Salle de sport</option>
-                                                <option value="Transport">Transport</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                    </div>
 
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="somme" class="form-label"><strong>La somme totale en
+                                                            chiffre:</strong></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="number" class="form-control" id="somme" name="montant" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                               
 </div>
-
+<div class="row mt-3">
+    
+</div>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label for="mode"><strong>Mode de règlement Scolaire:</strong></label>
@@ -299,6 +313,22 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="N_passeport" class="form-label"><strong>Choix:</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select" id="choix" name="choix" required>
+                                        <option value="Internat">Internat</option>
+                                        <option value="Ecole">Ecole</option>
+                                        <option value="Salle de sport">Salle de sport</option>
+                                        <option value="Transport">Transport</option>
+                                    </select>
+                                </div>
+                            </div>
+            </div>
+
                     </div>
 
                     <label for="inputFile" class="camera-button">
@@ -410,7 +440,6 @@ $('#savebtn').on('click', function() {
 
         
     </script>
-
 
 
 @endsection

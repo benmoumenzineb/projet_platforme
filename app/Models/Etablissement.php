@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Etablissement extends Model
 {
 
-    use HasFactory;
+ 
     public function inscriptions()
     {
         return $this->hasMany(Inscription::class, 'code_etab', 'code_etab');
@@ -26,5 +26,9 @@ class Etablissement extends Model
     {
         return $this->hasManyThrough(Etudians::class, Inscription::class, 'code_etab', 'apogee', 'code_etab', 'apogee');
     }
-   
+    public function etudiants()
+    {
+        return $this->hasMany(Etudians::class, 'code_postal', 'code_postal');
+    }
+
 }

@@ -138,7 +138,7 @@
                     
                                     <form action="{{ route('etudiants.store') }}" method="POST">
                                         @csrf
-                                        <h6>Informations Personnelles</h6>
+                                        
                     
                                         <div class="row">
                                             <div class="col-md-6">
@@ -278,7 +278,7 @@
                     
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #173165;">Ajouter Étudiant</button>
+                                                <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #173165;">Ajouter </button>
                                             </div>
                                         </div>
                                     </form>

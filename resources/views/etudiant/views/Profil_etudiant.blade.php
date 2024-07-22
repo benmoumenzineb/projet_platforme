@@ -111,8 +111,8 @@ tr{
                              
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="Code_National" name="ville"
-                            value="{{ $inscription->etablissement_ville ?? '' }}" readonly>
+                                <input type="text" class="form-control" id="Code_National" name="etablissement" value="{{ $etudiant->etablissement->ville }}" 
+                             readonly>
                            
                                 
                             </div>
@@ -170,7 +170,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Cycle :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cycle" name="Cycle" value="{{ $inscription->filiere_cycle ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="cycle" name="Cycle"  readonly>
 
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="date_inscription" name="num_annee"  value="{{ $inscription->num_annee ?? '' }}"
+                                    <input type="text" class="form-control" id="date_inscription" name="num_annee" value="{{ $etudiant->inscriptions->first()->num_annee ?? 'N/A' }}" 
                                     readonly>
 
                                 </div>
@@ -196,7 +196,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Filiere :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="intitule"  value="{{  $inscription->filiere_intitule ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="filiere" value="{{ $etudiant->inscriptions->first()->filiere->intitule ?? 'N/A' }}"   readonly>
 
                                 </div>
                             </div>
@@ -323,7 +323,7 @@ tr{
                                     <label for="Pays" class="form-label"><strong>Pays:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pays" name="Pays" value="{{ $user->Pays ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="Pays" name="pays" value="{{ $etudiant->pays->pays }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -381,7 +381,7 @@ tr{
                                     <label for="nom_pere" class="form-label"><strong>Nom Tuteur :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_pere" value="{{ $user->nom_tuteur ?? '' }}" name="nom_tuteur" readonly>
+                                    <input type="text" class="form-control" name="tuteur_nom" value="{{ $tuteur->nom ?? '' }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +392,7 @@ tr{
                                         <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="N_tele" name="telephone_tuteur" value="{{ $user->telephone_tuteur ?? '' }}"  readonly>
+                                        <input type="text" class="form-control" id="N_tele" name="tel1" value="{{ $tuteur->tel1 ?? '' }}"   readonly>
                                     </div>
                                
                             </div>
@@ -408,7 +408,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" value="{{ $user->proffesion_tuteur ?? '' }}"  id="Profession_pere"
+                                    <input type="text" class="form-control"   id="Profession_pere"
                                         name="proffesion_tuteur" readonly>
                                 </div>
                             </div>
@@ -448,7 +448,7 @@ tr{
                                                 <label for="nom_pere" class="form-label"><strong>Année Bac:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac" value="{{ $user->Annee_bac ?? '' }}"   readonly>
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"    readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -458,7 +458,7 @@ tr{
                                                 <label for="prenom_pere" class="form-label"><strong> Etablissment:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" value="{{ $user->Etablissement_bac ?? '' }}" readonly
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"  readonly
                                                    >
                                             </div>
                                         </div>
@@ -471,7 +471,7 @@ tr{
                                                 <label for="N_tele" class="form-label"><strong>Bac :</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" value="{{ $user->Serie_bac ?? '' }}" readonly>
+                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere"  readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -483,7 +483,7 @@ tr{
                                             </div>
                                             <div class="col-md-6">
                                                 <input type="text" class="form-control" id="Profession_pere"
-                                                    name="Profession_pere" value="{{ $user->Mention_bac ?? '' }}" readonly>
+                                                    name="Profession_pere"  readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -526,7 +526,7 @@ tr{
                                                 <label for="prenom_pere" class="form-label"><strong> Diplôme:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" value="{{ $user->Specialite_diplome ?? '' }}" readonly
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"  readonly
                                                    >
                                             </div>
                                         </div>
@@ -566,7 +566,7 @@ tr{
             </div>
         </div>
     </div>
-    <div id="renseignement-academique-cursus-interne-content" class="content"
+    <!--<div id="renseignement-academique-cursus-interne-content" class="content"
         style="margin-left: -20px; margin-top:20px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top: 20px;">
 
@@ -625,7 +625,7 @@ tr{
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 
                                         
 
@@ -660,7 +660,6 @@ tr{
             
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
-            document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
             
 
         });
@@ -670,7 +669,6 @@ tr{
     
     document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
     document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
-    document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
     
     
     

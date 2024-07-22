@@ -36,8 +36,10 @@
                             <tr>
                                
                                 <th class="th-color border" scope="col">Numero reclamation</th>
+                                <th class="th-color border" scope="col">Apogee</th>
                                 <th class="th-color border" scope="col">Nom</th>
                                 <th class="th-color border" scope="col">Prénom</th>
+                                <th class="th-color border" scope="col">Filiére</th>
                                 <th class="th-color border" scope="col">Numero de Téléphone</th>
                                 <th class="th-color border" scope="col">Email</th>
                                 <th class="th-color border" scope="col">Type</th>
@@ -65,8 +67,10 @@
             ajax: "{{ route('getDataReclamation')}}",
             columns: [
                 { data: 'id', name: 'id' },
+                { data: 'apogee', name: 'apogee' },
                 { data: 'Nom', name: 'Nom' },
                 { data: 'Prenom', name: 'Prenom' },
+                { data: 'intitule', name: 'intitule' },
                 { data: 'Numero', name: 'Numero' },
                 { data: 'Email', name: 'Email' },
                 { data: 'Type', name: 'Type' },

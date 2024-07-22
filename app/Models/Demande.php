@@ -9,14 +9,7 @@ class Demande extends Model
 {
     protected $table = 'demandes';
     protected $fillable = [
-        'id',
-        'apogee',
-        'Nom',
-        'Prenom',
-        'Numero',
-        'Email',
-        'Type',
-       
+        'apogee', 'Nom', 'Prenom', 'filiere', 'semestre', 'Numero', 'Email', 'Type', 'status', 'message'
     ];
     public function etudient()
     {

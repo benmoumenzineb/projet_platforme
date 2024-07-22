@@ -11,11 +11,24 @@ class PaiementScolariteController extends Controller
         $paiement = Paiement::paginate(10); // Paginer les résultats avec 10 étudiants par page
         return view('scolarite.views.paiementscolarite', compact('paiement'));
     }
-    public function paiementEtudiants()
+    public function paiementEtudiants(Request $request)
     {
-        $paiement = Paiement::select(['id_paiement','date_paiement','nom', 'prenom','n_telephone','Email','cni','montant','image','mois_concerne','mode_paiement','choix']);
+        $filiere = $request->input('intitule'); // Obtenir la filière à partir de la requête
+    
+        $paiement = Paiement::select(['id_paiement', 'date_paiement', 'nom', 'prenom', 'intitule', 'apogee', 'n_telephone', 'Email', 'cni', 'montant', 'image', 'mois_concerne', 'mode_paiement', 'choix']);
+    
+        // Appliquer le filtre par filière si une filière est sélectionnée
+        if (!empty($filiere)) {
+            $paiement->where('intitule', $filiere);
+        }
     
         return DataTables::of($paiement)
+        ->addColumn('Nom', function($demande) {
+            return $demande->etudient ? $demande->etudient->Nom : '';
+        })
+        ->addColumn('Prenom', function($demande) {
+            return $demande->etudient ? $demande->etudient->Prenom : '';
+        })
             ->addColumn('image', function ($paiement) {
                 // Si le fichier est une image
                 if (strpos($paiement->image, '.jpg') !== false ||
@@ -32,4 +45,5 @@ class PaiementScolariteController extends Controller
             ->rawColumns(['image'])
             ->make(true);
     }
+    
 }

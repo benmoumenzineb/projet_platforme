@@ -27,6 +27,7 @@
         <div class="row">
             <div class="col-md-9">
                 
+                
                 <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     
                 </div>
@@ -40,6 +41,8 @@
                                      
                                                 <th class="th-color border" scope="col">Nom</th>
                                                 <th class="th-color border" scope="col">Prenom</th>
+                                                <th class="th-color border" scope="col">Filiére</th>
+                                                <th class="th-color border" scope="col">Apogee</th>
                                                 <th class="th-color border" scope="col">E-mail</th>
                                                 <th class="th-color border" scope="col">Numero de Téléphone</th>
                                                 <th class="th-color border" scope="col">CNI</th>
@@ -77,6 +80,8 @@
                 { data: 'date_paiement', name: 'date_paiement' },
                 { data: 'nom', name: 'nom' },
                 { data: 'prenom', name: 'prenom' },
+                { data: 'intitule', name: 'intitule' },
+                { data: 'apogee', name: 'apogee' },
                 { data: 'Email', name: 'Email' },
                 { data: 'n_telephone', name: 'n_telephone' },
                 { data: 'cni', name: 'cni' },
@@ -99,6 +104,10 @@
         });
     
 </script>
-
+<script>
+    $('#filter-filiere').change(function() {
+        table.draw();
+    });
+</script>
 
 @endsection

@@ -5,10 +5,11 @@ use App\Models\Inscription;
 use App\Models\Etudians;
 use App\Models\Etablissement;
 use App\Models\Filiere;
+use App\Models\Tuteur_Etudiant;
+use App\Models\Tuteur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Validator;
 class Profil_etudiantController extends Controller
 {
@@ -36,34 +37,27 @@ public function uploadImage(Request $request)
 } 
     
     
-    
 
 public function index()
 {
     $user = Auth::guard('etudient')->user();
+    $apogee = $user->apogee;
 
-    $inscription = DB::table('inscriptions')
-        ->join('etablissement', 'inscriptions.code_etab', '=', 'etablissement.code_etab')
-        ->join('filiere', 'inscriptions.id_filiere', '=', 'filiere.id_filiere')
-        ->select('inscriptions.*', 'etablissement.ville as etablissement_ville', 'filiere.intitule as filiere_intitule','filiere.cycle as filiere_cycle')
-        ->where('inscriptions.apogee', $user->apogee)
-        ->first();
-      
-    $filiere = null;
-    if ($inscription) {
-        $etablissement = [
-            'code_etab' => $inscription->code_etab,
-            'ville' => $inscription->etablissement_ville,
-        ];
+    $etudiant = Etudians::with([
+        'etablissement', 
+        'pays', 
+        'inscriptions.filiere',
+        'tuteur' // Assurez-vous que la relation est correctement définie
+    ])->find($apogee);
 
-        $filiere = [
-            'id_filiere' => $inscription->id_filiere,
-            'intitule' => $inscription->filiere_intitule,
-            'cycle' => $inscription->filiere_cycle,
-        ];
-    }
+    // Obtenez les tuteurs associés
+    $tuteurs = Tuteur::join('tuteur_etudiant', 'tuteur.id_tuteur', '=', 'tuteur_etudiant.id_tuteur')
+        ->where('tuteur_etudiant.apogee', $apogee)
+        ->get();
 
-    return view('etudiant.views.Profil_etudiant', compact('user', 'inscription', 'etablissement', 'filiere'));
+   
+
+    return view('etudiant.views.Profil_etudiant', compact('user', 'etudiant', 'tuteurs'));
 }
 
 
