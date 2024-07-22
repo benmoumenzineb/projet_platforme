@@ -174,9 +174,9 @@
             <img class="m-0 p-0 mt-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="13%">
             <div class="navbar-left">
                 <div class="d-flex align-items-center"> 
-                    @if($authUser)
+                    @if(Auth::user())
                         <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
-                            {{ $authUser->Nom }} {{ $authUser->Prenom }}
+                            {{ Auth::user()->name }}
                         </span>
                     @else
                         <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>

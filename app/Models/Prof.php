@@ -9,7 +9,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 
 class Prof extends Authenticatable implements AuthenticatableContract
-
 {
     use HasFactory;
     protected $table = 'personnel';
@@ -26,7 +25,9 @@ class Prof extends Authenticatable implements AuthenticatableContract
     protected $hidden = [
         'cin_salarie', 'remember_token',
     ];
+    
 }
+
 
 
 

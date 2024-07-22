@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\EtudiantLoginController;
 use App\Http\Controllers\Auth\ProfLoginController;
 use App\Http\Controllers\Auth\RHLoginController;
 use App\Http\Controllers\Auth\ScolariteLoginController;
+use App\Http\Controllers\ProfController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CahierTextProfController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashbordRHController;
@@ -58,7 +60,14 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/dashboard-data', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/gestioncomptes', [GestioncompteController::class, 'index'])->name('gestioncomptes');
     Route::post('/creationcomptes', [GestioncompteController::class, 'store'])->name('creationcomptes');
+    // ce que j'ai ajouté pour filtre des etudiants 
+    Route::get('/admin/students', [StudentController::class, 'index'])->name('admin.views.index');
+    Route::get('/admin/students/filter', [StudentController::class, 'filter'])->name('admin.students.filter');
 });
+// ce que j'ai ajouté pour filtre des profs
+    Route::get('/profs', [ProfController::class, 'index'])->name('profs.views.index');
+    Route::get('/profs/data', [ProfController::class, 'data'])->name('profs.data');
+
 
 //===========================================Role RH=============================================================
 Route::middleware(['is_rh'])->group(function () {

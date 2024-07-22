@@ -243,7 +243,46 @@
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('gestioncomptes') }}"
                                     class="{{ Request::is('gestioncomptes') ? 'active' : '' }}">Gestion des comptes</a>
                             </li>
+   <!-- Nouveaux éléments du menu -->
+   <li class="p-2 mb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+        class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M3 4.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 12.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm9-10a.5.5 0 0 1 .5-.5h1.5A2.5 2.5 0 0 1 16 4.5v9a2.5 2.5 0 0 1-2.5 2.5H2A2.5 2.5 0 0 1 0 13.5v-9A2.5 2.5 0 0 1 2 2h1.5a.5.5 0 0 1 .5-.5zm-1 1V4H3v-.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+    </svg>&nbsp;&nbsp;&nbsp;
+    <a class="lien {{ Request::is('admin/students*') ? 'active' : '' }}" href="{{ route('admin.views.index') }}">
+        Liste des étudiants
+    </a>
+</li>
 
+<li class="p-2 mb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+        class="bi bi-list-check" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M10.854 4.854a.5.5 0 0 0-.708 0L7.5 7.5 6.354 6.354a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0 0-.708z" />
+        <path fill-rule="evenodd"
+            d="M16 2.5a.5.5 0 0 0-.5-.5h-1.639a.5.5 0 0 0-.451.276l-.992 1.985a.5.5 0 0 0 .451.739H15.5a.5.5 0 0 0 .5-.5V2.5zM5 0a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 0zm-3 1.5a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-1 0v-10a.5.5 0 0 1 .5-.5zm5.5.5A.5.5 0 0 0 7 1v10a.5.5 0 0 0 1 0V1a.5.5 0 0 0-.5-.5H6.5zM3 11a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1A.5.5 0 0 0 3 11zm9-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM6.5 5a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1h-9zm-3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+    </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('profs.views.index') }}"
+        class="{{ Request::is('/profs') ? 'active' : '' }}">Liste des enseignants</a>
+</li>
+
+                        <li class="p-2 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M9.293 0a1 1 0 0 1 .707.293l4 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2A2 2 0 0 1 2 0h7.293zm.707 4H10a1 1 0 0 1-1-1V1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5H10a1 1 0 0 1-1-1zm1 4a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1h5zm0 2a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1h5z" />
+                            </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demandescolarite') }}"
+                                class="{{ Request::is('demandescolarite') ? 'active' : '' }}">Demande de scolarité</a>
+                        </li>
+                        <li class="p-2 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                class="bi bi-chat-text" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M2.5 3a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-9zm0-1h9a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 11.5 12h-9A1.5 1.5 0 0 1 1 10.5v-7A1.5 1.5 0 0 1 2.5 2zm3 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+                                <path d="M14 1a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h1v3a.5.5 0 0 0 .854.354l2.647-2.646H12a2 2 0 0 0 2-2V1zm-1 0H3v9h2v3l3-3h5V1z" />
+                            </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamationscolarite') }}"
+                                class="{{ Request::is('reclamationscolarite') ? 'active' : '' }}">Réclamations scolarité</a>
+                        </li>
                         </ul>
                     </div>
                 </div>

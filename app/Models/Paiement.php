@@ -24,4 +24,9 @@ class Paiement extends Model
        'Email',
         
     ];
+
+    public function etudiant()
+    {
+        return $this->belongsTo(Etudians::class, 'apogee', 'apogee');
+    }
 }

@@ -68,11 +68,10 @@
                         </button>
                     </div>
                 </fieldset>
-
             </form>
         </div>
     </div>
-
+    
     <!--  <div class=" container-fluid mr-2 pl-2 fixed2">
         <div class="  row">
        

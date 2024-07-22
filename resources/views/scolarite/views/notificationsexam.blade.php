@@ -57,7 +57,6 @@ font-weight: 700;
                                 <option value="{{ $filiere->id_filiere }}">{{ $filiere->intitule }}</option>
                             @endforeach
                         </select>
-
                     </div>
                 </div>
             </div>
