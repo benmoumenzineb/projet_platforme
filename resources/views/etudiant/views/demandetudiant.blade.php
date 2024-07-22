@@ -187,7 +187,7 @@ h6 {
                     <div class="col-md-6">
                         <h6>Filiére</h6>
                         
-                        <select class="form-control" id="filiere" name="filiere" required>
+                        <select class="form-control" id="filiere" name="filiere" >
                             <option value="" disabled selected></option>
                             <option value="Génie Industriel et Logistique Hospitalière">Génie Industriel et Logistique Hospitalière</option>
                             <option value="Classes Préparatoires">Classes Préparatoires</option>
@@ -202,7 +202,7 @@ h6 {
                     </div>
                     <div class="col-md-6">
                         <h6>Semestre</h6>
-                        <select class="form-control" id="semestre" name="semestre" required>
+                        <select class="form-control" id="semestre" name="semestre">
                         <option value="S1">S1</option>
                         <option value="S2">S2</option>
                         <option value="S3">S3</option>
@@ -219,16 +219,16 @@ h6 {
                 <div class="row">
                     <div class="col-md-6">
                         <h6>Votre numéro de téléphone</h6>
-                        <input class="form-control" type="text" name="Numero" id="" value="{{ $user->telephone ?? '' }}" placeholder="Téléphone"  required>
+                        <input class="form-control" type="text" name="Numero" id="" value="{{ $user->telephone ?? '' }}" placeholder="Téléphone"  >
                     </div>
                     <div class="col-md-6">
                         <h6>Votre Email</h6>
-                        <input class="form-control" type="email" name="Email" id="" value="{{ $user->Email ?? '' }}" placeholder="Email" required>
+                        <input class="form-control" type="email" name="Email" id="" value="{{ $user->Email ?? '' }}" placeholder="Email" >
                     </div> </div>
             <div class="row">
                 <div class="col-md-12">
                     <h6>Type de demande :</h6>
-                    <select class="form-control" name="Type" required>
+                    <select class="form-control" name="id_document" >
                         
                        
                         <option value="Attestation inscription">Attestation d'Inscription</option>

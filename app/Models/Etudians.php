@@ -77,17 +77,23 @@ class Etudians extends Authenticatable implements AuthenticatableContract
         return $this->belongsTo(Pays::class, 'id_pays', 'id_pays');
     }
 
-    public function diplome()
-    {
-        return $this->belongsTo(Diplome::class, 'code_diplome', 'code_diplome');
-    }
+    
     public function tuteur()
     {
         return $this->belongsToMany(Tuteur::class, 'tuteur_etudiant', 'apogee', 'id_tuteur');
     }
 
+    
+    public function bourse()
+    {
+        return $this->belongsToMany(Bourse::class, 'etudient_bourse', 'apogee', 'id_bourse');
+    }
 
-
+    public function diplome()
+    {
+        return $this->belongsToMany(Diplome::class, 'diplome_etudiant', 'apogee', 'id_diplome')
+                    ->withPivot('mention');
+    }
 
 
 

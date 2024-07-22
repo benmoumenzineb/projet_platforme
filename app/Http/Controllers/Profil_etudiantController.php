@@ -7,6 +7,8 @@ use App\Models\Etablissement;
 use App\Models\Filiere;
 use App\Models\Tuteur_Etudiant;
 use App\Models\Tuteur;
+use App\Models\Bourse;
+use App\Models\Diplome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,22 +45,29 @@ public function index()
     $user = Auth::guard('etudient')->user();
     $apogee = $user->apogee;
 
+    // Récupérer les informations de l'étudiant avec ses relations
     $etudiant = Etudians::with([
         'etablissement', 
         'pays', 
         'inscriptions.filiere',
-        'tuteur' // Assurez-vous que la relation est correctement définie
+        'tuteur', 
+        'bourse',
+        'diplome'
+         // Charger les bourses associées
     ])->find($apogee);
 
     // Obtenez les tuteurs associés
-    $tuteurs = Tuteur::join('tuteur_etudiant', 'tuteur.id_tuteur', '=', 'tuteur_etudiant.id_tuteur')
+    $tuteur = Tuteur::join('tuteur_etudiant', 'tuteur.id_tuteur', '=', 'tuteur_etudiant.id_tuteur')
         ->where('tuteur_etudiant.apogee', $apogee)
         ->get();
 
+    // Déboguer les données
    
 
-    return view('etudiant.views.Profil_etudiant', compact('user', 'etudiant', 'tuteurs'));
+    // Retourner la vue avec les données
+    return view('etudiant.views.Profil_etudiant', compact('user', 'etudiant', 'tuteur'));
 }
+
 
 
 }
