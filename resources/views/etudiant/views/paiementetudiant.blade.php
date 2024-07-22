@@ -63,6 +63,7 @@
     }
     
 }
+<<<<<<< HEAD
 @media (width: 1920px) {
     #informations-paiement-content{
         width: 1700px;
@@ -76,6 +77,19 @@
   color: #fff;
   cursor: not-allowed; /* Curseur non cliquable */
 }
+=======
+@media (max-width: 2028px) {
+    form{
+        width: 1300px;
+        
+       
+    }
+    fieldset{
+        margin-left: 80px;
+    }
+    
+}
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
 #boutonInformations, #boutonCursus{
     background-color: #173165; 
     color: white; 
@@ -202,7 +216,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-61">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="nom" class="form-label"><strong>Nom :</strong></label>

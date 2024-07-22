@@ -92,6 +92,8 @@ Route::middleware(['is_scolarite'])->group(function () {
     Route::get('/reclamationscolarite', [ReclamationScolariteController::class, 'index'])->name('reclamationscolarite');
     Route::get('/emploi/create', [EmploiscolariteController::class, 'create'])->name('scolarite.views.emploi');
     Route::post('/emploi', [EmploiscolariteController::class, 'store'])->name('emploi.store');
+    Route::post('/demande/{id}', [DemandeScolariteController::class, 'destroy'])->name('demandes.destroy');
+    Route::get('demadnescolariteetudiants', [DemandeScolariteController::class, 'demandeEtudiants'])->name('getDataDemande');
 });
 
 Route::middleware(['is_accueil'])->group(function () {
@@ -216,13 +218,16 @@ Route::post('update-etudiant', [ListetudiantController::class, 'update'])->name(
 Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->name('etudiants.destroy');
 
 Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
-Route::delete('/demande/{id}', [DemandeScolariteController::class, 'destroy'])->name('demandes.destroy');
+
 
 Route::delete('/reclamation/{id}', [ReclamationScolariteController::class, 'destroy'])->name('reclamations.destroy');
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
 
 Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('import.etudiants');
 

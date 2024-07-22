@@ -1,49 +1,306 @@
-<title>Etudiant</title>
-<link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    .navbar {
-        box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
-        font-family: Arial, sans-serif;
-        height:60px;
-        z-index: 1000;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etudiant</title>
+    <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+.navbar {
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    height: 70px;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+.navbar-brand {
+    margin-right: auto; /* Pushes the logo to the left */
+}
+
+.navbar-brand img {
+    max-width: 100%;
+    height: auto;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-right: auto;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-collapse {
+    flex-basis: auto; /* Allows the navbar items to take up remaining space */
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    color: #173165;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow to the dropdown menu */
+}
+
+.dropdown-item {
+    color: #173165;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f8f9fa; /* Change background color on hover or focus */
+    color: #173165; /* Change text color on hover or focus */
+}
+
+/* Responsive styles */
+@media (max-width: 1199.98px) {
+    .navbar-collapse {
+        background-color: #fff; /* Optional: Set background color for the collapsed menu */
         position: fixed;
-        top: 0;
+        top: 70px;
         width: 100%;
-        background-color: #fff;
-    }
-
-    .sidebar {
-        transition: left 0.3s ease;
-        background-color: #173165;
-        font-family: Arial, sans-serif;
-      width: auto;
-        height: 100%;
-        position: fixed;
-        top: 40px;
         left: 0;
-        overflow-y: hidden;
-        z-index: 999;
-
+        right: 0;
+        z-index: 1001; 
+        overflow-y: auto; 
+        max-height: calc(100vh - 70px); 
+        padding-top: 15px; 
     }
 
-
-
-
-
-    #vertical-sidebar ul li {
-        padding: 15px;
-        transition: all 0.3s ease;
-       width: 100%; 
-       display: block;      
-       
-        /* Set width to 100% for all sidebar items */
+    .navbar-collapse ul.navbar-nav {
+        flex-direction: column;
+        padding-left: 0; 
     }
 
-    #vertical-sidebar ul li a {
-        color: #ffffff;
-        text-decoration: none;
+    .navbar-nav .nav-item {
+        width: 100%; 
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 15px; 
+    }
+
+    .dropdown-menu {
+        position: absolute; /* Ensure dropdowns are absolute for small screens */
+        width: 100%; /* Allow dropdowns to expand as needed */
+        margin: 0; /* Reset margin */
+        text-align: left; /* Align text to the left */
+        z-index: 1001; /* Ensure dropdowns are above the navbar */
+    }
+
+    .dropdown-toggle::after {
+        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
+        margin-left: 0.255em; /* Adjust margin as needed */
+        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
+        content: ""; /* Ensure content is empty */
+        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
+        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
+        border-bottom: 0; /* Ensure no border at bottom */
+        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
+    }
+
+    .show .dropdown-menu {
+        display: block; /* Show dropdown menu when toggle is clicked */
+    }
+
+    .dropdown-text {
+        margin-left: 5px; /* Adjust margin as needed */
+    }
+
+    .dropdown-toggle .bi {
+        margin-right: 5px; /* Adjust spacing between SVG and text */
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: #fff; /* Optional: Set background color for the collapsed menu */
+        position: fixed;
+        top: 70px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1001; 
+        overflow-y: auto; 
+        max-height: calc(100vh - 70px); 
+        padding-top: 15px; 
+    }
+
+    .navbar-collapse ul.navbar-nav {
+        flex-direction: column;
+        padding-left: 0; 
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%; 
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 15px; 
+    }
+
+    .dropdown-menu {
+        position: absolute; /* Ensure dropdowns are absolute for small screens */
+        width: 100%; /* Allow dropdowns to expand as needed */
+        margin: 0; /* Reset margin */
+        text-align: left; /* Align text to the left */
+        z-index: 1001; /* Ensure dropdowns are above the navbar */
+    }
+
+    .dropdown-toggle::after {
+        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
+        margin-left: 0.255em; /* Adjust margin as needed */
+        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
+        content: ""; /* Ensure content is empty */
+        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
+        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
+        border-bottom: 0; /* Ensure no border at bottom */
+        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
+    }
+
+    .show .dropdown-menu {
+        display: block; /* Show dropdown menu when toggle is clicked */
+    }
+
+    .dropdown-text {
+        margin-left: 5px; /* Adjust margin as needed */
+    }
+
+    .dropdown-toggle .bi {
+        margin-right: 5px; /* Adjust spacing between SVG and text */
+    }
+}
+
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        background-color: #fff; /* Optional: Set background color for the collapsed menu */
+        position: fixed;
+        top: 70px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1001; 
+        overflow-y: auto; 
+        max-height: calc(100vh - 70px); 
+        padding-top: 15px; 
+    }
+
+    .navbar-collapse ul.navbar-nav {
+        flex-direction: column;
+        padding-left: 0; 
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%; 
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 15px; 
+    }
+
+    .dropdown-menu {
+        position: absolute; /* Ensure dropdowns are absolute for small screens */
+        width: 100%; /* Allow dropdowns to expand as needed */
+        margin: 0; /* Reset margin */
+        text-align: left; /* Align text to the left */
+        z-index: 1001; /* Ensure dropdowns are above the navbar */
+    }
+
+    .dropdown-toggle::after {
+        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
+        margin-left: 0.255em; /* Adjust margin as needed */
+        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
+        content: ""; /* Ensure content is empty */
+        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
+        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
+        border-bottom: 0; /* Ensure no border at bottom */
+        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
+    }
+
+    .show .dropdown-menu {
+        display: block; /* Show dropdown menu when toggle is clicked */
+    }
+
+    .dropdown-text {
+        margin-left: 5px; /* Adjust margin as needed */
+    }
+
+    .dropdown-toggle .bi {
+        margin-right: 5px; /* Adjust spacing between SVG and text */
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar-collapse {
+        background-color: #fff; /* Optional: Set background color for the collapsed menu */
+        position: fixed;
+        top: 70px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1001; 
+        overflow-y: auto; 
+        max-height: calc(100vh - 70px); 
+        padding-top: 15px; 
+    }
+
+    .navbar-collapse ul.navbar-nav {
+        flex-direction: column;
+        padding-left: 0; 
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%; 
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 15px; 
+    }
+
+    .dropdown-menu {
+        position: absolute; /* Ensure dropdowns are absolute for small screens */
+        width: 100%; /* Allow dropdowns to expand as needed */
+        margin: 0; /* Reset margin */
+        text-align: left; /* Align text to the left */
+        z-index: 1001; /* Ensure dropdowns are above the navbar */
+    }
+
+    .dropdown-toggle::after {
+        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
+        margin-left: 0.255em; /* Adjust margin as needed */
+        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
+        content: ""; /* Ensure content is empty */
+        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
+        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
+        border-bottom: 0; /* Ensure no border at bottom */
+        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
+    }
+    .show .dropdown-menu {
+        display: block; /* Show dropdown menu when toggle is clicked */
+    }
+
+    .dropdown-text {
+        margin-left: 5px; /* Adjust margin as needed */
+    }
+
+    .dropdown-toggle .bi {
+        margin-right: 5px; /* Adjust spacing between SVG and text */
+    }
+}
+/*     ------------------------------------------------------------------------ */
         
+<<<<<<< HEAD
     }
 
     #vertical-sidebar ul li.active {
@@ -80,11 +337,23 @@
 
     /* Media query for screens smaller than 768px */
     @media (max-width: 768px) {
+=======
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
         .sidebar {
+            transition: left 0.3s ease;
+            background-color: #173165;
+            font-family: 'Poppins', sans-serif;
             width: 250px;
-            /* Hide the sidebar by default on smaller screens */
+            height: 100%;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            overflow-y: auto;
+            z-index: 999;
+
         }
 
+<<<<<<< HEAD
     }
 
     /* Media query for screens larger than 768px */
@@ -118,69 +387,54 @@ background-color: #cccccc;
         .container {
             padding: 0 10px;
             /* Adjust padding for smaller screens */
+=======
+        #vertical-sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            color: #e9ecef;
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
         }
 
-    }
-
-    @media (min-width: 321px) and (max-width: 375px) {
-        .container {
-            padding: 0 20px;
-            /* Adjust padding for slightly larger screens */
-        }
-    }
-
-    @media (min-width: 376px) and (max-width: 425px) {
-        .container {
-            padding: 0 30px;
-            /* Adjust padding for larger screens */
-        }
-    }
-
-    @media (min-width: 426px) and (max-width: 768px) {
-        .container {
-            padding: 0 40px;
-            /* Adjust padding for tablets */
-        }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-        .container {
-            padding: 0 50px;
-        }
-    }
-
-    @media (min-width: 1025px) and (max-width: 1440px) {
-        .container {
-            padding: 0 60px;
-           
-           
-        }
-        
-    }
-
-    @media (min-width: 1441px) and (max-width: 2560px) {
-        .container {
-            padding: 0 70px;
-           
+        #vertical-sidebar ul li {
+            padding: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: block;
         }
 
-    }
-</style>
+        #vertical-sidebar ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #vertical-sidebar ul li.active {
+            background-color: #3966c2;
+        }
+
+     
+
+    </style>
+</head>
 
 <body>
-    
-    <nav class="navbar">
-        <div class="container">
-            <img class="m-0 p-0 mt-0 img-logo" src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="13%">
-            <div class="navbar-left">
-                <div class="d-flex align-items-center"> 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('asset/images/logo.webp') }}" alt="suptech logo" width="150">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
                     @if($authUser)
-                        <span class="navbar-item p-3" style="text-decoration: none; color:#173165; font-weight: 600;">
-                            {{ $authUser->Nom }} {{ $authUser->Prenom }}
-                        </span>
+                    <span class="nav-link" style="font-weight: 600;">{{ $authUser->Nom }} {{ $authUser->Prenom }}</span>
                     @else
-                        <a class="navbar-item p-5" href="#" style="text-decoration: none;">Nom utilisateur</a>
+                    <a class="nav-link" href="#">Nom utilisateur</a>
                     @endif
+<<<<<<< HEAD
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
@@ -192,16 +446,38 @@ background-color: #cccccc;
                                 <a class="dropdown-item" href="{{ route('logout.etudiant') }}" style="text-decoration: none;">Déconnexion</a>
                             </li>
                         </ul>
+=======
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                            class="bi bi-person-fill" viewBox="0 0 16 16" style="color: #173165;">
+                            <path
+                                d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout.etudiant') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.293 7.5H1.5a.5.5 0 0 0 0 1h7.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                <path fill-rule="evenodd"
+                                    d="M13.5 15a1.5 1.5 0 0 0 1.5-1.5V2a1.5 1.5 0 0 0-1.5-1.5h-7A1.5 1.5 0 0 0 5 2v2a.5.5 0 0 0 1 0V2a.5.5 0 0 1 .5-.5h7A.5.5 0 0 1 14 2v11.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2a1.5 1.5 0 0 0 1.5 1.5h7z" />
+                            </svg>
+                            Déconnexion
+                        </a>
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                     </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
-    </nav>
-       
+    </div>
+</nav>
 
-    <div class="container-fluid">
+<div class="container-fluid">
         <div id="vertical-sidebar">
-
             <div class="row">
                 <div class="col-md-3">
                     <div class="sidebar">
@@ -216,7 +492,7 @@ background-color: #cccccc;
                                         d="M4.176 9.032a.5.5 0 0 1-.656.327l-.5 1.7a.5.5 0 0 1 .294.605l4.5 1.8a.5.5 0 0 1 .372 0l4.5-1.8a.5.5 0 0 1 .294-.605l-.5-1.7a.5.5 0 0 1-.656-.327L8 10.466z" />
                                 </svg>&nbsp;&nbsp;&nbsp;
                                 <a class="lien" href="{{ route('Profil_etudiant') }}"
-                                    class="{{ Request::is('Profil_etudiant') ? 'active' : '' }}"> Profil</a>
+                                    class="{{ Request::is('Profil_etudiant') ? 'active' : '' }}">Mon Profil</a>
                             </li>
                             <li class="p-2 mb-2 ">
                                 <svg class=" icon-color" xmlns="http://www.w3.org/2000/svg" width="26"
@@ -226,7 +502,7 @@ background-color: #cccccc;
                                     <path
                                         d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
                                 </svg>&nbsp;&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('etudiant.emplois') }}"
-                                    class="{{ Request::is('etudiant.emplois') ? 'active' : '' }}">Emploi </a>
+                                    class="{{ Request::is('etudiant.emplois') ? 'active' : '' }}">Emploi du Temps</a>
                             </li>
                             <li class="p-2 mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -239,16 +515,17 @@ background-color: #cccccc;
                                         d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z" />
                                     <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567" />
                                 </svg></svg>&nbsp;&nbsp;&nbsp;<a class="" href="{{ route('paiement') }}"
-                                    class="{{ Request::is('paiement') ? 'active' : '' }}"> Paiement</a>
+                                    class="{{ Request::is('paiement') ? 'active' : '' }}">Suivi de Paiement</a>
                             </li>
 
-                            <li class="p-2 mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                        <li class="p-2 mb-3 mt-3">
+                            <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                     fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
                                 </svg></svg>&nbsp;&nbsp;&nbsp;<a class="" href="{{ route('etudiant.views.exametudiant') }}"
-                                    class="{{ Request::is('etudiant.views.exametudiant') ? 'active' : '' }}">Exams</a>
+                                    class="{{ Request::is('etudiant.views.exametudiant') ? 'active' : '' }}">Mes Exams</a>
                             </li>
                             <li class="p-2 mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -256,10 +533,11 @@ background-color: #cccccc;
                                     <path
                                         d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001" />
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('note') }}"
-                                    class="{{ Request::is('note') ? 'active' : '' }}">Notes</a>
+                                    class="{{ Request::is('note') ? 'active' : '' }}">Mes Notes</a>
                             </li>
                             
                             <li class="p-2 mb-2">
+<<<<<<< HEAD
                                 <div class="dropdown">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-plus me-2" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5" />
@@ -276,6 +554,18 @@ background-color: #cccccc;
                                     </ul>
                                    
                                 </div>
+=======
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                    fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5" />
+                                    <path
+                                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                                    <path
+                                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V11h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm12-9v10h-1V2h1z" />
+                                </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demande') }}"
+                                    class="{{ Request::is('demande') ? 'active' : '' }}">Mes Demandes</a>
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                             </li>
                           
                                 
@@ -289,7 +579,7 @@ background-color: #cccccc;
                                     <path
                                         d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5m0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamation') }}"
-                                    class="{{ Request::is('reclamation') ? 'active' : '' }}"> Réclamations</a>
+                                    class="{{ Request::is('reclamation') ? 'active' : '' }}">Mes Réclamations</a>
                             </li>
                             
                         </ul>
@@ -338,4 +628,23 @@ background-color: #cccccc;
             userDropdownMenu.classList.toggle('show');
         });
     </script>
+     <script>
+        $(document).ready(function() {
+            // Toggle sidebar on menu icon click
+            $('#sidebarCollapse').on('click', function() {
+                $('#vertical-sidebar').toggleClass('active');
+            });
+
+            // Close sidebar on outside click
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.sidebar').length && !$(e.target).closest('#sidebarCollapse').length) {
+                    $('#vertical-sidebar').removeClass('active');
+                }
+            });
+
+            // Toggle dropdown menu
+            $('#dropdownMenuButton').on('click', function() {
+                $('#userDropdownMenu').toggleClass('show');
+            });
+        });
 </body>

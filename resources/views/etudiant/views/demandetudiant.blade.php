@@ -104,6 +104,7 @@ h6 {
     }
     
 }
+<<<<<<< HEAD
 @media (width: 1920px) {
     .container {
      max-width: 1700px; 
@@ -118,6 +119,27 @@ h6 {
    
     
 }
+=======
+@media (width: 2028px) {
+    #demande {
+     max-width: 1700px; 
+     height: 500px;
+     margin-left:20px;
+     margin-top: 120px;
+     
+    }
+    .button-enregistrer{
+        margin-top: 40px;
+    }
+    form{
+        margin-top: 10px;
+        margin: 20px;
+        padding: 30px;
+    }
+    
+}
+   
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
       
 #boutonInformations, #boutonCursus{
     background-color: #173165; 

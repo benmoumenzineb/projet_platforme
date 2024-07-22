@@ -1,8 +1,9 @@
 <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
-    @extends('scolarite.layouts.navbarscolarite')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+@extends('scolarite.layouts.navbarscolarite')
 @section('contenu')
+<<<<<<< HEAD
 <style>
     th{
         background-color: #ffffff;
@@ -41,11 +42,33 @@
 
                 <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     
+=======
+    <style>
+        th {
+            color: #173165;
+        }
+
+        @media (width: 2560px) {
+            .container {
+                max-width: 2600px;
+
+            }
+        }
+    </style>
+    <div class="container" style="margin-left: 150px; margin-top:140px; ">
+        <div class="row">
+            <div class="col-md-9">
+
+                <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                 </div>
                 <div class="container">
                     <table class="table table-striped" id="demandescolarite">
                         <thead>
                             <tr>
+<<<<<<< HEAD
              <th class="th-color border" scope="col">N°Demande</th>
              <th class="th-color border" scope="col">Apogee</th>
                 <th class="th-color border" scope="col">Nom</th>
@@ -57,6 +80,16 @@
                 <th class="th-color border" scope="col">Type</th>
                 <th class="th-color border">Actions</th>
                
+=======
+                                <th class="th-color border" scope="col">N°Demande</th>
+                                <th class="th-color border" scope="col">Nom</th>
+                                <th class="th-color border" scope="col">Prénom</th>
+                                <th class="th-color border" scope="col">Numero de Téléphone</th>
+                                <th class="th-color border" scope="col">Email</th>
+                                <th class="th-color border" scope="col">Type</th>
+                                <th class="th-color border">Actions</th>
+
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                             </tr>
                         </thead>
                         
@@ -66,16 +99,16 @@
         </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
-<script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
 
-<script>
-  
+    <script>
         $('#demandescolarite').DataTable({
             processing: true,
             serverSide: true,
+<<<<<<< HEAD
             ajax: "{{ route('getDataDemande')}}",
             columns: [
                 { data: 'id', name: 'id' },
@@ -87,15 +120,43 @@
                 { data: 'Numero', name: 'Numero' },
                 { data: 'Email', name: 'Email' },
                 { data: 'Type', name: 'Type' },
+=======
+            ajax: "{{ route('getDataDemande') }}",
+            columns: [{
+                    data: 'id_demande',
+                    name: 'id_demande'
+                },
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                 {
-                data: 'actions',
-                name: 'actions',
-                orderable: false,
-                searchable: false
-            }
-                
+                    data: 'Nom',
+                    name: 'Nom'
+                },
+                {
+                    data: 'Prenom',
+                    name: 'Prenom'
+                },
+                {
+                    data: 'Numero',
+                    name: 'Numero'
+                },
+                {
+                    data: 'Email',
+                    name: 'Email'
+                },
+                {
+                    data: 'Type',
+                    name: 'Type'
+                },
+                {
+                    data: 'actions',
+                    name: 'actions',
+                    orderable: false,
+                    searchable: false
+                }
+
             ]
         });
+<<<<<<< HEAD
     
 </script>
 <script>
@@ -176,3 +237,14 @@
         });
     </script>
 @endsection
+=======
+    </script>
+    <script>
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this student?")) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        }
+    </script>
+@endsection
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
