@@ -12,7 +12,6 @@ use Yajra\DataTables\DataTables;
 
 class ListetudiantController extends Controller
 {
-
     public function index()
     {
         $filieres = Filiere::all();
@@ -20,7 +19,6 @@ class ListetudiantController extends Controller
         $etudiants = Etudians::paginate(10);
 
         return view('scolarite.views.listeetudiant', compact('etablissements', 'filieres'));
-
     }
 
     public function fetchEtudiants()
@@ -38,45 +36,11 @@ class ListetudiantController extends Controller
                         </form>
                     </div>';
             })
-
             ->rawColumns(['actions'])
             ->make(true);
     }
-<<<<<<< HEAD
-    
-    
-    
-    
-    public function update(Request $request)
-
-{
-    // Valider les données du formulaire
-    $validatedData = $request->validate([
-        'id' => 'required|integer|exists:etudient,id',
-        'Nom' => 'required|string|max:255',
-        'Prenom' => 'required|string|max:255',
-        'CNE' => 'required|string|max:20',
-        'CNI' => 'required|string|max:20',
-        'Date_naissance' => 'required|date',
-        'Pays' => 'required|string|max:100',
-        'Email' => 'required|email|max:255',
-        'Adresse' => 'required|string|max:255',
-        'Serie_bac' => 'required|string|max:50',
-        'Mention_bac' => 'required|string|max:50',
-        'Etablissement_bac' => 'required|string|max:100',
-        'Pourcentage_bourse' => 'required',
-    ]);
-
-    try {
-        // Trouver l'étudiant par ID ou lever une exception si non trouvé
-        $etudiant = Etudians::findOrFail($validatedData['id']);
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        return response()->json(['error' => 'Étudiant non trouvé.'], 404);
-
-=======
 
     public function update(Request $request)
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
     {
         // Valider les données du formulaire
         $validatedData = $request->validate([
@@ -102,18 +66,6 @@ class ListetudiantController extends Controller
             return response()->json(['error' => 'Étudiant non trouvé.'], 404);
         }
 
-<<<<<<< HEAD
-    }
-
-    // Mettre à jour les informations de l'étudiant
-    $etudiant->update($validatedData);
-
-    // Retourner une réponse JSON en cas de succès
-    return response()->json(['success' => 'Informations de l\'étudiant mises à jour avec succès.'], 200);
-}
-}
-public function store(Request $request)
-=======
         // Mettre à jour les informations de l'étudiant
         $etudiant->update($validatedData);
 
@@ -122,7 +74,6 @@ public function store(Request $request)
     }
 
     public function store(Request $request)
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
     {
         $validator = \Validator::make($request->all(), [
             'Nom' => 'required|string',
@@ -214,22 +165,13 @@ public function store(Request $request)
 
     public function destroy($id)
     {
-        // Find the personnel by cin_salarie
+        // Trouver l'étudiant par ID
         $etudiant = Etudians::where('id', $id)->firstOrFail();
 
-        // Delete the personnel
+        // Supprimer l'étudiant
         $etudiant->delete();
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'etudiant supprimé avec succès.');
+        // Rediriger avec un message de succès
+        return redirect()->back()->with('success', 'Étudiant supprimé avec succès.');
     }
-
 }
-<<<<<<< HEAD
-    
-}
-       
-
-
-=======
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849

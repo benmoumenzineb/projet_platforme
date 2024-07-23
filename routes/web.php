@@ -231,14 +231,9 @@ Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->na
 Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
 
 
+
 Route::delete('/reclamation/{id}', [ReclamationScolariteController::class, 'destroy'])->name('reclamations.destroy');
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
 
 Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('import.etudiants');
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,6 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     protected $table = 'etudient';
     protected $primaryKey = 'apogee';
     public $incrementing = false;
-
     public $timestamps = false;
 
     protected $fillable = [
@@ -41,6 +41,8 @@ class Etudians extends Authenticatable implements AuthenticatableContract
         'telephone_tuteur',
     ];
 
+    protected $hidden = ['apogee', 'remember_token'];
+
     public function getAuthPassword()
     {
         return $this->apogee; // Utilise 'apogee' comme mot de passe
@@ -50,8 +52,6 @@ class Etudians extends Authenticatable implements AuthenticatableContract
     {
         return $this->hasOne(Note::class, 'apogee');
     }
-
-    protected $hidden = ['apogee', 'remember_token'];
 
     public function absence()
     {
