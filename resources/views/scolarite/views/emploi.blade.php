@@ -25,6 +25,16 @@
         font-size: 25px;
         font-weight: 700;
     }
+    @media (width: 1920px) {
+        .content {
+           
+            margin-left: -20px;
+            
+        }
+        img{
+            width: 130px;
+        }
+    }
 </style>
 
 @section('contenu')

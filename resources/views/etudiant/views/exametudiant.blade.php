@@ -50,15 +50,27 @@
      margin-left:-450px;
      margin-top: 120px;
       /* Rétablir la largeur maximale pour les écrans plus grands */
+    }}
+    @media (min-width: 1920px) {
+        .card{
+     width: 1400px; 
+     height: 230px;
+     margin-left:-450px;
+     margin-top: 120px;
+      /* Rétablir la largeur maximale pour les écrans plus grands */
     }
+  p{
+    font-size:18px;
+  }
+}
     p{
-      font-size:28px;
+      font-size:15px;
     }
     .card-subtitle{
       font-size:20px;
     }
     
-}
+
 
     
     </style>

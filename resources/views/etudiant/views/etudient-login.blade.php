@@ -50,14 +50,14 @@
                             @csrf
                             <div class="form-group">
                                 <label for="nom-d'utilisateur" class="text-color">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="nom-d'utilisateur" placeholder=" Entrer votre Nom " name="CNE" value="{{ old('CNE') }}" required autocomplete="CNE" autofocus required >
+                                <input type="text" class="form-control" id="nom-d'utilisateur"  name="CNE" value="{{ old('CNE') }}" required autocomplete="CNE" autofocus required >
                                 @error('CNE')
                                 <span role="alert" style="color: rgb(236, 42, 42); font-size:12px;">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-color">Mot de Passe</label>
-                                <input type="password" name="apogee" class="form-control" id="password" required autocomplete="current-password" placeholder=" Entrer votre Mot de passe " required>
+                                <input type="password" name="apogee" class="form-control" id="password" required autocomplete="current-password"  required>
                                 @error('apogee')
                                 <span role="alert">{{ $message }}</span>
                                 @enderror

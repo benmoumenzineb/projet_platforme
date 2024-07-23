@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'etudient' => [
+            'driver' => 'session',
+            'provider' => 'etudient',
+        ],
+        
         // you need to implement this
         'api' => [
             'driver' => 'session',
@@ -69,6 +74,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'etudient' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Etudians::class,
         ],
 
         // 'users' => [

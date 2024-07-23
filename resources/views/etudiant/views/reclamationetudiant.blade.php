@@ -40,11 +40,7 @@
     }
 }
 
-@media (min-width: 1024px) {
-    #reclamation {
-        max-width: 800px; /* Rétablir la largeur maximale pour les écrans plus grands */
-    }
-}
+
 
 
         @media (width: 1440px) {
@@ -59,7 +55,34 @@
                 width: 100%;
             }
         }
-
+        @media (min-width: 1920px) {
+    #reclamation {
+     max-width: 1200px; 
+    
+     margin-left:20px;
+   
+     
+    }
+  img{
+    width: 150px;
+  }
+   
+    
+}
+@media (min-width: 1024) {
+    #reclamation {
+     max-width: 1000px; 
+    
+     margin-left:100px;
+   
+     
+    }
+  img{
+    width: 150px;
+  }
+   
+    
+}
         /* Style pour les titres */
         h6 {
             color: #173165;
@@ -142,16 +165,20 @@
         @endforeach
     </ul>
         <form action="{{route('enreclamation') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+            @csrf 
+            
+            <input type="hidden" id="gh" name="apogee" value="{{ $user->apogee ?? '' }}">
+<input type="hidden" id="id" name="intitule" value="{{ $inscription->filiere_intitule ?? '' }}">
+
             <div class="row">
                 <div class="col-md-6">
                     <h6>Nom</h6>
-                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" required>
+                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" readonly>
                 </div>
               
                 <div class="col-md-6">
                     <h6>Prénom</h6>
-                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" required>
+                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" readonly>
                 </div>  </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -183,7 +210,9 @@
 
                 </div>
             </div>
-
+            
+           
+           
             <div class="row">
                 <div class="col-md-12">
                     <h6>Sélectionner un fichier :</h6>

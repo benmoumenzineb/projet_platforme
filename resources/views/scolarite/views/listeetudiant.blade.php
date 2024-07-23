@@ -48,13 +48,22 @@
             margin-left: -20px;
             
         }
+<<<<<<< HEAD
+        img{
+            width: 130px;
+        }
+=======
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
 
         .modal-dialog {
             max-width: 800px;
         }
+<<<<<<< HEAD
+=======
         img{
             width:130px;
         }
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
     }
     @media (width: 1920px) {
         .container {
@@ -62,10 +71,28 @@
             margin-left: -20px;
             
         }
+<<<<<<< HEAD
+        img{
+            width: 130px;
+        }
+=======
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
 
         .modal-dialog {
             max-width: 800px;
         }
+<<<<<<< HEAD
+    }
+    @media (width: 2px) {
+        .container {
+            max-width: 3000px;
+            margin-left: -20px;
+            
+        }
+        img{
+            width: 130px;
+        }
+=======
         img{
             width:130px;
         }
@@ -78,13 +105,17 @@
 
             
         }
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
 
         .modal-dialog {
             max-width: 800px;
         }
+<<<<<<< HEAD
+=======
         img{
             width:130px;
         }
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
     }
     @media (max-width: 320px) {
             .container {
@@ -140,7 +171,7 @@
                     
                                     <form action="{{ route('etudiants.store') }}" method="POST">
                                         @csrf
-                                        <h6>Informations Personnelles</h6>
+                                        
                     
                                         <div class="row">
                                             <div class="col-md-6">
@@ -280,7 +311,7 @@
                     
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #173165;">Ajouter Étudiant</button>
+                                                <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #173165;">Ajouter </button>
                                             </div>
                                         </div>
                                     </form>

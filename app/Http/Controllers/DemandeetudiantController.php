@@ -11,13 +11,21 @@ class DemandeetudiantController extends Controller
         $user = Auth::guard('etudient')->user();
        
         return view ('etudiant.views.demandetudiant',compact('user'));}
+        public function indexx(){
+            $user = Auth::guard('etudient')->user();
+           
+
+            return view ('etudiant.views.demandenotification');}
+
         public function enregistrerDemande(Request $request)
     {
         // Validation des données du formulaire
         $request->validate([
        //name
-       'Nom' => 'required',
-       'Prenom' => 'required',
+       'apogee' => 'required',
+       
+       'filiere' => 'required',
+       'semestre' => 'required',
        'Numero' => 'required',
        'Email' => 'required|email',
        'Type' => 'required',
@@ -26,10 +34,12 @@ class DemandeetudiantController extends Controller
 
         // Création d'une nouvelle réclamation
         $demande = new Demande();
-         $demande->Nom = $request->Nom;
-         $demande->Prenom = $request->Prenom;
+        $demande->apogee = $request->apogee;
+        
+         $demande->filiere = $request->filiere;
+         $demande->semestre = $request->semestre;
          $demande->Numero = $request->Numero;
-          $demande->Email = $request->Email;
+         $demande->Email = $request->Email;
         $demande->Type = $request->Type;
        
         // Enregistrement de la réclamation dans la base de données
@@ -51,4 +61,18 @@ class DemandeetudiantController extends Controller
     
         return DataTables::of($demande)->make(true);
     }
+    public function espace()
+    {
+        // Récupérer l'étudiant authentifié
+        $etudiant = Auth::guard('etudient')->user();
+
+        // Récupérer les demandes validées pour cet étudiant
+        $demandes = Demande::where('apogee', $etudiant->apogee)
+                            ->where('status', 'validé')
+                            ->get();
+
+        return view('etudiant.views.demandenotification', compact('demandes'));
+    }
+
+
 }

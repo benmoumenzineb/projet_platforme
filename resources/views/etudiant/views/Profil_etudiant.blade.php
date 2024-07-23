@@ -111,8 +111,8 @@ tr{
                              
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="Code_National" name="ville"
-                            value="{{ $inscription->etablissement_ville ?? '' }}" readonly>
+                                <input type="text" class="form-control" id="Code_National" name="etablissement" value="{{ $etudiant->etablissement->ville }}" 
+                             readonly>
                            
                                 
                             </div>
@@ -170,7 +170,7 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Cycle :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="cycle" name="Cycle" value="{{ $inscription->filiere_cycle ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="cycle" name="Cycle"  readonly>
 
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ tr{
                                             :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="date_inscription" name="num_annee"  value="{{ $inscription->num_annee ?? '' }}"
+                                    <input type="text" class="form-control" id="date_inscription" name="num_annee" value="{{ $etudiant->inscriptions->first()->num_annee ?? 'N/A' }}" 
                                     readonly>
 
                                 </div>
@@ -196,22 +196,30 @@ tr{
                                     <label for="cycle" class="form-label"><strong>Filiere :</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="intitule"  value="{{  $inscription->filiere_intitule ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="filiere" value="{{ $etudiant->inscriptions->first()->filiere->intitule ?? 'N/A' }}"   readonly>
 
                                 </div>
                             </div>
                         </div>
+                        @if ($etudiant->bourse->isNotEmpty())
+                                @foreach ($etudiant->bourse as $bourse)
+
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="cycle" class="form-label"><strong>Pourcentage de Bourse :</strong></label>
+                                    <label for="bourse_taux_{{ $bourse->id_bourse }}" class="form-label"><strong>Taux de Bourse :</strong></label>
+
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pourcentage_bourse" name="Pourcentage_bourse"  value="{{ $user->Pourcentage_bourse ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="bourse_taux_{{ $bourse->id_bourse }}" name="bourse_taux_{{ $bourse->id_bourse }}" value="{{ $bourse->taux_bourse ?? '' }}" readonly>
 
                                 </div>
                             </div>
-                        </div></div>
+                        </div>
+                     @endforeach
+                            @else
+                                <p>Aucune bourse associée.</p>
+                            @endif</div>
                 </form>
             </fieldset>
         </div>
@@ -323,7 +331,7 @@ tr{
                                     <label for="Pays" class="form-label"><strong>Pays:</strong></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="Pays" name="Pays" value="{{ $user->Pays ?? '' }}" readonly>
+                                    <input type="text" class="form-control" id="Pays" name="pays" value="{{ $etudiant->pays->pays }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -374,60 +382,64 @@ tr{
                 <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Informations Tuteur</strong>
                 </legend>
                 <form id="informations-parents">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
+                    @if ($tuteur->isNotEmpty())
+                        @foreach($tuteur as $index => $tuteur)
+                            <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="nom_pere" class="form-label"><strong>Nom Tuteur :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="nom_pere" value="{{ $user->nom_tuteur ?? '' }}" name="nom_tuteur" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                           
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="N_tele" class="form-label"><strong>N° Téléphone :</strong></label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="tuteur_nom_{{ $index }}" class="form-label"><strong>Nom Tuteur :</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="tuteur_nom_{{ $index }}" name="tuteur_nom_{{ $index }}" value="{{ $tuteur->nom }}" readonly>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="N_tele" name="telephone_tuteur" value="{{ $user->telephone_tuteur ?? '' }}"  readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="tel1_{{ $index }}" class="form-label"><strong>N° Téléphone :</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="tel1_{{ $index }}" name="tel1_{{ $index }}" value="{{ $tuteur->tel1 }}" readonly>
+                                        </div>
                                     </div>
-                               
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                       
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="Profession_pere" class="form-label"><strong>Profession Tuteur
-                                            :</strong></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" value="{{ $user->proffesion_tuteur ?? '' }}"  id="Profession_pere"
-                                        name="proffesion_tuteur" readonly>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                   
-                 
-                        
-                   
-
-
-
+            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="profession_{{ $index }}" class="form-label"><strong>Profession Tuteur :</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="profession_{{ $index }}" name="profession_{{ $index }}" value="{{ $tuteur->profession }}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="adresse_{{ $index }}" class="form-label"><strong>Adresse :</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="adresse_{{ $index }}" name="adresse_{{ $index }}" value="{{ $tuteur->adresse }}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>Aucun tuteur associé.</p>
+                    @endif
                 </form>
             </fieldset>
         </div>
     </div>
 
     
-</form>
+
     <!--Tableau pour Renseignements Académique -->
     <div id="renseignement-academique-baccalaureat-content" class="content"
         style="margin-left: -20px; margin-top:20px; overflow: hidden;">
@@ -441,6 +453,28 @@ tr{
                             <legend class="w-auto" style="font-size: 16px; color:#173165"><strong> Baccalauréat</strong>
                             </legend>
                             <form id="informations-parents">
+                                @if ($etudiant->diplome->isNotEmpty())
+        @foreach ($etudiant->diplome as $diplome)
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="diplome_{{ $diplome->id_diplome }}" class="form-label"><strong>Diplôme :</strong></label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="diplome_{{ $diplome->id_diplome }}" name="diplome_{{ $diplome->id_diplome }}" value="{{ $diplome->diplome ?? '' }}" readonly>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="mention_{{ $diplome->id_diplome }}" class="form-label"><strong>Mention :</strong></label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="mention_{{ $diplome->id_diplome }}" name="mention_{{ $diplome->id_diplome }}" value="{{ $diplome->pivot->mention ?? '' }}" readonly>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <p>Aucun diplôme associé.</p>
+    @endif
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row">
@@ -448,7 +482,7 @@ tr{
                                                 <label for="nom_pere" class="form-label"><strong>Année Bac:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac" value="{{ $user->Annee_bac ?? '' }}"   readonly>
+                                                <input type="text" class="form-control" id="annee_bac" name="annee_bac"    readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -458,7 +492,7 @@ tr{
                                                 <label for="prenom_pere" class="form-label"><strong> Etablissment:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" value="{{ $user->Etablissement_bac ?? '' }}" readonly
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"  readonly
                                                    >
                                             </div>
                                         </div>
@@ -471,7 +505,7 @@ tr{
                                                 <label for="N_tele" class="form-label"><strong>Bac :</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere" value="{{ $user->Serie_bac ?? '' }}" readonly>
+                                                <input type="text" class="form-control" id="N_tele" name="Telephone_pere"  readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -483,7 +517,7 @@ tr{
                                             </div>
                                             <div class="col-md-6">
                                                 <input type="text" class="form-control" id="Profession_pere"
-                                                    name="Profession_pere" value="{{ $user->Mention_bac ?? '' }}" readonly>
+                                                    name="Profession_pere"  readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -526,7 +560,7 @@ tr{
                                                 <label for="prenom_pere" class="form-label"><strong> Diplôme:</strong></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere" value="{{ $user->Specialite_diplome ?? '' }}" readonly
+                                                <input type="text" class="form-control" id="prenom_pere" name="Prenom_pere"  readonly
                                                    >
                                             </div>
                                         </div>
@@ -566,7 +600,7 @@ tr{
             </div>
         </div>
     </div>
-    <div id="renseignement-academique-cursus-interne-content" class="content"
+    <!--<div id="renseignement-academique-cursus-interne-content" class="content"
         style="margin-left: -20px; margin-top:20px; overflow: hidden;">
         <div class="content" style="margin-left: 300px; margin-top: 20px;">
 
@@ -625,7 +659,7 @@ tr{
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 
                                         
 
@@ -660,7 +694,6 @@ tr{
             
             document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'none';
             document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'none';
-            document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'none';
             
 
         });
@@ -670,7 +703,6 @@ tr{
     
     document.getElementById('renseignement-academique-baccalaureat-content').style.display = 'block';
     document.getElementById('renseignement-academique-cursus-externe-content').style.display = 'block';
-    document.getElementById('renseignement-academique-cursus-interne-content').style.display = 'block';
     
     
     

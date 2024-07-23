@@ -104,6 +104,22 @@ h6 {
     }
     
 }
+<<<<<<< HEAD
+@media (width: 1920px) {
+    .container {
+     max-width: 1700px; 
+     
+     margin-left:20px;
+   
+     
+    }
+  img{
+    width: 150px;
+  }
+   
+    
+}
+=======
 @media (width: 2028px) {
     #demande {
      max-width: 1700px; 
@@ -123,6 +139,7 @@ h6 {
     
 }
    
+>>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
       
 #boutonInformations, #boutonCursus{
     background-color: #173165; 
@@ -171,33 +188,74 @@ h6 {
         <form action="{{route('endemande') }}" method="POST">
             @csrf
             <div class="row">
+            <div class="col-md-12">
+               
+                <input class="form-control" type="hidden"  name="apogee" id="" value="{{ $user->apogee ?? '' }}" readonly>
+                    
+
+                
+            </div></div>
+            <div class="row">
                 <div class="col-md-6">
                     <h6>Nom</h6>
-                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" required>
+                    <input class="form-control" type="text" placeholder="Votre nom" name="Nom" id="" value="{{ $user->Nom ?? '' }}" readonly>
                 </div>
               
                 <div class="col-md-6">
                     <h6>Prénom</h6>
-                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" required>
+                    <input class="form-control" type="text" placeholder="Votre prénom" name="Prenom" id="" value="{{ $user->Prenom ?? '' }}" readonly>
                 </div>  </div>
                 <div class="row">
                     <div class="col-md-6">
+                        <h6>Filiére</h6>
+                        
+                        <select class="form-control" id="filiere" name="filiere" >
+                            <option value="" disabled selected></option>
+                            <option value="Génie Industriel et Logistique Hospitalière">Génie Industriel et Logistique Hospitalière</option>
+                            <option value="Classes Préparatoires">Classes Préparatoires</option>
+                            <option value="Sciences de Gestion en Milieu Hospitalier et Industrie Médicale">Sciences de Gestion en Milieu Hospitalier et Industrie Médicale</option>
+                            <option value="Génie Digital et Intélligence Artificielle en santé">Génie Digital et Intélligence Artificielle en santé</option>
+                            <option value="Dispositifs Médicaux et affaires Réglementaires">Dispositifs Médicaux et affaires Réglementaires</option>
+                            <option value="Génie Biomédical">Génie Biomédical</option>
+                            <option value="Maintenance Médicale">Maintenance Médicale</option>
+                            <option value="Entrepreneuriat et Management Technologique">Entrepreneuriat et Management Technologique
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Semestre</h6>
+                        <select class="form-control" id="semestre" name="semestre">
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                        <option value="S4">S4</option>
+                        <option value="S5">S5</option>
+                        <option value="S6">S6</option>
+                        <option value="S7">S7</option>
+                        <option value="S8">S8
+                        </option>
+                        <option value="S7">S9</option>
+                        <option value="S8">S10
+                        </option></select>
+                    </div> </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <h6>Votre numéro de téléphone</h6>
-                        <input class="form-control" type="text" name="Numero" id="" value="{{ $user->telephone ?? '' }}" placeholder="Téléphone"  required>
+                        <input class="form-control" type="text" name="Numero" id="" value="{{ $user->telephone ?? '' }}" placeholder="Téléphone"  >
                     </div>
                     <div class="col-md-6">
                         <h6>Votre Email</h6>
-                        <input class="form-control" type="email" name="Email" id="" value="{{ $user->Email ?? '' }}" placeholder="Email" required>
+                        <input class="form-control" type="email" name="Email" id="" value="{{ $user->Email ?? '' }}" placeholder="Email" >
                     </div> </div>
             <div class="row">
                 <div class="col-md-12">
                     <h6>Type de demande :</h6>
-                    <select class="form-control" name="Type" required>
+                    <select class="form-control" name="id_document" >
                         
-                        <option value="Attestation de réussite">Attestation de Réussite</option>
+                       
                         <option value="Attestation inscription">Attestation d'Inscription</option>
                         <option value="Relevé de notes">Relevé de Note</option>
-                        <option value="Certificat Scolarité ">Certificat Scolarité</option>
+                        
                         
 
                     </select>
