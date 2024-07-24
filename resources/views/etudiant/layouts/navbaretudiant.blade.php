@@ -22,16 +22,13 @@
 }
 
 .navbar-brand {
-    margin-right: auto; /* Pushes the logo to the left */
+    margin-right: auto;
 }
 
 .navbar-brand img {
     max-width: 100%;
     height: auto;
-    margin-left: 0px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    margin-right: auto;
+    margin: 5px 0;
 }
 
 .navbar-nav {
@@ -39,7 +36,7 @@
 }
 
 .navbar-collapse {
-    flex-basis: auto; /* Allows the navbar items to take up remaining space */
+    flex-basis: auto;
 }
 
 .navbar-nav .nav-link {
@@ -50,7 +47,7 @@
 }
 
 .dropdown-menu {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow to the dropdown menu */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-item {
@@ -59,357 +56,127 @@
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    background-color: #f8f9fa; /* Change background color on hover or focus */
-    color: #173165; /* Change text color on hover or focus */
+    background-color: #f8f9fa;
+    color: #173165;
 }
 
-/* Responsive styles */
 @media (max-width: 1199.98px) {
     .navbar-collapse {
-        background-color: #fff; /* Optional: Set background color for the collapsed menu */
+        background-color: #fff;
         position: fixed;
         top: 70px;
         width: 100%;
         left: 0;
         right: 0;
-        z-index: 1001; 
-        overflow-y: auto; 
-        max-height: calc(100vh - 70px); 
-        padding-top: 15px; 
+        z-index: 1001;
+        overflow-y: auto;
+        max-height: calc(100vh - 70px);
+        padding-top: 15px;
     }
 
     .navbar-collapse ul.navbar-nav {
         flex-direction: column;
-        padding-left: 0; 
+        padding-left: 0;
     }
 
     .navbar-nav .nav-item {
-        width: 100%; 
+        width: 100%;
     }
 
     .navbar-nav .nav-link {
-        padding: 10px 15px; 
+        padding: 10px 15px;
     }
 
     .dropdown-menu {
-        position: absolute; /* Ensure dropdowns are absolute for small screens */
-        width: 100%; /* Allow dropdowns to expand as needed */
-        margin: 0; /* Reset margin */
-        text-align: left; /* Align text to the left */
-        z-index: 1001; /* Ensure dropdowns are above the navbar */
+        position: absolute;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        z-index: 1001;
     }
 
     .dropdown-toggle::after {
-        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
-        margin-left: 0.255em; /* Adjust margin as needed */
-        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
-        content: ""; /* Ensure content is empty */
-        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
-        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
-        border-bottom: 0; /* Ensure no border at bottom */
-        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
+        display: inline-block;
+        margin-left: 0.255em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
     }
 
     .show .dropdown-menu {
-        display: block; /* Show dropdown menu when toggle is clicked */
+        display: block;
     }
 
     .dropdown-text {
-        margin-left: 5px; /* Adjust margin as needed */
+        margin-left: 5px;
     }
 
     .dropdown-toggle .bi {
-        margin-right: 5px; /* Adjust spacing between SVG and text */
+        margin-right: 5px;
     }
 }
 
 @media (max-width: 991.98px) {
-    .navbar-collapse {
-        background-color: #fff; /* Optional: Set background color for the collapsed menu */
-        position: fixed;
-        top: 70px;
-        width: 100%;
-        left: 0;
-        right: 0;
-        z-index: 1001; 
-        overflow-y: auto; 
-        max-height: calc(100vh - 70px); 
-        padding-top: 15px; 
-    }
-
-    .navbar-collapse ul.navbar-nav {
-        flex-direction: column;
-        padding-left: 0; 
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%; 
-    }
-
-    .navbar-nav .nav-link {
-        padding: 10px 15px; 
-    }
-
-    .dropdown-menu {
-        position: absolute; /* Ensure dropdowns are absolute for small screens */
-        width: 100%; /* Allow dropdowns to expand as needed */
-        margin: 0; /* Reset margin */
-        text-align: left; /* Align text to the left */
-        z-index: 1001; /* Ensure dropdowns are above the navbar */
-    }
-
-    .dropdown-toggle::after {
-        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
-        margin-left: 0.255em; /* Adjust margin as needed */
-        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
-        content: ""; /* Ensure content is empty */
-        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
-        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
-        border-bottom: 0; /* Ensure no border at bottom */
-        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
-    }
-
-    .show .dropdown-menu {
-        display: block; /* Show dropdown menu when toggle is clicked */
-    }
-
-    .dropdown-text {
-        margin-left: 5px; /* Adjust margin as needed */
-    }
-
-    .dropdown-toggle .bi {
-        margin-right: 5px; /* Adjust spacing between SVG and text */
+    .sidebar {
+        width: 200px;
     }
 }
 
 @media (max-width: 767.98px) {
-    .navbar-collapse {
-        background-color: #fff; /* Optional: Set background color for the collapsed menu */
-        position: fixed;
-        top: 70px;
-        width: 100%;
-        left: 0;
-        right: 0;
-        z-index: 1001; 
-        overflow-y: auto; 
-        max-height: calc(100vh - 70px); 
-        padding-top: 15px; 
-    }
-
-    .navbar-collapse ul.navbar-nav {
-        flex-direction: column;
-        padding-left: 0; 
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%; 
-    }
-
-    .navbar-nav .nav-link {
-        padding: 10px 15px; 
-    }
-
-    .dropdown-menu {
-        position: absolute; /* Ensure dropdowns are absolute for small screens */
-        width: 100%; /* Allow dropdowns to expand as needed */
-        margin: 0; /* Reset margin */
-        text-align: left; /* Align text to the left */
-        z-index: 1001; /* Ensure dropdowns are above the navbar */
-    }
-
-    .dropdown-toggle::after {
-        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
-        margin-left: 0.255em; /* Adjust margin as needed */
-        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
-        content: ""; /* Ensure content is empty */
-        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
-        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
-        border-bottom: 0; /* Ensure no border at bottom */
-        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
-    }
-
-    .show .dropdown-menu {
-        display: block; /* Show dropdown menu when toggle is clicked */
-    }
-
-    .dropdown-text {
-        margin-left: 5px; /* Adjust margin as needed */
-    }
-
-    .dropdown-toggle .bi {
-        margin-right: 5px; /* Adjust spacing between SVG and text */
+    .sidebar {
+        width: 150px;
     }
 }
 
 @media (max-width: 575.98px) {
-    .navbar-collapse {
-        background-color: #fff; /* Optional: Set background color for the collapsed menu */
-        position: fixed;
-        top: 70px;
-        width: 100%;
-        left: 0;
-        right: 0;
-        z-index: 1001; 
-        overflow-y: auto; 
-        max-height: calc(100vh - 70px); 
-        padding-top: 15px; 
-    }
-
-    .navbar-collapse ul.navbar-nav {
-        flex-direction: column;
-        padding-left: 0; 
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%; 
-    }
-
-    .navbar-nav .nav-link {
-        padding: 10px 15px; 
-    }
-
-    .dropdown-menu {
-        position: absolute; /* Ensure dropdowns are absolute for small screens */
-        width: 100%; /* Allow dropdowns to expand as needed */
-        margin: 0; /* Reset margin */
-        text-align: left; /* Align text to the left */
-        z-index: 1001; /* Ensure dropdowns are above the navbar */
-    }
-
-    .dropdown-toggle::after {
-        display: inline-block; /* Ensure the dropdown toggle arrow is visible */
-        margin-left: 0.255em; /* Adjust margin as needed */
-        vertical-align: 0.255em; /* Adjust vertical alignment as needed */
-        content: ""; /* Ensure content is empty */
-        border-top: 0.3em solid; /* Create triangle effect for dropdown arrow */
-        border-right: 0.3em solid transparent; /* Adjust border for arrow shape */
-        border-bottom: 0; /* Ensure no border at bottom */
-        border-left: 0.3em solid transparent; /* Adjust border for arrow shape */
-    }
-    .show .dropdown-menu {
-        display: block; /* Show dropdown menu when toggle is clicked */
-    }
-
-    .dropdown-text {
-        margin-left: 5px; /* Adjust margin as needed */
-    }
-
-    .dropdown-toggle .bi {
-        margin-right: 5px; /* Adjust spacing between SVG and text */
+    .container {
+        padding: 0 10px;
     }
 }
-/*     ------------------------------------------------------------------------ */
-        
-<<<<<<< HEAD
-    }
 
-    #vertical-sidebar ul li.active {
-        background-color: #3966c2;
-        width:250%;
-    }
-
-    #vertical-sidebar ul li.active a {
-        color: #ffffff;
-        width: 250px;
-    }
-
-    #vertical-sidebar ul {
-        list-style-type: none;
-        padding: 0;
-        color: #e9ecef;
-       
-    }
-
-
-
-    /* Default styles for the sidebar */
-    .sidebar {
-        background-color: #173165;
-        border-right: 0px solid #ffffff;
-        
-        width: 250px;
-    }
-    
-    .navbar-item {
-        text-decoration: none;
-        color: #173165;
-    }
-
-    /* Media query for screens smaller than 768px */
-    @media (max-width: 768px) {
-=======
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
-        .sidebar {
-            transition: left 0.3s ease;
-            background-color: #173165;
-            font-family: 'Poppins', sans-serif;
-            width: 250px;
-            height: 100%;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            overflow-y: auto;
-            z-index: 999;
-
-        }
-
-<<<<<<< HEAD
-    }
-
-    /* Media query for screens larger than 768px */
-
-    /* Responsive styles */
-    @media (max-width: 991.98px) {
-
-        /* Tablets */
-        .sidebar {
-            width: 200px;
-            /* Adjust the width for tablet screens */
-        }
-    }
-
-    /* Responsive styles */
-    @media (max-width: 575.98px) {
-
-        /* Phones */
-        .sidebar {
-            width: 150px;
-            /* Adjust the width for phones */
-        }
-    }
-.dropdown-item:hover{
-background-color: #cccccc;
+/* Sidebar styles */
+.sidebar {
+    background-color: #173165;
+    border-right: 0px solid #ffffff;
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    overflow-y: auto;
+    z-index: 999;
+    transition: left 0.3s ease;
 }
-    /* Media queries for responsive design */
 
-    /* Phones */
-    @media (max-width: 320px) {
-        .container {
-            padding: 0 10px;
-            /* Adjust padding for smaller screens */
-=======
-        #vertical-sidebar ul {
-            list-style-type: none;
-            padding: 0;
-            color: #e9ecef;
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
-        }
+#vertical-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    color: #e9ecef;
+}
 
-        #vertical-sidebar ul li {
-            padding: 15px;
-            transition: all 0.3s ease;
-            width: 100%;
-            display: block;
-        }
+#vertical-sidebar ul li {
+    padding: 15px;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: block;
+}
 
-        #vertical-sidebar ul li a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+#vertical-sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
 
-        #vertical-sidebar ul li.active {
-            background-color: #3966c2;
-        }
+#vertical-sidebar ul li.active {
+    background-color: #3966c2;
+}
+
+.dropdown-item:hover {
+    background-color: #cccccc;
+}
+
 
      
 
@@ -431,11 +198,11 @@ background-color: #cccccc;
                 <li class="nav-item">
                     @if($authUser)
                     <span class="nav-link" style="font-weight: 600;">{{ $authUser->Nom }} {{ $authUser->Prenom }}</span>
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
+
                     @else
                     <a class="nav-link" href="#">Nom utilisateur</a>
                     @endif
-<<<<<<< HEAD
+
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill icon-style" viewBox="0 0 16 16" style="color: #173165;">
@@ -447,7 +214,6 @@ background-color: #cccccc;
                                 <a class="dropdown-item" href="{{ route('logout.etudiant') }}" style="text-decoration: none;">Déconnexion</a>
                             </li>
                         </ul>
-=======
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -469,7 +235,7 @@ background-color: #cccccc;
                             </svg>
                             Déconnexion
                         </a>
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
+
                     </div>
                 </li>
             </ul>
@@ -538,7 +304,7 @@ background-color: #cccccc;
                             </li>
                             
                             <li class="p-2 mb-2">
-<<<<<<< HEAD
+
                                 <div class="dropdown">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-plus me-2" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5" />
@@ -555,7 +321,6 @@ background-color: #cccccc;
                                     </ul>
                                    
                                 </div>
-=======
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                     fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -566,7 +331,7 @@ background-color: #cccccc;
                                         d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V11h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm12-9v10h-1V2h1z" />
                                 </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('demande') }}"
                                     class="{{ Request::is('demande') ? 'active' : '' }}">Mes Demandes</a>
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
+
                             </li>
                           
                                 

@@ -137,6 +137,7 @@
                     <th>Prénom</th>
                     <th>Paiement</th>
                     <th>Mode de paiement</th>
+                    <th>Type de paiement</th> <!-- Nouvelle colonne ajoutée -->
                 </tr>
             </thead>
             <tbody>
@@ -151,11 +152,18 @@
                         {{ $student->paiements->isNotEmpty() ? 'Payé' : 'Non payé' }}
                     </td>
                     <td>
-                        @if ($student->paiements->isNotEmpty())
-                            {{ $student->paiements->first()->mode_paiement }}
-                        @else
-                            N/A
-                        @endif
+                       @if ($student->paiements->isNotEmpty())
+                       {{ $student->paiements->first()->getModePaiementDescription() }}
+                       @else
+                       N/A
+                       @endif
+                    </td>
+                    <td>
+                       @if ($student->paiements->isNotEmpty())
+                       {{ $student->paiements->first()->getTypePaiementDescription() }}
+                       @else
+                       N/A
+                       @endif
                     </td>
                 </tr>
                 @endforeach
@@ -184,7 +192,8 @@
 
                         response.students.forEach(function(student) {
                             var paiementStatus = student.paiements.length > 0 ? 'Payé' : 'Non payé';
-                            var paiementMode = student.paiements.length > 0 ? student.paiements[0].mode_paiement : 'N/A';
+                            var modePaiementDescription = student.paiements.length > 0 ? student.paiements[0].getModePaiementDescription() : 'N/A';
+                            var typePaiementDescription = student.paiements.length > 0 ? student.paiements[0].getTypePaiementDescription() : 'N/A';
                             var paiementColor = student.paiements.length > 0 ? 'green' : 'red';
 
                             table.row.add([
@@ -194,7 +203,8 @@
                                 student.Nom,
                                 student.Prenom,
                                 '<td style="background-color: ' + paiementColor + ';">' + paiementStatus + '</td>',
-                                paiementMode
+                                modePaiementDescription,
+                                typePaiementDescription
                             ]).draw(false);
                         });
                     }

@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 @extends('scolarite.layouts.navbarscolarite')
 @section('contenu')
-<<<<<<< HEAD
+
 <style>
     th{
         background-color: #ffffff;
@@ -42,7 +42,7 @@
 
                 <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     
-=======
+
     <style>
         th {
             color: #173165;
@@ -61,14 +61,12 @@
 
                 <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
-
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                 </div>
                 <div class="container">
                     <table class="table table-striped" id="demandescolarite">
                         <thead>
                             <tr>
-<<<<<<< HEAD
+
              <th class="th-color border" scope="col">N°Demande</th>
              <th class="th-color border" scope="col">Apogee</th>
                 <th class="th-color border" scope="col">Nom</th>
@@ -79,8 +77,7 @@
                 <th class="th-color border" scope="col">Email</th>
                 <th class="th-color border" scope="col">Type</th>
                 <th class="th-color border">Actions</th>
-               
-=======
+            
                                 <th class="th-color border" scope="col">N°Demande</th>
                                 <th class="th-color border" scope="col">Nom</th>
                                 <th class="th-color border" scope="col">Prénom</th>
@@ -88,8 +85,6 @@
                                 <th class="th-color border" scope="col">Email</th>
                                 <th class="th-color border" scope="col">Type</th>
                                 <th class="th-color border">Actions</th>
-
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
                             </tr>
                         </thead>
                         
@@ -108,7 +103,6 @@
         $('#demandescolarite').DataTable({
             processing: true,
             serverSide: true,
-<<<<<<< HEAD
             ajax: "{{ route('getDataDemande')}}",
             columns: [
                 { data: 'id', name: 'id' },
@@ -120,13 +114,12 @@
                 { data: 'Numero', name: 'Numero' },
                 { data: 'Email', name: 'Email' },
                 { data: 'Type', name: 'Type' },
-=======
             ajax: "{{ route('getDataDemande') }}",
             columns: [{
                     data: 'id_demande',
                     name: 'id_demande'
                 },
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
+                
                 {
                     data: 'Nom',
                     name: 'Nom'
@@ -156,7 +149,6 @@
 
             ]
         });
-<<<<<<< HEAD
     
 </script>
 <script>
@@ -237,7 +229,6 @@
         });
     </script>
 @endsection
-=======
     </script>
     <script>
         function confirmDelete(id) {
@@ -247,4 +238,3 @@
         }
     </script>
 @endsection
->>>>>>> 4eaba6a2f78b8c36f012c2ce9bd47432d98c5849
