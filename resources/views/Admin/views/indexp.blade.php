@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des professeurs</title>
-    <!-- Inclure le CSS de DataTables -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <!-- Inclure le CSS de Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Inclure le CSS de DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <!-- Inclure l'icône -->
     <link rel="icon" type="image/png" href="{{ asset('asset/images/logo_img.png') }}">
 </head>
@@ -81,10 +81,9 @@
                 </tr>
             </thead>
             <tbody>
-            
                 @foreach ($profs as $prof)
                 <tr>
-                <td>{{ $prof->nom }}</td>
+                    <td>{{ $prof->nom }}</td>
                     <td>{{ $prof->prenom }}</td>
                     <td>{{ $prof->matricule_cnss }}</td>
                     <td>{{ $prof->specialite }}</td>
@@ -99,10 +98,10 @@
     <!-- Inclure jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Inclure le JS de DataTables -->
-    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#profs-table').DataTable();
+            var table = $('#profs-table').DataTable();
 
             $('#filter-form').on('submit', function(e) {
                 e.preventDefault();
@@ -112,10 +111,9 @@
                     method: 'GET',
                     data: $(this).serialize(),
                     success: function(response) {
-                        var table = $('#profs-table').DataTable();
-                        table.clear().draw();
+                        table.clear();
 
-                        response.profs.forEach(function(prof) {
+                        response.data.forEach(function(prof) {
                             table.row.add([
                                 prof.nom,
                                 prof.prenom,
@@ -123,8 +121,13 @@
                                 prof.specialite,
                                 prof.type_contrat,
                                 prof.CIN
-                            ]).draw(false);
+                            ]);
                         });
+
+                        table.draw();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
                     }
                 });
             });

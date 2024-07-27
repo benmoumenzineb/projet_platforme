@@ -283,6 +283,13 @@
                             </svg>&nbsp;&nbsp;&nbsp;<a class="lien" href="{{ route('reclamationscolarite') }}"
                                 class="{{ Request::is('reclamationscolarite') ? 'active' : '' }}">Réclamations scolarité</a>
                         </li>
+                        <li class="p-2 mb-2 {{ Request::is('generateemploi') ? 'active' : '' }}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+        <path d="M3 1.5V0h1v1.5h8V0h1v1.5h1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V2a.5.5 0 0 1 .5-.5h1zM1 4a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5V5H1V4z"/>
+    </svg>&nbsp;&nbsp;&nbsp;
+    <a class="lien" href="{{ route('generateemploi') }}">Génération emploi du temps</a>
+</li>
+
                         </ul>
                     </div>
                 </div>
@@ -317,11 +324,7 @@
     </script>
     <script>
         var userButton = document.querySelector('.dropdown-toggle');
-
-
         var userDropdownMenu = document.querySelector('#userDropdownMenu');
-
-
         userButton.addEventListener('click', function() {
 
             userDropdownMenu.classList.toggle('show');

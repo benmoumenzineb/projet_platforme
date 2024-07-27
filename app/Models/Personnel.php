@@ -9,8 +9,8 @@ class Personnel extends Model
 {
     protected $table = 'personnel';
     protected $fillable = [
-        'nom', 'prenom', 'cin_salarie', 'matricule_cnss', 'mail', 'etablissement',
-        'RIB', 'RIB_pdf', 'type_contrat', 'contrat_pdf', 'cv_pdf', 'cin_pdf'
+        'id_personnel','nom', 'prenom', 'CIN', 'matricule_cnss', 'id_departement',
+        'RIB', 'RIB_pdf', 'type_contrat', 'contrat_file', 'cin_file','est_prof','est_salarie','est_Doctorant','specialite','diplome','lieu_affectation'
     ];
     public $timestamps = false;
 }

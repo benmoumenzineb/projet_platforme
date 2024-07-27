@@ -43,6 +43,7 @@ use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\RhPersonnelControlleur;
 use App\Http\Controllers\DemandeScolaritearchiveController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\generateemploiController;
 
 Route::get('/', function () {
 
@@ -69,6 +70,13 @@ Route::middleware(['is_admin'])->group(function () {
 // ce que j'ai ajouté pour filtre des profs
     Route::get('/profs', [ProfController::class, 'index'])->name('profs.views.index');
     Route::get('/profs/data', [ProfController::class, 'data'])->name('profs.data');
+//pour generation d'emploi
+
+Route::get('/generate-emploi', [generateemploiController::class, 'generate'])->name('generateemploi');
+Route::get('/calendar', [ProfController::class, 'showCalendar'])->name('get.professors');
+
+Route::get('/get-professor-options', [ProfController::class, 'getProfessorOptions'])->name('get.professor.options');
+
 
 
 
