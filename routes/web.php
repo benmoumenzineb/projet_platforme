@@ -1,25 +1,23 @@
 <?php
-use App\Http\Controllers\NoteEtudiantController;
 use App\Http\Controllers\Absenceetudiant;
 use App\Http\Controllers\AbsenceProfacceuilcontroller;
 use App\Http\Controllers\AjouteNoteController;
+use App\Http\Controllers\AssurerCourController;
 use App\Http\Controllers\Auth\AccueilLoginController;
 use App\Http\Controllers\Auth\EtudiantLoginController;
 use App\Http\Controllers\Auth\ProfLoginController;
 use App\Http\Controllers\Auth\RHLoginController;
-use App\Http\Controllers\Auth\ScolariteLoginController;
-use App\Http\Controllers\ProfController;
-use App\Http\Controllers\StudentController;
-
 use App\Http\Controllers\CahierTextProfController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashbordRHController;
 use App\Http\Controllers\DemandeetudiantController;
+use App\Http\Controllers\DemandeScolaritearchiveController;
 use App\Http\Controllers\DemandeScolariteController;
 use App\Http\Controllers\EmploiaccueilController;
 use App\Http\Controllers\EmploiscolariteController;
 use App\Http\Controllers\ExamNotificationController;
 use App\Http\Controllers\FormtelechargerController;
+use App\Http\Controllers\generateemploiController;
 use App\Http\Controllers\GestioncompteController;
 use App\Http\Controllers\HistoriqueprofController;
 use App\Http\Controllers\HomeaAccuielController;
@@ -37,13 +35,13 @@ use App\Http\Controllers\NoteProfController;
 use App\Http\Controllers\PaiementetudiantController;
 use App\Http\Controllers\PaiementScolariteController;
 use App\Http\Controllers\PresenceProfController;
+use App\Http\Controllers\ProfController;
 use App\Http\Controllers\Profil_etudiantController;
 use App\Http\Controllers\ProgrammeEvaluationController;
 use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\RhPersonnelControlleur;
-use App\Http\Controllers\DemandeScolaritearchiveController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\generateemploiController;
 
 Route::get('/', function () {
 
@@ -63,22 +61,24 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/dashboard-data', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/gestioncomptes', [GestioncompteController::class, 'index'])->name('gestioncomptes');
     Route::post('/creationcomptes', [GestioncompteController::class, 'store'])->name('creationcomptes');
-    // ce que j'ai ajouté pour filtre des etudiants 
+    // ce que j'ai ajouté pour filtre des etudiants
     Route::get('/admin/students', [StudentController::class, 'index'])->name('admin.views.index');
     Route::get('/admin/students/filter', [StudentController::class, 'filter'])->name('admin.students.filter');
 });
 // ce que j'ai ajouté pour filtre des profs
-    Route::get('/profs', [ProfController::class, 'index'])->name('profs.views.index');
-    Route::get('/profs/data', [ProfController::class, 'data'])->name('profs.data');
+Route::get('/profs', [ProfController::class, 'index'])->name('profs.views.index');
+Route::get('/profs/data', [ProfController::class, 'data'])->name('profs.data');
 //pour generation d'emploi
-
 Route::get('/generate-emploi', [generateemploiController::class, 'generate'])->name('generateemploi');
 Route::get('/calendar', [ProfController::class, 'showCalendar'])->name('get.professors');
-
 Route::get('/get-professor-options', [ProfController::class, 'getProfessorOptions'])->name('get.professor.options');
-
-
-
+Route::get('/get-module-options', [ProfController::class, 'getModuleOptions'])->name('get.module.options');
+Route::get('/get-element-options', [ProfController::class, 'getElementOptions']);
+Route::get('/get-heure-debut', [ProfController::class, 'getHeureDebut']);
+Route::get('/get-heure-fin', [ProfController::class, 'getHeurFin']);
+Route::get('/get-salle', [ProfController::class, 'getSalle']);
+Route::post('/store-assurer-cour', [AssurerCourController::class, 'store'])->name('save_seance');
+Route::get('/get-events', [AssurerCourController::class, 'getEvents'])->name('get_events');
 
 //===========================================Role RH=============================================================
 Route::middleware(['is_rh'])->group(function () {
@@ -139,7 +139,6 @@ Route::get('/login/rh', [RHLoginController::class, 'index'])->name('login.RH');
 
 Route::get('/loginRH', [loginrhcontroller::class, 'index'])->name('login.rh');
 
-
 Route::post('/exams', [ExamNotificationController::class, 'store'])->name('exams.store');
 Route::get('/student/exams', [ExamNotificationController::class, 'studentExams'])->name('etudiant.views.exametudiant');
 
@@ -180,11 +179,7 @@ Route::get('/navbarsscolarite', function () {
 
 });
 
-
 Route::get('/etudiants/search/scolarite', [ListetudiantController::class, 'search'])->name('etudiant.search.scolarite');
-
-
-
 
 Route::get('/Profil_etudiant', [Profil_etudiantController::class, 'index'])->name('Profil_etudiant');
 Route::post('/upload-image', [Profil_etudiantController::class, 'uploadImage'])->name('upload.image');
@@ -238,10 +233,7 @@ Route::delete('/etudiants/{id}', [ListetudiantController::class, 'destroy'])->na
 
 Route::delete('/personnel/{id}', [RhPersonnelControlleur::class, 'destroy'])->name('personnel.destroy');
 
-
-
 Route::delete('/reclamation/{id}', [ReclamationScolariteController::class, 'destroy'])->name('reclamations.destroy');
-
 
 Route::post('/import-etudiants', [EtudiantController::class, 'import'])->name('import.etudiants');
 

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Prof;
+use App\Models\Element;
+use App\Models\Module;
 use App\Models\Personnel;
-use DataTables;
+use App\Models\Prof;
+use App\Models\HeureDebut;
+use App\Models\HeureFin;
+use App\Models\Salle;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class ProfController extends Controller
 {
@@ -29,22 +32,53 @@ class ProfController extends Controller
         $profs = $query->get();
 
         return response()->json([
-            'data' => $profs
+            'data' => $profs,
         ]);
     }
+    //-----------------------------------------peut etre enlevé-------------------------------------
     public function showCalendar()
-    {   
+    {
         // Retrieve all professors where est_prof is 1
         $data = Personnel::where('est_prof', '=', 1)->get();
         return view('Admin.views.generate-emploi', compact('data'));
     }
-// pour le code js
-public function getProfessorOptions()
-{
-    // Retrieve all professors where est_prof is 1
-    $data = Personnel::where('est_prof', 1)->get(['id_personnel', 'nom', 'prenom']);
-    return response()->json($data);
-}
+    //-------------------------------------------------------------------------------------------------
 
+// pour l'affichage des professeurs dans popup
+    public function getProfessorOptions()
+    {
+        $data = Personnel::where('est_prof', 1)->get(['id_personnel', 'nom', 'prenom']);
+        return response()->json($data);
+    }
+
+//pour l'affichage des modules dans popup
+    public function getModuleOptions()
+    {
+        $data = Module::all(['id_module', 'intitule']);
+        return response()->json($data);
+    }
+
+//pour l'affichage des elements
+    public function getElementOptions()
+    {
+        $data = Element::all(['id_element', 'intitule']);
+        return response()->json($data);
+    }
+
+    public function getHeureDebut()
+    {
+        $data = HeureDebut::all(['id_heure_debut', 'heure_debut']);
+        return response()->json($data);
+    }
+    public function getHeurFin()
+    {
+        $data = HeureFin::all(['id_heure_fin', 'heure_fin']);
+        return response()->json($data);
+    }
+    public function getSalle()
+    {
+        $data = Salle::all(['id_salle', 'num_salle']);
+        return response()->json($data);
+    }
 
 }
