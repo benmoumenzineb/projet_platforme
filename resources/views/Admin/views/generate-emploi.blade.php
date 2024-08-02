@@ -2,12 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Generation emploi du temps</title>
-
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Calendar</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
     <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
@@ -61,7 +58,6 @@
 </head>
 
 <body>
-
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
@@ -152,215 +148,6 @@
         </div>
     </div>
     <!-- /# sidebar -->
-
-
-    <div class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="float-left">
-                        <div class="hamburger sidebar-toggle">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                        </div>
-                    </div>
-                    <div class="float-right">
-                        <div class="dropdown dib">
-                            <div class="header-icon" data-toggle="dropdown">
-                                <i class="ti-bell"></i>
-                                <div class="drop-down dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-content-heading">
-                                        <span class="text-left">Recent Notifications</span>
-                                    </div>
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/3.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Mr. John</div>
-                                                        <div class="notification-text">5 members joined today </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/3.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Mariam</div>
-                                                        <div class="notification-text">likes a photo of you</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/3.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Tasnim</div>
-                                                        <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                            ...</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/3.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Mr. John</div>
-                                                        <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                            ...</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="text-center">
-                                                <a href="#" class="more-link">See All</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dropdown dib">
-                            <div class="header-icon" data-toggle="dropdown">
-                                <i class="ti-email"></i>
-                                <div class="drop-down dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-content-heading">
-                                        <span class="text-left">2 New Messages</span>
-                                        <a href="email.html">
-                                            <i class="ti-pencil-alt pull-right"></i>
-                                        </a>
-                                    </div>
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li class="notification-unread">
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/1.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Michael Qin</div>
-                                                        <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                            ...</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="notification-unread">
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/2.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Mr. John</div>
-                                                        <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                            ...</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/3.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Michael Qin</div>
-                                                        <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                            ...</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img class="pull-left m-r-10 avatar-img"
-                                                        src="asset/images/avatar/2.jpg" alt="" />
-                                                    <div class="notification-content">
-                                                        <small class="notification-timestamp pull-right">02:34
-                                                            PM</small>
-                                                        <div class="notification-heading">Mr. John</div>
-                                                        <div class="notification-text">Hi Teddy, Just wanted to let you
-                                                            ...</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="text-center">
-                                                <a href="#" class="more-link">See All</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dropdown dib">
-                            <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">John
-                                    <i class="ti-angle-down f-s-10"></i>
-                                </span>
-                                <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-content-heading">
-                                        <span class="text-left">Upgrade Now</span>
-                                        <p class="trial-day">30 Days Trail</p>
-                                    </div>
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-user"></i>
-                                                    <span>Profile</span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-email"></i>
-                                                    <span>Inbox</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-settings"></i>
-                                                    <span>Setting</span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-lock"></i>
-                                                    <span>Lock Screen</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ti-power-off"></i>
-                                                    <span>Logout</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-------------------------------------------------------------------->
     <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -368,28 +155,11 @@
                     <div class="col-lg-8 p-r-0 title-margin-right">
                         <div class="page-header">
                             <div class="page-title">
-                                <h1>Hello,
-                                    <span>Welcome Here</span>
-                                </h1>
+                                <h1>Bienvenue, <span>dans l'espace administrateur</span></h1>
                             </div>
                         </div>
                     </div>
-                    <!-- /# column -->
-                    <div class="col-lg-4 p-l-0 title-margin-left">
-                        <div class="page-header">
-                            <div class="page-title">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="#">Dashboard</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">App-Event-Calender</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
                 </div>
-                <!-- /# row -->
                 <section id="main-content">
                     <div class="row">
                         <div class="col-lg-12">
@@ -404,61 +174,19 @@
                                                 class="btn btn-lg btn-success btn-block waves-effect waves-light">
                                                 <i class="fa fa-plus"></i> Create New
                                             </a>
-                                            <div id="external-events" class="m-t-20">
-                                                <br>
-                                                <!-- Barre de recherche ajoutée ici -->
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Search for..." id="search-bar">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn btn-default"
-                                                                    type="button">Go!</button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /# row de la barre de recherche -->
-                                                <p>Drag and drop your event or click in the calendar</p>
-                                                <div class="external-event bg-primary" data-class="bg-primary">
-                                                    <i class="fa fa-move"></i>professeur : hajar
-                                                </div>
-                                                <div class="external-event bg-pink" data-class="bg-pink">
-                                                    <i class="fa fa-move"></i>Module: Datascience
-                                                </div>
-                                                <div class="external-event bg-warning" data-class="bg-warning">
-                                                    <i class="fa fa-move"></i>Element: power BI
-                                                </div>
-                                                <div class="external-event bg-dark" data-class="bg-dark">
-                                                    <i class="fa fa-move"></i>Filiere: cyber security
-                                                </div>
-                                            </div>
-
-                                            <!-- checkbox -->
-                                            <div class="checkbox m-t-40">
-                                                <input id="drop-remove" type="checkbox">
-                                                <label for="drop-remove">
-                                                    Remove after drop
-                                                </label>
-                                            </div>
-
                                         </div>
                                         <div class="col-md-9">
                                             <div class="card-box">
                                                 <div id="calendar"></div>
                                             </div>
                                         </div>
-                                        <!-- end col -->
-                                        <!-- BEGIN MODAL ((((((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))))) -->
                                         <div class="modal fade none-border" id="event-modal">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">&times;</button>
-                                                        <h4 class="modal-title">
-                                                            <strong>Ajouter une séance</strong>
+                                                        <h4 class="modal-title"><strong>Ajouter une séance</strong>
                                                         </h4>
                                                     </div>
                                                     <div class="modal-body"></div>
@@ -475,16 +203,13 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- Modal Add Category -->
                                         <div class="modal fade none-border" id="add-category">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">&times;</button>
-                                                        <h4 class="modal-title">
-                                                            <strong>Ajouter une categorie </strong>
+                                                        <h4 class="modal-title"><strong>Ajouter une categorie </strong>
                                                         </h4>
                                                     </div>
                                                     <div class="modal-body">
@@ -498,112 +223,51 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label class="control-label">Choisir le
-                                                                           professeur</label>
+                                                                        professeur</label>
                                                                     <select class="form-control form-white"
                                                                         name="professor">
-                                                                        @foreach ($data as $professor)                                            
+                                                                        @foreach ($data as $professor)
                                                                             <option
                                                                                 value="{{ $professor->id_personnel }}">
                                                                                 {{ $professor->nom }}
-                                                                                {{ $professor->prenom }}</option>
+                                                                                {{ $professor->prenom }}
+                                                                            </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-
                                                             </div>
+                                                        </form>
                                                     </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect"
-                                                        data-dismiss="modal">Annuler</button>
-                                                    <button type="button"
-                                                        class="btn btn-danger waves-effect waves-light save-category"
-                                                        data-dismiss="modal">Enregistrer</button>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default waves-effect"
+                                                            data-dismiss="modal">Annuler</button>
+                                                        <button type="button"
+                                                            class="btn btn-danger waves-effect waves-light save-category"
+                                                            data-dismiss="modal">Enregistrer</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- END MODAL -->
+                                    <!-- Add your JavaScript code here -->
+                                    <script src="asset/js/lib/jquery.min.js"></script>
+                                    <script src="asset/js/lib/jquery.nanoscroller.min.js"></script>
+                                    <script src="asset/js/lib/menubar/sidebar.js"></script>
+                                    <script src="asset/js/lib/preloader/pace.min.js"></script>
+                                    <script src="asset/js/lib/bootstrap.min.js"></script>
+                                    <script src="asset/js/scripts.js"></script>
+                                    <script src="asset/js/lib/jquery-ui/jquery-ui.min.js"></script>
+                                    <script src="asset/js/lib/moment/moment.js"></script>
+                                    <script src="asset/js/lib/calendar/fullcalendar.min.js"></script>
+                                    <script src="asset/js/lib/calendar/fullcalendar-init.js"></script>
                                 </div>
                             </div>
                         </div>
-                        <!-- /# card -->
                     </div>
-                    <!-- /# column -->
+                </section>
             </div>
-            <!-- /# row -->
-            </section>
-
         </div>
     </div>
-    </div>
-
-    <!-- jquery vendor -->
-    <script src="asset/js/lib/jquery.min.js"></script>
-    <script src="asset/js/lib/jquery.nanoscroller.min.js"></script>
-    <script src="asset/js/lib/menubar/sidebar.js"></script>
-    <script src="asset/js/lib/preloader/pace.min.js"></script>
-    <script src="asset/js/lib/bootstrap.min.js"></script>
-    <script src="asset/js/scripts.js"></script>
-    <script src="asset/js/lib/jquery-ui/jquery-ui.min.js"></script>
-    <script src="asset/js/lib/moment/moment.js"></script>
-    <script src="asset/js/lib/calendar/fullcalendar.min.js"></script>
-    <script src="asset/js/lib/calendar/fullcalendar-init.js"></script>
-    <!-- scripit init-->
-    <!------------------------------------------------------------------------------------->
-    @extends('layouts.app')
-
-@section('content')
-<div class="row">
-    <div class="col-md-6">
-        <label class="control-label">Nom de module</label>
-        <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
-    </div>
-    <div class="col-md-6">
-        <label class="control-label">Choisir le professeur</label>
-        <select id="professor-select" class="form-control form-white" name="professor">
-            <option value="">Selectionner un professeur</option>
-            <!-- Les options seront ajoutées ici par le script -->
-        </select>
-    </div>
-</div>
-@endsection
-
-@section('scripts')
-<script>
-    $(document).ready(function() {
-        function populateProfessors() {
-            $.ajax({
-                url: "{{ route('get.professor.options') }}", // Utilise la route correcte pour obtenir les professeurs
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    console.log("Data received:", data); // Ligne de débogage
-                    var $select = $('#professor-select');
-                    $select.empty();
-                    $select.append($('<option>', {
-                        value: '',
-                        text: 'Selectionner un professeur'
-                    }));
-                    $.each(data, function(index, professor) {
-                        $select.append($('<option>', {
-                            value: professor.id_personnel,
-                            text: professor.nom + ' ' + professor.prenom
-                        }));
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText); // Ligne de débogage
-                    alert('Failed to load professors');
-                }
-            });
-        }
-
-        populateProfessors();
-    });
-</script>
-@endsection
 </body>
 
 </html>

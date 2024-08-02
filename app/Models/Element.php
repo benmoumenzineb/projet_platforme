@@ -9,13 +9,12 @@ class Element extends Model
 {
     protected $table = 'element';
 
-    public $incrementing = false;
-
     public $timestamps = false;
+    protected $primaryKey = 'id_element';
     protected $fillable = [
        
        
-        'num_element',
+        'id_element',
         'intitule',
         'descriprion',
         'nbr_heure_cours',
@@ -25,22 +24,22 @@ class Element extends Model
        ];
        public function seance()
     {
-        return $this->hasMany(Seance::class, 'num_element',);
+        return $this->hasMany(Seance::class, 'id_element',);
     }
     public function notes_evaluation()
     {
-        return $this->hasMany(Note::class, 'num_element',);
+        return $this->hasMany(Note::class, 'id_element',);
     }
     public function module()
     {
-        return $this->hasMany(Module::class, 'num_element',);
+        return $this->hasMany(Module::class, 'id_element',);
     }
     public function programmeEvaluations()
     {
-        return $this->hasMany(Programme_Evaluation::class, 'num_element');
+        return $this->hasMany(Programme_Evaluation::class, 'id_element');
     }
     public function Absence_accueil()
     {
-        return $this->hasMany(Absence_Accueil::class, 'num_element');
+        return $this->hasMany(Absence_Accueil::class, 'id_element');
     }
 }
