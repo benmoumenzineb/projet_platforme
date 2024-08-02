@@ -15,4 +15,3 @@ class Salle extends Model
         'num_salle'
     ];
 }
-

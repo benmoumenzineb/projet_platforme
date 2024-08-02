@@ -119,7 +119,6 @@
         });
     };
 
-
     CalendarApp.prototype.onSelect = function (start, end, allDay) {
         var $this = this;
         $this.$modal.modal({
