@@ -78,7 +78,7 @@ Route::get('/get-heure-debut', [ProfController::class, 'getHeureDebut']);
 Route::get('/get-heure-fin', [ProfController::class, 'getHeurFin']);
 Route::get('/get-salle', [ProfController::class, 'getSalle']);
 Route::post('/store-assurer-cour', [AssurerCourController::class, 'store'])->name('save_seance');
-Route::post('/update-event/{id}', [AssurerCourController::class, 'update'])->name('update_seance');
+Route::put('/update-event/{id}', [AssurerCourController::class, 'update'])->name('update_seance');
 Route::get('/get-events', [AssurerCourController::class, 'getEvents'])->name('get_events');
 
 //===========================================Role RH=============================================================

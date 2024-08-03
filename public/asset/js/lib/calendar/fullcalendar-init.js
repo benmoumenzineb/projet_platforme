@@ -29,95 +29,117 @@
     CalendarApp.prototype.onEventClick = function (calEvent, jsEvent, view) {
         var $this = this;
         var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        
-        var formUpdate = $("<form action='/update-event-url/" + calEvent.id + "' method='POST'></form>");
-        formUpdate.append('<input type="hidden" name="_token" value="' + csrfToken + '">'); // CSRF token
-
-        // Module
-        formUpdate.append("<label>Change module name</label>");
-        formUpdate.append("<div class='form-group'><select class='form-control' name='module' id='module-select'><option>Sélectionner un module</option></select></div>");
-
-        // Professeur
-        formUpdate.append("<label>Change professeur name</label>");
-        formUpdate.append("<div class='form-group'><select class='form-control' name='professor' id='professor-select'><option>Sélectionner un professeur</option></select></div>");
-
-        // Element
-        formUpdate.append("<label>Change element name</label>");
-        formUpdate.append("<div class='form-group'><select class='form-control' name='element' id='element-select'><option>Sélectionner un élément</option></select></div>");
-
-        // Event start date
-        formUpdate.append("<label>Change event start date</label>");
-        formUpdate.append("<div class='form-group'><select class='form-control' name='beginning' id='select-heure-depart'><option>Sélectionner une heure de début</option></select></div>");
-
-        // Event end date
-        formUpdate.append("<label>Change event end date</label>");
-        formUpdate.append("<div class='form-group'><select class='form-control' name='ending' id='select-heure-fin'><option>Sélectionner une heure de fin</option></select></div>");
-
-        // Event salle
-        formUpdate.append("<label>Change event salle</label>");
-        formUpdate.append("<div class='form-group'><select class='form-control' name='room' id='select_salle'><option>Sélectionner une salle</option></select></div>");
-
-        // Groupe
-        formUpdate.append("<label>Change Groupe</label>");
-        formUpdate.append("<div class='input-group'><input class='form-control' type='text' name='group' value='" + calEvent.group + "'/></div>");
-
-        // Event date
-        formUpdate.append("<label>Change date</label>");
-        formUpdate.append("<div class='input-group'><input class='form-control' type='date' name='date' value='" + calEvent.date + "'/></div>");
-
-        $this.$modal.modal({
-            backdrop: 'static'
-        });
-        $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(formUpdate).end().find('.save-event').unbind('click').on("click", function () {
-            console.log("Save event clicked");
-            formUpdate.submit();
-        });
-
-        // Populate functions
-        function populateSelect(url, selectId, defaultText, valueField, textField) {
-            $.ajax({
-                url: url,
-                dataType: 'json',
-                success: function (data) {
-                    console.log("Fetched data: ", data); // Debugging line
-                    var $select = $(selectId);
-                    $select.empty();
-                    $select.append($('<option>', {
-                        value: '',
-                        text: defaultText
-                    }));
-
-                    // Debugging: Log each item in the data
-                    $.each(data, function (index, item) {
-                        console.log("Processing item: ", item); // Debugging line
-                        var textValue = item[textField];
-                        if (Array.isArray(textField)) {
-                            textValue = textField.map(function (field) {
-                                return item[field];
-                            }).join(' ');
-                        }
-                        $select.append($('<option>', {
-                            value: item[valueField],
-                            text: textValue
-                        }));
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error('Failed to load ' + defaultText.toLowerCase(), error); // Improved error logging
-                }
-            });
+        var eventId = calEvent.id;
+        if (!eventId) {
+            console.error('Event ID is undefined');
+            return;
         }
 
-        $(document).ready(function () {
-            populateSelect("http://127.0.0.1:8000/get-professor-options", '#professor-select', 'Sélectionner un professeur', 'id_personnel', ['nom', 'prenom']);
-            populateSelect("http://127.0.0.1:8000/get-module-options", '#module-select', 'Sélectionner un module', 'id_module', 'intitule');
-            populateSelect("http://127.0.0.1:8000/get-element-options", '#element-select', 'Sélectionner un élément', 'id_element', 'intitule');
-            populateSelect("http://127.0.0.1:8000/get-heure-debut", '#select-heure-depart', 'Sélectionner une heure de début', 'id_heure_debut', 'heure_debut');
-            populateSelect("http://127.0.0.1:8000/get-heure-fin", '#select-heure-fin', 'Sélectionner une heure de fin', 'id_heure_fin', 'heure_fin');
-            populateSelect("http://127.0.0.1:8000/get-salle", '#select_salle', 'Sélectionner une salle', 'id_salle', 'num_salle');
+        // Fetch the specific event data
+        $.ajax({
+            url: '/get-events', // URL to fetch event data
+            method: 'GET',
+            success: function (data) {
+                console.log("Fetched events data:", data); // Debug: Log fetched events data
+
+                var eventData = data.find(event => event.id === calEvent.id); // Find the selected event
+                console.log("Selected event data:", eventData); 
+
+                if (eventData) {
+                    var formUpdate = $("<form action='/update-event-url/" + calEvent.id + "' method='POST'></form>");
+                    formUpdate.append('<input type="hidden" name="_token" value="' + csrfToken + '">'); // CSRF token
+
+                    // Populate form with event data
+                    formUpdate.append("<label>Change module name</label>");
+                    formUpdate.append("<div class='form-group'><select class='form-control' name='module' id='module-select'><option value='" + eventData.id_module + "'>" + eventData.module.name + "</option></select></div>");
+
+                    formUpdate.append("<label>Change professor name</label>");
+                    formUpdate.append("<div class='form-group'><select class='form-control' name='professor' id='professor-select'><option value='" + eventData.id_prof + "'>" + eventData.prof.last_name + " " + eventData.prof.first_name + "</option></select></div>");
+
+                    formUpdate.append("<label>Change element name</label>");
+                    formUpdate.append("<div class='form-group'><select class='form-control' name='element' id='element-select'><option value='" + eventData.id_element + "'>" + eventData.element.name + "</option></select></div>");
+
+                    formUpdate.append("<label>Change event start date</label>");
+                    formUpdate.append("<div class='form-group'><select class='form-control' name='beginning' id='select-heure-depart'><option value='" + eventData.id_heure_debut + "'>" + eventData.heure_debut.time + "</option></select></div>");
+
+                    formUpdate.append("<label>Change event end date</label>");
+                    formUpdate.append("<div class='form-group'><select class='form-control' name='ending' id='select-heure-fin'><option value='" + eventData.id_heure_fin + "'>" + eventData.heure_fin.time + "</option></select></div>");
+
+                    formUpdate.append("<label>Change event room</label>");
+                    formUpdate.append("<div class='form-group'><select class='form-control' name='room' id='select_salle'><option value='" + eventData.id_salle + "'>" + eventData.salle.name + "</option></select></div>");
+
+                    formUpdate.append("<label>Change group</label>");
+                    formUpdate.append("<div class='input-group'><input class='form-control' type='text' name='group' value='" + eventData.N_groupe + "'/></div>");
+
+                    formUpdate.append("<label>Change date</label>");
+                    formUpdate.append("<div class='input-group'><input class='form-control' type='date' name='date' value='" + eventData.date + "'/></div>");
+
+                    // Display modal
+                    $this.$modal.modal({
+                        backdrop: 'static'
+                    });
+
+                    // Append form to modal body
+                    $this.$modal.find('.modal-body').empty().append(formUpdate);
+
+                    // Handle save button click
+                    $this.$modal.find('.save-event').unbind('click').on("click", function () {
+                        console.log("Save event clicked");
+                        formUpdate.submit();
+                    });
+
+                    // Populate functions
+                    function populateSelect(url, selectId, defaultText, valueField, textField) {
+                        $.ajax({
+                            url: url,
+                            dataType: 'json',
+                            success: function (data) {
+                                console.log("Fetched data for select:", data); // Debugging line
+                                var $select = $(selectId);
+                                $select.empty();
+                                $select.append($('<option>', {
+                                    value: '',
+                                    text: defaultText
+                                }));
+
+                                $.each(data, function (index, item) {
+                                    console.log("Processing item for select:", item); // Debugging line
+                                    var textValue = item[textField];
+                                    if (Array.isArray(textField)) {
+                                        textValue = textField.map(function (field) {
+                                            return item[field];
+                                        }).join(' ');
+                                    }
+                                    $select.append($('<option>', {
+                                        value: item[valueField],
+                                        text: textValue
+                                    }));
+                                });
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Failed to load ' + defaultText.toLowerCase(), error); // Improved error logging
+                            }
+                        });
+                    }
+
+                    // $(document).ready(function () {
+                    //     populateSelect("/get-professor-options", '#professor-select', 'Select a professor', 'id_personnel', ['nom', 'prenom']);
+                    //     populateSelect("/get-module-options", '#module-select', 'Select a module', 'id_module', 'intitule');
+                    //     populateSelect("/get-element-options", '#element-select', 'Select an element', 'id_element', 'intitule');
+                    //     populateSelect("/get-heure-debut", '#select-heure-depart', 'Select a start time', 'id_heure_debut', 'heure_debut');
+                    //     populateSelect("/get-heure-fin", '#select-heure-fin', 'Select an end time', 'id_heure_fin', 'heure_fin');
+                    //     populateSelect("/get-salle", '#select_salle', 'Select a room', 'id_salle', 'num_salle');
+                    // });
+                } else {
+                    console.error("Event not found");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Failed to fetch events", error);
+            }
         });
     };
+
 
     CalendarApp.prototype.onSelect = function (start, end, allDay) {
         var $this = this;
@@ -384,7 +406,6 @@
         $this.$calendarObj.fullCalendar('unselect');
     };
 
-
     CalendarApp.prototype.enableDrag = function () {
         $(this.$event).each(function () {
             var eventObject = {
@@ -442,6 +463,7 @@
                 method: 'GET',
                 success: function (events) {
                     const fullCalendarEvents = events.map(event => ({
+                        id: event.id, 
                         title: `${event.prof.first_name} ${event.prof.last_name}`,
                         start: event.date.date + 'T' + event.heure_debut.time,
                         end: event.date.date + 'T' + event.heure_fin.time,

@@ -46,6 +46,7 @@ class AssurerCourController extends Controller
             return response()->json(['success' => false, 'message' => 'Failed to create or retrieve date'], 500);
         }
     }
+    
 
     public function update(Request $request, $id)
     {
@@ -94,6 +95,7 @@ class AssurerCourController extends Controller
         // Raw SQL query to fetch data from related tables
         $events = DB::select('
             SELECT
+                ac.id,
                 ac.id_prof,
                 p.nom as prof_name,
                 p.prenom as prof_prenom,
@@ -133,6 +135,7 @@ class AssurerCourController extends Controller
             return [
                 'backgroundColor' => '#A5ECC1',
                 'borderColor' => '#000',
+                'id' => $event->id,
                 'prof' => [
                     'id' => $event->id_prof,
                     'first_name' => $event->prof_name,
