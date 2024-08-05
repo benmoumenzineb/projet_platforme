@@ -1,4 +1,3 @@
-here is my blade
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,34 +96,34 @@ here is my blade
                 <p>Année universitaire : 2023 - 2024</p>
             </div>
         </header>
-        {{-- <pre>{{ print_r($events, true) }}</pre> --}}
         <table>
             <thead>
                 <tr>
                     <th class="day-column">Les jours</th>
-                    <th>08:30 - 10:25</th>
-                    <th>10:35 - 12:30</th>
-                    <th>12:30 - 13:30</th>
-                    <th>13:30 - 15:25</th>
-                    <th>15:35 - 17:30</th>
+                    @foreach (['08:30:00' => '08:30 - 10:25', '10:35:00' => '10:35 - 12:30', '12:30:00' => '12:30 - 13:30', '13:30:00' => '13:30 - 15:25', '15:35:00' => '15:35 - 17:30'] as $timeRange)
+                        <th>{{ $timeRange }}</th>
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
-                @foreach (['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'] as $day)
+                @foreach ($events->groupBy(
+        fn($event) => Carbon\Carbon::parse($event['date']['date'])->locale('fr')->translatedFormat('l'),
+    ) as $day => $dayEvents)
                     <tr>
-                        <td>{{ $day }}</td>
+                        <td style="text-align: center;">{{ $day }}</td>
                         @foreach (['08:30:00', '10:35:00', '12:30:00', '13:30:00', '15:35:00'] as $timeSlot)
                             <td class="time-slot">
-                                @foreach ($events as $event)
-                                    @if (($event['date']['date'] == $day && $event['heure_debut']['time'] && $event['heure_fin']['time']) == $timeSlot)
-                                        <strong>Module: {{ $event['module']['name'] }}</strong><br>
-                                        <strong>Element: {{ $event['element']['name'] }}</strong><br>
-                                        <strong>Pr. {{ $event['prof']['first_name'] }}
-                                            {{ $event['prof']['last_name'] }}</strong><br>
-                                        <strong>Salle: {{ $event['salle']['name'] }}</strong><br>
-                                        <strong>Groupe: {{ $event['N_groupe'] }}</strong>
-                                    @endif
-                                @endforeach
+                                @php
+                                    $event = $dayEvents->firstWhere('heure_debut.time', $timeSlot);
+                                @endphp
+                                @if ($event)
+                                    <strong>Module: {{ $event['module']['name'] }}</strong><br>
+                                    <strong>Element: {{ $event['element']['name'] }}</strong><br>
+                                    <strong>Pr. {{ $event['prof']['first_name'] }}
+                                        {{ $event['prof']['last_name'] }}</strong><br>
+                                    <strong>Salle: {{ $event['salle']['name'] }}</strong><br>
+                                    <strong>Groupe: {{ $event['N_groupe'] }}</strong>
+                                @endif
                             </td>
                         @endforeach
                     </tr>

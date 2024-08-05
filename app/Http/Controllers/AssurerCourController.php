@@ -16,18 +16,33 @@ class AssurerCourController extends Controller
             'module' => 'required|integer',
             'element' => 'required|integer',
             'group' => 'required|string',
-            'room' => 'required|integer', // Changed to integer
-            'beginning' => 'required|integer', // Changed to integer
-            'ending' => 'required|integer', // Changed to integer
+            'room' => 'required|integer',
+            'beginning' => 'required|integer',
+            'ending' => 'required|integer',
             'date' => 'required|date',
         ]);
 
         // Vérifier si la date existe déjà dans la table date
-        $date = Date::firstOrCreate(
-            ['date' => $request->input('date')]
-        );
+        $date = Date::firstOrCreate(['date' => $request->input('date')]);
 
         if ($date) {
+            // Check if the room is available for the given time period
+            $isRoomTaken = AssurerCour::where('id_salle', $request->input('room'))
+                ->where('id_date', $date->id_date)
+                ->where(function ($query) use ($request) {
+                    $query->whereBetween('id_heure_debut', [$request->input('beginning'), $request->input('ending')])
+                        ->orWhereBetween('id_heure_fin', [$request->input('beginning'), $request->input('ending')])
+                        ->orWhere(function ($query) use ($request) {
+                            $query->where('id_heure_debut', '<', $request->input('beginning'))
+                                ->where('id_heure_fin', '>', $request->input('ending'));
+                        });
+                })
+                ->exists();
+
+            if ($isRoomTaken) {
+                return response()->json(['success' => false, 'message' => 'La salle n\'est pas disponible pour le moment'], 400);
+            }
+
             // Création d'une nouvelle instance et stockage des données
             $assurerCour = new AssurerCour();
             $assurerCour->id_prof = $request->input('professor');
@@ -46,7 +61,6 @@ class AssurerCourController extends Controller
             return response()->json(['success' => false, 'message' => 'Failed to create or retrieve date'], 500);
         }
     }
-    
 
     public function update(Request $request, $id)
     {

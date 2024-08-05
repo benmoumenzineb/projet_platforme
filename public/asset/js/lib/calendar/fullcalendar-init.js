@@ -327,81 +327,89 @@
             }
         });
 
-        // Handle form submission
-        $this.$modal.find('form').on('submit', function (e) {
-            e.preventDefault();
+       // Handle form submission
+$this.$modal.find('form').on('submit', function (e) {
+    e.preventDefault();
 
-            var form = $(this);
-            var professor = form.find("select[name='professor']").val();
-            var module = form.find("select[name='module']").val();
-            var element = form.find("select[name='element']").val();
-            var group = form.find("input[name='group']").val();
-            var room = form.find("select[name='room']").val(); // Changed from input to select
-            var beginning = form.find("select[name='beginning']").val(); // Changed from input to select
-            var ending = form.find("select[name='ending']").val(); // Changed from input to select
-            var date = form.find("input[name='date']").val();
+    var form = $(this);
+    var professor = form.find("select[name='professor']").val();
+    var module = form.find("select[name='module']").val();
+    var element = form.find("select[name='element']").val();
+    var group = form.find("input[name='group']").val();
+    var room = form.find("select[name='room']").val(); // Changed from input to select
+    var beginning = form.find("select[name='beginning']").val(); // Changed from input to select
+    var ending = form.find("select[name='ending']").val(); // Changed from input to select
+    var date = form.find("input[name='date']").val();
 
-            console.log("Form data:", {
-                professor,
-                module,
-                element,
-                group,
-                room,
-                beginning,
-                ending,
-                date
-            });
+    console.log("Form data:", {
+        professor,
+        module,
+        element,
+        group,
+        room,
+        beginning,
+        ending,
+        date
+    });
 
-            // Check if any of the required fields are empty
-            if (!professor || !module || !element || !group || !room || !beginning || !ending || !date) {
-                alert('Tous les champs sont obligatoires');
-                return false;
+    // Check if any of the required fields are empty
+    if (!professor || !module || !element || !group || !room || !beginning || !ending || !date) {
+        alert('Tous les champs sont obligatoires');
+        return false;
+    }
+
+    // Logging types to ensure they match expected types
+    console.log("Data types:", {
+        professor: typeof professor,
+        module: typeof module,
+        element: typeof element,
+        group: typeof group,
+        room: typeof room,
+        beginning: typeof beginning,
+        ending: typeof ending,
+        date: typeof date
+    });
+
+    var eventData = {
+        professor: professor,
+        module: module,
+        element: element,
+        group: group,
+        room: room,
+        beginning: beginning,
+        ending: ending,
+        date: date // Use formatted date
+    };
+
+    $.ajax({
+        url: 'http://127.0.0.1:8000/store-assurer-cour',
+        type: 'POST',
+        data: eventData,
+        success: function (response) {
+            if (response.success) {
+                console.log("Event saved successfully:", response);
+
+                // Use the returned date_id from the response if needed
+                // eventData.id_date = response.date_id;
+
+                // Optionally, add additional response handling
+                $this.$calendar.fullCalendar('renderEvent', eventData, true);
+            } else {
+                // Handle the case when the room is not available
+                console.error("Error:", response.message);
+                alert(response.message || 'La salle n\'est pas disponible pour le moment');
             }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error saving event:", error);
+            alert('Failed to save event');
+        }
+    });
 
-            // Logging types to ensure they match expected types
-            console.log("Data types:", {
-                professor: typeof professor,
-                module: typeof module,
-                element: typeof element,
-                group: typeof group,
-                room: typeof room,
-                beginning: typeof beginning,
-                ending: typeof ending,
-                date: typeof date
-            });
+    $this.$modal.modal('hide');
+    return false;
+});
 
-            var eventData = {
-                professor: professor,
-                module: module,
-                element: element,
-                group: group,
-                room: room,
-                beginning: beginning,
-                ending: ending,
-                date: date // Use formatted date
-            };
-
-            $.ajax({
-                url: 'http://127.0.0.1:8000/store-assurer-cour',
-                type: 'POST',
-                data: eventData,
-                success: function (response) {
-                    console.log("Event saved successfully:", response);
-
-                    // Use the returned date_id from the response
-                    eventData.id_date = response.date_id;
-
-                    $this.$calendar.fullCalendar('renderEvent', eventData, true);
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error saving event:", error);
-                    alert('Failed to save event');
-                }
-            });
-
-            $this.$modal.modal('hide');
-            return false;
-        });
 
         $this.$calendarObj.fullCalendar('unselect');
     };

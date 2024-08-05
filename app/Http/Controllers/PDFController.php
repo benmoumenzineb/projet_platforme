@@ -96,6 +96,9 @@ class PDFController extends Controller
             ];
         });
 
+        // dd($formattedEvents);
+        // die;
+
         // Generate the PDF
         $pdf = PDF::loadView('Admin.views.calender_pdf', ['events' => $formattedEvents]);
 
