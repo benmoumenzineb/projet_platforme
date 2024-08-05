@@ -3739,7 +3739,7 @@ tbody tr td:last-child {
 
 .fc-view {
   margin-top: 37px;
-  margin-left: -404px !important;
+  /* margin-left: -404px !important; */
 }
 
 .none-border .modal-footer {

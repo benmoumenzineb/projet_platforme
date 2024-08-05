@@ -41,6 +41,7 @@ use App\Http\Controllers\ProgrammeEvaluationController;
 use App\Http\Controllers\ReclamationScolariteController;
 use App\Http\Controllers\RhPersonnelControlleur;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -80,6 +81,7 @@ Route::get('/get-salle', [ProfController::class, 'getSalle']);
 Route::post('/store-assurer-cour', [AssurerCourController::class, 'store'])->name('save_seance');
 Route::put('/update-event/{id}', [AssurerCourController::class, 'update'])->name('update_seance');
 Route::get('/get-events', [AssurerCourController::class, 'getEvents'])->name('get_events');
+Route::get('/calendar-pdf', [PDFController::class, 'generatePDF'])->name('generate_time_table_pdf');
 
 //===========================================Role RH=============================================================
 Route::middleware(['is_rh'])->group(function () {

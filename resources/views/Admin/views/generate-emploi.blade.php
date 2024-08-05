@@ -165,17 +165,25 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-title">
+                                    <h4>Génerer emploi PDF</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-md-4">
+                                        <a href="{{ route('generate_time_table_pdf') }}"
+                                            class="btn btn-lg btn-success">Génere l'emploi
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-title">
                                     <h4>Calendar</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-3">
-                                            <a href="#" data-toggle="modal" data-target="#add-category"
-                                                class="btn btn-lg btn-success btn-block waves-effect waves-light">
-                                                <i class="fa fa-plus"></i> Create New
-                                            </a>
-                                        </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-12">
                                             <div class="card-box">
                                                 <div id="calendar"></div>
                                             </div>
